@@ -263,3 +263,140 @@ endpoints:
     synthesize_future_records:
       cursor_field: updated_at
       count: 3
+
+  # --- AP & purchasing streams ---
+  # Seven CDC streams (bounded updated_at-range reads, same shape as the AR
+  # streams above) plus one snapshot stream (paper_checks — plain limit/offset
+  # full listing, no updated_* filters).
+
+  - path: /public/v2/purchase-orders/
+    method: GET
+    corpus: purchase_orders
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/vendor-payments/
+    method: GET
+    corpus: vendor_payments
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/vendor-credits/
+    method: GET
+    corpus: vendor_credits
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/vendor-refunds/
+    method: GET
+    corpus: vendor_refunds
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/vendor-prepayments/
+    method: GET
+    corpus: vendor_prepayments
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/vendor-prepayment-applications/
+    method: GET
+    corpus: vendor_prepayment_applications
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/direct-expenses/
+    method: GET
+    corpus: direct_expenses
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/paper-checks/
+    method: GET
+    corpus: paper_checks
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+  # --- end AP & purchasing ---

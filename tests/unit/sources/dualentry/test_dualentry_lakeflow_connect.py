@@ -357,3 +357,97 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert len(ids) == 5 and len(set(ids)) == 5, f"expected 5 unique rows, got {ids}"
         assert seen_offsets == ["0", "2", "4"], seen_offsets
         assert offset == {"cursor": self.connector._init_ts_iso}
+
+    # ------------------------------------------------------------------
+    # AP & purchasing streams
+    # ------------------------------------------------------------------
+
+    _AP_CDC_STREAMS = (
+        "purchase_orders",
+        "vendor_payments",
+        "vendor_credits",
+        "vendor_refunds",
+        "vendor_prepayments",
+        "vendor_prepayment_applications",
+        "direct_expenses",
+    )
+
+    def test_ap_cdc_streams_registered_as_cdc_on_internal_id(self):
+        """The 7 incremental AP streams are exposed, incremental, and keyed on
+        ``internal_id`` with an ``updated_at`` cursor (per the OpenAPI list
+        schemas — e.g. PublicPurchaseOrderV2ListSchemaOut — not assumed)."""
+        tables = self.connector.list_tables()
+        for stream in self._AP_CDC_STREAMS:
+            assert stream in tables, f"{stream} missing from list_tables()"
+            meta = self.connector.read_table_metadata(stream, {})
+            assert meta["ingestion_type"] == "cdc", stream
+            assert meta["primary_keys"] == ["internal_id"], stream
+            assert meta["cursor_field"] == "updated_at", stream
+
+    def test_paper_checks_registered_as_snapshot_on_id(self):
+        """paper_checks is a snapshot stream keyed on ``id`` (its OpenAPI
+        list-item schema PublicPaperCheckSchemaOut carries no ``updated_at``),
+        so it is re-listed in full each trigger — no cursor field."""
+        assert "paper_checks" in self.connector.list_tables()
+        meta = self.connector.read_table_metadata("paper_checks", {})
+        assert meta["ingestion_type"] == "snapshot"
+        assert meta["primary_keys"] == ["id"]
+        assert "cursor_field" not in meta
+
+    def test_ap_stream_reads_raw_records_unchanged(self):
+        """A representative AP stream with rich nesting (``vendor_credits`` — a
+        ``tax`` union, ``tax_registration_numbers``, ``custom_fields``,
+        ``classifications``) must be yielded raw — deep-equal against the corpus,
+        nested objects preserved as dicts/lists rather than stringified."""
+        records, offset = self.connector.read_table("vendor_credits", {}, {})
+        emitted = list(records)
+        assert emitted == _load_corpus("vendor_credits")
+        assert offset == {"cursor": self.connector._init_ts_iso}
+        # tax is a STRUCT<regime, data:VARIANT>; the untyped data leaf survives
+        # as a dict, custom_fields survive as a list of {field, value} dicts.
+        assert isinstance(emitted[0]["tax"], dict)
+        assert isinstance(emitted[0]["tax"]["data"], dict)
+        cf = emitted[0]["custom_fields"]
+        assert isinstance(cf, list) and isinstance(cf[0]["field"], dict)
+
+    def test_ap_cdc_caps_at_init_time(self):
+        """The simulator seeds future-dated AP records; the first incremental
+        read must exclude them via ``updated_before = _init_ts`` and park the
+        cursor at init time so Trigger.AvailableNow terminates."""
+        records, offset = self.connector.read_table("purchase_orders", {}, {})
+        rows = list(records)
+        init_iso = self.connector._init_ts_iso
+        assert offset == {"cursor": init_iso}
+        assert rows, "expected the seeded corpus records on the first read"
+        for row in rows:
+            assert row["updated_at"] <= init_iso, (
+                f"record with updated_at={row['updated_at']} leaked past the "
+                f"init-time cap {init_iso}"
+            )
+
+    def test_paper_checks_snapshot_pagination_spans_multiple_pages(self):
+        """paper_checks is a snapshot: with ``limit=2`` over the 5-record corpus
+        the read walks offsets 0, 2, 4 (spanning >1 page), returns all 5 unique
+        records exactly once, and parks a ``done`` sentinel offset."""
+        seen_offsets: list = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy
+        try:
+            records, offset = self.connector.read_table("paper_checks", {}, {"limit": "2"})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        ids = [r["id"] for r in rows]
+        assert len(ids) == 5 and len(set(ids)) == 5, f"expected 5 unique rows, got {ids}"
+        assert seen_offsets == ["0", "2", "4"], seen_offsets
+        assert offset == {"done": True}
+        # Second call short-circuits (end_offset == start_offset contract).
+        more, offset2 = self.connector.read_table("paper_checks", offset, {})
+        assert list(more) == []
+        assert offset2 == {"done": True}

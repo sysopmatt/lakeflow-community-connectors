@@ -1,0 +1,157 @@
+[
+ {
+  "internal_id": 11500,
+  "number": 11501,
+  "company_id": 11502,
+  "company_name": "company_name-0",
+  "company_currency": "company_currency-0",
+  "vendor_id": 11503,
+  "vendor_name": "vendor_name-0",
+  "vendor_prepayment_number": 11504,
+  "vendor_credit_number": 11505,
+  "exchange_rate": "exchange_rate-0",
+  "memo": "memo-0",
+  "date": "2024-02-01",
+  "transaction_date": "2024-02-01",
+  "currency_iso_4217_code": "currency_iso_4217_code-0",
+  "amount": "amount-0",
+  "record_status": "record_status-0",
+  "transaction_ids": [
+   11506
+  ],
+  "attachments": [
+   {
+    "id": 11507,
+    "file_name": "file_name-0",
+    "file_size": 11508,
+    "download_url": "download_url-0"
+   }
+  ],
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-01T00:00:00Z"
+ },
+ {
+  "internal_id": 11600,
+  "number": 11601,
+  "company_id": 11602,
+  "company_name": "company_name-1",
+  "company_currency": "company_currency-1",
+  "vendor_id": 11603,
+  "vendor_name": "vendor_name-1",
+  "vendor_prepayment_number": 11604,
+  "vendor_credit_number": 11605,
+  "exchange_rate": "exchange_rate-1",
+  "memo": "memo-1",
+  "date": "2024-02-02",
+  "transaction_date": "2024-02-02",
+  "currency_iso_4217_code": "currency_iso_4217_code-1",
+  "amount": "amount-1",
+  "record_status": "record_status-1",
+  "transaction_ids": [
+   11606
+  ],
+  "attachments": [
+   {
+    "id": 11607,
+    "file_name": "file_name-1",
+    "file_size": 11608,
+    "download_url": "download_url-1"
+   }
+  ],
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-02T00:00:00Z"
+ },
+ {
+  "internal_id": 11700,
+  "number": 11701,
+  "company_id": 11702,
+  "company_name": "company_name-2",
+  "company_currency": "company_currency-2",
+  "vendor_id": 11703,
+  "vendor_name": "vendor_name-2",
+  "vendor_prepayment_number": 11704,
+  "vendor_credit_number": 11705,
+  "exchange_rate": "exchange_rate-2",
+  "memo": "memo-2",
+  "date": "2024-02-03",
+  "transaction_date": "2024-02-03",
+  "currency_iso_4217_code": "currency_iso_4217_code-2",
+  "amount": "amount-2",
+  "record_status": "record_status-2",
+  "transaction_ids": [
+   11706
+  ],
+  "attachments": [
+   {
+    "id": 11707,
+    "file_name": "file_name-2",
+    "file_size": 11708,
+    "download_url": "download_url-2"
+   }
+  ],
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-03T00:00:00Z"
+ },
+ {
+  "internal_id": 11800,
+  "number": 11801,
+  "company_id": 11802,
+  "company_name": "company_name-3",
+  "company_currency": "company_currency-3",
+  "vendor_id": 11803,
+  "vendor_name": "vendor_name-3",
+  "vendor_prepayment_number": 11804,
+  "vendor_credit_number": 11805,
+  "exchange_rate": "exchange_rate-3",
+  "memo": "memo-3",
+  "date": "2024-02-04",
+  "transaction_date": "2024-02-04",
+  "currency_iso_4217_code": "currency_iso_4217_code-3",
+  "amount": "amount-3",
+  "record_status": "record_status-3",
+  "transaction_ids": [
+   11806
+  ],
+  "attachments": [
+   {
+    "id": 11807,
+    "file_name": "file_name-3",
+    "file_size": 11808,
+    "download_url": "download_url-3"
+   }
+  ],
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-04T00:00:00Z"
+ },
+ {
+  "internal_id": 11900,
+  "number": 11901,
+  "company_id": 11902,
+  "company_name": "company_name-4",
+  "company_currency": "company_currency-4",
+  "vendor_id": 11903,
+  "vendor_name": "vendor_name-4",
+  "vendor_prepayment_number": 11904,
+  "vendor_credit_number": 11905,
+  "exchange_rate": "exchange_rate-4",
+  "memo": "memo-4",
+  "date": "2024-02-05",
+  "transaction_date": "2024-02-05",
+  "currency_iso_4217_code": "currency_iso_4217_code-4",
+  "amount": "amount-4",
+  "record_status": "record_status-4",
+  "transaction_ids": [
+   11906
+  ],
+  "attachments": [
+   {
+    "id": 11907,
+    "file_name": "file_name-4",
+    "file_size": 11908,
+    "download_url": "download_url-4"
+   }
+  ],
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-05T00:00:00Z"
+ }
+]
