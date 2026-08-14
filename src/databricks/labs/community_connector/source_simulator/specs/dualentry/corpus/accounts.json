@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1001,
+    "name": "name-0",
+    "number": 1002,
+    "description": "description-0",
+    "is_active": true,
+    "is_system": true,
+    "company_id": 1003,
+    "parent_account_id": 1004,
+    "account_type": "account_type-0",
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "category_1099": "category_1099-0",
+    "system_ref": "system_ref-0",
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    }
+  },
+  {
+    "id": 1005,
+    "name": "name-1",
+    "number": 1006,
+    "description": "description-1",
+    "is_active": false,
+    "is_system": false,
+    "company_id": 1007,
+    "parent_account_id": 1008,
+    "account_type": "account_type-1",
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "category_1099": "category_1099-1",
+    "system_ref": "system_ref-1",
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    }
+  },
+  {
+    "id": 1009,
+    "name": "name-2",
+    "number": 1010,
+    "description": "description-2",
+    "is_active": true,
+    "is_system": true,
+    "company_id": 1011,
+    "parent_account_id": 1012,
+    "account_type": "account_type-2",
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "category_1099": "category_1099-2",
+    "system_ref": "system_ref-2",
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    }
+  },
+  {
+    "id": 1013,
+    "name": "name-3",
+    "number": 1014,
+    "description": "description-3",
+    "is_active": false,
+    "is_system": false,
+    "company_id": 1015,
+    "parent_account_id": 1016,
+    "account_type": "account_type-3",
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "category_1099": "category_1099-3",
+    "system_ref": "system_ref-3",
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    }
+  }
+]

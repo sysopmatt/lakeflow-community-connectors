@@ -1,0 +1,127 @@
+# DualEntry public REST API endpoints exercised by the connector.
+#
+# Connector flow (per DualEntryLakeflowConnect):
+# * Every list endpoint uses limit + offset pagination (limit default and
+#   server max both 100); the connector detects the last page by a short page.
+#   Declared as ``pagination_style: offset_limit`` with ``offset`` in the
+#   offset role and ``limit`` in the limit role so the simulator slices the
+#   corpus exactly like the live server.
+# * CDC tables (journal_entries, invoices, bills) → bounded updated_at-range
+#   reads via the inclusive ``updated_after`` / ``updated_before`` filters
+#   (gte/lte on the record's ``updated_at``, ISO-8601 strings — lexicographic
+#   comparison is correct). ``synthesize_future_records`` seeds post-now records
+#   so the termination test proves the connector's ``updated_before = _init_ts``
+#   cap works.
+# * Snapshot tables (accounts, customers, vendors, items) → plain limit/offset
+#   full listing; the connector sends no updated_* filters.
+#
+# Response wrapping — every list response wraps the record array in a top-level
+# ``items`` key (alongside a ``count`` field the connector ignores).
+#
+# The connector also sends ``ordering`` (=updated_at for CDC, =id for
+# snapshots) to stabilise live offset pages; the simulator serves the corpus in
+# file order regardless, so ``ordering`` is declared ``ignore``.
+
+endpoints:
+  # ---- snapshot tables: plain limit/offset full listing ----
+
+  - path: /public/v2/accounts/
+    method: GET
+    corpus: accounts
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/customers/
+    method: GET
+    corpus: customers
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/vendors/
+    method: GET
+    corpus: vendors
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/items/
+    method: GET
+    corpus: items
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  # ---- CDC tables: bounded updated_at-range reads ----
+
+  - path: /public/v2/journal-entries/
+    method: GET
+    corpus: journal_entries
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/invoices/
+    method: GET
+    corpus: invoices
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/bills/
+    method: GET
+    corpus: bills
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3

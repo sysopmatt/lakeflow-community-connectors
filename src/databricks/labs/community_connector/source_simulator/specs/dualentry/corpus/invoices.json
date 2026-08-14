@@ -1,0 +1,587 @@
+[
+  {
+    "internal_id": 1067,
+    "number": 1068,
+    "code": "code-0",
+    "company_id": 1069,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "customer_id": 1070,
+    "customer_name": "customer_name-0",
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "exchange_rate": "exchange_rate-0",
+    "amount": "amount-0",
+    "amount_due": "amount_due-0",
+    "paid_total": "paid_total-0",
+    "amount_due_updated_at": "2024-01-01T06:00:00Z",
+    "memo": "memo-0",
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "due_date": "2024-02-01",
+    "record_status": "record_status-0",
+    "approval_status": "approval_status-0",
+    "recurring_record_number": 1071,
+    "reference_number": "reference_number-0",
+    "term_id": 1072,
+    "term_name": "term_name-0",
+    "transaction_ids": [
+      1073
+    ],
+    "bill_to_address": "bill_to_address-0",
+    "ship_to_address": "ship_to_address-0",
+    "billing_address": {
+      "name": "name-0",
+      "street": "street-0",
+      "second_line": "second_line-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0"
+    },
+    "shipping_address": {
+      "name": "name-0",
+      "street": "street-0",
+      "second_line": "second_line-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0"
+    },
+    "bank_match_status": "bank_match_status-0",
+    "reconciliation_status": "reconciliation_status-0",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1074,
+          "name": "cf_name_0",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_0",
+          "n": 0
+        }
+      },
+      {
+        "field": {
+          "id": 1075,
+          "name": "cf_flag_0",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1076,
+        "file_name": "file_name-0",
+        "file_size": 1077,
+        "download_url": "download_url-0"
+      }
+    ],
+    "payment": {
+      "type": "type-0",
+      "id": 1078,
+      "body": "body-0",
+      "link": "link-0"
+    },
+    "next_approvers": [
+      {
+        "id": 1079,
+        "name": "approver_0",
+        "order": 0
+      }
+    ],
+    "rejected_by": {
+      "id": 1080,
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "email": "email-0",
+      "full_name": "full_name-0",
+      "rejection_reason": "rejection_reason-0"
+    },
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 1081,
+    "number": 1082,
+    "code": "code-1",
+    "company_id": 1083,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "customer_id": 1084,
+    "customer_name": "customer_name-1",
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "exchange_rate": "exchange_rate-1",
+    "amount": "amount-1",
+    "amount_due": "amount_due-1",
+    "paid_total": "paid_total-1",
+    "amount_due_updated_at": "2024-01-02T06:00:00Z",
+    "memo": "memo-1",
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "due_date": "2024-02-02",
+    "record_status": "record_status-1",
+    "approval_status": "approval_status-1",
+    "recurring_record_number": 1085,
+    "reference_number": "reference_number-1",
+    "term_id": 1086,
+    "term_name": "term_name-1",
+    "transaction_ids": [
+      1087
+    ],
+    "bill_to_address": "bill_to_address-1",
+    "ship_to_address": "ship_to_address-1",
+    "billing_address": {
+      "name": "name-1",
+      "street": "street-1",
+      "second_line": "second_line-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1"
+    },
+    "shipping_address": {
+      "name": "name-1",
+      "street": "street-1",
+      "second_line": "second_line-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1"
+    },
+    "bank_match_status": "bank_match_status-1",
+    "reconciliation_status": "reconciliation_status-1",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1088,
+          "name": "cf_name_1",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_1",
+          "n": 1
+        }
+      },
+      {
+        "field": {
+          "id": 1089,
+          "name": "cf_flag_1",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1090,
+        "file_name": "file_name-1",
+        "file_size": 1091,
+        "download_url": "download_url-1"
+      }
+    ],
+    "payment": {
+      "type": "type-1",
+      "id": 1092,
+      "body": "body-1",
+      "link": "link-1"
+    },
+    "next_approvers": [
+      {
+        "id": 1093,
+        "name": "approver_1",
+        "order": 1
+      }
+    ],
+    "rejected_by": {
+      "id": 1094,
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "email": "email-1",
+      "full_name": "full_name-1",
+      "rejection_reason": "rejection_reason-1"
+    },
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 1095,
+    "number": 1096,
+    "code": "code-2",
+    "company_id": 1097,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "customer_id": 1098,
+    "customer_name": "customer_name-2",
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "exchange_rate": "exchange_rate-2",
+    "amount": "amount-2",
+    "amount_due": "amount_due-2",
+    "paid_total": "paid_total-2",
+    "amount_due_updated_at": "2024-01-03T06:00:00Z",
+    "memo": "memo-2",
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "due_date": "2024-02-03",
+    "record_status": "record_status-2",
+    "approval_status": "approval_status-2",
+    "recurring_record_number": 1099,
+    "reference_number": "reference_number-2",
+    "term_id": 1100,
+    "term_name": "term_name-2",
+    "transaction_ids": [
+      1101
+    ],
+    "bill_to_address": "bill_to_address-2",
+    "ship_to_address": "ship_to_address-2",
+    "billing_address": {
+      "name": "name-2",
+      "street": "street-2",
+      "second_line": "second_line-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2"
+    },
+    "shipping_address": {
+      "name": "name-2",
+      "street": "street-2",
+      "second_line": "second_line-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2"
+    },
+    "bank_match_status": "bank_match_status-2",
+    "reconciliation_status": "reconciliation_status-2",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1102,
+          "name": "cf_name_2",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_2",
+          "n": 2
+        }
+      },
+      {
+        "field": {
+          "id": 1103,
+          "name": "cf_flag_2",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1104,
+        "file_name": "file_name-2",
+        "file_size": 1105,
+        "download_url": "download_url-2"
+      }
+    ],
+    "payment": {
+      "type": "type-2",
+      "id": 1106,
+      "body": "body-2",
+      "link": "link-2"
+    },
+    "next_approvers": [
+      {
+        "id": 1107,
+        "name": "approver_2",
+        "order": 2
+      }
+    ],
+    "rejected_by": {
+      "id": 1108,
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "email": "email-2",
+      "full_name": "full_name-2",
+      "rejection_reason": "rejection_reason-2"
+    },
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 1109,
+    "number": 1110,
+    "code": "code-3",
+    "company_id": 1111,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "customer_id": 1112,
+    "customer_name": "customer_name-3",
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "exchange_rate": "exchange_rate-3",
+    "amount": "amount-3",
+    "amount_due": "amount_due-3",
+    "paid_total": "paid_total-3",
+    "amount_due_updated_at": "2024-01-04T06:00:00Z",
+    "memo": "memo-3",
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "due_date": "2024-02-04",
+    "record_status": "record_status-3",
+    "approval_status": "approval_status-3",
+    "recurring_record_number": 1113,
+    "reference_number": "reference_number-3",
+    "term_id": 1114,
+    "term_name": "term_name-3",
+    "transaction_ids": [
+      1115
+    ],
+    "bill_to_address": "bill_to_address-3",
+    "ship_to_address": "ship_to_address-3",
+    "billing_address": {
+      "name": "name-3",
+      "street": "street-3",
+      "second_line": "second_line-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3"
+    },
+    "shipping_address": {
+      "name": "name-3",
+      "street": "street-3",
+      "second_line": "second_line-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3"
+    },
+    "bank_match_status": "bank_match_status-3",
+    "reconciliation_status": "reconciliation_status-3",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1116,
+          "name": "cf_name_3",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_3",
+          "n": 3
+        }
+      },
+      {
+        "field": {
+          "id": 1117,
+          "name": "cf_flag_3",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1118,
+        "file_name": "file_name-3",
+        "file_size": 1119,
+        "download_url": "download_url-3"
+      }
+    ],
+    "payment": {
+      "type": "type-3",
+      "id": 1120,
+      "body": "body-3",
+      "link": "link-3"
+    },
+    "next_approvers": [
+      {
+        "id": 1121,
+        "name": "approver_3",
+        "order": 3
+      }
+    ],
+    "rejected_by": {
+      "id": 1122,
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "email": "email-3",
+      "full_name": "full_name-3",
+      "rejection_reason": "rejection_reason-3"
+    },
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 1123,
+    "number": 1124,
+    "code": "code-4",
+    "company_id": 1125,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "customer_id": 1126,
+    "customer_name": "customer_name-4",
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "exchange_rate": "exchange_rate-4",
+    "amount": "amount-4",
+    "amount_due": "amount_due-4",
+    "paid_total": "paid_total-4",
+    "amount_due_updated_at": "2024-01-05T06:00:00Z",
+    "memo": "memo-4",
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "due_date": "2024-02-05",
+    "record_status": "record_status-4",
+    "approval_status": "approval_status-4",
+    "recurring_record_number": 1127,
+    "reference_number": "reference_number-4",
+    "term_id": 1128,
+    "term_name": "term_name-4",
+    "transaction_ids": [
+      1129
+    ],
+    "bill_to_address": "bill_to_address-4",
+    "ship_to_address": "ship_to_address-4",
+    "billing_address": {
+      "name": "name-4",
+      "street": "street-4",
+      "second_line": "second_line-4",
+      "city": "city-4",
+      "state": "state-4",
+      "postal_code": "postal_code-4",
+      "country": "country-4"
+    },
+    "shipping_address": {
+      "name": "name-4",
+      "street": "street-4",
+      "second_line": "second_line-4",
+      "city": "city-4",
+      "state": "state-4",
+      "postal_code": "postal_code-4",
+      "country": "country-4"
+    },
+    "bank_match_status": "bank_match_status-4",
+    "reconciliation_status": "reconciliation_status-4",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1130,
+          "name": "cf_name_4",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_4",
+          "n": 4
+        }
+      },
+      {
+        "field": {
+          "id": 1131,
+          "name": "cf_flag_4",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1132,
+        "file_name": "file_name-4",
+        "file_size": 1133,
+        "download_url": "download_url-4"
+      }
+    ],
+    "payment": {
+      "type": "type-4",
+      "id": 1134,
+      "body": "body-4",
+      "link": "link-4"
+    },
+    "next_approvers": [
+      {
+        "id": 1135,
+        "name": "approver_4",
+        "order": 4
+      }
+    ],
+    "rejected_by": {
+      "id": 1136,
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "email": "email-4",
+      "full_name": "full_name-4",
+      "rejection_reason": "rejection_reason-4"
+    },
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

@@ -1,0 +1,572 @@
+[
+  {
+    "internal_id": 1137,
+    "number": 1138,
+    "company_id": 1139,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "vendor_id": 1140,
+    "vendor_name": "vendor_name-0",
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "exchange_rate": "exchange_rate-0",
+    "memo": "memo-0",
+    "amount": "amount-0",
+    "amount_due": "amount_due-0",
+    "paid_total": "paid_total-0",
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "due_date": "2024-02-01",
+    "supply_date": "2024-02-01",
+    "place_of_supply": "place_of_supply-0",
+    "record_status": "record_status-0",
+    "approval_status": "approval_status-0",
+    "recurring_record_number": 1141,
+    "purchase_order_number": 1142,
+    "reference_number": "reference_number-0",
+    "term_id": 1143,
+    "term_name": "term_name-0",
+    "transaction_ids": [
+      1144
+    ],
+    "tax": {
+      "regime": "sales_tax",
+      "data": {
+        "rate": "0.0725",
+        "jurisdiction": "US-CA-0",
+        "amount": "12.34"
+      }
+    },
+    "tax_registration_numbers": {
+      "company": [
+        {
+          "type": "EIN",
+          "value": "12-3456780"
+        }
+      ],
+      "counterparty": [
+        {
+          "type": "VAT",
+          "value": "GB000000000"
+        }
+      ]
+    },
+    "bank_match_status": "bank_match_status-0",
+    "reconciliation_status": "reconciliation_status-0",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1145,
+          "name": "cf_name_0",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_0",
+          "n": 0
+        }
+      },
+      {
+        "field": {
+          "id": 1146,
+          "name": "cf_flag_0",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1147,
+        "file_name": "file_name-0",
+        "file_size": 1148,
+        "download_url": "download_url-0"
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1149,
+        "name": "approver_0",
+        "order": 0
+      }
+    ],
+    "rejected_by": {
+      "id": 1150,
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "email": "email-0",
+      "full_name": "full_name-0",
+      "rejection_reason": "rejection_reason-0"
+    },
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 1151,
+    "number": 1152,
+    "company_id": 1153,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "vendor_id": 1154,
+    "vendor_name": "vendor_name-1",
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "exchange_rate": "exchange_rate-1",
+    "memo": "memo-1",
+    "amount": "amount-1",
+    "amount_due": "amount_due-1",
+    "paid_total": "paid_total-1",
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "due_date": "2024-02-02",
+    "supply_date": "2024-02-02",
+    "place_of_supply": "place_of_supply-1",
+    "record_status": "record_status-1",
+    "approval_status": "approval_status-1",
+    "recurring_record_number": 1155,
+    "purchase_order_number": 1156,
+    "reference_number": "reference_number-1",
+    "term_id": 1157,
+    "term_name": "term_name-1",
+    "transaction_ids": [
+      1158
+    ],
+    "tax": {
+      "regime": "sales_tax",
+      "data": {
+        "rate": "0.0725",
+        "jurisdiction": "US-CA-1",
+        "amount": "12.34"
+      }
+    },
+    "tax_registration_numbers": {
+      "company": [
+        {
+          "type": "EIN",
+          "value": "12-3456781"
+        }
+      ],
+      "counterparty": [
+        {
+          "type": "VAT",
+          "value": "GB100000000"
+        }
+      ]
+    },
+    "bank_match_status": "bank_match_status-1",
+    "reconciliation_status": "reconciliation_status-1",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1159,
+          "name": "cf_name_1",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_1",
+          "n": 1
+        }
+      },
+      {
+        "field": {
+          "id": 1160,
+          "name": "cf_flag_1",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1161,
+        "file_name": "file_name-1",
+        "file_size": 1162,
+        "download_url": "download_url-1"
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1163,
+        "name": "approver_1",
+        "order": 1
+      }
+    ],
+    "rejected_by": {
+      "id": 1164,
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "email": "email-1",
+      "full_name": "full_name-1",
+      "rejection_reason": "rejection_reason-1"
+    },
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 1165,
+    "number": 1166,
+    "company_id": 1167,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "vendor_id": 1168,
+    "vendor_name": "vendor_name-2",
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "exchange_rate": "exchange_rate-2",
+    "memo": "memo-2",
+    "amount": "amount-2",
+    "amount_due": "amount_due-2",
+    "paid_total": "paid_total-2",
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "due_date": "2024-02-03",
+    "supply_date": "2024-02-03",
+    "place_of_supply": "place_of_supply-2",
+    "record_status": "record_status-2",
+    "approval_status": "approval_status-2",
+    "recurring_record_number": 1169,
+    "purchase_order_number": 1170,
+    "reference_number": "reference_number-2",
+    "term_id": 1171,
+    "term_name": "term_name-2",
+    "transaction_ids": [
+      1172
+    ],
+    "tax": {
+      "regime": "sales_tax",
+      "data": {
+        "rate": "0.0725",
+        "jurisdiction": "US-CA-2",
+        "amount": "12.34"
+      }
+    },
+    "tax_registration_numbers": {
+      "company": [
+        {
+          "type": "EIN",
+          "value": "12-3456782"
+        }
+      ],
+      "counterparty": [
+        {
+          "type": "VAT",
+          "value": "GB200000000"
+        }
+      ]
+    },
+    "bank_match_status": "bank_match_status-2",
+    "reconciliation_status": "reconciliation_status-2",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1173,
+          "name": "cf_name_2",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_2",
+          "n": 2
+        }
+      },
+      {
+        "field": {
+          "id": 1174,
+          "name": "cf_flag_2",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1175,
+        "file_name": "file_name-2",
+        "file_size": 1176,
+        "download_url": "download_url-2"
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1177,
+        "name": "approver_2",
+        "order": 2
+      }
+    ],
+    "rejected_by": {
+      "id": 1178,
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "email": "email-2",
+      "full_name": "full_name-2",
+      "rejection_reason": "rejection_reason-2"
+    },
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 1179,
+    "number": 1180,
+    "company_id": 1181,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "vendor_id": 1182,
+    "vendor_name": "vendor_name-3",
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "exchange_rate": "exchange_rate-3",
+    "memo": "memo-3",
+    "amount": "amount-3",
+    "amount_due": "amount_due-3",
+    "paid_total": "paid_total-3",
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "due_date": "2024-02-04",
+    "supply_date": "2024-02-04",
+    "place_of_supply": "place_of_supply-3",
+    "record_status": "record_status-3",
+    "approval_status": "approval_status-3",
+    "recurring_record_number": 1183,
+    "purchase_order_number": 1184,
+    "reference_number": "reference_number-3",
+    "term_id": 1185,
+    "term_name": "term_name-3",
+    "transaction_ids": [
+      1186
+    ],
+    "tax": {
+      "regime": "sales_tax",
+      "data": {
+        "rate": "0.0725",
+        "jurisdiction": "US-CA-3",
+        "amount": "12.34"
+      }
+    },
+    "tax_registration_numbers": {
+      "company": [
+        {
+          "type": "EIN",
+          "value": "12-3456783"
+        }
+      ],
+      "counterparty": [
+        {
+          "type": "VAT",
+          "value": "GB300000000"
+        }
+      ]
+    },
+    "bank_match_status": "bank_match_status-3",
+    "reconciliation_status": "reconciliation_status-3",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1187,
+          "name": "cf_name_3",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_3",
+          "n": 3
+        }
+      },
+      {
+        "field": {
+          "id": 1188,
+          "name": "cf_flag_3",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1189,
+        "file_name": "file_name-3",
+        "file_size": 1190,
+        "download_url": "download_url-3"
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1191,
+        "name": "approver_3",
+        "order": 3
+      }
+    ],
+    "rejected_by": {
+      "id": 1192,
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "email": "email-3",
+      "full_name": "full_name-3",
+      "rejection_reason": "rejection_reason-3"
+    },
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 1193,
+    "number": 1194,
+    "company_id": 1195,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "vendor_id": 1196,
+    "vendor_name": "vendor_name-4",
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "exchange_rate": "exchange_rate-4",
+    "memo": "memo-4",
+    "amount": "amount-4",
+    "amount_due": "amount_due-4",
+    "paid_total": "paid_total-4",
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "due_date": "2024-02-05",
+    "supply_date": "2024-02-05",
+    "place_of_supply": "place_of_supply-4",
+    "record_status": "record_status-4",
+    "approval_status": "approval_status-4",
+    "recurring_record_number": 1197,
+    "purchase_order_number": 1198,
+    "reference_number": "reference_number-4",
+    "term_id": 1199,
+    "term_name": "term_name-4",
+    "transaction_ids": [
+      1200
+    ],
+    "tax": {
+      "regime": "sales_tax",
+      "data": {
+        "rate": "0.0725",
+        "jurisdiction": "US-CA-4",
+        "amount": "12.34"
+      }
+    },
+    "tax_registration_numbers": {
+      "company": [
+        {
+          "type": "EIN",
+          "value": "12-3456784"
+        }
+      ],
+      "counterparty": [
+        {
+          "type": "VAT",
+          "value": "GB400000000"
+        }
+      ]
+    },
+    "bank_match_status": "bank_match_status-4",
+    "reconciliation_status": "reconciliation_status-4",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1201,
+          "name": "cf_name_4",
+          "type": "text"
+        },
+        "value": {
+          "raw": "cf_value_4",
+          "n": 4
+        }
+      },
+      {
+        "field": {
+          "id": 1202,
+          "name": "cf_flag_4",
+          "type": "bool"
+        },
+        "value": true
+      }
+    ],
+    "attachments": [
+      {
+        "id": 1203,
+        "file_name": "file_name-4",
+        "file_size": 1204,
+        "download_url": "download_url-4"
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1205,
+        "name": "approver_4",
+        "order": 4
+      }
+    ],
+    "rejected_by": {
+      "id": 1206,
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "email": "email-4",
+      "full_name": "full_name-4",
+      "rejection_reason": "rejection_reason-4"
+    },
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]
