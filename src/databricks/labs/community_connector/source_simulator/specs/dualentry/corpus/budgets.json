@@ -1,0 +1,23 @@
+[
+  {
+    "id": 90,
+    "name": "FY25 Operating Plan",
+    "company_id": 1,
+    "company_name": "Northwind US",
+    "budget_type": "profit_and_loss",
+    "calendar_year": 2025,
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "record_status": "active",
+    "actuals_offset_in_months": 1,
+    "classifications": [
+      {
+        "id": 10,
+        "name": "Department",
+        "line_id": 101,
+        "line_name": "Engineering"
+      }
+    ],
+    "updated_at": "2025-02-01T12:00:00Z"
+  }
+]

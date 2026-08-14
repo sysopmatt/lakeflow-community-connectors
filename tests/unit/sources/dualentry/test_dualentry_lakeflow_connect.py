@@ -179,9 +179,9 @@ class TestDualEntryConnector(LakeflowConnectTests):
 
         full_records, _ = self.connector.read_table("journal_entries", {}, {})
         expected_ids = {r["internal_id"] for r in full_records}
-        assert len(seen_ids) == len(set(seen_ids)), (
-            f"duplicate records across microbatches: {seen_ids}"
-        )
+        assert len(seen_ids) == len(
+            set(seen_ids)
+        ), f"duplicate records across microbatches: {seen_ids}"
         assert set(seen_ids) == expected_ids, (
             f"paged read missed records: got {sorted(seen_ids)}, "
             f"expected {sorted(expected_ids)}"
@@ -331,6 +331,7 @@ class TestDualEntryConnector(LakeflowConnectTests):
         emitted = list(records)
         assert emitted == _load_corpus("customer_credits")
         assert offset == {"cursor": self.connector._init_ts_iso}
+
         irr = emitted[0]["integration_remote_records"]
         assert isinstance(irr, list) and isinstance(irr[0], dict)
         assert isinstance(irr[0]["integration_provider"], dict)
@@ -357,3 +358,73 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert len(ids) == 5 and len(set(ids)) == 5, f"expected 5 unique rows, got {ids}"
         assert seen_offsets == ["0", "2", "4"], seen_offsets
         assert offset == {"cursor": self.connector._init_ts_iso}
+
+    # --- GL & core streams ---
+
+    _GL_SNAPSHOT_STREAMS = (
+        "companies",
+        "classifications",
+        "classification_lines",
+        "custom_fields",
+        "journal_entry_lines",
+        "intercompany_journal_entries",
+        "budgets",
+    )
+
+    def test_gl_stream_metadata(self):
+        for stream in self._GL_SNAPSHOT_STREAMS:
+            expected_key = "record_number" if stream == "intercompany_journal_entries" else "id"
+            assert self.connector.read_table_metadata(stream, {}) == {
+                "primary_keys": [expected_key],
+                "ingestion_type": "snapshot",
+            }
+
+        assert self.connector.read_table_metadata("statistical_journals", {}) == {
+            "primary_keys": ["id"],
+            "cursor_field": "updated_at",
+            "ingestion_type": "cdc",
+        }
+
+    def test_gl_streams_yield_raw_nested_records(self):
+        for stream in (*self._GL_SNAPSHOT_STREAMS, "statistical_journals"):
+            records, _ = self.connector.read_table(stream, {}, {})
+            assert list(records) == _load_corpus(stream)
+
+        companies, _ = self.connector.read_table("companies", {}, {})
+        company = next(companies)
+        assert isinstance(company["address"], dict)
+        assert isinstance(company["vat_registration_numbers"], list)
+        ijes, _ = self.connector.read_table("intercompany_journal_entries", {}, {})
+        assert isinstance(next(ijes)["items"][0]["classifications"], list)
+
+    def test_gl_snapshot_spans_multiple_default_pages(self):
+        seen_offsets: list[str | None] = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy
+        try:
+            records, offset = self.connector.read_table("classification_lines", {}, {})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        assert len(rows) == 101
+        assert seen_offsets == ["0", "100"]
+        assert offset == {"done": True}
+
+    def test_gl_schemas_use_structs_and_arrays_for_nested_fields(self):
+        companies = {f.name: f.dataType for f in self.connector.get_table_schema("companies", {})}
+        assert isinstance(companies["address"], StructType)
+        assert isinstance(companies["vat_registration_numbers"], ArrayType)
+        ije = {
+            f.name: f.dataType
+            for f in self.connector.get_table_schema("intercompany_journal_entries", {})
+        }
+        assert isinstance(ije["items"], ArrayType)
+        assert isinstance(ije["items"].elementType, StructType)
+
+    # --- end GL & core ---

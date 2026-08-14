@@ -1,0 +1,71 @@
+[
+  {
+    "attachments": [
+      {
+        "id": 8,
+        "file_name": "support.pdf",
+        "file_size": 2048,
+        "download_url": "https://files.example/support.pdf"
+      }
+    ],
+    "approval_status": "approved",
+    "next_approvers": [],
+    "rejected_by": {
+      "id": 77,
+      "first_name": "Lin",
+      "last_name": "Chen",
+      "email": "lin@example.com",
+      "full_name": "Lin Chen",
+      "rejection_reason": "Corrected and resubmitted"
+    },
+    "record_number": 8100,
+    "date": "2025-02-28",
+    "transaction_date": "2025-02-27",
+    "memo": "Shared services allocation",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.0000000000000000",
+    "record_status": "posted",
+    "items": [
+      {
+        "id": 1,
+        "company_id": 1,
+        "company_name": "Northwind US",
+        "account_number": 7000,
+        "debit": "500.00",
+        "credit": "0.00",
+        "memo": "Allocation",
+        "position": 1,
+        "classifications": [
+          {
+            "id": 10,
+            "name": "Department",
+            "line_id": 101,
+            "line_name": "Engineering",
+            "parent_classification_id": null,
+            "parent_classification_line_id": null
+          }
+        ],
+        "customer_id": null,
+        "customer_name": null,
+        "vendor_id": null,
+        "vendor_name": null,
+        "currency": "USD",
+        "eliminate": false
+      }
+    ],
+    "companies": [
+      {
+        "id": 1,
+        "name": "Northwind US"
+      },
+      {
+        "id": 2,
+        "name": "Northwind Eliminations"
+      }
+    ],
+    "company_ids": [
+      1,
+      2
+    ]
+  }
+]
