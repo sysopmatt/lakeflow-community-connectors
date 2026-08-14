@@ -1,0 +1,58 @@
+[
+  {
+    "vat_registration_numbers": [
+      {
+        "id": 1,
+        "country": "US",
+        "registration_number": "US-94-1234567"
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "controller@example.com",
+      "first_name": "Ada",
+      "last_name": "Lee",
+      "timestamp": "2025-01-02T10:00:00Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "controller@example.com",
+      "first_name": "Ada",
+      "last_name": "Lee",
+      "timestamp": "2025-02-02T10:00:00Z"
+    },
+    "id": 1,
+    "name": "Northwind US",
+    "parent_company_id": null,
+    "currency_iso_4217_code": "USD",
+    "address": {
+      "name": "HQ",
+      "street": "1 Market St",
+      "second_line": "Suite 400",
+      "city": "San Francisco",
+      "state": "CA",
+      "postal_code": "94105",
+      "country": "US"
+    },
+    "tin": "94-1234567",
+    "tin_type": "ein",
+    "is_active": true,
+    "is_elimination": false,
+    "fiscal_year_end_month": 12
+  },
+  {
+    "vat_registration_numbers": [],
+    "created_by": null,
+    "updated_by": null,
+    "id": 2,
+    "name": "Northwind Eliminations",
+    "parent_company_id": 1,
+    "currency_iso_4217_code": "USD",
+    "address": null,
+    "tin": "",
+    "tin_type": "",
+    "is_active": true,
+    "is_elimination": true,
+    "fiscal_year_end_month": 12
+  }
+]

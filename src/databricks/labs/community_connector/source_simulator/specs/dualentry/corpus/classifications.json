@@ -1,0 +1,42 @@
+[
+  {
+    "created_by": {
+      "actor_type": "user",
+      "email": "admin@example.com",
+      "first_name": "Grace",
+      "last_name": "Kim",
+      "timestamp": "2025-01-01T08:00:00Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "admin@example.com",
+      "first_name": "Grace",
+      "last_name": "Kim",
+      "timestamp": "2025-01-02T08:00:00Z"
+    },
+    "id": 10,
+    "selections": [
+      {
+        "id": 101,
+        "name": "Engineering",
+        "is_active": true,
+        "parent_id": null,
+        "parent_name": null
+      },
+      {
+        "id": 102,
+        "name": "Sales",
+        "is_active": true,
+        "parent_id": null,
+        "parent_name": null
+      }
+    ],
+    "required_for_records": [
+      "journal_entry"
+    ],
+    "parent_id": 9,
+    "parent_name": "Operating dimensions",
+    "name": "Department",
+    "is_active": true
+  }
+]

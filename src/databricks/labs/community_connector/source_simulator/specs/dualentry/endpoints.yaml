@@ -400,3 +400,69 @@ endpoints:
       offset:   {role: offset}
       ordering: {role: ignore}
   # --- end AP & purchasing ---
+  # --- GL & core streams ---
+
+  - path: /public/v2/companies/
+    method: GET
+    corpus: companies
+    response: &gl_snapshot_response
+      pagination_style: offset_limit
+      wrapper: {records_key: items}
+    params: &gl_snapshot_params
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/classifications/
+    method: GET
+    corpus: classifications
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/classifications-lines/
+    method: GET
+    corpus: classification_lines
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/custom-fields/
+    method: GET
+    corpus: custom_fields
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/journal-entry-lines/
+    method: GET
+    corpus: journal_entry_lines
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/intercompany-journal-entries/
+    method: GET
+    corpus: intercompany_journal_entries
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/budgets/
+    method: GET
+    corpus: budgets
+    response: *gl_snapshot_response
+    params: *gl_snapshot_params
+
+  - path: /public/v2/statistical-journals/
+    method: GET
+    corpus: statistical_journals
+    response:
+      pagination_style: offset_limit
+      wrapper: {records_key: items}
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  # --- end GL & core ---

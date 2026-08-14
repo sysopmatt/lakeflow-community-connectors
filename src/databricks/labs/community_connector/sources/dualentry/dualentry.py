@@ -139,6 +139,16 @@ TABLE_ENDPOINTS: dict[str, str] = {
     "direct_expenses": "public/v2/direct-expenses/",
     "paper_checks": "public/v2/paper-checks/",
     # --- end AP & purchasing ---
+    # --- GL & core streams ---
+    "companies": "public/v2/companies/",
+    "classifications": "public/v2/classifications/",
+    "classification_lines": "public/v2/classifications-lines/",
+    "custom_fields": "public/v2/custom-fields/",
+    "journal_entry_lines": "public/v2/journal-entry-lines/",
+    "intercompany_journal_entries": "public/v2/intercompany-journal-entries/",
+    "budgets": "public/v2/budgets/",
+    "statistical_journals": "public/v2/statistical-journals/",
+    # --- end GL & core ---
 }
 
 
@@ -252,6 +262,23 @@ TABLE_METADATA: dict[str, dict] = {
     # carries no ``updated_at``, so it is re-listed in full each trigger.
     "paper_checks": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     # --- end AP & purchasing ---
+    # --- GL & core streams ---
+    "companies": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "classifications": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "classification_lines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "custom_fields": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "journal_entry_lines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "intercompany_journal_entries": {
+        "primary_keys": ["record_number"],
+        "ingestion_type": "snapshot",
+    },
+    "budgets": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "statistical_journals": {
+        "primary_keys": ["id"],
+        "cursor_field": "updated_at",
+        "ingestion_type": "cdc",
+    },
+    # --- end GL & core ---
 }
 
 
@@ -479,6 +506,60 @@ def _build_schemas() -> dict[str, StructType]:
                     ]
                 ),
             ),
+        ]
+    )
+
+    # New helper names are GL-prefixed so concurrent stream batches can merge safely.
+    gl_vat_registration = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("country", StringType()),
+            StructField("registration_number", StringType()),
+        ]
+    )
+    gl_classification_selection = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("name", StringType()),
+            StructField("is_active", BooleanType()),
+            StructField("parent_id", LongType()),
+            StructField("parent_name", StringType()),
+        ]
+    )
+    gl_budget_classification = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("name", StringType()),
+            StructField("line_id", LongType()),
+            StructField("line_name", StringType()),
+        ]
+    )
+    gl_applies_to = StructType(
+        [
+            StructField("type", StringType()),
+            StructField("is_active", BooleanType()),
+            StructField("is_required", BooleanType()),
+        ]
+    )
+    gl_asset_ref = StructType([StructField("id", LongType()), StructField("name", StringType())])
+    gl_ije_company = StructType([StructField("id", LongType()), StructField("name", StringType())])
+    gl_ije_item = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("company_id", LongType()),
+            StructField("company_name", StringType()),
+            StructField("account_number", LongType()),
+            StructField("debit", StringType()),
+            StructField("credit", StringType()),
+            StructField("memo", StringType()),
+            StructField("position", LongType()),
+            StructField("classifications", ArrayType(classification)),
+            StructField("customer_id", LongType()),
+            StructField("customer_name", StringType()),
+            StructField("vendor_id", LongType()),
+            StructField("vendor_name", StringType()),
+            StructField("currency", StringType()),
+            StructField("eliminate", BooleanType()),
         ]
     )
 
@@ -1204,6 +1285,139 @@ def _build_schemas() -> dict[str, StructType]:
             ]
         ),
         # --- end AP & purchasing ---
+        # --- GL & core streams ---
+        "companies": StructType(
+            [
+                StructField("vat_registration_numbers", ArrayType(gl_vat_registration)),
+                StructField("created_by", audit_actor),
+                StructField("updated_by", audit_actor),
+                StructField("id", LongType()),
+                StructField("name", StringType()),
+                StructField("parent_company_id", LongType()),
+                StructField("currency_iso_4217_code", StringType()),
+                StructField("address", address_out),
+                StructField("tin", StringType()),
+                StructField("tin_type", StringType()),
+                StructField("is_active", BooleanType()),
+                StructField("is_elimination", BooleanType()),
+                StructField("fiscal_year_end_month", LongType()),
+            ]
+        ),
+        "classifications": StructType(
+            [
+                StructField("created_by", audit_actor),
+                StructField("updated_by", audit_actor),
+                StructField("id", LongType()),
+                StructField("selections", ArrayType(gl_classification_selection)),
+                StructField("required_for_records", ArrayType(StringType())),
+                StructField("parent_id", LongType()),
+                StructField("parent_name", StringType()),
+                StructField("name", StringType()),
+                StructField("is_active", BooleanType()),
+            ]
+        ),
+        "classification_lines": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("name", StringType()),
+                StructField("is_active", BooleanType()),
+                StructField("classification_id", LongType()),
+                StructField("classification_name", StringType()),
+            ]
+        ),
+        "custom_fields": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("company_id", LongType()),
+                StructField("company_ids", ArrayType(LongType())),
+                StructField("name", StringType()),
+                StructField("description", StringType()),
+                StructField("helper_text", StringType()),
+                StructField("field_type", StringType()),
+                StructField("applies_to", ArrayType(gl_applies_to)),
+                StructField("default_value", VariantType()),
+                StructField("options", ArrayType(StringType())),
+                StructField("is_active", BooleanType()),
+            ]
+        ),
+        "journal_entry_lines": StructType(
+            [
+                StructField("amortizable_assets", ArrayType(gl_asset_ref)),
+                StructField("fixed_assets", ArrayType(gl_asset_ref)),
+                StructField("debit", StringType()),
+                StructField("credit", StringType()),
+                StructField("classifications", ArrayType(classification)),
+                StructField("id", LongType()),
+                StructField("entry_id", LongType()),
+                StructField("account_number", LongType()),
+                StructField("position", LongType()),
+                StructField("memo", StringType()),
+                StructField("customer_id", LongType()),
+                StructField("customer_name", StringType()),
+                StructField("vendor_id", LongType()),
+                StructField("vendor_name", StringType()),
+                StructField("reversal_line_id", LongType()),
+                StructField("reversal_entry_id", LongType()),
+                StructField("journal_entry_number", LongType()),
+                StructField("journal_entry_date", DateType()),
+                StructField("company_id", LongType()),
+                StructField("record_status", StringType()),
+                StructField("reversal_date", DateType()),
+            ]
+        ),
+        "intercompany_journal_entries": StructType(
+            [
+                StructField("attachments", ArrayType(attachment)),
+                StructField("approval_status", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
+                StructField("rejected_by", rejected_by),
+                StructField("record_number", LongType()),
+                StructField("date", DateType()),
+                StructField("transaction_date", DateType()),
+                StructField("memo", StringType()),
+                StructField("currency_iso_4217_code", StringType()),
+                StructField("exchange_rate", StringType()),
+                StructField("record_status", StringType()),
+                StructField("items", ArrayType(gl_ije_item)),
+                StructField("companies", ArrayType(gl_ije_company)),
+                StructField("company_ids", ArrayType(LongType())),
+            ]
+        ),
+        "budgets": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("name", StringType()),
+                StructField("company_id", LongType()),
+                StructField("company_name", StringType()),
+                StructField("budget_type", StringType()),
+                StructField("calendar_year", LongType()),
+                StructField("start_date", DateType()),
+                StructField("end_date", DateType()),
+                StructField("record_status", StringType()),
+                StructField("actuals_offset_in_months", LongType()),
+                StructField("classifications", ArrayType(gl_budget_classification)),
+                StructField("updated_at", TimestampType()),
+            ]
+        ),
+        "statistical_journals": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("number", LongType()),
+                StructField("account_id", LongType()),
+                StructField("account_name", StringType()),
+                StructField("account_number", LongType()),
+                StructField("period", DateType()),
+                StructField("date", DateType()),
+                StructField("memo", StringType()),
+                StructField("record_status", StringType()),
+                StructField("total_quantity", StringType()),
+                StructField("unique_account_count", LongType()),
+                StructField("unique_company_count", LongType()),
+                StructField("created_at", TimestampType()),
+                StructField("updated_at", TimestampType()),
+            ]
+        ),
+        # --- end GL & core ---
     }
 
 

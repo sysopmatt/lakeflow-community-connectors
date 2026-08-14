@@ -1,0 +1,29 @@
+[
+  {
+    "id": 20,
+    "company_id": 1,
+    "company_ids": [
+      1,
+      2
+    ],
+    "name": "Project phase",
+    "description": "Delivery phase",
+    "helper_text": "Choose the current phase",
+    "field_type": "select",
+    "applies_to": [
+      {
+        "type": "journal_entry",
+        "is_active": true,
+        "is_required": false
+      }
+    ],
+    "default_value": [
+      "planning"
+    ],
+    "options": [
+      "planning",
+      "delivery"
+    ],
+    "is_active": true
+  }
+]

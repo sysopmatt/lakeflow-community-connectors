@@ -1,0 +1,39 @@
+[
+  {
+    "amortizable_assets": [
+      {
+        "id": 7,
+        "name": "Implementation fees"
+      }
+    ],
+    "fixed_assets": [],
+    "debit": "1250.00",
+    "credit": "0.00",
+    "classifications": [
+      {
+        "id": 10,
+        "name": "Department",
+        "line_id": 101,
+        "line_name": "Engineering",
+        "parent_classification_id": null,
+        "parent_classification_line_id": null
+      }
+    ],
+    "id": 3001,
+    "entry_id": 700,
+    "account_number": 6100,
+    "position": 1,
+    "memo": "Monthly close",
+    "customer_id": 18,
+    "customer_name": "Acme Retail",
+    "vendor_id": 44,
+    "vendor_name": "Cloud Hosting Inc.",
+    "reversal_line_id": 4001,
+    "reversal_entry_id": 701,
+    "journal_entry_number": 9001,
+    "journal_entry_date": "2025-01-31",
+    "company_id": 1,
+    "record_status": "posted",
+    "reversal_date": "2025-02-01"
+  }
+]
