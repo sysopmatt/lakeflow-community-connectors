@@ -32,10 +32,9 @@
         "field": {
           "id": 1253,
           "company_id": 1254,
-          "company_ids": {
-            "raw_value": "company_ids-0",
-            "n": 0
-          },
+          "company_ids": [
+            1254
+          ],
           "name": "name-0",
           "description": "description-0",
           "helper_text": "helper_text-0",
@@ -47,14 +46,10 @@
               "is_required": true
             }
           ],
-          "default_value": {
-            "raw_value": "default_value-0",
-            "n": 0
-          },
-          "options": {
-            "raw_value": "options-0",
-            "n": 0
-          },
+          "default_value": "default_value-0",
+          "options": [
+            "options-0"
+          ],
           "is_active": true
         },
         "value": {
@@ -63,10 +58,7 @@
           "custom_field_name": "custom_field_name-0",
           "custom_field_type": "custom_field_type-0",
           "custom_field_value_id": 1257,
-          "value": {
-            "raw_value": "value-0",
-            "n": 0
-          },
+          "value": "value-0",
           "created_at": "created_at-0",
           "updated_at": "updated_at-0"
         }
@@ -138,10 +130,9 @@
         "field": {
           "id": 1261,
           "company_id": 1262,
-          "company_ids": {
-            "raw_value": "company_ids-1",
-            "n": 1
-          },
+          "company_ids": [
+            1262
+          ],
           "name": "name-1",
           "description": "description-1",
           "helper_text": "helper_text-1",
@@ -153,14 +144,10 @@
               "is_required": false
             }
           ],
-          "default_value": {
-            "raw_value": "default_value-1",
-            "n": 1
-          },
-          "options": {
-            "raw_value": "options-1",
-            "n": 1
-          },
+          "default_value": "default_value-1",
+          "options": [
+            "options-1"
+          ],
           "is_active": false
         },
         "value": {
@@ -169,10 +156,7 @@
           "custom_field_name": "custom_field_name-1",
           "custom_field_type": "custom_field_type-1",
           "custom_field_value_id": 1265,
-          "value": {
-            "raw_value": "value-1",
-            "n": 1
-          },
+          "value": "value-1",
           "created_at": "created_at-1",
           "updated_at": "updated_at-1"
         }
@@ -244,10 +228,9 @@
         "field": {
           "id": 1269,
           "company_id": 1270,
-          "company_ids": {
-            "raw_value": "company_ids-2",
-            "n": 2
-          },
+          "company_ids": [
+            1270
+          ],
           "name": "name-2",
           "description": "description-2",
           "helper_text": "helper_text-2",
@@ -259,14 +242,10 @@
               "is_required": true
             }
           ],
-          "default_value": {
-            "raw_value": "default_value-2",
-            "n": 2
-          },
-          "options": {
-            "raw_value": "options-2",
-            "n": 2
-          },
+          "default_value": "default_value-2",
+          "options": [
+            "options-2"
+          ],
           "is_active": true
         },
         "value": {
@@ -275,10 +254,7 @@
           "custom_field_name": "custom_field_name-2",
           "custom_field_type": "custom_field_type-2",
           "custom_field_value_id": 1273,
-          "value": {
-            "raw_value": "value-2",
-            "n": 2
-          },
+          "value": "value-2",
           "created_at": "created_at-2",
           "updated_at": "updated_at-2"
         }
@@ -350,10 +326,9 @@
         "field": {
           "id": 1277,
           "company_id": 1278,
-          "company_ids": {
-            "raw_value": "company_ids-3",
-            "n": 3
-          },
+          "company_ids": [
+            1278
+          ],
           "name": "name-3",
           "description": "description-3",
           "helper_text": "helper_text-3",
@@ -365,14 +340,10 @@
               "is_required": false
             }
           ],
-          "default_value": {
-            "raw_value": "default_value-3",
-            "n": 3
-          },
-          "options": {
-            "raw_value": "options-3",
-            "n": 3
-          },
+          "default_value": "default_value-3",
+          "options": [
+            "options-3"
+          ],
           "is_active": false
         },
         "value": {
@@ -381,10 +352,7 @@
           "custom_field_name": "custom_field_name-3",
           "custom_field_type": "custom_field_type-3",
           "custom_field_value_id": 1281,
-          "value": {
-            "raw_value": "value-3",
-            "n": 3
-          },
+          "value": "value-3",
           "created_at": "created_at-3",
           "updated_at": "updated_at-3"
         }

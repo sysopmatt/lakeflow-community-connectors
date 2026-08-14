@@ -49,11 +49,23 @@ items on ``id``.
 (per the LakeflowConnect contract — the framework's ``parse_value`` coerces
 each record to the declared schema; the connector does not mutate records or
 project them). The static schemas therefore model the real nested shapes with
-``StructType`` / ``ArrayType``. A handful of genuinely polymorphic / untyped
-fields are declared ``VariantType`` so any JSON shape is preserved without
-loss (see ``dualentry_api_doc.md``): ``bills.tax.data`` (a union keyed by
-``tax.regime``), the custom-field ``value`` payload, and the untyped
-``company_ids`` / ``options`` / ``default_value`` on a custom-field definition.
+``StructType`` / ``ArrayType``.
+
+No column uses the VARIANT type. DLT snapshot streams run APPLY CHANGES FROM
+SNAPSHOT, which compares whole rows with the null-safe-equality operator
+``<=>``; that operator cannot order ``VARIANT``, so any snapshot stream
+carrying a Variant column fails at plan time
+(``DATATYPE_MISMATCH.INVALID_ORDERING_TYPE``). Every field is therefore given a
+concrete, ``<=>``-comparable type. Fields with a single documented shape are
+modelled with concrete ``StructType`` / ``ArrayType`` / scalars (e.g. a
+custom-field definition's ``company_ids`` is ``ARRAY<LONG>`` and ``options`` is
+``ARRAY<STRING>``). The few genuinely free-form / polymorphic leaves —
+``bills.tax.data`` (a union keyed by ``tax.regime``), the custom-field
+``value`` payload, a custom-field definition's polymorphic ``default_value``,
+and the recurring streams' untyped ``record_payload`` — are declared
+``StringType`` and JSON-encoded in the read path (see
+``_encode_free_form_leaves``). See ``dualentry_api_doc.md`` for extraction
+notes.
 
 DualEntry rate-limits with a token bucket: a ``429`` carries a ``Retry-After``
 header (seconds). The connector retries on ``429`` and on ``500`` / ``502`` /
@@ -65,6 +77,7 @@ DualEntry exposes no deleted-records feed, so deletes do not propagate
 (``cdc``, not ``cdc_with_deletes``).
 """
 
+import json
 import logging
 import sys
 from datetime import datetime, timedelta, timezone
@@ -81,7 +94,6 @@ from pyspark.sql.types import (
     StructField,
     StructType,
     TimestampType,
-    VariantType,
 )
 
 from databricks.labs.community_connector.interface import LakeflowConnect
@@ -340,7 +352,16 @@ TABLE_METADATA: dict[str, dict] = {
         "ingestion_type": "snapshot",
     },
     "workflow_actions": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
-    "inbox_transactions": {"primary_keys": ["number"], "ingestion_type": "snapshot"},
+    # PublicTransactionInboxSchemaOut has no single unique id: ``number`` is a
+    # display string shared across transaction types (a real snapshot hit
+    # DUPLICATE_KEY_VIOLATION on number '3148'). ``record_id`` is the underlying
+    # record's id, whose id-space overlaps across transaction types, so the
+    # minimal guaranteed-unique key is the composite (transaction_type,
+    # record_id) — one inbox entry per pending record of a given type.
+    "inbox_transactions": {
+        "primary_keys": ["transaction_type", "record_id"],
+        "ingestion_type": "snapshot",
+    },
     "inbox_records": {"primary_keys": ["record_id"], "ingestion_type": "snapshot"},
     "webhooks": {"primary_keys": ["uuid"], "ingestion_type": "snapshot"},
     # --- end Recurring/RevRec/Workflow ---
@@ -355,8 +376,10 @@ def _build_schemas() -> dict[str, StructType]:
     quantities (``amount``, ``amount_due``, ``paid_total``, ``exchange_rate``)
     are strings on the wire and are typed ``StringType`` to preserve precision.
     ``*_at`` fields are ``TimestampType``; bare date fields are ``DateType``.
-    Genuinely polymorphic / untyped payloads are ``VariantType``. See
-    ``dualentry_api_doc.md`` for the extraction notes.
+    Genuinely polymorphic / untyped leaves are ``StringType`` and JSON-encoded
+    in the read path (``_encode_free_form_leaves``) — never the VARIANT type,
+    which DLT SCD ``<=>`` cannot order. See ``dualentry_api_doc.md`` for the
+    extraction notes.
     """
 
     audit_actor = StructType(
@@ -442,14 +465,20 @@ def _build_schemas() -> dict[str, StructType]:
     )
     # custom_fields[] — CustomFieldValuePairOutputSchema = {field, value}.
     # ``field`` is the definition (CustomFieldSchemaOut); ``value`` is the
-    # instance value (CustomFieldValueSchemaOut). Their untyped leaves
-    # (``value.value``, ``company_ids``, ``options``, ``default_value``) are
-    # ``VariantType`` — the DualEntry API leaves them user-defined.
+    # instance value (CustomFieldValueSchemaOut). Concrete leaves are typed from
+    # the spec: ``company_ids`` is ARRAY<LONG> (CustomFieldSchemaOut.company_ids
+    # = array<integer>) and ``options`` is ARRAY<STRING>
+    # (CustomFieldSchemaOut.options = array<string>). The two genuinely
+    # free-form leaves — the definition's polymorphic ``default_value``
+    # (anyOf[string, array<string>, null]) and the instance ``value`` (untyped)
+    # — are StringType and JSON-encoded in the read path
+    # (``_encode_free_form_leaves``): VARIANT is incompatible with DLT SCD
+    # ``<=>`` so they cannot stay Variant.
     custom_field_definition = StructType(
         [
             StructField("id", LongType()),
             StructField("company_id", LongType()),
-            StructField("company_ids", VariantType()),
+            StructField("company_ids", ArrayType(LongType())),
             StructField("name", StringType()),
             StructField("description", StringType()),
             StructField("helper_text", StringType()),
@@ -466,8 +495,8 @@ def _build_schemas() -> dict[str, StructType]:
                     )
                 ),
             ),
-            StructField("default_value", VariantType()),
-            StructField("options", VariantType()),
+            StructField("default_value", StringType()),
+            StructField("options", ArrayType(StringType())),
             StructField("is_active", BooleanType()),
         ]
     )
@@ -478,7 +507,7 @@ def _build_schemas() -> dict[str, StructType]:
             StructField("custom_field_name", StringType()),
             StructField("custom_field_type", StringType()),
             StructField("custom_field_value_id", LongType()),
-            StructField("value", VariantType()),
+            StructField("value", StringType()),
             StructField("created_at", StringType()),
             StructField("updated_at", StringType()),
         ]
@@ -506,12 +535,15 @@ def _build_schemas() -> dict[str, StructType]:
         ]
     )
     # RecordTaxContextOut = {regime, data}. ``data`` is a documented union of
-    # per-regime tax-data objects (sales_tax / vat / gst / none) — modelled as
-    # VariantType so any member is preserved raw.
+    # per-regime tax-data objects (RecordSalesTaxDataOut / RecordVatDataOut /
+    # RecordGstDataOut / RecordNoneTaxDataOut, keyed by ``regime``). It is a
+    # genuinely polymorphic leaf, so it is StringType and JSON-encoded in the
+    # read path (``_encode_free_form_leaves``) — VARIANT is incompatible with
+    # DLT SCD ``<=>``.
     bill_tax = StructType(
         [
             StructField("regime", StringType()),
-            StructField("data", VariantType()),
+            StructField("data", StringType()),
         ]
     )
     # PublicRecordClassificationsSchemaOut — segment/dimension tags on AR
@@ -872,7 +904,11 @@ def _build_schemas() -> dict[str, StructType]:
             StructField("company_name", StringType()),
             StructField("company_currency", StringType()),
             StructField("status", StringType()),
-            StructField("record_payload", VariantType()),
+            # ``record_payload`` is untyped in the spec (PublicRecurring*
+            # SchemaOut.record_payload has no declared type) — a genuinely
+            # free-form object. StringType + JSON-encoded in the read path
+            # (``_encode_free_form_leaves``); VARIANT breaks DLT SCD ``<=>``.
+            StructField("record_payload", StringType()),
             StructField("rrule", StringType()),
             StructField("next_occurrence", TimestampType()),
             StructField("last_generated", TimestampType()),
@@ -1655,7 +1691,9 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("helper_text", StringType()),
                 StructField("field_type", StringType()),
                 StructField("applies_to", ArrayType(gl_applies_to)),
-                StructField("default_value", VariantType()),
+                # Polymorphic (anyOf[string, array<string>, null]); StringType +
+                # JSON-encoded in the read path (``_encode_free_form_leaves``).
+                StructField("default_value", StringType()),
                 StructField("options", ArrayType(StringType())),
                 StructField("is_active", BooleanType()),
             ]
@@ -2183,8 +2221,15 @@ class DualEntryLakeflowConnect(LakeflowConnect):
     ) -> tuple[Iterator[dict], dict]:
         self._validate_table(table_name)
         if TABLE_METADATA[table_name]["ingestion_type"] == "snapshot":
-            return self._read_snapshot(table_name, start_offset, table_options)
-        return self._read_incremental(table_name, start_offset, table_options)
+            records, offset = self._read_snapshot(table_name, start_offset, table_options)
+        else:
+            records, offset = self._read_incremental(table_name, start_offset, table_options)
+        # Records are otherwise yielded raw (the framework's ``parse_value``
+        # coerces them). The only exception is the handful of former-VARIANT
+        # free-form leaves, which are declared StringType and JSON-encoded here
+        # so their StringType columns hold valid JSON — see
+        # ``_encode_free_form_leaves``.
+        return (_encode_free_form_leaves(table_name, r) for r in records), offset
 
     # ------------------------------------------------------------------
     # Snapshot reads (accounts / customers / vendors / items)
@@ -2342,6 +2387,67 @@ class DualEntryLakeflowConnect(LakeflowConnect):
 # ------------------------------------------------------------------
 # Module-level helpers
 # ------------------------------------------------------------------
+
+
+def _json_leaf(value: object) -> str | None:
+    """Serialize one free-form leaf to a compact, deterministic JSON string.
+
+    ``None`` is preserved (stays a SQL NULL). Everything else — scalar, list, or
+    object — becomes valid JSON. ``sort_keys`` keeps object encodings stable so
+    SCD row comparisons and tests are deterministic.
+    """
+    if value is None:
+        return None
+    return json.dumps(value, separators=(",", ":"), sort_keys=True)
+
+
+def _encode_free_form_leaves(table_name: str, record: dict) -> dict:
+    """JSON-encode the specific free-form leaves that were formerly VARIANT.
+
+    Required because VARIANT is incompatible with DLT SCD APPLY CHANGES FROM
+    SNAPSHOT: its whole-row null-safe-equality (``<=>``) cannot order VARIANT,
+    so these leaves are declared ``StringType`` instead. The framework's
+    ``parse_value`` coerces a ``StringType`` via ``str()``, which would render a
+    dict/list as a Python ``repr`` (``{'k': 'v'}``) rather than valid JSON;
+    encoding here makes the columns hold real, queryable JSON.
+
+    This is deliberately NOT a blanket record mapper: it touches only the four
+    known polymorphic leaves and leaves every other field raw for
+    ``parse_value``. Records reach here freshly parsed from the API response (or
+    a per-call simulator copy), so in-place mutation is safe.
+    """
+    if not isinstance(record, dict):
+        return record
+
+    # custom_fields[] = ARRAY<STRUCT<field, value>>. Two leaves are free-form:
+    # the definition's polymorphic ``default_value`` and the instance ``value``.
+    custom_fields = record.get("custom_fields")
+    if isinstance(custom_fields, list):
+        for pair in custom_fields:
+            if not isinstance(pair, dict):
+                continue
+            field = pair.get("field")
+            if isinstance(field, dict) and "default_value" in field:
+                field["default_value"] = _json_leaf(field["default_value"])
+            value = pair.get("value")
+            if isinstance(value, dict) and "value" in value:
+                value["value"] = _json_leaf(value["value"])
+
+    # tax = STRUCT<regime, data>; ``data`` is a per-regime union (RecordTaxContextOut).
+    tax = record.get("tax")
+    if isinstance(tax, dict) and "data" in tax:
+        tax["data"] = _json_leaf(tax["data"])
+
+    # Recurring streams carry an untyped ``record_payload`` object.
+    if "record_payload" in record:
+        record["record_payload"] = _json_leaf(record["record_payload"])
+
+    # The standalone custom-fields definitions table exposes ``default_value``
+    # (anyOf[string, array<string>, null]) as a top-level column.
+    if table_name == "custom_fields" and "default_value" in record:
+        record["default_value"] = _json_leaf(record["default_value"])
+
+    return record
 
 
 def _sleep(seconds: float) -> None:

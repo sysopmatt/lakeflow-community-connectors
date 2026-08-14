@@ -1,15 +1,17 @@
+import copy
 import json
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
 import requests
-from pyspark.sql.types import ArrayType, StructType, VariantType
+from pyspark.sql.types import ArrayType, LongType, StringType, StructType, VariantType
 
 import databricks.labs.community_connector.source_simulator as _simulator_pkg
 from databricks.labs.community_connector.sources.dualentry import dualentry as dualentry_module
 from databricks.labs.community_connector.sources.dualentry.dualentry import (
     DualEntryLakeflowConnect,
+    _encode_free_form_leaves,
     _retry_after_seconds,
 )
 from tests.unit.sources.test_suite import LakeflowConnectTests
@@ -20,6 +22,13 @@ _CORPUS_DIR = Path(_simulator_pkg.__file__).parent / "specs" / "dualentry" / "co
 def _load_corpus(table: str) -> list:
     with open(_CORPUS_DIR / f"{table}.json", "r") as f:
         return json.load(f)
+
+
+def _expected_records(table: str) -> list:
+    """Corpus records as ``read_table`` emits them: raw, except the documented
+    free-form leaves are JSON-encoded (see ``_encode_free_form_leaves``). For
+    tables without such leaves this is byte-identical to the raw corpus."""
+    return [_encode_free_form_leaves(table, copy.deepcopy(r)) for r in _load_corpus(table)]
 
 
 def _response_with_headers(headers: dict) -> requests.Response:
@@ -70,32 +79,42 @@ class TestDualEntryConnector(LakeflowConnectTests):
     # ------------------------------------------------------------------
 
     def test_read_table_preserves_raw_records_unchanged(self):
-        """Per the LakeflowConnect contract, ``read_table`` must yield the raw
-        JSON records unchanged — no projection, no field mutation, no schema
-        coercion (the framework's ``parse_value`` does that). Deep-equal the
-        emitted records against the corpus fixtures, including nested
-        ``custom_fields`` / ``next_approvers`` objects and arrays."""
-        # Snapshot table: full corpus returned in file order, untouched.
+        """Per the LakeflowConnect contract, ``read_table`` yields the raw JSON
+        records with no projection, no schema coercion (the framework's
+        ``parse_value`` does that) — the ONLY exception being the documented
+        free-form leaves, which are JSON-encoded so their StringType columns can
+        never be VARIANT (incompatible with DLT SCD ``<=>``). Deep-equal against
+        the corpus fixtures with exactly that normalization applied."""
+        # Snapshot table with no free-form leaves: corpus returned untouched.
         records, _ = self.connector.read_table("accounts", {}, {})
         assert list(records) == _load_corpus("accounts")
 
-        # CDC table: the seeded corpus records (all past-dated) are returned
-        # unchanged; the injected future records are excluded by the init cap,
-        # so the emitted list equals the on-disk corpus exactly.
+        # CDC table: the seeded corpus records (all past-dated) are returned;
+        # the injected future records are excluded by the init cap. Only the
+        # free-form custom-field leaves differ from the on-disk corpus.
         records, _ = self.connector.read_table("journal_entries", {}, {})
         emitted = list(records)
-        corpus = _load_corpus("journal_entries")
-        assert emitted == corpus
-        # The nested structured payloads survive as dicts/lists, not strings.
+        assert emitted == _expected_records("journal_entries")
+        # The nested structure survives as dicts/lists; only the two free-form
+        # leaves inside custom_fields are JSON-encoded strings.
+        cf0 = emitted[0]["custom_fields"][0]
         assert isinstance(emitted[0]["custom_fields"], list)
-        assert isinstance(emitted[0]["custom_fields"][0]["field"], dict)
+        assert isinstance(cf0["field"], dict)
+        assert isinstance(cf0["field"]["default_value"], str)
+        assert isinstance(cf0["value"]["value"], str)
+        assert json.loads(cf0["value"]["value"]) == "value-0"
+        # Concrete leaves stay native (not JSON-encoded).
+        assert isinstance(cf0["field"]["company_ids"], list)
         assert isinstance(emitted[0]["next_approvers"], list)
         assert isinstance(emitted[0]["next_approvers"][0], dict)
 
     def test_schema_declares_nested_structured_types(self):
         """``get_table_schema`` must declare the documented structured fields as
-        Struct/Array/Variant so ``parse_value`` can consume the raw nested JSON
-        — they must not be flattened to StringType."""
+        Struct/Array so ``parse_value`` can consume the raw nested JSON — they
+        must not be flattened. Concrete custom-field leaves are typed from the
+        spec (``company_ids`` ARRAY<LONG>, ``options`` ARRAY<STRING>); the
+        genuinely free-form leaves are StringType (JSON-encoded in the read
+        path) rather than VARIANT, which DLT SCD ``<=>`` cannot order."""
         je = self.connector.get_table_schema("journal_entries", {})
         fields = {f.name: f.dataType for f in je.fields}
 
@@ -106,28 +125,99 @@ class TestDualEntryConnector(LakeflowConnectTests):
         cf_pair = {f.name: f.dataType for f in cf.elementType.fields}
         assert isinstance(cf_pair["field"], StructType)
         assert isinstance(cf_pair["value"], StructType)
-        # The user-defined custom-field value payload is VariantType.
+        # Definition leaves: company_ids ARRAY<LONG>, options ARRAY<STRING>,
+        # default_value StringType (polymorphic anyOf[string, array<string>]).
+        field_fields = {f.name: f.dataType for f in cf_pair["field"].fields}
+        assert isinstance(field_fields["company_ids"], ArrayType)
+        assert isinstance(field_fields["company_ids"].elementType, LongType)
+        assert isinstance(field_fields["options"], ArrayType)
+        assert isinstance(field_fields["options"].elementType, StringType)
+        assert isinstance(field_fields["default_value"], StringType)
+        # The user-defined custom-field value payload is StringType (JSON), not
+        # VARIANT.
         value_fields = {f.name: f.dataType for f in cf_pair["value"].fields}
-        assert isinstance(value_fields["value"], VariantType)
+        assert isinstance(value_fields["value"], StringType)
 
         # next_approvers: ARRAY<STRUCT>
         na = fields["next_approvers"]
         assert isinstance(na, ArrayType)
         assert isinstance(na.elementType, StructType)
 
-        # bills.tax: STRUCT<regime: STRING, data: VARIANT>; tax_registration
-        # _numbers: STRUCT<company: ARRAY, counterparty: ARRAY>.
+        # bills.tax: STRUCT<regime: STRING, data: STRING (JSON)>;
+        # tax_registration_numbers: STRUCT<company: ARRAY, counterparty: ARRAY>.
         bills = self.connector.get_table_schema("bills", {})
         bfields = {f.name: f.dataType for f in bills.fields}
         tax = bfields["tax"]
         assert isinstance(tax, StructType)
         tax_sub = {f.name: f.dataType for f in tax.fields}
-        assert isinstance(tax_sub["data"], VariantType)
+        assert isinstance(tax_sub["data"], StringType)
         trn = bfields["tax_registration_numbers"]
         assert isinstance(trn, StructType)
         trn_sub = {f.name: f.dataType for f in trn.fields}
         assert isinstance(trn_sub["company"], ArrayType)
         assert isinstance(trn_sub["counterparty"], ArrayType)
+
+    def test_no_schema_uses_variant_type(self):
+        """No column (at any nesting depth) may be VARIANT. DLT snapshot streams
+        run APPLY CHANGES FROM SNAPSHOT, whose whole-row null-safe-equality
+        (``<=>``) cannot order VARIANT — a Variant column fails such a stream at
+        plan time (DATATYPE_MISMATCH.INVALID_ORDERING_TYPE)."""
+
+        def _has_variant(dtype) -> bool:
+            if isinstance(dtype, VariantType):
+                return True
+            if isinstance(dtype, StructType):
+                return any(_has_variant(f.dataType) for f in dtype.fields)
+            if isinstance(dtype, ArrayType):
+                return _has_variant(dtype.elementType)
+            return False
+
+        tables = self.connector.list_tables()
+        assert len(tables) == 49
+        offenders = [t for t in tables if _has_variant(self.connector.get_table_schema(t, {}))]
+        assert offenders == [], f"VARIANT columns remain in: {offenders}"
+
+    def test_free_form_leaves_are_json_encoded_on_read(self):
+        """The former-VARIANT free-form leaves are emitted as valid JSON strings
+        so their StringType columns hold queryable JSON (not Python ``repr``).
+        Concrete leaves (company_ids/options) stay native."""
+        # Recurring: record_payload object -> JSON string.
+        recs, _ = self.connector.read_table("recurring_invoices", {}, {})
+        rec = next(iter(recs))
+        assert isinstance(rec["record_payload"], str)
+        assert isinstance(json.loads(rec["record_payload"]), dict)
+
+        # Bills: tax.data (union) and the two custom_field leaves -> JSON string;
+        # company_ids / options stay native lists.
+        bills, _ = self.connector.read_table("bills", {}, {})
+        bill = next(iter(bills))
+        assert isinstance(bill["tax"]["data"], str)
+        json.loads(bill["tax"]["data"])  # parses without error
+        pair = bill["custom_fields"][0]
+        assert isinstance(pair["field"]["default_value"], str)
+        assert isinstance(pair["value"]["value"], str)
+        assert isinstance(pair["field"]["company_ids"], list)
+        assert isinstance(pair["field"]["options"], list)
+
+        # Standalone custom-fields table: top-level default_value -> JSON string.
+        cfs, _ = self.connector.read_table("custom_fields", {}, {})
+        cf = next(iter(cfs))
+        assert isinstance(cf["default_value"], str)
+        assert json.loads(cf["default_value"]) == ["planning"]
+
+    def test_recurring_and_statistical_records_conform_to_schema(self):
+        """Regression guard for the real-pipeline Arrow failures: every emitted
+        record for the recurring streams (record_payload) and statistical_journals
+        must satisfy its declared schema via the framework's ``parse_value``."""
+        from databricks.labs.community_connector.libs.utils import parse_value
+
+        for table in ("recurring_invoices", "recurring_journal_entries", "statistical_journals"):
+            schema = self.connector.get_table_schema(table, {})
+            records, _ = self.connector.read_table(table, {}, {})
+            emitted = list(records)
+            assert emitted, table
+            for rec in emitted:
+                parse_value(rec, schema)  # must not raise
 
     # ------------------------------------------------------------------
     # Incremental behaviour
@@ -329,7 +419,7 @@ class TestDualEntryConnector(LakeflowConnectTests):
         dicts/lists rather than stringified."""
         records, offset = self.connector.read_table("customer_credits", {}, {})
         emitted = list(records)
-        assert emitted == _load_corpus("customer_credits")
+        assert emitted == _expected_records("customer_credits")
         assert offset == {"cursor": self.connector._init_ts_iso}
 
         irr = emitted[0]["integration_remote_records"]
@@ -398,16 +488,17 @@ class TestDualEntryConnector(LakeflowConnectTests):
     def test_ap_stream_reads_raw_records_unchanged(self):
         """A representative AP stream with rich nesting (``vendor_credits`` — a
         ``tax`` union, ``tax_registration_numbers``, ``custom_fields``,
-        ``classifications``) must be yielded raw — deep-equal against the corpus,
-        nested objects preserved as dicts/lists rather than stringified."""
+        ``classifications``) is yielded raw apart from the documented free-form
+        leaves — deep-equal against the corpus with that normalization applied,
+        nested structs/arrays otherwise preserved as dicts/lists."""
         records, offset = self.connector.read_table("vendor_credits", {}, {})
         emitted = list(records)
-        assert emitted == _load_corpus("vendor_credits")
+        assert emitted == _expected_records("vendor_credits")
         assert offset == {"cursor": self.connector._init_ts_iso}
-        # tax is a STRUCT<regime, data:VARIANT>; the untyped data leaf survives
-        # as a dict, custom_fields survive as a list of {field, value} dicts.
+        # tax is STRUCT<regime, data:STRING(JSON)>; the union data leaf is a JSON
+        # string, while custom_fields survives as a list of {field, value} dicts.
         assert isinstance(emitted[0]["tax"], dict)
-        assert isinstance(emitted[0]["tax"]["data"], dict)
+        assert isinstance(emitted[0]["tax"]["data"], str)
         cf = emitted[0]["custom_fields"]
         assert isinstance(cf, list) and isinstance(cf[0]["field"], dict)
 
@@ -482,7 +573,7 @@ class TestDualEntryConnector(LakeflowConnectTests):
     def test_gl_streams_yield_raw_nested_records(self):
         for stream in (*self._GL_SNAPSHOT_STREAMS, "statistical_journals"):
             records, _ = self.connector.read_table(stream, {}, {})
-            assert list(records) == _load_corpus(stream)
+            assert list(records) == _expected_records(stream)
 
         companies, _ = self.connector.read_table("companies", {}, {})
         company = next(companies)
@@ -644,12 +735,13 @@ class TestDualEntryConnector(LakeflowConnectTests):
         "recurring_bills",
         "recurring_journal_entries",
     )
+    # inbox_transactions is intentionally absent: it has no single unique key
+    # (see ``test_inbox_transactions_composite_primary_key``).
     _WORKFLOW_SNAPSHOT_KEYS = {
         "contracts": "id",
         "workflows": "id",
         "workflow_execution_states": "id",
         "workflow_actions": "id",
-        "inbox_transactions": "number",
         "inbox_records": "record_id",
         "webhooks": "uuid",
     }
@@ -665,7 +757,8 @@ class TestDualEntryConnector(LakeflowConnectTests):
                 "ingestion_type": "cdc",
             }
             records, offset = self.connector.read_table(stream, {}, {})
-            assert list(records) == _load_corpus(stream)
+            # record_payload is JSON-encoded on read (formerly VARIANT).
+            assert list(records) == _expected_records(stream)
             assert offset == {"cursor": self.connector._init_ts_iso}
 
     def test_workflow_and_integration_streams_are_snapshots(self):
@@ -677,15 +770,29 @@ class TestDualEntryConnector(LakeflowConnectTests):
                 "ingestion_type": "snapshot",
             }
             records, offset = self.connector.read_table(stream, {}, {})
-            assert list(records) == _load_corpus(stream)
+            assert list(records) == _expected_records(stream)
             assert offset == {"done": True}
+
+    def test_inbox_transactions_composite_primary_key(self):
+        """``number`` is a display string shared across transaction types (a
+        real snapshot hit DUPLICATE_KEY_VIOLATION on number '3148'), so the
+        primary key is the minimal guaranteed-unique composite
+        (transaction_type, record_id) — record_id id-spaces overlap across
+        types (PublicTransactionInboxSchemaOut has no single unique id)."""
+        assert self.connector.read_table_metadata("inbox_transactions", {}) == {
+            "primary_keys": ["transaction_type", "record_id"],
+            "ingestion_type": "snapshot",
+        }
+        records, offset = self.connector.read_table("inbox_transactions", {}, {})
+        assert list(records) == _expected_records("inbox_transactions")
+        assert offset == {"done": True}
 
     def test_recurring_and_workflow_nested_fields_are_structured(self):
         recurring_fields = {
             field.name: field.dataType
             for field in self.connector.get_table_schema("recurring_invoices", {}).fields
         }
-        assert isinstance(recurring_fields["record_payload"], VariantType)
+        assert isinstance(recurring_fields["record_payload"], StringType)
         assert isinstance(recurring_fields["records"], ArrayType)
         assert isinstance(recurring_fields["records"].elementType, StructType)
 
