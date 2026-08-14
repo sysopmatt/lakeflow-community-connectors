@@ -1,0 +1,54 @@
+# DualEntry Community Connector Spec
+# This file defines the specification for the connector including connection
+# parameters and allowlist options.
+
+# ============================================================================
+# Connection Parameters
+# These are provided when creating the Unity Catalog connection. DualEntry uses
+# a static API key sent in an HTTP header literally named 'X-API-KEY' carrying
+# the raw key (no Bearer prefix) — see the public OpenAPI security scheme.
+# ============================================================================
+display_name: DualEntry
+connection:
+  parameters:
+    - name: api_key
+      type: string
+      required: true
+      secret: true
+      description: >
+        DualEntry public API key, sent in the X-API-KEY request header as the
+        raw key (no 'Bearer' prefix). Store as a Databricks secret rather than
+        inline.
+
+    - name: base_url
+      type: string
+      required: false
+      description: >
+        Base URL of the DualEntry public API, without a trailing slash.
+        Defaults to 'https://api.dualentry.com'. Point it at
+        'https://api-dev.dualentry.com' to test against the dev environment.
+
+# ============================================================================
+# External Options Allowlist
+# These table-specific options must be included in the externalOptionsAllowList
+# parameter of the UC connection to allow them to be passed through. Use a
+# comma-separated string of option names.
+#
+# Options actually read by the connector implementation:
+#   - start_timestamp         Lower bound (ISO-8601 UTC) for the very first sync
+#                             of a CDC table (journal_entries, invoices, bills).
+#                             Default: unbounded (full backfill up to the
+#                             trigger's init time).
+#   - lookback_seconds        Seconds subtracted from the stored cursor at read
+#                             time to re-capture records whose updated_at moved
+#                             while a range was being paginated (default 300).
+#                             Applied at read time only — never stored.
+#   - limit                   Page size for the limit/offset list endpoints.
+#                             Default 100 (also the server maximum).
+#   - max_records_per_batch   Opt-in per-microbatch cap on emitted rows from CDC
+#                             tables, applied at page granularity. The bounded
+#                             updated_at range stays pinned in the offset while
+#                             split across microbatches. Default: drain the
+#                             range in one microbatch.
+# ============================================================================
+external_options_allowlist: "start_timestamp,lookback_seconds,limit,max_records_per_batch"
