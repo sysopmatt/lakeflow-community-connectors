@@ -219,6 +219,18 @@ class TestDualEntryConnector(LakeflowConnectTests):
             for rec in emitted:
                 parse_value(rec, schema)  # must not raise
 
+        # ``total_quantity`` is a decimal-as-string on the wire (the corpus fixture
+        # is a spec-valid JSON string); the schema is StringType. Guard the
+        # framework's numeric->string coercion in a standalone way that does not
+        # depend on a spec-invalid numeric fixture: a numeric value still parses to
+        # a string without raising.
+        stat_schema = self.connector.get_table_schema("statistical_journals", {})
+        stat_records, _ = self.connector.read_table("statistical_journals", {}, {})
+        stat_first = next(iter(stat_records))
+        assert isinstance(stat_first["total_quantity"], str)
+        coerced = parse_value({**stat_first, "total_quantity": 12000.5}, stat_schema)
+        assert coerced["total_quantity"] == "12000.5"
+
     # ------------------------------------------------------------------
     # Incremental behaviour
     # ------------------------------------------------------------------
@@ -774,18 +786,31 @@ class TestDualEntryConnector(LakeflowConnectTests):
             assert offset == {"done": True}
 
     def test_inbox_transactions_composite_primary_key(self):
-        """``number`` is a display string shared across transaction types (a
-        real snapshot hit DUPLICATE_KEY_VIOLATION on number '3148'), so the
-        primary key is the minimal guaranteed-unique composite
-        (transaction_type, record_id) — record_id id-spaces overlap across
-        types (PublicTransactionInboxSchemaOut has no single unique id)."""
+        """PublicTransactionInboxSchemaOut has no single unique id. ``number`` is
+        a display string shared across transaction types (a real snapshot hit
+        DUPLICATE_KEY_VIOLATION on number '3148') and ``record_id`` — the
+        underlying record's id — both overlaps across types AND repeats within a
+        type (a real APPLY CHANGES FROM SNAPSHOT hit DUPLICATE_KEY with 2 rows for
+        {journal_entry, record_id 1365914}). ``workflow_id`` is the required,
+        non-null scalar identifying the inbox ENTRY (a record pending in a given
+        approval workflow), so the minimal composite unique per entry is
+        (transaction_type, record_id, workflow_id)."""
         assert self.connector.read_table_metadata("inbox_transactions", {}) == {
-            "primary_keys": ["transaction_type", "record_id"],
+            "primary_keys": ["transaction_type", "record_id", "workflow_id"],
             "ingestion_type": "snapshot",
         }
         records, offset = self.connector.read_table("inbox_transactions", {}, {})
-        assert list(records) == _expected_records("inbox_transactions")
+        rows = list(records)
+        assert rows == _expected_records("inbox_transactions")
         assert offset == {"done": True}
+
+        # The corpus contains two entries for the same record ({journal_entry,
+        # 1365914}) routed into distinct workflows: (transaction_type, record_id)
+        # is NOT unique, but the full composite (incl. workflow_id) is.
+        trimmed = [(r["transaction_type"], r["record_id"]) for r in rows]
+        assert len(trimmed) != len(set(trimmed)), "expected a record_id collision"
+        full = [(r["transaction_type"], r["record_id"], r["workflow_id"]) for r in rows]
+        assert len(full) == len(set(full)), "composite primary key must be unique"
 
     def test_recurring_and_workflow_nested_fields_are_structured(self):
         recurring_fields = {

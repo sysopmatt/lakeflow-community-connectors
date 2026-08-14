@@ -849,14 +849,25 @@ def register_lakeflow_source(spark):
             "ingestion_type": "snapshot",
         },
         "workflow_actions": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
-        # PublicTransactionInboxSchemaOut has no single unique id: ``number`` is a
-        # display string shared across transaction types (a real snapshot hit
-        # DUPLICATE_KEY_VIOLATION on number '3148'). ``record_id`` is the underlying
-        # record's id, whose id-space overlaps across transaction types, so the
-        # minimal guaranteed-unique key is the composite (transaction_type,
-        # record_id) — one inbox entry per pending record of a given type.
+        # PublicTransactionInboxSchemaOut has no single unique id. Walking the
+        # list-item fields: ``number`` is a display string shared across transaction
+        # types (a real snapshot hit DUPLICATE_KEY_VIOLATION on number '3148');
+        # ``record_id`` is the underlying record's id (overlaps across types AND
+        # repeats within a type — a real APPLY CHANGES FROM SNAPSHOT hit DUPLICATE_KEY
+        # with 2 rows for {journal_entry, record_id 1365914}). The remaining required
+        # scalars (date/company/company_id/memo/amount/approval_status/created_at/
+        # updated_at) describe the record or a mutable status, not the entry's
+        # identity; ``customer_vendor`` and ``initiator_id`` are nullable (unfit for a
+        # key); ``approval_info`` is a nullable nested struct, not a flat key. The one
+        # required, non-null scalar that identifies the INBOX ENTRY (a record pending
+        # in a specific approval workflow) rather than the underlying record is
+        # ``workflow_id``: the same record routed into two approval workflows yields
+        # one distinct inbox entry per workflow. So the minimal composite plausibly
+        # unique per entry is (transaction_type, record_id, workflow_id) —
+        # transaction_type retained because both record_id and workflow_id id-spaces
+        # overlap across transaction types.
         "inbox_transactions": {
-            "primary_keys": ["transaction_type", "record_id"],
+            "primary_keys": ["transaction_type", "record_id", "workflow_id"],
             "ingestion_type": "snapshot",
         },
         "inbox_records": {"primary_keys": ["record_id"], "ingestion_type": "snapshot"},
