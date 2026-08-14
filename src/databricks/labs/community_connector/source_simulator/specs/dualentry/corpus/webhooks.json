@@ -1,0 +1,4 @@
+[
+  {"uuid":"8c4bb463-6800-44a2-8c77-c9f00ef18901","url":"https://integrations.example.com/dualentry/records","topics":["invoice.created","invoice.updated"],"is_active":true,"disabled_at":null,"disabled_reason":"","created_at":"2024-01-01T10:00:00Z","last_modified_at":"2024-02-01T10:00:00Z"},
+  {"uuid":"20aacfb2-9387-4624-9bcc-87b51f41a421","url":"https://audit.example.com/hooks/accounting","topics":["bill.approved"],"is_active":false,"disabled_at":"2024-02-05T10:00:00Z","disabled_reason":"Repeated delivery failures","created_at":"2024-01-02T10:00:00Z","last_modified_at":"2024-02-05T10:00:00Z"}
+]

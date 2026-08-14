@@ -636,3 +636,90 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert offset == {"done": True}
 
     # --- end Banking/Tax/FixedAssets ---
+
+    # --- Recurring/RevRec/Workflow streams ---
+
+    _RECURRING_STREAMS = (
+        "recurring_invoices",
+        "recurring_bills",
+        "recurring_journal_entries",
+    )
+    _WORKFLOW_SNAPSHOT_KEYS = {
+        "contracts": "id",
+        "workflows": "id",
+        "workflow_execution_states": "id",
+        "workflow_actions": "id",
+        "inbox_transactions": "number",
+        "inbox_records": "record_id",
+        "webhooks": "uuid",
+    }
+
+    def test_recurring_streams_are_cdc_on_internal_id(self):
+        tables = self.connector.list_tables()
+        for stream in self._RECURRING_STREAMS:
+            assert stream in tables
+            meta = self.connector.read_table_metadata(stream, {})
+            assert meta == {
+                "primary_keys": ["internal_id"],
+                "cursor_field": "updated_at",
+                "ingestion_type": "cdc",
+            }
+            records, offset = self.connector.read_table(stream, {}, {})
+            assert list(records) == _load_corpus(stream)
+            assert offset == {"cursor": self.connector._init_ts_iso}
+
+    def test_workflow_and_integration_streams_are_snapshots(self):
+        tables = self.connector.list_tables()
+        for stream, key in self._WORKFLOW_SNAPSHOT_KEYS.items():
+            assert stream in tables
+            assert self.connector.read_table_metadata(stream, {}) == {
+                "primary_keys": [key],
+                "ingestion_type": "snapshot",
+            }
+            records, offset = self.connector.read_table(stream, {}, {})
+            assert list(records) == _load_corpus(stream)
+            assert offset == {"done": True}
+
+    def test_recurring_and_workflow_nested_fields_are_structured(self):
+        recurring_fields = {
+            field.name: field.dataType
+            for field in self.connector.get_table_schema("recurring_invoices", {}).fields
+        }
+        assert isinstance(recurring_fields["record_payload"], VariantType)
+        assert isinstance(recurring_fields["records"], ArrayType)
+        assert isinstance(recurring_fields["records"].elementType, StructType)
+
+        contract_fields = {
+            field.name: field.dataType
+            for field in self.connector.get_table_schema("contracts", {}).fields
+        }
+        assert isinstance(contract_fields["metrics"], StructType)
+        assert isinstance(contract_fields["change_orders"], ArrayType)
+        assert isinstance(contract_fields["change_orders"].elementType, StructType)
+
+        inbox_fields = {
+            field.name: field.dataType
+            for field in self.connector.get_table_schema("inbox_transactions", {}).fields
+        }
+        assert isinstance(inbox_fields["approval_info"], StructType)
+
+    def test_contract_snapshot_spans_multiple_pages(self):
+        seen_offsets: list = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy
+        try:
+            records, offset = self.connector.read_table("contracts", {}, {"limit": "2"})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        assert [row["id"] for row in rows] == [9001, 9002, 9003, 9004, 9005, 9006]
+        assert seen_offsets == ["0", "2", "4", "6"]
+        assert offset == {"done": True}
+
+    # --- end Recurring/RevRec/Workflow ---

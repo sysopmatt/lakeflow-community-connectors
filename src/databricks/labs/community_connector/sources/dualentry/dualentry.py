@@ -159,6 +159,18 @@ TABLE_ENDPOINTS: dict[str, str] = {
     "fixed_assets": "public/v2/fixed-assets/",
     "depreciation_books": "public/v2/depreciation-books/",
     # --- end Banking/Tax/FixedAssets ---
+    # --- Recurring/RevRec/Workflow streams ---
+    "recurring_invoices": "public/v2/recurring/invoices/",
+    "recurring_bills": "public/v2/recurring/bills/",
+    "recurring_journal_entries": "public/v2/recurring/journal-entries/",
+    "contracts": "public/v2/contracts/",
+    "workflows": "public/v2/workflows/",
+    "workflow_execution_states": "public/v2/workflows/execution-states/",
+    "workflow_actions": "public/v2/workflows/actions/",
+    "inbox_transactions": "public/v2/inbox/transactions/",
+    "inbox_records": "public/v2/inbox/records/",
+    "webhooks": "public/v2/webhooks/",
+    # --- end Recurring/RevRec/Workflow ---
 }
 
 
@@ -306,6 +318,33 @@ TABLE_METADATA: dict[str, dict] = {
     "fixed_assets": {"primary_keys": ["internal_id"], "ingestion_type": "snapshot"},
     "depreciation_books": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     # --- end Banking/Tax/FixedAssets ---
+    # --- Recurring/RevRec/Workflow streams ---
+    "recurring_invoices": {
+        "primary_keys": ["internal_id"],
+        "cursor_field": "updated_at",
+        "ingestion_type": "cdc",
+    },
+    "recurring_bills": {
+        "primary_keys": ["internal_id"],
+        "cursor_field": "updated_at",
+        "ingestion_type": "cdc",
+    },
+    "recurring_journal_entries": {
+        "primary_keys": ["internal_id"],
+        "cursor_field": "updated_at",
+        "ingestion_type": "cdc",
+    },
+    "contracts": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "workflows": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "workflow_execution_states": {
+        "primary_keys": ["id"],
+        "ingestion_type": "snapshot",
+    },
+    "workflow_actions": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "inbox_transactions": {"primary_keys": ["number"], "ingestion_type": "snapshot"},
+    "inbox_records": {"primary_keys": ["record_id"], "ingestion_type": "snapshot"},
+    "webhooks": {"primary_keys": ["uuid"], "ingestion_type": "snapshot"},
+    # --- end Recurring/RevRec/Workflow ---
 }
 
 
@@ -643,6 +682,208 @@ def _build_schemas() -> dict[str, StructType]:
         ]
     )
     # --- end Banking/Tax/FixedAssets ---
+    # --- Recurring/RevRec/Workflow streams ---
+    rec_recurring_record = StructType(
+        [
+            StructField("internal_id", LongType()),
+            StructField("number", LongType()),
+            StructField("date", DateType()),
+            StructField("amount", StringType()),
+            StructField("record_status", StringType()),
+        ]
+    )
+    rec_revenue_recognition = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("number", LongType()),
+            StructField("contract_id", LongType()),
+            StructField("performance_obligation_id", LongType()),
+            StructField("date", DateType()),
+            StructField("transaction_date", DateType()),
+            StructField("amount", StringType()),
+            StructField("transaction_id", LongType()),
+            StructField("record_status", StringType()),
+            StructField("is_reversal", BooleanType()),
+            StructField("income_account_id", LongType()),
+            StructField("deferrered_revenue_account_id", LongType()),
+        ]
+    )
+    rec_contract_invoice = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("number", LongType()),
+            StructField("date", DateType()),
+            StructField("due_date", DateType()),
+            StructField("amount", StringType()),
+            StructField("tax_amount", StringType()),
+            StructField("paid_total", StringType()),
+            StructField("record_status", StringType()),
+            StructField("term_id", LongType()),
+            StructField("source", StringType()),
+        ]
+    )
+    rec_termination = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("number", LongType()),
+            StructField("contract_id", LongType()),
+            StructField("termination_type", StringType()),
+            StructField("termination_date", DateType()),
+            StructField("early_termination_fee", StringType()),
+            StructField("early_termination_fee_item_id", LongType()),
+            StructField("fee_invoice_id", LongType()),
+            StructField("refund_amount", StringType()),
+            StructField("refund_credit_account_id", LongType()),
+            StructField("transaction_id", LongType()),
+            StructField("memo", StringType()),
+            StructField("date", DateType()),
+            StructField("record_status", StringType()),
+        ]
+    )
+    rec_obligation_modification = StructType(
+        [
+            StructField("obligation_id", LongType()),
+            StructField("quantity", StringType()),
+            StructField("rate", StringType()),
+            StructField("item_id", LongType()),
+            StructField("memo", StringType()),
+            StructField("discount_type", StringType()),
+            StructField("discount_value", StringType()),
+            StructField("standalone_selling_price", StringType()),
+            StructField("cancel", BooleanType()),
+        ]
+    )
+    rec_obligation_addition = StructType(
+        [
+            StructField("item_id", LongType()),
+            StructField("quantity", StringType()),
+            StructField("rate", StringType()),
+            StructField("position", LongType()),
+            StructField("memo", StringType()),
+            StructField("standalone_selling_price", StringType()),
+            StructField("recognition_strategy", StringType()),
+            StructField("billing_start_date", DateType()),
+            StructField("billing_end_date", DateType()),
+            StructField("billing_frequency", StringType()),
+            StructField("billing_interval", LongType()),
+            StructField("recognition_start_date", DateType()),
+            StructField("recognition_end_date", DateType()),
+            StructField("recognition_frequency", StringType()),
+            StructField("recognition_interval", LongType()),
+            StructField("discount_type", StringType()),
+            StructField("discount_value", StringType()),
+        ]
+    )
+    rec_change_order = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("number", LongType()),
+            StructField("contract_id", LongType()),
+            StructField("effective_date", DateType()),
+            StructField("apply_cumulative_catchup", BooleanType()),
+            StructField("catchup_amount", StringType()),
+            StructField("transaction_id", LongType()),
+            StructField("memo", StringType()),
+            StructField("record_status", StringType()),
+            StructField("is_incomplete", BooleanType()),
+            StructField("obligation_modifications", ArrayType(rec_obligation_modification)),
+            StructField("obligation_additions", ArrayType(rec_obligation_addition)),
+        ]
+    )
+    rec_cached_metrics = StructType(
+        [
+            StructField("tcv", StringType()),
+            StructField("mrr", StringType()),
+            StructField("arr", StringType()),
+            StructField("amount_invoiced_percentage", StringType()),
+            StructField("revenue_recognized", StringType()),
+            StructField("revenue_recognized_percentage", StringType()),
+            StructField("next_invoice_date", DateType()),
+        ]
+    )
+    rec_contract_metrics = StructType(
+        [
+            StructField("total_contract_value", StringType()),
+            StructField("mrr", StringType()),
+            StructField("arr", StringType()),
+            StructField("amount_invoiced", StringType()),
+            StructField("amount_invoiced_percentage", StringType()),
+            StructField("invoices_paid", StringType()),
+            StructField("invoices_paid_percentage", StringType()),
+            StructField("revenue_recognized", StringType()),
+            StructField("revenue_recognized_percentage", StringType()),
+            StructField("unbilled_revenue", StringType()),
+            StructField("unrecognized_revenue", StringType()),
+            StructField("deferred_revenue", StringType()),
+            StructField("next_invoice_date", DateType()),
+            StructField("total_discount_amount", StringType()),
+            StructField("total_tax_amount", StringType()),
+        ]
+    )
+    rec_approver = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("first_name", StringType()),
+            StructField("last_name", StringType()),
+            StructField("email", StringType()),
+            StructField("full_name", StringType()),
+        ]
+    )
+    rec_action_approver = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("first_name", StringType()),
+            StructField("last_name", StringType()),
+            StructField("email", StringType()),
+        ]
+    )
+    rec_approval_info = StructType(
+        [
+            StructField("workflow_name", StringType()),
+            StructField("workflow_version", LongType()),
+            StructField("step_name", StringType()),
+            StructField("current_substep", LongType()),
+            StructField(
+                "substeps",
+                ArrayType(
+                    StructType(
+                        [
+                            StructField("order", LongType()),
+                            StructField("status", StringType()),
+                            StructField("approve_condition", StringType()),
+                            StructField("approvers", ArrayType(rec_approver)),
+                            StructField("approved_by", ArrayType(rec_approver)),
+                            StructField("rejected_by", ArrayType(rec_approver)),
+                        ]
+                    )
+                ),
+            ),
+        ]
+    )
+    rec_recurring_schema = StructType(
+        [
+            StructField("created_by", audit_actor),
+            StructField("updated_by", audit_actor),
+            StructField("internal_id", LongType()),
+            StructField("number", LongType()),
+            StructField("name", StringType()),
+            StructField("memo", StringType()),
+            StructField("date", DateType()),
+            StructField("company_id", LongType()),
+            StructField("company_name", StringType()),
+            StructField("company_currency", StringType()),
+            StructField("status", StringType()),
+            StructField("record_payload", VariantType()),
+            StructField("rrule", StringType()),
+            StructField("next_occurrence", TimestampType()),
+            StructField("last_generated", TimestampType()),
+            StructField("recurring_type", StringType()),
+            StructField("records", ArrayType(rec_recurring_record)),
+            StructField("created_at", TimestampType()),
+            StructField("updated_at", TimestampType()),
+        ]
+    )
+    # --- end Recurring/RevRec/Workflow ---
     return {
         "accounts": StructType(
             [
@@ -1655,6 +1896,159 @@ def _build_schemas() -> dict[str, StructType]:
             ]
         ),
         # --- end Banking/Tax/FixedAssets ---
+        # --- Recurring/RevRec/Workflow streams ---
+        "recurring_invoices": rec_recurring_schema,
+        "recurring_bills": rec_recurring_schema,
+        "recurring_journal_entries": rec_recurring_schema,
+        "contracts": StructType(
+            [
+                StructField("custom_fields", custom_fields),
+                StructField("completed_approvals_count", LongType()),
+                StructField("total_approvals_count", LongType()),
+                StructField("integration_remote_records", ArrayType(integration_remote_record)),
+                StructField("id", LongType()),
+                StructField("number", LongType()),
+                StructField("company_id", LongType()),
+                StructField("company_name", StringType()),
+                StructField("company_currency", StringType()),
+                StructField("customer_id", LongType()),
+                StructField("customer_name", StringType()),
+                StructField("name", StringType()),
+                StructField("currency_iso_4217_code", StringType()),
+                StructField("memo", StringType()),
+                StructField("date", DateType()),
+                StructField("term_id", LongType()),
+                StructField("default_ar_account_id", LongType()),
+                StructField("contract_template_id", LongType()),
+                StructField("start_date", DateType()),
+                StructField("end_date", DateType()),
+                StructField("bill_to_address", StringType()),
+                StructField("ship_to_address", StringType()),
+                StructField("billing_address", address_in),
+                StructField("shipping_address", address_in),
+                StructField("billing_anchor_weekday", LongType()),
+                StructField("recognition_anchor_weekday", LongType()),
+                StructField("is_incomplete", BooleanType()),
+                StructField("cutover_date", DateType()),
+                StructField("prior_recognized_amount", StringType()),
+                StructField("default_early_termination_fee", StringType()),
+                StructField("status", StringType()),
+                StructField("recognition_mode", VariantType()),
+                StructField("record_status", StringType()),
+                StructField("is_locked", BooleanType()),
+                StructField("workflow_status", StringType()),
+                StructField("pending_approvers_count", LongType()),
+                StructField("payment", payment),
+                StructField("revenue_recognitions", ArrayType(rec_revenue_recognition)),
+                StructField("invoices", ArrayType(rec_contract_invoice)),
+                StructField("amount", StringType()),
+                StructField("renewed_end_date", DateType()),
+                StructField("next_renewal_date", DateType()),
+                StructField("days_till_expiry", LongType()),
+                StructField("termination", rec_termination),
+                StructField("change_orders", ArrayType(rec_change_order)),
+                StructField("cached_metrics", rec_cached_metrics),
+                StructField("has_usage_obligations", BooleanType()),
+                StructField("has_usages", BooleanType()),
+                StructField("metrics", rec_contract_metrics),
+            ]
+        ),
+        "workflows": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("record_type", StringType()),
+                StructField("name", StringType()),
+                StructField("is_active", BooleanType()),
+                StructField("description", StringType()),
+                StructField("version", LongType()),
+                StructField("priority", LongType()),
+                StructField("company_ids", ArrayType(LongType())),
+                StructField("applies_to_all_companies", BooleanType()),
+                StructField("allow_self_approval", BooleanType()),
+                StructField("pending_approval_count", LongType()),
+            ]
+        ),
+        "workflow_execution_states": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("workflow_id", LongType()),
+                StructField("workflow_name", StringType()),
+                StructField("record_id", LongType()),
+                StructField("record_type", StringType()),
+                StructField("current_step", LongType()),
+                StructField("current_substep", LongType()),
+                StructField("status", StringType()),
+                StructField("requested_approver_ids", ArrayType(LongType())),
+                StructField("approved_by_ids", ArrayType(LongType())),
+                StructField("rejected_by_id", LongType()),
+                StructField("rejection_reason", StringType()),
+                StructField("initiator_id", LongType()),
+                StructField("created_at", TimestampType()),
+                StructField("updated_at", TimestampType()),
+            ]
+        ),
+        "workflow_actions": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("workflow_execution_state_id", LongType()),
+                StructField("record_id", LongType()),
+                StructField("record_type", StringType()),
+                StructField("approver", rec_action_approver),
+                StructField("action_type", StringType()),
+                StructField("rejection_reason", StringType()),
+                StructField("step_name", StringType()),
+                StructField("step_order", LongType()),
+                StructField("substep_order", LongType()),
+                StructField("workflow_version", LongType()),
+                StructField("created_at", TimestampType()),
+            ]
+        ),
+        "inbox_transactions": StructType(
+            [
+                StructField("transaction_type", StringType()),
+                StructField("number", StringType()),
+                StructField("date", DateType()),
+                StructField("customer_vendor", StringType()),
+                StructField("company", StringType()),
+                StructField("company_id", LongType()),
+                StructField("memo", StringType()),
+                StructField("amount", StringType()),
+                StructField("approval_status", StringType()),
+                StructField("workflow_id", LongType()),
+                StructField("record_id", LongType()),
+                StructField("created_at", TimestampType()),
+                StructField("updated_at", TimestampType()),
+                StructField("approval_info", rec_approval_info),
+                StructField("initiator_id", LongType()),
+            ]
+        ),
+        "inbox_records": StructType(
+            [
+                StructField("record_type", StringType()),
+                StructField("name", StringType()),
+                StructField("approval_status", StringType()),
+                StructField("approver", StringType()),
+                StructField("workflow_id", LongType()),
+                StructField("record_id", LongType()),
+                StructField("created_at", TimestampType()),
+                StructField("updated_at", TimestampType()),
+                StructField("approval_info", rec_approval_info),
+                StructField("initiator_id", LongType()),
+            ]
+        ),
+        "webhooks": StructType(
+            [
+                StructField("uuid", StringType()),
+                StructField("url", StringType()),
+                StructField("topics", ArrayType(StringType())),
+                StructField("is_active", BooleanType()),
+                StructField("disabled_at", StringType()),
+                StructField("disabled_reason", StringType()),
+                StructField("created_at", StringType()),
+                StructField("last_modified_at", StringType()),
+            ]
+        ),
+        # --- end Recurring/RevRec/Workflow ---
     }
 
 

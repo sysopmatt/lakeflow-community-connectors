@@ -92,6 +92,87 @@ endpoints:
       cursor_field: updated_at
       count: 3
 
+  # --- Recurring/RevRec/Workflow streams ---
+
+  - path: /public/v2/recurring/invoices/
+    method: GET
+    corpus: recurring_invoices
+    response: &rec_cdc_response
+      pagination_style: offset_limit
+      wrapper: {records_key: items}
+    params: &rec_cdc_params
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records: &rec_future
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/recurring/bills/
+    method: GET
+    corpus: recurring_bills
+    response: *rec_cdc_response
+    params: *rec_cdc_params
+    synthesize_future_records: *rec_future
+
+  - path: /public/v2/recurring/journal-entries/
+    method: GET
+    corpus: recurring_journal_entries
+    response: *rec_cdc_response
+    params: *rec_cdc_params
+    synthesize_future_records: *rec_future
+
+  - path: /public/v2/contracts/
+    method: GET
+    corpus: contracts
+    response: &rec_snapshot_response
+      pagination_style: offset_limit
+      wrapper: {records_key: items}
+    params: &rec_snapshot_params
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/workflows/
+    method: GET
+    corpus: workflows
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  - path: /public/v2/workflows/execution-states/
+    method: GET
+    corpus: workflow_execution_states
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  - path: /public/v2/workflows/actions/
+    method: GET
+    corpus: workflow_actions
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  - path: /public/v2/inbox/transactions/
+    method: GET
+    corpus: inbox_transactions
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  - path: /public/v2/inbox/records/
+    method: GET
+    corpus: inbox_records
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  - path: /public/v2/webhooks/
+    method: GET
+    corpus: webhooks
+    response: *rec_snapshot_response
+    params: *rec_snapshot_params
+
+  # --- end Recurring/RevRec/Workflow ---
+
   - path: /public/v2/invoices/
     method: GET
     corpus: invoices
