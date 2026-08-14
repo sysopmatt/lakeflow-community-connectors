@@ -1,0 +1,4 @@
+[
+  {"id":1001,"record_type":"invoice","name":"Large invoice approval","is_active":true,"description":"CFO approval above threshold","version":3,"priority":10,"company_ids":[10,11],"applies_to_all_companies":false,"allow_self_approval":false,"pending_approval_count":4},
+  {"id":1002,"record_type":"bill","name":"Vendor bill approval","is_active":true,"description":"Department owner review","version":2,"priority":20,"company_ids":[],"applies_to_all_companies":true,"allow_self_approval":false,"pending_approval_count":2}
+]

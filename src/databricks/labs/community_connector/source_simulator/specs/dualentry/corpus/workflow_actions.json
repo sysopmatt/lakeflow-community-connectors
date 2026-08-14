@@ -1,0 +1,5 @@
+[
+  {"id":1201,"workflow_execution_state_id":1101,"record_id":8101,"record_type":"invoice","approver":{"id":90,"first_name":"Grace","last_name":"Lee","email":"grace@example.com","full_name":"Grace Lee"},"action_type":"approved","rejection_reason":null,"step_name":"Controller review","step_order":1,"substep_order":1,"workflow_version":3,"created_at":"2024-02-02T10:00:00Z"},
+  {"id":1202,"workflow_execution_state_id":1102,"record_id":8201,"record_type":"bill","approver":{"id":93,"first_name":"Linus","last_name":"Park","email":"linus@example.com","full_name":"Linus Park"},"action_type":"approved","rejection_reason":null,"step_name":"Owner review","step_order":1,"substep_order":1,"workflow_version":2,"created_at":"2024-02-04T10:00:00Z"}
+  ,{"id":1203,"workflow_execution_state_id":1103,"record_id":8202,"record_type":"bill","approver":{"id":94,"first_name":"Rae","last_name":"Miller","email":"rae@example.com","full_name":"Rae Miller"},"action_type":"rejected","rejection_reason":"Missing receipt","step_name":"Owner review","step_order":1,"substep_order":1,"workflow_version":2,"created_at":"2024-02-06T10:00:00Z"}
+]

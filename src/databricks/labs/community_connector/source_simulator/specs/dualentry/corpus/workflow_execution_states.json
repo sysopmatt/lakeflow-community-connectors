@@ -1,0 +1,5 @@
+[
+  {"id":1101,"workflow_id":1001,"workflow_name":"Large invoice approval","record_id":8101,"record_type":"invoice","current_step":2,"current_substep":1,"status":"pending","requested_approver_ids":[91,92],"approved_by_ids":[90],"rejected_by_id":null,"rejection_reason":null,"initiator_id":80,"created_at":"2024-02-01T12:00:00Z","updated_at":"2024-02-02T12:00:00Z"},
+  {"id":1102,"workflow_id":1002,"workflow_name":"Vendor bill approval","record_id":8201,"record_type":"bill","current_step":1,"current_substep":1,"status":"approved","requested_approver_ids":[93],"approved_by_ids":[93],"rejected_by_id":null,"rejection_reason":null,"initiator_id":81,"created_at":"2024-02-03T12:00:00Z","updated_at":"2024-02-04T12:00:00Z"}
+  ,{"id":1103,"workflow_id":1002,"workflow_name":"Vendor bill approval","record_id":8202,"record_type":"bill","current_step":1,"current_substep":1,"status":"rejected","requested_approver_ids":[94],"approved_by_ids":[],"rejected_by_id":94,"rejection_reason":"Missing receipt","initiator_id":81,"created_at":"2024-02-05T12:00:00Z","updated_at":"2024-02-06T12:00:00Z"}
+]
