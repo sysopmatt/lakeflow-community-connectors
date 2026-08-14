@@ -1041,8 +1041,8 @@ def register_lakeflow_source(spark):
         customer_deposit_data = StructType(
             [
                 StructField("number", LongType()),
-                StructField("date", StringType()),
-                StructField("amount", DoubleType()),
+                StructField("date", DateType()),
+                StructField("amount", StringType()),
                 StructField("memo", StringType()),
                 StructField("record_status", StringType()),
             ]
@@ -1053,7 +1053,7 @@ def register_lakeflow_source(spark):
             [
                 StructField("id", LongType()),
                 StructField("source_id", StringType()),
-                StructField("transactional_date", StringType()),
+                StructField("transactional_date", TimestampType()),
                 StructField("connection_id", LongType()),
                 StructField("integration_id", LongType()),
                 StructField("url", StringType()),
@@ -2441,7 +2441,7 @@ def register_lakeflow_source(spark):
                     StructField("prior_recognized_amount", StringType()),
                     StructField("default_early_termination_fee", StringType()),
                     StructField("status", StringType()),
-                    StructField("recognition_mode", VariantType()),
+                    StructField("recognition_mode", StringType()),
                     StructField("record_status", StringType()),
                     StructField("is_locked", BooleanType()),
                     StructField("workflow_status", StringType()),
@@ -2550,10 +2550,10 @@ def register_lakeflow_source(spark):
                     StructField("url", StringType()),
                     StructField("topics", ArrayType(StringType())),
                     StructField("is_active", BooleanType()),
-                    StructField("disabled_at", StringType()),
+                    StructField("disabled_at", TimestampType()),
                     StructField("disabled_reason", StringType()),
-                    StructField("created_at", StringType()),
-                    StructField("last_modified_at", StringType()),
+                    StructField("created_at", TimestampType()),
+                    StructField("last_modified_at", TimestampType()),
                 ]
             ),
             # --- end Recurring/RevRec/Workflow ---

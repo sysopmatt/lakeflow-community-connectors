@@ -81,8 +81,8 @@
     "customer_deposits": [
       {
         "number": 5431,
-        "date": "date-0",
-        "amount": 100.0,
+        "date": "2024-02-01",
+        "amount": "100.00",
         "memo": "memo-0",
         "record_status": "record_status-0"
       }
@@ -186,8 +186,8 @@
     "customer_deposits": [
       {
         "number": 5447,
-        "date": "date-1",
-        "amount": 101.0,
+        "date": "2024-02-02",
+        "amount": "101.00",
         "memo": "memo-1",
         "record_status": "record_status-1"
       }
@@ -291,8 +291,8 @@
     "customer_deposits": [
       {
         "number": 5463,
-        "date": "date-2",
-        "amount": 102.0,
+        "date": "2024-02-03",
+        "amount": "102.00",
         "memo": "memo-2",
         "record_status": "record_status-2"
       }
@@ -396,8 +396,8 @@
     "customer_deposits": [
       {
         "number": 5479,
-        "date": "date-3",
-        "amount": 103.0,
+        "date": "2024-02-04",
+        "amount": "103.00",
         "memo": "memo-3",
         "record_status": "record_status-3"
       }
@@ -501,8 +501,8 @@
     "customer_deposits": [
       {
         "number": 5495,
-        "date": "date-4",
-        "amount": 104.0,
+        "date": "2024-02-05",
+        "amount": "104.00",
         "memo": "memo-4",
         "record_status": "record_status-4"
       }

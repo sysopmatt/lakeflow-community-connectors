@@ -100,7 +100,7 @@
       {
         "id": 5186,
         "source_id": "source_id-0",
-        "transactional_date": "transactional_date-0",
+        "transactional_date": "2024-02-01T00:00:00Z",
         "connection_id": 5187,
         "integration_id": 5188,
         "url": "url-0",
@@ -237,7 +237,7 @@
       {
         "id": 5205,
         "source_id": "source_id-1",
-        "transactional_date": "transactional_date-1",
+        "transactional_date": "2024-02-02T00:00:00Z",
         "connection_id": 5206,
         "integration_id": 5207,
         "url": "url-1",
@@ -374,7 +374,7 @@
       {
         "id": 5224,
         "source_id": "source_id-2",
-        "transactional_date": "transactional_date-2",
+        "transactional_date": "2024-02-03T00:00:00Z",
         "connection_id": 5225,
         "integration_id": 5226,
         "url": "url-2",
@@ -511,7 +511,7 @@
       {
         "id": 5243,
         "source_id": "source_id-3",
-        "transactional_date": "transactional_date-3",
+        "transactional_date": "2024-02-04T00:00:00Z",
         "connection_id": 5244,
         "integration_id": 5245,
         "url": "url-3",
@@ -648,7 +648,7 @@
       {
         "id": 5262,
         "source_id": "source_id-4",
-        "transactional_date": "transactional_date-4",
+        "transactional_date": "2024-02-05T00:00:00Z",
         "connection_id": 5263,
         "integration_id": 5264,
         "url": "url-4",
