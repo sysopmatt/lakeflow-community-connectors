@@ -149,6 +149,16 @@ TABLE_ENDPOINTS: dict[str, str] = {
     "budgets": "public/v2/budgets/",
     "statistical_journals": "public/v2/statistical-journals/",
     # --- end GL & core ---
+    # --- Banking/Tax/FixedAssets streams ---
+    "bank_transfers": "public/v2/bank-transfers/",
+    "bank_transactions": "public/v2/bank-match/bank-transactions/",
+    "bank_match_suggestions": "public/v2/bank-match/suggestions/",
+    "vat_rates": "public/v2/vat-rates/",
+    "gst_tax_rates": "public/v2/gst-tax-rates/",
+    "product_tax_codes": "public/v2/product-tax-codes/",
+    "fixed_assets": "public/v2/fixed-assets/",
+    "depreciation_books": "public/v2/depreciation-books/",
+    # --- end Banking/Tax/FixedAssets ---
 }
 
 
@@ -279,6 +289,23 @@ TABLE_METADATA: dict[str, dict] = {
         "ingestion_type": "cdc",
     },
     # --- end GL & core ---
+    # --- Banking/Tax/FixedAssets streams ---
+    # bank_transfers is CDC (updated_at cursor); the rest are snapshot. Primary
+    # keys are per the OpenAPI list-item schemas: internal_id for
+    # bank_transfers / fixed_assets, id for the others.
+    "bank_transfers": {
+        "primary_keys": ["internal_id"],
+        "cursor_field": "updated_at",
+        "ingestion_type": "cdc",
+    },
+    "bank_transactions": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "bank_match_suggestions": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "vat_rates": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "gst_tax_rates": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "product_tax_codes": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "fixed_assets": {"primary_keys": ["internal_id"], "ingestion_type": "snapshot"},
+    "depreciation_books": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    # --- end Banking/Tax/FixedAssets ---
 }
 
 
@@ -563,6 +590,59 @@ def _build_schemas() -> dict[str, StructType]:
         ]
     )
 
+    # --- Banking/Tax/FixedAssets streams ---
+    # Nested struct helpers for the banking / tax / fixed-asset streams. These
+    # are local to _build_schemas (like the shared helpers above) but namespaced
+    # with a ``bank_`` prefix so parallel additions never collide. ``audit_actor``
+    # (created_by / updated_by) and ``classification`` (fixed_assets tags — the
+    # PublicRecordClassificationsSchemaOut shape) are reused from above verbatim.
+    bank_gst_component = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("component_type", StringType()),
+            StructField("rate", StringType()),
+            StructField("region", StringType()),
+            StructField("position", LongType()),
+        ]
+    )
+    # FixedAsset depreciation schedule (V2FixedAssetDepreciationScheduleSchemaOut).
+    # ``salvage_value`` / ``accumulated_beginning_balance`` / ``acceleration_factor``
+    # and the custom-schedule ``value`` are monetary/decimal strings on the wire.
+    bank_custom_schedule_entry = StructType(
+        [
+            StructField("value", StringType()),
+            StructField("period_count", LongType()),
+        ]
+    )
+    bank_depreciation_schedule = StructType(
+        [
+            StructField("depreciation_book_code", StringType()),
+            StructField("depreciation_book_name", StringType()),
+            StructField("is_posting", BooleanType()),
+            StructField("useful_life", LongType()),
+            StructField("salvage_value", StringType()),
+            StructField("depreciation_method", StringType()),
+            StructField("depreciation_start_date", DateType()),
+            StructField("convention", StringType()),
+            StructField("depreciation_frequency", StringType()),
+            StructField("accumulated_beginning_balance", StringType()),
+            StructField("accumulated_through", DateType()),
+            StructField("acceleration_factor", StringType()),
+            StructField("property_class", LongType()),
+            StructField("ads_recovery_period", LongType()),
+            StructField("custom_schedule", ArrayType(bank_custom_schedule_entry)),
+            StructField("custom_schedule_type", StringType()),
+        ]
+    )
+    # FixedAsset source line (bill / direct-expense / journal-entry provenance).
+    bank_source_line = StructType(
+        [
+            StructField("type", StringType()),
+            StructField("id", LongType()),
+            StructField("parent_record_id", LongType()),
+        ]
+    )
+    # --- end Banking/Tax/FixedAssets ---
     return {
         "accounts": StructType(
             [
@@ -1418,6 +1498,163 @@ def _build_schemas() -> dict[str, StructType]:
             ]
         ),
         # --- end GL & core ---
+        # --- Banking/Tax/FixedAssets streams ---
+        # bank_transfers — CDC (PublicBankTransferSchemaOut). Keyed on
+        # ``internal_id``; carries a top-level ``updated_at`` cursor. Note
+        # ``currency_iso_4217_code`` is an ARRAY<STRING> here (unlike the scalar
+        # code elsewhere in the API).
+        "bank_transfers": StructType(
+            [
+                StructField("internal_id", LongType()),
+                StructField("number", LongType()),
+                StructField("transaction_id", LongType()),
+                StructField("debit_entry_id", LongType()),
+                StructField("credit_entry_id", LongType()),
+                StructField("date", DateType()),
+                StructField("transaction_date", DateType()),
+                StructField("company_id", LongType()),
+                StructField("company_name", StringType()),
+                StructField("company_currency", StringType()),
+                StructField("debit_bank_account_number", LongType()),
+                StructField("credit_bank_account_number", LongType()),
+                StructField("amount", StringType()),
+                StructField("exchange_rate", StringType()),
+                StructField("memo", StringType()),
+                StructField("record_status", StringType()),
+                StructField("currency_iso_4217_code", ArrayType(StringType())),
+                StructField("bank_match_status", StringType()),
+                StructField("reconciliation_status", StringType()),
+                StructField("created_by", audit_actor),
+                StructField("updated_by", audit_actor),
+                StructField("created_at", TimestampType()),
+                StructField("updated_at", TimestampType()),
+            ]
+        ),
+        # bank_transactions — snapshot (PublicBankTransactionSchemaOut). Keyed on
+        # ``id``. ``date`` / ``posted_at`` are date-time (TimestampType); the
+        # scalar ``currency_iso_4217_code`` is a plain string here.
+        "bank_transactions": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("financial_account_id", LongType()),
+                StructField("financial_account_name", StringType()),
+                StructField("date", TimestampType()),
+                StructField("posted_at", TimestampType()),
+                StructField("amount", StringType()),
+                StructField("debit_amount", StringType()),
+                StructField("credit_amount", StringType()),
+                StructField("payee", StringType()),
+                StructField("currency_iso_4217_code", StringType()),
+                StructField("source", StringType()),
+                StructField("is_posted", BooleanType()),
+                StructField("is_expired", BooleanType()),
+                StructField("matching_status", StringType()),
+                StructField("matched_transaction_ids", ArrayType(LongType())),
+                StructField("matched_entry_ids", ArrayType(LongType())),
+            ]
+        ),
+        # bank_match_suggestions — snapshot (PublicBankMatchSuggestionSchemaOut).
+        # Keyed on ``id``. ``confidence_score`` is a decimal string (nullable).
+        "bank_match_suggestions": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("financial_transaction_id", LongType()),
+                StructField("transaction_id", LongType()),
+                StructField("suggestion_type", StringType()),
+                StructField("confidence_score", StringType()),
+            ]
+        ),
+        # vat_rates — snapshot (PublicVatRateSchemaOut). Keyed on ``id``.
+        "vat_rates": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("country_code", StringType()),
+                StructField("name", StringType()),
+                StructField("rate", StringType()),
+                StructField("rate_type", StringType()),
+                StructField("tax_type", StringType()),
+                StructField("valid_from", DateType()),
+                StructField("valid_to", DateType()),
+                StructField("is_active", BooleanType()),
+                StructField("is_system", BooleanType()),
+            ]
+        ),
+        # gst_tax_rates — snapshot (PublicGstTaxRateSchemaOut). Keyed on ``id``;
+        # carries a nested ``components`` array (CGST/SGST/IGST/CESS breakdown).
+        "gst_tax_rates": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("country_code", StringType()),
+                StructField("name", StringType()),
+                StructField("rate", StringType()),
+                StructField("tax_treatment", StringType()),
+                StructField("supply_category", StringType()),
+                StructField("region", StringType()),
+                StructField("valid_from", DateType()),
+                StructField("valid_to", DateType()),
+                StructField("is_active", BooleanType()),
+                StructField("is_system", BooleanType()),
+                StructField("components", ArrayType(bank_gst_component)),
+            ]
+        ),
+        # product_tax_codes — snapshot (PublicProductTaxCodeSchemaOut). Keyed on
+        # ``id``.
+        "product_tax_codes": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("code", StringType()),
+                StructField("source", StringType()),
+                StructField("is_active", BooleanType()),
+                StructField("is_global", BooleanType()),
+            ]
+        ),
+        # fixed_assets — snapshot (V2FixedAssetSchemaOut). Keyed on ``internal_id``
+        # despite the ``id``-like name — the OpenAPI list item exposes no top-level
+        # ``id``. Rich nesting: depreciation schedules (with a custom-schedule
+        # sub-array), classifications (reused ``classification`` helper), and
+        # source-line provenance.
+        "fixed_assets": StructType(
+            [
+                StructField("internal_id", LongType()),
+                StructField("number", LongType()),
+                StructField("company_id", LongType()),
+                StructField("company_name", StringType()),
+                StructField("name", StringType()),
+                StructField("serial_number", StringType()),
+                StructField("currency_iso_4217_code", StringType()),
+                StructField("exchange_rate", StringType()),
+                StructField("purchase_date", DateType()),
+                StructField("memo", StringType()),
+                StructField("cost", StringType()),
+                StructField("status", StringType()),
+                StructField("record_status", StringType()),
+                StructField("asset_account_number", LongType()),
+                StructField("expense_account_number", LongType()),
+                StructField("accumulation_account_number", LongType()),
+                StructField("vendor_id", LongType()),
+                StructField("vendor_name", StringType()),
+                StructField("customer_id", LongType()),
+                StructField("customer_name", StringType()),
+                StructField("fixed_asset_class_id", LongType()),
+                StructField("depreciation_schedules", ArrayType(bank_depreciation_schedule)),
+                StructField("classifications", ArrayType(classification)),
+                StructField("source_lines", ArrayType(bank_source_line)),
+                StructField("created_by", audit_actor),
+                StructField("updated_by", audit_actor),
+            ]
+        ),
+        # depreciation_books — snapshot (DepreciationBookSchemaOut). Keyed on
+        # ``id``.
+        "depreciation_books": StructType(
+            [
+                StructField("id", LongType()),
+                StructField("code", StringType()),
+                StructField("name", StringType()),
+                StructField("is_active", BooleanType()),
+                StructField("is_posting", BooleanType()),
+            ]
+        ),
+        # --- end Banking/Tax/FixedAssets ---
     }
 
 

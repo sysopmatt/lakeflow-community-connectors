@@ -1,0 +1,2417 @@
+[
+  {
+    "id": 200000,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-01-01T12:00:00Z",
+    "posted_at": "2024-01-01T18:30:00Z",
+    "amount": "13.37",
+    "debit_amount": "0.00",
+    "credit_amount": "13.37",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400000,
+      400500
+    ],
+    "matched_entry_ids": [
+      500000
+    ]
+  },
+  {
+    "id": 200001,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-02-02T12:00:00Z",
+    "posted_at": "2024-02-02T18:30:00Z",
+    "amount": "26.74",
+    "debit_amount": "26.74",
+    "credit_amount": "0.00",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400001,
+      400501
+    ],
+    "matched_entry_ids": [
+      500001
+    ]
+  },
+  {
+    "id": 200002,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-03-03T12:00:00Z",
+    "posted_at": "2024-03-03T18:30:00Z",
+    "amount": "40.11",
+    "debit_amount": "0.00",
+    "credit_amount": "40.11",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400002,
+      400502
+    ],
+    "matched_entry_ids": [
+      500002
+    ]
+  },
+  {
+    "id": 200003,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-04-04T12:00:00Z",
+    "posted_at": "2024-04-04T18:30:00Z",
+    "amount": "53.48",
+    "debit_amount": "53.48",
+    "credit_amount": "0.00",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400003,
+      400503
+    ],
+    "matched_entry_ids": [
+      500003
+    ]
+  },
+  {
+    "id": 200004,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-05-05T12:00:00Z",
+    "posted_at": "2024-05-05T18:30:00Z",
+    "amount": "66.85",
+    "debit_amount": "0.00",
+    "credit_amount": "66.85",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400004,
+      400504
+    ],
+    "matched_entry_ids": [
+      500004
+    ]
+  },
+  {
+    "id": 200005,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-06-06T12:00:00Z",
+    "posted_at": "2024-06-06T18:30:00Z",
+    "amount": "80.22",
+    "debit_amount": "80.22",
+    "credit_amount": "0.00",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400005,
+      400505
+    ],
+    "matched_entry_ids": [
+      500005
+    ]
+  },
+  {
+    "id": 200006,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-07-07T12:00:00Z",
+    "posted_at": "2024-07-07T18:30:00Z",
+    "amount": "93.59",
+    "debit_amount": "0.00",
+    "credit_amount": "93.59",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400006,
+      400506
+    ],
+    "matched_entry_ids": [
+      500006
+    ]
+  },
+  {
+    "id": 200007,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-08-08T12:00:00Z",
+    "posted_at": "2024-08-08T18:30:00Z",
+    "amount": "106.96",
+    "debit_amount": "106.96",
+    "credit_amount": "0.00",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400007,
+      400507
+    ],
+    "matched_entry_ids": [
+      500007
+    ]
+  },
+  {
+    "id": 200008,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-09-09T12:00:00Z",
+    "posted_at": "2024-09-09T18:30:00Z",
+    "amount": "120.33",
+    "debit_amount": "0.00",
+    "credit_amount": "120.33",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400008,
+      400508
+    ],
+    "matched_entry_ids": [
+      500008
+    ]
+  },
+  {
+    "id": 200009,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-10-10T12:00:00Z",
+    "posted_at": "2024-10-10T18:30:00Z",
+    "amount": "133.70",
+    "debit_amount": "133.70",
+    "credit_amount": "0.00",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400009,
+      400509
+    ],
+    "matched_entry_ids": [
+      500009
+    ]
+  },
+  {
+    "id": 200010,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-11-11T12:00:00Z",
+    "posted_at": "2024-11-11T18:30:00Z",
+    "amount": "147.07",
+    "debit_amount": "0.00",
+    "credit_amount": "147.07",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400010,
+      400510
+    ],
+    "matched_entry_ids": [
+      500010
+    ]
+  },
+  {
+    "id": 200011,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-12-12T12:00:00Z",
+    "posted_at": "2024-12-12T18:30:00Z",
+    "amount": "160.44",
+    "debit_amount": "160.44",
+    "credit_amount": "0.00",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400011,
+      400511
+    ],
+    "matched_entry_ids": [
+      500011
+    ]
+  },
+  {
+    "id": 200012,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-01-13T12:00:00Z",
+    "posted_at": "2024-01-13T18:30:00Z",
+    "amount": "173.81",
+    "debit_amount": "0.00",
+    "credit_amount": "173.81",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400012,
+      400512
+    ],
+    "matched_entry_ids": [
+      500012
+    ]
+  },
+  {
+    "id": 200013,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-02-14T12:00:00Z",
+    "posted_at": "2024-02-14T18:30:00Z",
+    "amount": "187.18",
+    "debit_amount": "187.18",
+    "credit_amount": "0.00",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400013,
+      400513
+    ],
+    "matched_entry_ids": [
+      500013
+    ]
+  },
+  {
+    "id": 200014,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-03-15T12:00:00Z",
+    "posted_at": "2024-03-15T18:30:00Z",
+    "amount": "200.55",
+    "debit_amount": "0.00",
+    "credit_amount": "200.55",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400014,
+      400514
+    ],
+    "matched_entry_ids": [
+      500014
+    ]
+  },
+  {
+    "id": 200015,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-04-16T12:00:00Z",
+    "posted_at": "2024-04-16T18:30:00Z",
+    "amount": "213.92",
+    "debit_amount": "213.92",
+    "credit_amount": "0.00",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400015,
+      400515
+    ],
+    "matched_entry_ids": [
+      500015
+    ]
+  },
+  {
+    "id": 200016,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-05-17T12:00:00Z",
+    "posted_at": "2024-05-17T18:30:00Z",
+    "amount": "227.29",
+    "debit_amount": "0.00",
+    "credit_amount": "227.29",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400016,
+      400516
+    ],
+    "matched_entry_ids": [
+      500016
+    ]
+  },
+  {
+    "id": 200017,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-06-18T12:00:00Z",
+    "posted_at": "2024-06-18T18:30:00Z",
+    "amount": "240.66",
+    "debit_amount": "240.66",
+    "credit_amount": "0.00",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400017,
+      400517
+    ],
+    "matched_entry_ids": [
+      500017
+    ]
+  },
+  {
+    "id": 200018,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-07-19T12:00:00Z",
+    "posted_at": "2024-07-19T18:30:00Z",
+    "amount": "254.03",
+    "debit_amount": "0.00",
+    "credit_amount": "254.03",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400018,
+      400518
+    ],
+    "matched_entry_ids": [
+      500018
+    ]
+  },
+  {
+    "id": 200019,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-08-20T12:00:00Z",
+    "posted_at": "2024-08-20T18:30:00Z",
+    "amount": "267.40",
+    "debit_amount": "267.40",
+    "credit_amount": "0.00",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400019,
+      400519
+    ],
+    "matched_entry_ids": [
+      500019
+    ]
+  },
+  {
+    "id": 200020,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-09-21T12:00:00Z",
+    "posted_at": "2024-09-21T18:30:00Z",
+    "amount": "280.77",
+    "debit_amount": "0.00",
+    "credit_amount": "280.77",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400020,
+      400520
+    ],
+    "matched_entry_ids": [
+      500020
+    ]
+  },
+  {
+    "id": 200021,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-10-22T12:00:00Z",
+    "posted_at": "2024-10-22T18:30:00Z",
+    "amount": "294.14",
+    "debit_amount": "294.14",
+    "credit_amount": "0.00",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400021,
+      400521
+    ],
+    "matched_entry_ids": [
+      500021
+    ]
+  },
+  {
+    "id": 200022,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-11-23T12:00:00Z",
+    "posted_at": "2024-11-23T18:30:00Z",
+    "amount": "307.51",
+    "debit_amount": "0.00",
+    "credit_amount": "307.51",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400022,
+      400522
+    ],
+    "matched_entry_ids": [
+      500022
+    ]
+  },
+  {
+    "id": 200023,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-12-24T12:00:00Z",
+    "posted_at": "2024-12-24T18:30:00Z",
+    "amount": "320.88",
+    "debit_amount": "320.88",
+    "credit_amount": "0.00",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400023,
+      400523
+    ],
+    "matched_entry_ids": [
+      500023
+    ]
+  },
+  {
+    "id": 200024,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-01-25T12:00:00Z",
+    "posted_at": "2024-01-25T18:30:00Z",
+    "amount": "334.25",
+    "debit_amount": "0.00",
+    "credit_amount": "334.25",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400024,
+      400524
+    ],
+    "matched_entry_ids": [
+      500024
+    ]
+  },
+  {
+    "id": 200025,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-02-26T12:00:00Z",
+    "posted_at": "2024-02-26T18:30:00Z",
+    "amount": "347.62",
+    "debit_amount": "347.62",
+    "credit_amount": "0.00",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400025,
+      400525
+    ],
+    "matched_entry_ids": [
+      500025
+    ]
+  },
+  {
+    "id": 200026,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-03-27T12:00:00Z",
+    "posted_at": "2024-03-27T18:30:00Z",
+    "amount": "360.99",
+    "debit_amount": "0.00",
+    "credit_amount": "360.99",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400026,
+      400526
+    ],
+    "matched_entry_ids": [
+      500026
+    ]
+  },
+  {
+    "id": 200027,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-04-01T12:00:00Z",
+    "posted_at": "2024-04-01T18:30:00Z",
+    "amount": "374.36",
+    "debit_amount": "374.36",
+    "credit_amount": "0.00",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400027,
+      400527
+    ],
+    "matched_entry_ids": [
+      500027
+    ]
+  },
+  {
+    "id": 200028,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-05-02T12:00:00Z",
+    "posted_at": "2024-05-02T18:30:00Z",
+    "amount": "387.73",
+    "debit_amount": "0.00",
+    "credit_amount": "387.73",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400028,
+      400528
+    ],
+    "matched_entry_ids": [
+      500028
+    ]
+  },
+  {
+    "id": 200029,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-06-03T12:00:00Z",
+    "posted_at": "2024-06-03T18:30:00Z",
+    "amount": "401.10",
+    "debit_amount": "401.10",
+    "credit_amount": "0.00",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400029,
+      400529
+    ],
+    "matched_entry_ids": [
+      500029
+    ]
+  },
+  {
+    "id": 200030,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-07-04T12:00:00Z",
+    "posted_at": "2024-07-04T18:30:00Z",
+    "amount": "414.47",
+    "debit_amount": "0.00",
+    "credit_amount": "414.47",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400030,
+      400530
+    ],
+    "matched_entry_ids": [
+      500030
+    ]
+  },
+  {
+    "id": 200031,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-08-05T12:00:00Z",
+    "posted_at": "2024-08-05T18:30:00Z",
+    "amount": "427.84",
+    "debit_amount": "427.84",
+    "credit_amount": "0.00",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400031,
+      400531
+    ],
+    "matched_entry_ids": [
+      500031
+    ]
+  },
+  {
+    "id": 200032,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-09-06T12:00:00Z",
+    "posted_at": "2024-09-06T18:30:00Z",
+    "amount": "441.21",
+    "debit_amount": "0.00",
+    "credit_amount": "441.21",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400032,
+      400532
+    ],
+    "matched_entry_ids": [
+      500032
+    ]
+  },
+  {
+    "id": 200033,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-10-07T12:00:00Z",
+    "posted_at": "2024-10-07T18:30:00Z",
+    "amount": "454.58",
+    "debit_amount": "454.58",
+    "credit_amount": "0.00",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400033,
+      400533
+    ],
+    "matched_entry_ids": [
+      500033
+    ]
+  },
+  {
+    "id": 200034,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-11-08T12:00:00Z",
+    "posted_at": "2024-11-08T18:30:00Z",
+    "amount": "467.95",
+    "debit_amount": "0.00",
+    "credit_amount": "467.95",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400034,
+      400534
+    ],
+    "matched_entry_ids": [
+      500034
+    ]
+  },
+  {
+    "id": 200035,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-12-09T12:00:00Z",
+    "posted_at": "2024-12-09T18:30:00Z",
+    "amount": "481.32",
+    "debit_amount": "481.32",
+    "credit_amount": "0.00",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400035,
+      400535
+    ],
+    "matched_entry_ids": [
+      500035
+    ]
+  },
+  {
+    "id": 200036,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-01-10T12:00:00Z",
+    "posted_at": "2024-01-10T18:30:00Z",
+    "amount": "494.69",
+    "debit_amount": "0.00",
+    "credit_amount": "494.69",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400036,
+      400536
+    ],
+    "matched_entry_ids": [
+      500036
+    ]
+  },
+  {
+    "id": 200037,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-02-11T12:00:00Z",
+    "posted_at": "2024-02-11T18:30:00Z",
+    "amount": "508.06",
+    "debit_amount": "508.06",
+    "credit_amount": "0.00",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400037,
+      400537
+    ],
+    "matched_entry_ids": [
+      500037
+    ]
+  },
+  {
+    "id": 200038,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-03-12T12:00:00Z",
+    "posted_at": "2024-03-12T18:30:00Z",
+    "amount": "521.43",
+    "debit_amount": "0.00",
+    "credit_amount": "521.43",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400038,
+      400538
+    ],
+    "matched_entry_ids": [
+      500038
+    ]
+  },
+  {
+    "id": 200039,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-04-13T12:00:00Z",
+    "posted_at": "2024-04-13T18:30:00Z",
+    "amount": "534.80",
+    "debit_amount": "534.80",
+    "credit_amount": "0.00",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400039,
+      400539
+    ],
+    "matched_entry_ids": [
+      500039
+    ]
+  },
+  {
+    "id": 200040,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-05-14T12:00:00Z",
+    "posted_at": "2024-05-14T18:30:00Z",
+    "amount": "548.17",
+    "debit_amount": "0.00",
+    "credit_amount": "548.17",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400040,
+      400540
+    ],
+    "matched_entry_ids": [
+      500040
+    ]
+  },
+  {
+    "id": 200041,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-06-15T12:00:00Z",
+    "posted_at": "2024-06-15T18:30:00Z",
+    "amount": "561.54",
+    "debit_amount": "561.54",
+    "credit_amount": "0.00",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400041,
+      400541
+    ],
+    "matched_entry_ids": [
+      500041
+    ]
+  },
+  {
+    "id": 200042,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-07-16T12:00:00Z",
+    "posted_at": "2024-07-16T18:30:00Z",
+    "amount": "574.91",
+    "debit_amount": "0.00",
+    "credit_amount": "574.91",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400042,
+      400542
+    ],
+    "matched_entry_ids": [
+      500042
+    ]
+  },
+  {
+    "id": 200043,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-08-17T12:00:00Z",
+    "posted_at": "2024-08-17T18:30:00Z",
+    "amount": "588.28",
+    "debit_amount": "588.28",
+    "credit_amount": "0.00",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400043,
+      400543
+    ],
+    "matched_entry_ids": [
+      500043
+    ]
+  },
+  {
+    "id": 200044,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-09-18T12:00:00Z",
+    "posted_at": "2024-09-18T18:30:00Z",
+    "amount": "601.65",
+    "debit_amount": "0.00",
+    "credit_amount": "601.65",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400044,
+      400544
+    ],
+    "matched_entry_ids": [
+      500044
+    ]
+  },
+  {
+    "id": 200045,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-10-19T12:00:00Z",
+    "posted_at": "2024-10-19T18:30:00Z",
+    "amount": "615.02",
+    "debit_amount": "615.02",
+    "credit_amount": "0.00",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400045,
+      400545
+    ],
+    "matched_entry_ids": [
+      500045
+    ]
+  },
+  {
+    "id": 200046,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-11-20T12:00:00Z",
+    "posted_at": "2024-11-20T18:30:00Z",
+    "amount": "628.39",
+    "debit_amount": "0.00",
+    "credit_amount": "628.39",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400046,
+      400546
+    ],
+    "matched_entry_ids": [
+      500046
+    ]
+  },
+  {
+    "id": 200047,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-12-21T12:00:00Z",
+    "posted_at": "2024-12-21T18:30:00Z",
+    "amount": "641.76",
+    "debit_amount": "641.76",
+    "credit_amount": "0.00",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400047,
+      400547
+    ],
+    "matched_entry_ids": [
+      500047
+    ]
+  },
+  {
+    "id": 200048,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-01-22T12:00:00Z",
+    "posted_at": "2024-01-22T18:30:00Z",
+    "amount": "655.13",
+    "debit_amount": "0.00",
+    "credit_amount": "655.13",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400048,
+      400548
+    ],
+    "matched_entry_ids": [
+      500048
+    ]
+  },
+  {
+    "id": 200049,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-02-23T12:00:00Z",
+    "posted_at": "2024-02-23T18:30:00Z",
+    "amount": "668.50",
+    "debit_amount": "668.50",
+    "credit_amount": "0.00",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400049,
+      400549
+    ],
+    "matched_entry_ids": [
+      500049
+    ]
+  },
+  {
+    "id": 200050,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-03-24T12:00:00Z",
+    "posted_at": "2024-03-24T18:30:00Z",
+    "amount": "681.87",
+    "debit_amount": "0.00",
+    "credit_amount": "681.87",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400050,
+      400550
+    ],
+    "matched_entry_ids": [
+      500050
+    ]
+  },
+  {
+    "id": 200051,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-04-25T12:00:00Z",
+    "posted_at": "2024-04-25T18:30:00Z",
+    "amount": "695.24",
+    "debit_amount": "695.24",
+    "credit_amount": "0.00",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400051,
+      400551
+    ],
+    "matched_entry_ids": [
+      500051
+    ]
+  },
+  {
+    "id": 200052,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-05-26T12:00:00Z",
+    "posted_at": "2024-05-26T18:30:00Z",
+    "amount": "708.61",
+    "debit_amount": "0.00",
+    "credit_amount": "708.61",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400052,
+      400552
+    ],
+    "matched_entry_ids": [
+      500052
+    ]
+  },
+  {
+    "id": 200053,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-06-27T12:00:00Z",
+    "posted_at": "2024-06-27T18:30:00Z",
+    "amount": "721.98",
+    "debit_amount": "721.98",
+    "credit_amount": "0.00",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400053,
+      400553
+    ],
+    "matched_entry_ids": [
+      500053
+    ]
+  },
+  {
+    "id": 200054,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-07-01T12:00:00Z",
+    "posted_at": "2024-07-01T18:30:00Z",
+    "amount": "735.35",
+    "debit_amount": "0.00",
+    "credit_amount": "735.35",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400054,
+      400554
+    ],
+    "matched_entry_ids": [
+      500054
+    ]
+  },
+  {
+    "id": 200055,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-08-02T12:00:00Z",
+    "posted_at": "2024-08-02T18:30:00Z",
+    "amount": "748.72",
+    "debit_amount": "748.72",
+    "credit_amount": "0.00",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400055,
+      400555
+    ],
+    "matched_entry_ids": [
+      500055
+    ]
+  },
+  {
+    "id": 200056,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-09-03T12:00:00Z",
+    "posted_at": "2024-09-03T18:30:00Z",
+    "amount": "762.09",
+    "debit_amount": "0.00",
+    "credit_amount": "762.09",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400056,
+      400556
+    ],
+    "matched_entry_ids": [
+      500056
+    ]
+  },
+  {
+    "id": 200057,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-10-04T12:00:00Z",
+    "posted_at": "2024-10-04T18:30:00Z",
+    "amount": "775.46",
+    "debit_amount": "775.46",
+    "credit_amount": "0.00",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400057,
+      400557
+    ],
+    "matched_entry_ids": [
+      500057
+    ]
+  },
+  {
+    "id": 200058,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-11-05T12:00:00Z",
+    "posted_at": "2024-11-05T18:30:00Z",
+    "amount": "788.83",
+    "debit_amount": "0.00",
+    "credit_amount": "788.83",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400058,
+      400558
+    ],
+    "matched_entry_ids": [
+      500058
+    ]
+  },
+  {
+    "id": 200059,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-12-06T12:00:00Z",
+    "posted_at": "2024-12-06T18:30:00Z",
+    "amount": "802.20",
+    "debit_amount": "802.20",
+    "credit_amount": "0.00",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400059,
+      400559
+    ],
+    "matched_entry_ids": [
+      500059
+    ]
+  },
+  {
+    "id": 200060,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-01-07T12:00:00Z",
+    "posted_at": "2024-01-07T18:30:00Z",
+    "amount": "815.57",
+    "debit_amount": "0.00",
+    "credit_amount": "815.57",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400060,
+      400560
+    ],
+    "matched_entry_ids": [
+      500060
+    ]
+  },
+  {
+    "id": 200061,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-02-08T12:00:00Z",
+    "posted_at": "2024-02-08T18:30:00Z",
+    "amount": "828.94",
+    "debit_amount": "828.94",
+    "credit_amount": "0.00",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400061,
+      400561
+    ],
+    "matched_entry_ids": [
+      500061
+    ]
+  },
+  {
+    "id": 200062,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-03-09T12:00:00Z",
+    "posted_at": "2024-03-09T18:30:00Z",
+    "amount": "842.31",
+    "debit_amount": "0.00",
+    "credit_amount": "842.31",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400062,
+      400562
+    ],
+    "matched_entry_ids": [
+      500062
+    ]
+  },
+  {
+    "id": 200063,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-04-10T12:00:00Z",
+    "posted_at": "2024-04-10T18:30:00Z",
+    "amount": "855.68",
+    "debit_amount": "855.68",
+    "credit_amount": "0.00",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400063,
+      400563
+    ],
+    "matched_entry_ids": [
+      500063
+    ]
+  },
+  {
+    "id": 200064,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-05-11T12:00:00Z",
+    "posted_at": "2024-05-11T18:30:00Z",
+    "amount": "869.05",
+    "debit_amount": "0.00",
+    "credit_amount": "869.05",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400064,
+      400564
+    ],
+    "matched_entry_ids": [
+      500064
+    ]
+  },
+  {
+    "id": 200065,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-06-12T12:00:00Z",
+    "posted_at": "2024-06-12T18:30:00Z",
+    "amount": "882.42",
+    "debit_amount": "882.42",
+    "credit_amount": "0.00",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400065,
+      400565
+    ],
+    "matched_entry_ids": [
+      500065
+    ]
+  },
+  {
+    "id": 200066,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-07-13T12:00:00Z",
+    "posted_at": "2024-07-13T18:30:00Z",
+    "amount": "895.79",
+    "debit_amount": "0.00",
+    "credit_amount": "895.79",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400066,
+      400566
+    ],
+    "matched_entry_ids": [
+      500066
+    ]
+  },
+  {
+    "id": 200067,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-08-14T12:00:00Z",
+    "posted_at": "2024-08-14T18:30:00Z",
+    "amount": "909.16",
+    "debit_amount": "909.16",
+    "credit_amount": "0.00",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400067,
+      400567
+    ],
+    "matched_entry_ids": [
+      500067
+    ]
+  },
+  {
+    "id": 200068,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-09-15T12:00:00Z",
+    "posted_at": "2024-09-15T18:30:00Z",
+    "amount": "922.53",
+    "debit_amount": "0.00",
+    "credit_amount": "922.53",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400068,
+      400568
+    ],
+    "matched_entry_ids": [
+      500068
+    ]
+  },
+  {
+    "id": 200069,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-10-16T12:00:00Z",
+    "posted_at": "2024-10-16T18:30:00Z",
+    "amount": "935.90",
+    "debit_amount": "935.90",
+    "credit_amount": "0.00",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400069,
+      400569
+    ],
+    "matched_entry_ids": [
+      500069
+    ]
+  },
+  {
+    "id": 200070,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-11-17T12:00:00Z",
+    "posted_at": "2024-11-17T18:30:00Z",
+    "amount": "949.27",
+    "debit_amount": "0.00",
+    "credit_amount": "949.27",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400070,
+      400570
+    ],
+    "matched_entry_ids": [
+      500070
+    ]
+  },
+  {
+    "id": 200071,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-12-18T12:00:00Z",
+    "posted_at": "2024-12-18T18:30:00Z",
+    "amount": "962.64",
+    "debit_amount": "962.64",
+    "credit_amount": "0.00",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400071,
+      400571
+    ],
+    "matched_entry_ids": [
+      500071
+    ]
+  },
+  {
+    "id": 200072,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-01-19T12:00:00Z",
+    "posted_at": "2024-01-19T18:30:00Z",
+    "amount": "976.01",
+    "debit_amount": "0.00",
+    "credit_amount": "976.01",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400072,
+      400572
+    ],
+    "matched_entry_ids": [
+      500072
+    ]
+  },
+  {
+    "id": 200073,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-02-20T12:00:00Z",
+    "posted_at": "2024-02-20T18:30:00Z",
+    "amount": "989.38",
+    "debit_amount": "989.38",
+    "credit_amount": "0.00",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400073,
+      400573
+    ],
+    "matched_entry_ids": [
+      500073
+    ]
+  },
+  {
+    "id": 200074,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-03-21T12:00:00Z",
+    "posted_at": "2024-03-21T18:30:00Z",
+    "amount": "1002.75",
+    "debit_amount": "0.00",
+    "credit_amount": "1002.75",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400074,
+      400574
+    ],
+    "matched_entry_ids": [
+      500074
+    ]
+  },
+  {
+    "id": 200075,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-04-22T12:00:00Z",
+    "posted_at": "2024-04-22T18:30:00Z",
+    "amount": "1016.12",
+    "debit_amount": "1016.12",
+    "credit_amount": "0.00",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400075,
+      400575
+    ],
+    "matched_entry_ids": [
+      500075
+    ]
+  },
+  {
+    "id": 200076,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-05-23T12:00:00Z",
+    "posted_at": "2024-05-23T18:30:00Z",
+    "amount": "1029.49",
+    "debit_amount": "0.00",
+    "credit_amount": "1029.49",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400076,
+      400576
+    ],
+    "matched_entry_ids": [
+      500076
+    ]
+  },
+  {
+    "id": 200077,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-06-24T12:00:00Z",
+    "posted_at": "2024-06-24T18:30:00Z",
+    "amount": "1042.86",
+    "debit_amount": "1042.86",
+    "credit_amount": "0.00",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400077,
+      400577
+    ],
+    "matched_entry_ids": [
+      500077
+    ]
+  },
+  {
+    "id": 200078,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-07-25T12:00:00Z",
+    "posted_at": "2024-07-25T18:30:00Z",
+    "amount": "1056.23",
+    "debit_amount": "0.00",
+    "credit_amount": "1056.23",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400078,
+      400578
+    ],
+    "matched_entry_ids": [
+      500078
+    ]
+  },
+  {
+    "id": 200079,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-08-26T12:00:00Z",
+    "posted_at": "2024-08-26T18:30:00Z",
+    "amount": "1069.60",
+    "debit_amount": "1069.60",
+    "credit_amount": "0.00",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400079,
+      400579
+    ],
+    "matched_entry_ids": [
+      500079
+    ]
+  },
+  {
+    "id": 200080,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-09-27T12:00:00Z",
+    "posted_at": "2024-09-27T18:30:00Z",
+    "amount": "1082.97",
+    "debit_amount": "0.00",
+    "credit_amount": "1082.97",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400080,
+      400580
+    ],
+    "matched_entry_ids": [
+      500080
+    ]
+  },
+  {
+    "id": 200081,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-10-01T12:00:00Z",
+    "posted_at": "2024-10-01T18:30:00Z",
+    "amount": "1096.34",
+    "debit_amount": "1096.34",
+    "credit_amount": "0.00",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400081,
+      400581
+    ],
+    "matched_entry_ids": [
+      500081
+    ]
+  },
+  {
+    "id": 200082,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-11-02T12:00:00Z",
+    "posted_at": "2024-11-02T18:30:00Z",
+    "amount": "1109.71",
+    "debit_amount": "0.00",
+    "credit_amount": "1109.71",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400082,
+      400582
+    ],
+    "matched_entry_ids": [
+      500082
+    ]
+  },
+  {
+    "id": 200083,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-12-03T12:00:00Z",
+    "posted_at": "2024-12-03T18:30:00Z",
+    "amount": "1123.08",
+    "debit_amount": "1123.08",
+    "credit_amount": "0.00",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400083,
+      400583
+    ],
+    "matched_entry_ids": [
+      500083
+    ]
+  },
+  {
+    "id": 200084,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-01-04T12:00:00Z",
+    "posted_at": "2024-01-04T18:30:00Z",
+    "amount": "1136.45",
+    "debit_amount": "0.00",
+    "credit_amount": "1136.45",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400084,
+      400584
+    ],
+    "matched_entry_ids": [
+      500084
+    ]
+  },
+  {
+    "id": 200085,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-02-05T12:00:00Z",
+    "posted_at": "2024-02-05T18:30:00Z",
+    "amount": "1149.82",
+    "debit_amount": "1149.82",
+    "credit_amount": "0.00",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400085,
+      400585
+    ],
+    "matched_entry_ids": [
+      500085
+    ]
+  },
+  {
+    "id": 200086,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-03-06T12:00:00Z",
+    "posted_at": "2024-03-06T18:30:00Z",
+    "amount": "1163.19",
+    "debit_amount": "0.00",
+    "credit_amount": "1163.19",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400086,
+      400586
+    ],
+    "matched_entry_ids": [
+      500086
+    ]
+  },
+  {
+    "id": 200087,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-04-07T12:00:00Z",
+    "posted_at": "2024-04-07T18:30:00Z",
+    "amount": "1176.56",
+    "debit_amount": "1176.56",
+    "credit_amount": "0.00",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400087,
+      400587
+    ],
+    "matched_entry_ids": [
+      500087
+    ]
+  },
+  {
+    "id": 200088,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-05-08T12:00:00Z",
+    "posted_at": "2024-05-08T18:30:00Z",
+    "amount": "1189.93",
+    "debit_amount": "0.00",
+    "credit_amount": "1189.93",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400088,
+      400588
+    ],
+    "matched_entry_ids": [
+      500088
+    ]
+  },
+  {
+    "id": 200089,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-06-09T12:00:00Z",
+    "posted_at": "2024-06-09T18:30:00Z",
+    "amount": "1203.30",
+    "debit_amount": "1203.30",
+    "credit_amount": "0.00",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400089,
+      400589
+    ],
+    "matched_entry_ids": [
+      500089
+    ]
+  },
+  {
+    "id": 200090,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-07-10T12:00:00Z",
+    "posted_at": "2024-07-10T18:30:00Z",
+    "amount": "1216.67",
+    "debit_amount": "0.00",
+    "credit_amount": "1216.67",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400090,
+      400590
+    ],
+    "matched_entry_ids": [
+      500090
+    ]
+  },
+  {
+    "id": 200091,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-08-11T12:00:00Z",
+    "posted_at": "2024-08-11T18:30:00Z",
+    "amount": "1230.04",
+    "debit_amount": "1230.04",
+    "credit_amount": "0.00",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400091,
+      400591
+    ],
+    "matched_entry_ids": [
+      500091
+    ]
+  },
+  {
+    "id": 200092,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-09-12T12:00:00Z",
+    "posted_at": "2024-09-12T18:30:00Z",
+    "amount": "1243.41",
+    "debit_amount": "0.00",
+    "credit_amount": "1243.41",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400092,
+      400592
+    ],
+    "matched_entry_ids": [
+      500092
+    ]
+  },
+  {
+    "id": 200093,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-10-13T12:00:00Z",
+    "posted_at": "2024-10-13T18:30:00Z",
+    "amount": "1256.78",
+    "debit_amount": "1256.78",
+    "credit_amount": "0.00",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400093,
+      400593
+    ],
+    "matched_entry_ids": [
+      500093
+    ]
+  },
+  {
+    "id": 200094,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-11-14T12:00:00Z",
+    "posted_at": "2024-11-14T18:30:00Z",
+    "amount": "1270.15",
+    "debit_amount": "0.00",
+    "credit_amount": "1270.15",
+    "payee": "Vendor 6 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400094,
+      400594
+    ],
+    "matched_entry_ids": [
+      500094
+    ]
+  },
+  {
+    "id": 200095,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-12-15T12:00:00Z",
+    "posted_at": "2024-12-15T18:30:00Z",
+    "amount": "1283.52",
+    "debit_amount": "1283.52",
+    "credit_amount": "0.00",
+    "payee": "Vendor 7 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400095,
+      400595
+    ],
+    "matched_entry_ids": [
+      500095
+    ]
+  },
+  {
+    "id": 200096,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-01-16T12:00:00Z",
+    "posted_at": "2024-01-16T18:30:00Z",
+    "amount": "1296.89",
+    "debit_amount": "0.00",
+    "credit_amount": "1296.89",
+    "payee": "Vendor 8 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400096,
+      400596
+    ],
+    "matched_entry_ids": [
+      500096
+    ]
+  },
+  {
+    "id": 200097,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-02-17T12:00:00Z",
+    "posted_at": "2024-02-17T18:30:00Z",
+    "amount": "1310.26",
+    "debit_amount": "1310.26",
+    "credit_amount": "0.00",
+    "payee": "Vendor 9 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400097,
+      400597
+    ],
+    "matched_entry_ids": [
+      500097
+    ]
+  },
+  {
+    "id": 200098,
+    "financial_account_id": 300,
+    "financial_account_name": "Operating Account 0",
+    "date": "2024-03-18T12:00:00Z",
+    "posted_at": "2024-03-18T18:30:00Z",
+    "amount": "1323.63",
+    "debit_amount": "0.00",
+    "credit_amount": "1323.63",
+    "payee": "Vendor 10 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400098,
+      400598
+    ],
+    "matched_entry_ids": [
+      500098
+    ]
+  },
+  {
+    "id": 200099,
+    "financial_account_id": 301,
+    "financial_account_name": "Operating Account 1",
+    "date": "2024-04-19T12:00:00Z",
+    "posted_at": "2024-04-19T18:30:00Z",
+    "amount": "1337.00",
+    "debit_amount": "1337.00",
+    "credit_amount": "0.00",
+    "payee": "Vendor 0 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400099,
+      400599
+    ],
+    "matched_entry_ids": [
+      500099
+    ]
+  },
+  {
+    "id": 200100,
+    "financial_account_id": 302,
+    "financial_account_name": "Operating Account 2",
+    "date": "2024-05-20T12:00:00Z",
+    "posted_at": "2024-05-20T18:30:00Z",
+    "amount": "1350.37",
+    "debit_amount": "0.00",
+    "credit_amount": "1350.37",
+    "payee": "Vendor 1 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400100,
+      400600
+    ],
+    "matched_entry_ids": [
+      500100
+    ]
+  },
+  {
+    "id": 200101,
+    "financial_account_id": 303,
+    "financial_account_name": "Operating Account 3",
+    "date": "2024-06-21T12:00:00Z",
+    "posted_at": "2024-06-21T18:30:00Z",
+    "amount": "1363.74",
+    "debit_amount": "1363.74",
+    "credit_amount": "0.00",
+    "payee": "Vendor 2 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "csv_upload",
+    "is_posted": true,
+    "is_expired": false,
+    "matching_status": "deterministic_suggested",
+    "matched_transaction_ids": [
+      400101,
+      400601
+    ],
+    "matched_entry_ids": [
+      500101
+    ]
+  },
+  {
+    "id": 200102,
+    "financial_account_id": 304,
+    "financial_account_name": "Operating Account 4",
+    "date": "2024-07-22T12:00:00Z",
+    "posted_at": "2024-07-22T18:30:00Z",
+    "amount": "1377.11",
+    "debit_amount": "0.00",
+    "credit_amount": "1377.11",
+    "payee": "Vendor 3 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "manual_upload",
+    "is_posted": false,
+    "is_expired": true,
+    "matching_status": "awaiting_ai",
+    "matched_transaction_ids": [
+      400102,
+      400602
+    ],
+    "matched_entry_ids": [
+      500102
+    ]
+  },
+  {
+    "id": 200103,
+    "financial_account_id": 305,
+    "financial_account_name": "Operating Account 5",
+    "date": "2024-08-23T12:00:00Z",
+    "posted_at": "2024-08-23T18:30:00Z",
+    "amount": "1390.48",
+    "debit_amount": "1390.48",
+    "credit_amount": "0.00",
+    "payee": "Vendor 4 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "bai_upload",
+    "is_posted": true,
+    "is_expired": true,
+    "matching_status": "ai_in_progress",
+    "matched_transaction_ids": [
+      400103,
+      400603
+    ],
+    "matched_entry_ids": [
+      500103
+    ]
+  },
+  {
+    "id": 200104,
+    "financial_account_id": 306,
+    "financial_account_name": "Operating Account 6",
+    "date": "2024-09-24T12:00:00Z",
+    "posted_at": "2024-09-24T18:30:00Z",
+    "amount": "1403.85",
+    "debit_amount": "0.00",
+    "credit_amount": "1403.85",
+    "payee": "Vendor 5 LLC",
+    "currency_iso_4217_code": "USD",
+    "source": "pdf_upload",
+    "is_posted": false,
+    "is_expired": false,
+    "matching_status": "unprocessed",
+    "matched_transaction_ids": [
+      400104,
+      400604
+    ],
+    "matched_entry_ids": [
+      500104
+    ]
+  }
+]

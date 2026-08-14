@@ -1,0 +1,37 @@
+[
+  {
+    "id": 900,
+    "code": "PTC-1000",
+    "source": "INTERNAL",
+    "is_active": true,
+    "is_global": false
+  },
+  {
+    "id": 901,
+    "code": "PTC-1001",
+    "source": "AVALARA",
+    "is_active": true,
+    "is_global": true
+  },
+  {
+    "id": 902,
+    "code": "PTC-1002",
+    "source": "INTERNAL",
+    "is_active": true,
+    "is_global": false
+  },
+  {
+    "id": 903,
+    "code": "PTC-1003",
+    "source": "AVALARA",
+    "is_active": true,
+    "is_global": true
+  },
+  {
+    "id": 904,
+    "code": "PTC-1004",
+    "source": "INTERNAL",
+    "is_active": true,
+    "is_global": false
+  }
+]
