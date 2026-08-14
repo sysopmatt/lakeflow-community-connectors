@@ -1,0 +1,140 @@
+[
+  {
+    "id": 800,
+    "country_code": "IN",
+    "name": "GST STANDARD 0",
+    "rate": "18.00",
+    "tax_treatment": "STANDARD",
+    "supply_category": "INTRA_STATE",
+    "region": "Maharashtra",
+    "valid_from": "2021-04-01",
+    "valid_to": "2035-03-31",
+    "is_active": true,
+    "is_system": false,
+    "components": [
+      {
+        "id": 8100,
+        "component_type": "CGST",
+        "rate": "9.00",
+        "region": "Maharashtra",
+        "position": 0
+      }
+    ]
+  },
+  {
+    "id": 801,
+    "country_code": "IN",
+    "name": "GST ZERO_RATED 1",
+    "rate": "0.00",
+    "tax_treatment": "ZERO_RATED",
+    "supply_category": "INTER_STATE",
+    "region": "Karnataka",
+    "valid_from": "2021-04-01",
+    "valid_to": "2031-03-31",
+    "is_active": true,
+    "is_system": true,
+    "components": [
+      {
+        "id": 8110,
+        "component_type": "CGST",
+        "rate": "9.00",
+        "region": "Maharashtra",
+        "position": 0
+      },
+      {
+        "id": 8111,
+        "component_type": "SGST",
+        "rate": "8.00",
+        "region": "Karnataka",
+        "position": 1
+      }
+    ]
+  },
+  {
+    "id": 802,
+    "country_code": "IN",
+    "name": "GST EXEMPT 2",
+    "rate": "12.00",
+    "tax_treatment": "EXEMPT",
+    "supply_category": "INTRA_STATE",
+    "region": "Delhi",
+    "valid_from": "2021-04-01",
+    "valid_to": "2035-03-31",
+    "is_active": true,
+    "is_system": false,
+    "components": [
+      {
+        "id": 8120,
+        "component_type": "CGST",
+        "rate": "9.00",
+        "region": "Maharashtra",
+        "position": 0
+      },
+      {
+        "id": 8121,
+        "component_type": "SGST",
+        "rate": "8.00",
+        "region": "Karnataka",
+        "position": 1
+      },
+      {
+        "id": 8122,
+        "component_type": "IGST",
+        "rate": "7.00",
+        "region": "Delhi",
+        "position": 2
+      }
+    ]
+  },
+  {
+    "id": 803,
+    "country_code": "IN",
+    "name": "GST IMPORT_GST 3",
+    "rate": "5.00",
+    "tax_treatment": "IMPORT_GST",
+    "supply_category": "INTER_STATE",
+    "region": "Tamil Nadu",
+    "valid_from": "2021-04-01",
+    "valid_to": "2031-03-31",
+    "is_active": true,
+    "is_system": true,
+    "components": [
+      {
+        "id": 8130,
+        "component_type": "CGST",
+        "rate": "9.00",
+        "region": "Maharashtra",
+        "position": 0
+      }
+    ]
+  },
+  {
+    "id": 804,
+    "country_code": "IN",
+    "name": "GST STANDARD 4",
+    "rate": "28.00",
+    "tax_treatment": "STANDARD",
+    "supply_category": "INTRA_STATE",
+    "region": "Gujarat",
+    "valid_from": "2021-04-01",
+    "valid_to": "2035-03-31",
+    "is_active": true,
+    "is_system": false,
+    "components": [
+      {
+        "id": 8140,
+        "component_type": "CGST",
+        "rate": "9.00",
+        "region": "Maharashtra",
+        "position": 0
+      },
+      {
+        "id": 8141,
+        "component_type": "SGST",
+        "rate": "8.00",
+        "region": "Karnataka",
+        "position": 1
+      }
+    ]
+  }
+]

@@ -1,0 +1,459 @@
+[
+  {
+    "internal_id": 11000,
+    "number": 22000,
+    "company_id": 100,
+    "company_name": "Acme Holdings 0",
+    "name": "Fixed Asset 0",
+    "serial_number": "SN-40000",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.000000",
+    "purchase_date": "2023-01-01",
+    "memo": "Capitalized equipment 0",
+    "cost": "15000.00",
+    "status": "active",
+    "record_status": "draft",
+    "asset_account_number": 15000,
+    "expense_account_number": 16000,
+    "accumulation_account_number": 17000,
+    "vendor_id": 3000,
+    "vendor_name": "Equipment Vendor 0",
+    "customer_id": 4000,
+    "customer_name": "Customer 0",
+    "fixed_asset_class_id": 500,
+    "depreciation_schedules": [
+      {
+        "depreciation_book_code": "BOOK-0",
+        "depreciation_book_name": "Primary",
+        "is_posting": true,
+        "useful_life": 60,
+        "salvage_value": "500.00",
+        "depreciation_method": "straight_line",
+        "depreciation_start_date": "2023-01-01",
+        "convention": "mid_month",
+        "depreciation_frequency": "monthly",
+        "accumulated_beginning_balance": "0.00",
+        "accumulated_through": "2024-01-01",
+        "acceleration_factor": "1.50",
+        "property_class": 3,
+        "ads_recovery_period": 3,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          }
+        ],
+        "custom_schedule_type": "cost_percentage"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 6000,
+        "name": "Department 0",
+        "line_id": 61000,
+        "line_name": "Line 0",
+        "parent_classification_id": 6500,
+        "parent_classification_line_id": 65100
+      }
+    ],
+    "source_lines": [
+      {
+        "type": "bill_line",
+        "id": 70000,
+        "parent_record_id": 71000
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator0@example.com",
+      "first_name": "First0",
+      "last_name": "Last0",
+      "timestamp": "2024-01-01T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater0@example.com",
+      "first_name": "First0",
+      "last_name": "Last0",
+      "timestamp": "2024-01-01T09:15:30Z"
+    }
+  },
+  {
+    "internal_id": 11001,
+    "number": 22001,
+    "company_id": 101,
+    "company_name": "Acme Holdings 1",
+    "name": "Fixed Asset 1",
+    "serial_number": "SN-40001",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.000000",
+    "purchase_date": "2023-02-02",
+    "memo": "Capitalized equipment 1",
+    "cost": "30000.00",
+    "status": "inactive",
+    "record_status": "posted",
+    "asset_account_number": 15001,
+    "expense_account_number": 16001,
+    "accumulation_account_number": 17001,
+    "vendor_id": 3001,
+    "vendor_name": "Equipment Vendor 1",
+    "customer_id": 4001,
+    "customer_name": "Customer 1",
+    "fixed_asset_class_id": 501,
+    "depreciation_schedules": [
+      {
+        "depreciation_book_code": "BOOK-0",
+        "depreciation_book_name": "Primary",
+        "is_posting": true,
+        "useful_life": 60,
+        "salvage_value": "1000.00",
+        "depreciation_method": "straight_line_prorate_even",
+        "depreciation_start_date": "2023-02-02",
+        "convention": "half_month",
+        "depreciation_frequency": "monthly",
+        "accumulated_beginning_balance": "0.00",
+        "accumulated_through": "2024-02-02",
+        "acceleration_factor": "1.50",
+        "property_class": 5,
+        "ads_recovery_period": 4,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          },
+          {
+            "value": "20.00",
+            "period_count": 2
+          }
+        ],
+        "custom_schedule_type": "net_book_value_percentage"
+      },
+      {
+        "depreciation_book_code": "BOOK-1",
+        "depreciation_book_name": "Tax",
+        "is_posting": false,
+        "useful_life": 72,
+        "salvage_value": "1000.00",
+        "depreciation_method": "declining_balance",
+        "depreciation_start_date": "2023-02-02",
+        "convention": "full_month",
+        "depreciation_frequency": "yearly",
+        "accumulated_beginning_balance": "250.00",
+        "accumulated_through": "2024-02-02",
+        "acceleration_factor": "2.50",
+        "property_class": 7,
+        "ads_recovery_period": 5,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          },
+          {
+            "value": "20.00",
+            "period_count": 2
+          }
+        ],
+        "custom_schedule_type": "fixed_amount"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 6001,
+        "name": "Department 1",
+        "line_id": 61001,
+        "line_name": "Line 1",
+        "parent_classification_id": 6501,
+        "parent_classification_line_id": 65101
+      }
+    ],
+    "source_lines": [
+      {
+        "type": "direct_expense_line",
+        "id": 70001,
+        "parent_record_id": 71001
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator1@example.com",
+      "first_name": "First1",
+      "last_name": "Last1",
+      "timestamp": "2024-01-02T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater1@example.com",
+      "first_name": "First1",
+      "last_name": "Last1",
+      "timestamp": "2024-01-02T09:15:30Z"
+    }
+  },
+  {
+    "internal_id": 11002,
+    "number": 22002,
+    "company_id": 102,
+    "company_name": "Acme Holdings 2",
+    "name": "Fixed Asset 2",
+    "serial_number": "SN-40002",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.000000",
+    "purchase_date": "2023-03-03",
+    "memo": "Capitalized equipment 2",
+    "cost": "45000.00",
+    "status": "disposed",
+    "record_status": "archived",
+    "asset_account_number": 15002,
+    "expense_account_number": 16002,
+    "accumulation_account_number": 17002,
+    "vendor_id": 3002,
+    "vendor_name": "Equipment Vendor 2",
+    "customer_id": 4002,
+    "customer_name": "Customer 2",
+    "fixed_asset_class_id": 502,
+    "depreciation_schedules": [
+      {
+        "depreciation_book_code": "BOOK-0",
+        "depreciation_book_name": "Primary",
+        "is_posting": true,
+        "useful_life": 60,
+        "salvage_value": "1500.00",
+        "depreciation_method": "declining_balance",
+        "depreciation_start_date": "2023-03-03",
+        "convention": "full_month",
+        "depreciation_frequency": "monthly",
+        "accumulated_beginning_balance": "0.00",
+        "accumulated_through": "2024-03-03",
+        "acceleration_factor": "1.50",
+        "property_class": 7,
+        "ads_recovery_period": 5,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          }
+        ],
+        "custom_schedule_type": "fixed_amount"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 6002,
+        "name": "Department 2",
+        "line_id": 61002,
+        "line_name": "Line 2",
+        "parent_classification_id": 6502,
+        "parent_classification_line_id": 65102
+      }
+    ],
+    "source_lines": [
+      {
+        "type": "journal_entry_line",
+        "id": 70002,
+        "parent_record_id": 71002
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator2@example.com",
+      "first_name": "First2",
+      "last_name": "Last2",
+      "timestamp": "2024-01-03T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater2@example.com",
+      "first_name": "First2",
+      "last_name": "Last2",
+      "timestamp": "2024-01-03T09:15:30Z"
+    }
+  },
+  {
+    "internal_id": 11003,
+    "number": 22003,
+    "company_id": 103,
+    "company_name": "Acme Holdings 3",
+    "name": "Fixed Asset 3",
+    "serial_number": "SN-40003",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.000000",
+    "purchase_date": "2023-04-04",
+    "memo": "Capitalized equipment 3",
+    "cost": "60000.00",
+    "status": "fully_amortized",
+    "record_status": "draft",
+    "asset_account_number": 15003,
+    "expense_account_number": 16003,
+    "accumulation_account_number": 17003,
+    "vendor_id": 3003,
+    "vendor_name": "Equipment Vendor 3",
+    "customer_id": 4003,
+    "customer_name": "Customer 3",
+    "fixed_asset_class_id": 503,
+    "depreciation_schedules": [
+      {
+        "depreciation_book_code": "BOOK-0",
+        "depreciation_book_name": "Primary",
+        "is_posting": true,
+        "useful_life": 60,
+        "salvage_value": "2000.00",
+        "depreciation_method": "double_declining",
+        "depreciation_start_date": "2023-04-04",
+        "convention": "mid_quarter",
+        "depreciation_frequency": "monthly",
+        "accumulated_beginning_balance": "0.00",
+        "accumulated_through": "2024-04-04",
+        "acceleration_factor": "1.50",
+        "property_class": 10,
+        "ads_recovery_period": 6,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          },
+          {
+            "value": "20.00",
+            "period_count": 2
+          }
+        ],
+        "custom_schedule_type": "net_book_value_amount"
+      },
+      {
+        "depreciation_book_code": "BOOK-1",
+        "depreciation_book_name": "Tax",
+        "is_posting": false,
+        "useful_life": 72,
+        "salvage_value": "2000.00",
+        "depreciation_method": "straight_line",
+        "depreciation_start_date": "2023-04-04",
+        "convention": "mid_month",
+        "depreciation_frequency": "yearly",
+        "accumulated_beginning_balance": "250.00",
+        "accumulated_through": "2024-04-04",
+        "acceleration_factor": "2.50",
+        "property_class": 3,
+        "ads_recovery_period": 3,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          },
+          {
+            "value": "20.00",
+            "period_count": 2
+          }
+        ],
+        "custom_schedule_type": "cost_percentage"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 6003,
+        "name": "Department 3",
+        "line_id": 61003,
+        "line_name": "Line 3",
+        "parent_classification_id": 6503,
+        "parent_classification_line_id": 65103
+      }
+    ],
+    "source_lines": [
+      {
+        "type": "bill_line",
+        "id": 70003,
+        "parent_record_id": 71003
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator3@example.com",
+      "first_name": "First3",
+      "last_name": "Last3",
+      "timestamp": "2024-01-04T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater3@example.com",
+      "first_name": "First3",
+      "last_name": "Last3",
+      "timestamp": "2024-01-04T09:15:30Z"
+    }
+  },
+  {
+    "internal_id": 11004,
+    "number": 22004,
+    "company_id": 104,
+    "company_name": "Acme Holdings 4",
+    "name": "Fixed Asset 4",
+    "serial_number": "SN-40004",
+    "currency_iso_4217_code": "USD",
+    "exchange_rate": "1.000000",
+    "purchase_date": "2023-05-05",
+    "memo": "Capitalized equipment 4",
+    "cost": "75000.00",
+    "status": "active",
+    "record_status": "posted",
+    "asset_account_number": 15004,
+    "expense_account_number": 16004,
+    "accumulation_account_number": 17004,
+    "vendor_id": 3004,
+    "vendor_name": "Equipment Vendor 4",
+    "customer_id": 4004,
+    "customer_name": "Customer 4",
+    "fixed_asset_class_id": 504,
+    "depreciation_schedules": [
+      {
+        "depreciation_book_code": "BOOK-0",
+        "depreciation_book_name": "Primary",
+        "is_posting": true,
+        "useful_life": 60,
+        "salvage_value": "2500.00",
+        "depreciation_method": "straight_line",
+        "depreciation_start_date": "2023-05-05",
+        "convention": "mid_month",
+        "depreciation_frequency": "monthly",
+        "accumulated_beginning_balance": "0.00",
+        "accumulated_through": "2024-05-05",
+        "acceleration_factor": "1.50",
+        "property_class": 3,
+        "ads_recovery_period": 3,
+        "custom_schedule": [
+          {
+            "value": "10.00",
+            "period_count": 1
+          }
+        ],
+        "custom_schedule_type": "cost_percentage"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 6004,
+        "name": "Department 4",
+        "line_id": 61004,
+        "line_name": "Line 4",
+        "parent_classification_id": 6504,
+        "parent_classification_line_id": 65104
+      }
+    ],
+    "source_lines": [
+      {
+        "type": "direct_expense_line",
+        "id": 70004,
+        "parent_record_id": 71004
+      }
+    ],
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator4@example.com",
+      "first_name": "First4",
+      "last_name": "Last4",
+      "timestamp": "2024-01-05T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater4@example.com",
+      "first_name": "First4",
+      "last_name": "Last4",
+      "timestamp": "2024-01-05T09:15:30Z"
+    }
+  }
+]

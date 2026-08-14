@@ -263,3 +263,113 @@ endpoints:
     synthesize_future_records:
       cursor_field: updated_at
       count: 3
+
+  # --- Banking/Tax/FixedAssets streams ---
+  # bank_transfers is the only CDC stream in this batch — bounded updated_at
+  # range read with the same gte/lte filter + init-cap termination as the AR
+  # streams above. ``synthesize_future_records`` seeds post-now records so the
+  # termination test proves the ``updated_before = _init_ts`` cap engages.
+  - path: /public/v2/bank-transfers/
+    method: GET
+    corpus: bank_transfers
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  # The remaining banking / tax / fixed-asset streams are snapshot: plain
+  # limit/offset full listing, no updated_* filters. The connector sends
+  # ordering=id (ignored by the simulator, which serves corpus in file order).
+  - path: /public/v2/bank-match/bank-transactions/
+    method: GET
+    corpus: bank_transactions
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/bank-match/suggestions/
+    method: GET
+    corpus: bank_match_suggestions
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/vat-rates/
+    method: GET
+    corpus: vat_rates
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/gst-tax-rates/
+    method: GET
+    corpus: gst_tax_rates
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/product-tax-codes/
+    method: GET
+    corpus: product_tax_codes
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/fixed-assets/
+    method: GET
+    corpus: fixed_assets
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+
+  - path: /public/v2/depreciation-books/
+    method: GET
+    corpus: depreciation_books
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:    {role: limit, default: 100, max: 100}
+      offset:   {role: offset}
+      ordering: {role: ignore}
+  # --- end Banking/Tax/FixedAssets ---

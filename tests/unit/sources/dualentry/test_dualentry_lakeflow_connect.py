@@ -357,3 +357,117 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert len(ids) == 5 and len(set(ids)) == 5, f"expected 5 unique rows, got {ids}"
         assert seen_offsets == ["0", "2", "4"], seen_offsets
         assert offset == {"cursor": self.connector._init_ts_iso}
+
+    # ------------------------------------------------------------------
+    # Banking / Tax / Fixed-assets streams
+    # --- Banking/Tax/FixedAssets streams ---
+    # ------------------------------------------------------------------
+
+    _BANK_SNAPSHOT_STREAMS = (
+        "bank_transactions",
+        "bank_match_suggestions",
+        "vat_rates",
+        "gst_tax_rates",
+        "product_tax_codes",
+        "fixed_assets",
+        "depreciation_books",
+    )
+
+    def test_bank_tax_fa_streams_registered_with_expected_metadata(self):
+        """All 8 banking/tax/fixed-asset streams are exposed. bank_transfers is
+        CDC keyed on ``internal_id`` with an ``updated_at`` cursor; the rest are
+        snapshot. fixed_assets is keyed on ``internal_id`` (not ``id``) despite
+        the naming; the other snapshots are keyed on ``id`` — per the OpenAPI
+        list-item schemas, not assumed."""
+        tables = self.connector.list_tables()
+
+        assert "bank_transfers" in tables
+        bt = self.connector.read_table_metadata("bank_transfers", {})
+        assert bt["ingestion_type"] == "cdc"
+        assert bt["primary_keys"] == ["internal_id"]
+        assert bt["cursor_field"] == "updated_at"
+
+        expected_pk = {
+            "bank_transactions": ["id"],
+            "bank_match_suggestions": ["id"],
+            "vat_rates": ["id"],
+            "gst_tax_rates": ["id"],
+            "product_tax_codes": ["id"],
+            "fixed_assets": ["internal_id"],
+            "depreciation_books": ["id"],
+        }
+        for stream in self._BANK_SNAPSHOT_STREAMS:
+            assert stream in tables, f"{stream} missing from list_tables()"
+            meta = self.connector.read_table_metadata(stream, {})
+            assert meta["ingestion_type"] == "snapshot", stream
+            assert meta["primary_keys"] == expected_pk[stream], stream
+            assert "cursor_field" not in meta, stream
+
+    def test_bank_transfers_incremental_reads_raw_and_caps_at_init(self):
+        """bank_transfers is the only CDC stream in this batch: the seeded corpus
+        (ascending, past-dated ``updated_at``) is returned raw and deep-equal,
+        the injected future records are excluded by the init cap, and the cursor
+        parks at init time so Trigger.AvailableNow terminates. The array-valued
+        ``currency_iso_4217_code`` survives as a list (not stringified)."""
+        records, offset = self.connector.read_table("bank_transfers", {}, {})
+        emitted = list(records)
+        assert emitted == _load_corpus("bank_transfers")
+        assert offset == {"cursor": self.connector._init_ts_iso}
+        init_iso = self.connector._init_ts_iso
+        for row in emitted:
+            assert row["updated_at"] <= init_iso
+        assert isinstance(emitted[0]["currency_iso_4217_code"], list)
+        assert isinstance(emitted[0]["created_by"], dict)
+
+    def test_fixed_assets_snapshot_reads_raw_nested_unchanged(self):
+        """fixed_assets is snapshot with deep nesting — depreciation schedules
+        (with a custom-schedule sub-array), classifications, and source lines
+        must be yielded raw as dicts/lists, deep-equal against the corpus."""
+        records, offset = self.connector.read_table("fixed_assets", {}, {})
+        emitted = list(records)
+        assert emitted == _load_corpus("fixed_assets")
+        assert offset == {"done": True}
+        sched = emitted[0]["depreciation_schedules"]
+        assert isinstance(sched, list) and isinstance(sched[0], dict)
+        assert isinstance(sched[0]["custom_schedule"], list)
+        assert isinstance(emitted[0]["classifications"][0], dict)
+        assert isinstance(emitted[0]["source_lines"][0], dict)
+
+    def test_gst_tax_rates_nested_components_preserved(self):
+        """gst_tax_rates carries a nested ``components`` array (CGST/SGST/IGST/
+        CESS breakdown) that must survive as a list of dicts."""
+        records, _ = self.connector.read_table("gst_tax_rates", {}, {})
+        emitted = list(records)
+        assert emitted == _load_corpus("gst_tax_rates")
+        comps = emitted[0]["components"]
+        assert isinstance(comps, list) and isinstance(comps[0], dict)
+        assert "component_type" in comps[0]
+
+    def test_bank_transactions_snapshot_spans_multiple_pages(self):
+        """The bank_transactions corpus is larger than one page (105 records >
+        the default page size of 100), so a default read walks two limit/offset
+        pages — offsets 0 then 100 — and returns every record exactly once. The
+        short second page (5 records) terminates the walk without a third
+        request."""
+        seen_offsets: list = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy
+        try:
+            records, offset = self.connector.read_table("bank_transactions", {}, {})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        corpus = _load_corpus("bank_transactions")
+        assert len(corpus) > 100, "fixture must exceed one page to prove multi-page walk"
+        ids = [r["id"] for r in rows]
+        assert len(ids) == len(corpus) and len(set(ids)) == len(corpus)
+        assert seen_offsets == ["0", "100"], seen_offsets
+        assert offset == {"done": True}
+
+    # --- end Banking/Tax/FixedAssets ---

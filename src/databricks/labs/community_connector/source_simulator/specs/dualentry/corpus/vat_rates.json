@@ -1,0 +1,62 @@
+[
+  {
+    "id": 700,
+    "country_code": "DE",
+    "name": "VAT STANDARD 0",
+    "rate": "19.00",
+    "rate_type": "STANDARD",
+    "tax_type": "INPUT_OUTPUT",
+    "valid_from": "2020-01-01",
+    "valid_to": "2030-12-31",
+    "is_active": true,
+    "is_system": false
+  },
+  {
+    "id": 701,
+    "country_code": "FR",
+    "name": "VAT REDUCED 1",
+    "rate": "7.00",
+    "rate_type": "REDUCED",
+    "tax_type": "ZERO_RATED",
+    "valid_from": "2020-01-01",
+    "valid_to": "2030-12-31",
+    "is_active": false,
+    "is_system": true
+  },
+  {
+    "id": 702,
+    "country_code": "IE",
+    "name": "VAT SUPER_REDUCED 2",
+    "rate": "21.00",
+    "rate_type": "SUPER_REDUCED",
+    "tax_type": "EXEMPT",
+    "valid_from": "2020-01-01",
+    "valid_to": "2030-12-31",
+    "is_active": true,
+    "is_system": false
+  },
+  {
+    "id": 703,
+    "country_code": "ES",
+    "name": "VAT PARKING 3",
+    "rate": "10.00",
+    "rate_type": "PARKING",
+    "tax_type": "REVERSE_CHARGE",
+    "valid_from": "2020-01-01",
+    "valid_to": "2030-12-31",
+    "is_active": false,
+    "is_system": true
+  },
+  {
+    "id": 704,
+    "country_code": "IT",
+    "name": "VAT STANDARD 4",
+    "rate": "4.00",
+    "rate_type": "STANDARD",
+    "tax_type": "INPUT_OUTPUT",
+    "valid_from": "2020-01-01",
+    "valid_to": "2030-12-31",
+    "is_active": true,
+    "is_system": false
+  }
+]
