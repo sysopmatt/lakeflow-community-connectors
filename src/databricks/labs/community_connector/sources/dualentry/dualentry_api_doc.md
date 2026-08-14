@@ -109,18 +109,27 @@ kept exactly as the API returns them (snake_case). Monetary quantities
 wire and are typed `StringType` to preserve precision. `*_at` fields are
 `TimestampType`; bare date fields (`date`, `due_date`, ...) are `DateType`.
 
-A few fields are genuinely polymorphic / user-defined and are JSON-serialized
-to `StringType` (or a `StringType` sub-field) by the connector so the column
-type stays stable:
+A few fields are genuinely polymorphic / user-defined. The connector does
+**not** stringify them — `read_table` yields raw records and the schema models
+each field structurally, falling back to `VariantType` only for the genuinely
+untyped leaves, so no data is lost and the column type stays stable:
 
-- `custom_fields[].field` and `custom_fields[].value` (user-defined custom
-  fields; present on journal_entries, invoices, bills, customers, vendors).
-- `bills.tax.data` (a discriminated union keyed by `bills.tax.regime`) and
-  `bills.tax_registration_numbers` (nested company/counterparty arrays).
-- `vendors.record_status` (declared as an untyped/`any` field in the spec).
+- `custom_fields` — `ARRAY<STRUCT<field, value>>` (present on journal_entries,
+  invoices, bills, customers, vendors). The definition (`field`) and the
+  instance value (`value`) are both structs; the genuinely untyped leaves —
+  the custom-field `value.value` payload and the definition's `company_ids`,
+  `options`, `default_value` — are `VariantType`.
+- `next_approvers` — `ARRAY<STRUCT>` (approver objects).
+- `bills.tax` — `STRUCT<regime: STRING, data: VARIANT>`; `data` is a
+  discriminated union keyed by `regime`, kept as `VariantType` so any member
+  is preserved raw.
+- `bills.tax_registration_numbers` —
+  `STRUCT<company: ARRAY<entry>, counterparty: ARRAY<entry>>`.
 
 Common nested structs (`created_by`/`updated_by` audit actors, addresses,
-attachments, approvers, payment) are modelled as `StructType`.
+attachments, approvers, payment) are modelled as `StructType`. Because records
+are yielded raw, the framework's `parse_value` coerces each field to these
+declared types.
 
 ## **Rate limits & retries**
 
