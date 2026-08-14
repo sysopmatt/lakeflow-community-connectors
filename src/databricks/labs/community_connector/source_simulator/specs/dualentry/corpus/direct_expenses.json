@@ -1,0 +1,647 @@
+[
+ {
+  "internal_id": 12000,
+  "number": 12001,
+  "company_id": 12002,
+  "company_name": "company_name-0",
+  "company_currency": "company_currency-0",
+  "vendor_id": 12003,
+  "vendor_name": "vendor_name-0",
+  "account_number": 12004,
+  "amount": "amount-0",
+  "memo": "memo-0",
+  "check_number": "check_number-0",
+  "date": "2024-02-01",
+  "transaction_date": "2024-02-01",
+  "currency_iso_4217_code": "currency_iso_4217_code-0",
+  "exchange_rate": "exchange_rate-0",
+  "bank_or_credit_card_amount": "bank_or_credit_card_amount-0",
+  "payment_method_id": 12005,
+  "record_status": "record_status-0",
+  "supply_date": "2024-02-01",
+  "place_of_supply": "place_of_supply-0",
+  "tax": {
+   "regime": "regime-0",
+   "data": {
+    "raw_value": "data-0",
+    "n": 0
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-0",
+     "number": "number-0",
+     "region": "region-0"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-0",
+     "number": "number-0",
+     "region": "region-0"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 12006,
+    "name": "name-0",
+    "line_id": 12007,
+    "line_name": "line_name-0",
+    "parent_classification_id": 12008,
+    "parent_classification_line_id": 12009
+   }
+  ],
+  "transaction_ids": [
+   12010
+  ],
+  "bank_match_status": "bank_match_status-0",
+  "reconciliation_status": "reconciliation_status-0",
+  "custom_fields": [
+   {
+    "field": {
+     "id": 12011,
+     "company_id": 12012,
+     "company_ids": {
+      "raw_value": "company_ids-0",
+      "n": 0
+     },
+     "name": "name-0",
+     "description": "description-0",
+     "helper_text": "helper_text-0",
+     "field_type": "field_type-0",
+     "applies_to": [
+      {
+       "type": "type-0",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-0",
+      "n": 0
+     },
+     "options": {
+      "raw_value": "options-0",
+      "n": 0
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 12013,
+     "custom_field_id": 12014,
+     "custom_field_name": "custom_field_name-0",
+     "custom_field_type": "custom_field_type-0",
+     "custom_field_value_id": 12015,
+     "value": {
+      "raw_value": "value-0",
+      "n": 0
+     },
+     "created_at": "created_at-0",
+     "updated_at": "updated_at-0"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 12016,
+    "file_name": "file_name-0",
+    "file_size": 12017,
+    "download_url": "download_url-0"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-01T00:00:00Z"
+ },
+ {
+  "internal_id": 12100,
+  "number": 12101,
+  "company_id": 12102,
+  "company_name": "company_name-1",
+  "company_currency": "company_currency-1",
+  "vendor_id": 12103,
+  "vendor_name": "vendor_name-1",
+  "account_number": 12104,
+  "amount": "amount-1",
+  "memo": "memo-1",
+  "check_number": "check_number-1",
+  "date": "2024-02-02",
+  "transaction_date": "2024-02-02",
+  "currency_iso_4217_code": "currency_iso_4217_code-1",
+  "exchange_rate": "exchange_rate-1",
+  "bank_or_credit_card_amount": "bank_or_credit_card_amount-1",
+  "payment_method_id": 12105,
+  "record_status": "record_status-1",
+  "supply_date": "2024-02-02",
+  "place_of_supply": "place_of_supply-1",
+  "tax": {
+   "regime": "regime-1",
+   "data": {
+    "raw_value": "data-1",
+    "n": 1
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-1",
+     "number": "number-1",
+     "region": "region-1"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-1",
+     "number": "number-1",
+     "region": "region-1"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 12106,
+    "name": "name-1",
+    "line_id": 12107,
+    "line_name": "line_name-1",
+    "parent_classification_id": 12108,
+    "parent_classification_line_id": 12109
+   }
+  ],
+  "transaction_ids": [
+   12110
+  ],
+  "bank_match_status": "bank_match_status-1",
+  "reconciliation_status": "reconciliation_status-1",
+  "custom_fields": [
+   {
+    "field": {
+     "id": 12111,
+     "company_id": 12112,
+     "company_ids": {
+      "raw_value": "company_ids-1",
+      "n": 1
+     },
+     "name": "name-1",
+     "description": "description-1",
+     "helper_text": "helper_text-1",
+     "field_type": "field_type-1",
+     "applies_to": [
+      {
+       "type": "type-1",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-1",
+      "n": 1
+     },
+     "options": {
+      "raw_value": "options-1",
+      "n": 1
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 12113,
+     "custom_field_id": 12114,
+     "custom_field_name": "custom_field_name-1",
+     "custom_field_type": "custom_field_type-1",
+     "custom_field_value_id": 12115,
+     "value": {
+      "raw_value": "value-1",
+      "n": 1
+     },
+     "created_at": "created_at-1",
+     "updated_at": "updated_at-1"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 12116,
+    "file_name": "file_name-1",
+    "file_size": 12117,
+    "download_url": "download_url-1"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-02T00:00:00Z"
+ },
+ {
+  "internal_id": 12200,
+  "number": 12201,
+  "company_id": 12202,
+  "company_name": "company_name-2",
+  "company_currency": "company_currency-2",
+  "vendor_id": 12203,
+  "vendor_name": "vendor_name-2",
+  "account_number": 12204,
+  "amount": "amount-2",
+  "memo": "memo-2",
+  "check_number": "check_number-2",
+  "date": "2024-02-03",
+  "transaction_date": "2024-02-03",
+  "currency_iso_4217_code": "currency_iso_4217_code-2",
+  "exchange_rate": "exchange_rate-2",
+  "bank_or_credit_card_amount": "bank_or_credit_card_amount-2",
+  "payment_method_id": 12205,
+  "record_status": "record_status-2",
+  "supply_date": "2024-02-03",
+  "place_of_supply": "place_of_supply-2",
+  "tax": {
+   "regime": "regime-2",
+   "data": {
+    "raw_value": "data-2",
+    "n": 2
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-2",
+     "number": "number-2",
+     "region": "region-2"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-2",
+     "number": "number-2",
+     "region": "region-2"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 12206,
+    "name": "name-2",
+    "line_id": 12207,
+    "line_name": "line_name-2",
+    "parent_classification_id": 12208,
+    "parent_classification_line_id": 12209
+   }
+  ],
+  "transaction_ids": [
+   12210
+  ],
+  "bank_match_status": "bank_match_status-2",
+  "reconciliation_status": "reconciliation_status-2",
+  "custom_fields": [
+   {
+    "field": {
+     "id": 12211,
+     "company_id": 12212,
+     "company_ids": {
+      "raw_value": "company_ids-2",
+      "n": 2
+     },
+     "name": "name-2",
+     "description": "description-2",
+     "helper_text": "helper_text-2",
+     "field_type": "field_type-2",
+     "applies_to": [
+      {
+       "type": "type-2",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-2",
+      "n": 2
+     },
+     "options": {
+      "raw_value": "options-2",
+      "n": 2
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 12213,
+     "custom_field_id": 12214,
+     "custom_field_name": "custom_field_name-2",
+     "custom_field_type": "custom_field_type-2",
+     "custom_field_value_id": 12215,
+     "value": {
+      "raw_value": "value-2",
+      "n": 2
+     },
+     "created_at": "created_at-2",
+     "updated_at": "updated_at-2"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 12216,
+    "file_name": "file_name-2",
+    "file_size": 12217,
+    "download_url": "download_url-2"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-03T00:00:00Z"
+ },
+ {
+  "internal_id": 12300,
+  "number": 12301,
+  "company_id": 12302,
+  "company_name": "company_name-3",
+  "company_currency": "company_currency-3",
+  "vendor_id": 12303,
+  "vendor_name": "vendor_name-3",
+  "account_number": 12304,
+  "amount": "amount-3",
+  "memo": "memo-3",
+  "check_number": "check_number-3",
+  "date": "2024-02-04",
+  "transaction_date": "2024-02-04",
+  "currency_iso_4217_code": "currency_iso_4217_code-3",
+  "exchange_rate": "exchange_rate-3",
+  "bank_or_credit_card_amount": "bank_or_credit_card_amount-3",
+  "payment_method_id": 12305,
+  "record_status": "record_status-3",
+  "supply_date": "2024-02-04",
+  "place_of_supply": "place_of_supply-3",
+  "tax": {
+   "regime": "regime-3",
+   "data": {
+    "raw_value": "data-3",
+    "n": 3
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-3",
+     "number": "number-3",
+     "region": "region-3"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-3",
+     "number": "number-3",
+     "region": "region-3"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 12306,
+    "name": "name-3",
+    "line_id": 12307,
+    "line_name": "line_name-3",
+    "parent_classification_id": 12308,
+    "parent_classification_line_id": 12309
+   }
+  ],
+  "transaction_ids": [
+   12310
+  ],
+  "bank_match_status": "bank_match_status-3",
+  "reconciliation_status": "reconciliation_status-3",
+  "custom_fields": [
+   {
+    "field": {
+     "id": 12311,
+     "company_id": 12312,
+     "company_ids": {
+      "raw_value": "company_ids-3",
+      "n": 3
+     },
+     "name": "name-3",
+     "description": "description-3",
+     "helper_text": "helper_text-3",
+     "field_type": "field_type-3",
+     "applies_to": [
+      {
+       "type": "type-3",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-3",
+      "n": 3
+     },
+     "options": {
+      "raw_value": "options-3",
+      "n": 3
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 12313,
+     "custom_field_id": 12314,
+     "custom_field_name": "custom_field_name-3",
+     "custom_field_type": "custom_field_type-3",
+     "custom_field_value_id": 12315,
+     "value": {
+      "raw_value": "value-3",
+      "n": 3
+     },
+     "created_at": "created_at-3",
+     "updated_at": "updated_at-3"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 12316,
+    "file_name": "file_name-3",
+    "file_size": 12317,
+    "download_url": "download_url-3"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-04T00:00:00Z"
+ },
+ {
+  "internal_id": 12400,
+  "number": 12401,
+  "company_id": 12402,
+  "company_name": "company_name-4",
+  "company_currency": "company_currency-4",
+  "vendor_id": 12403,
+  "vendor_name": "vendor_name-4",
+  "account_number": 12404,
+  "amount": "amount-4",
+  "memo": "memo-4",
+  "check_number": "check_number-4",
+  "date": "2024-02-05",
+  "transaction_date": "2024-02-05",
+  "currency_iso_4217_code": "currency_iso_4217_code-4",
+  "exchange_rate": "exchange_rate-4",
+  "bank_or_credit_card_amount": "bank_or_credit_card_amount-4",
+  "payment_method_id": 12405,
+  "record_status": "record_status-4",
+  "supply_date": "2024-02-05",
+  "place_of_supply": "place_of_supply-4",
+  "tax": {
+   "regime": "regime-4",
+   "data": {
+    "raw_value": "data-4",
+    "n": 4
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-4",
+     "number": "number-4",
+     "region": "region-4"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-4",
+     "number": "number-4",
+     "region": "region-4"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 12406,
+    "name": "name-4",
+    "line_id": 12407,
+    "line_name": "line_name-4",
+    "parent_classification_id": 12408,
+    "parent_classification_line_id": 12409
+   }
+  ],
+  "transaction_ids": [
+   12410
+  ],
+  "bank_match_status": "bank_match_status-4",
+  "reconciliation_status": "reconciliation_status-4",
+  "custom_fields": [
+   {
+    "field": {
+     "id": 12411,
+     "company_id": 12412,
+     "company_ids": {
+      "raw_value": "company_ids-4",
+      "n": 4
+     },
+     "name": "name-4",
+     "description": "description-4",
+     "helper_text": "helper_text-4",
+     "field_type": "field_type-4",
+     "applies_to": [
+      {
+       "type": "type-4",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-4",
+      "n": 4
+     },
+     "options": {
+      "raw_value": "options-4",
+      "n": 4
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 12413,
+     "custom_field_id": 12414,
+     "custom_field_name": "custom_field_name-4",
+     "custom_field_type": "custom_field_type-4",
+     "custom_field_value_id": 12415,
+     "value": {
+      "raw_value": "value-4",
+      "n": 4
+     },
+     "created_at": "created_at-4",
+     "updated_at": "updated_at-4"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 12416,
+    "file_name": "file_name-4",
+    "file_size": 12417,
+    "download_url": "download_url-4"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-05T00:00:00Z"
+ }
+]

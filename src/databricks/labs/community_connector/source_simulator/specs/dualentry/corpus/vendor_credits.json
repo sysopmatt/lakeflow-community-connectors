@@ -1,0 +1,637 @@
+[
+ {
+  "internal_id": 10000,
+  "number": 10001,
+  "bill_number": 10002,
+  "direct_expense_number": 10003,
+  "date": "2024-02-01",
+  "transaction_date": "2024-02-01",
+  "company_id": 10004,
+  "company_name": "company_name-0",
+  "company_currency": "company_currency-0",
+  "vendor_id": 10005,
+  "vendor_name": "vendor_name-0",
+  "currency_iso_4217_code": "currency_iso_4217_code-0",
+  "exchange_rate": "exchange_rate-0",
+  "memo": "memo-0",
+  "amount": "amount-0",
+  "used_amount": "used_amount-0",
+  "remaining_amount": "remaining_amount-0",
+  "record_status": "record_status-0",
+  "supply_date": "2024-02-01",
+  "place_of_supply": "place_of_supply-0",
+  "tax": {
+   "regime": "regime-0",
+   "data": {
+    "raw_value": "data-0",
+    "n": 0
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-0",
+     "number": "number-0",
+     "region": "region-0"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-0",
+     "number": "number-0",
+     "region": "region-0"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 10006,
+    "name": "name-0",
+    "line_id": 10007,
+    "line_name": "line_name-0",
+    "parent_classification_id": 10008,
+    "parent_classification_line_id": 10009
+   }
+  ],
+  "transaction_ids": [
+   10010
+  ],
+  "custom_fields": [
+   {
+    "field": {
+     "id": 10011,
+     "company_id": 10012,
+     "company_ids": {
+      "raw_value": "company_ids-0",
+      "n": 0
+     },
+     "name": "name-0",
+     "description": "description-0",
+     "helper_text": "helper_text-0",
+     "field_type": "field_type-0",
+     "applies_to": [
+      {
+       "type": "type-0",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-0",
+      "n": 0
+     },
+     "options": {
+      "raw_value": "options-0",
+      "n": 0
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 10013,
+     "custom_field_id": 10014,
+     "custom_field_name": "custom_field_name-0",
+     "custom_field_type": "custom_field_type-0",
+     "custom_field_value_id": 10015,
+     "value": {
+      "raw_value": "value-0",
+      "n": 0
+     },
+     "created_at": "created_at-0",
+     "updated_at": "updated_at-0"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 10016,
+    "file_name": "file_name-0",
+    "file_size": 10017,
+    "download_url": "download_url-0"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-01T00:00:00Z"
+ },
+ {
+  "internal_id": 10100,
+  "number": 10101,
+  "bill_number": 10102,
+  "direct_expense_number": 10103,
+  "date": "2024-02-02",
+  "transaction_date": "2024-02-02",
+  "company_id": 10104,
+  "company_name": "company_name-1",
+  "company_currency": "company_currency-1",
+  "vendor_id": 10105,
+  "vendor_name": "vendor_name-1",
+  "currency_iso_4217_code": "currency_iso_4217_code-1",
+  "exchange_rate": "exchange_rate-1",
+  "memo": "memo-1",
+  "amount": "amount-1",
+  "used_amount": "used_amount-1",
+  "remaining_amount": "remaining_amount-1",
+  "record_status": "record_status-1",
+  "supply_date": "2024-02-02",
+  "place_of_supply": "place_of_supply-1",
+  "tax": {
+   "regime": "regime-1",
+   "data": {
+    "raw_value": "data-1",
+    "n": 1
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-1",
+     "number": "number-1",
+     "region": "region-1"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-1",
+     "number": "number-1",
+     "region": "region-1"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 10106,
+    "name": "name-1",
+    "line_id": 10107,
+    "line_name": "line_name-1",
+    "parent_classification_id": 10108,
+    "parent_classification_line_id": 10109
+   }
+  ],
+  "transaction_ids": [
+   10110
+  ],
+  "custom_fields": [
+   {
+    "field": {
+     "id": 10111,
+     "company_id": 10112,
+     "company_ids": {
+      "raw_value": "company_ids-1",
+      "n": 1
+     },
+     "name": "name-1",
+     "description": "description-1",
+     "helper_text": "helper_text-1",
+     "field_type": "field_type-1",
+     "applies_to": [
+      {
+       "type": "type-1",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-1",
+      "n": 1
+     },
+     "options": {
+      "raw_value": "options-1",
+      "n": 1
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 10113,
+     "custom_field_id": 10114,
+     "custom_field_name": "custom_field_name-1",
+     "custom_field_type": "custom_field_type-1",
+     "custom_field_value_id": 10115,
+     "value": {
+      "raw_value": "value-1",
+      "n": 1
+     },
+     "created_at": "created_at-1",
+     "updated_at": "updated_at-1"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 10116,
+    "file_name": "file_name-1",
+    "file_size": 10117,
+    "download_url": "download_url-1"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-02T00:00:00Z"
+ },
+ {
+  "internal_id": 10200,
+  "number": 10201,
+  "bill_number": 10202,
+  "direct_expense_number": 10203,
+  "date": "2024-02-03",
+  "transaction_date": "2024-02-03",
+  "company_id": 10204,
+  "company_name": "company_name-2",
+  "company_currency": "company_currency-2",
+  "vendor_id": 10205,
+  "vendor_name": "vendor_name-2",
+  "currency_iso_4217_code": "currency_iso_4217_code-2",
+  "exchange_rate": "exchange_rate-2",
+  "memo": "memo-2",
+  "amount": "amount-2",
+  "used_amount": "used_amount-2",
+  "remaining_amount": "remaining_amount-2",
+  "record_status": "record_status-2",
+  "supply_date": "2024-02-03",
+  "place_of_supply": "place_of_supply-2",
+  "tax": {
+   "regime": "regime-2",
+   "data": {
+    "raw_value": "data-2",
+    "n": 2
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-2",
+     "number": "number-2",
+     "region": "region-2"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-2",
+     "number": "number-2",
+     "region": "region-2"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 10206,
+    "name": "name-2",
+    "line_id": 10207,
+    "line_name": "line_name-2",
+    "parent_classification_id": 10208,
+    "parent_classification_line_id": 10209
+   }
+  ],
+  "transaction_ids": [
+   10210
+  ],
+  "custom_fields": [
+   {
+    "field": {
+     "id": 10211,
+     "company_id": 10212,
+     "company_ids": {
+      "raw_value": "company_ids-2",
+      "n": 2
+     },
+     "name": "name-2",
+     "description": "description-2",
+     "helper_text": "helper_text-2",
+     "field_type": "field_type-2",
+     "applies_to": [
+      {
+       "type": "type-2",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-2",
+      "n": 2
+     },
+     "options": {
+      "raw_value": "options-2",
+      "n": 2
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 10213,
+     "custom_field_id": 10214,
+     "custom_field_name": "custom_field_name-2",
+     "custom_field_type": "custom_field_type-2",
+     "custom_field_value_id": 10215,
+     "value": {
+      "raw_value": "value-2",
+      "n": 2
+     },
+     "created_at": "created_at-2",
+     "updated_at": "updated_at-2"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 10216,
+    "file_name": "file_name-2",
+    "file_size": 10217,
+    "download_url": "download_url-2"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-03T00:00:00Z"
+ },
+ {
+  "internal_id": 10300,
+  "number": 10301,
+  "bill_number": 10302,
+  "direct_expense_number": 10303,
+  "date": "2024-02-04",
+  "transaction_date": "2024-02-04",
+  "company_id": 10304,
+  "company_name": "company_name-3",
+  "company_currency": "company_currency-3",
+  "vendor_id": 10305,
+  "vendor_name": "vendor_name-3",
+  "currency_iso_4217_code": "currency_iso_4217_code-3",
+  "exchange_rate": "exchange_rate-3",
+  "memo": "memo-3",
+  "amount": "amount-3",
+  "used_amount": "used_amount-3",
+  "remaining_amount": "remaining_amount-3",
+  "record_status": "record_status-3",
+  "supply_date": "2024-02-04",
+  "place_of_supply": "place_of_supply-3",
+  "tax": {
+   "regime": "regime-3",
+   "data": {
+    "raw_value": "data-3",
+    "n": 3
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-3",
+     "number": "number-3",
+     "region": "region-3"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-3",
+     "number": "number-3",
+     "region": "region-3"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 10306,
+    "name": "name-3",
+    "line_id": 10307,
+    "line_name": "line_name-3",
+    "parent_classification_id": 10308,
+    "parent_classification_line_id": 10309
+   }
+  ],
+  "transaction_ids": [
+   10310
+  ],
+  "custom_fields": [
+   {
+    "field": {
+     "id": 10311,
+     "company_id": 10312,
+     "company_ids": {
+      "raw_value": "company_ids-3",
+      "n": 3
+     },
+     "name": "name-3",
+     "description": "description-3",
+     "helper_text": "helper_text-3",
+     "field_type": "field_type-3",
+     "applies_to": [
+      {
+       "type": "type-3",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-3",
+      "n": 3
+     },
+     "options": {
+      "raw_value": "options-3",
+      "n": 3
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 10313,
+     "custom_field_id": 10314,
+     "custom_field_name": "custom_field_name-3",
+     "custom_field_type": "custom_field_type-3",
+     "custom_field_value_id": 10315,
+     "value": {
+      "raw_value": "value-3",
+      "n": 3
+     },
+     "created_at": "created_at-3",
+     "updated_at": "updated_at-3"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 10316,
+    "file_name": "file_name-3",
+    "file_size": 10317,
+    "download_url": "download_url-3"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-04T00:00:00Z"
+ },
+ {
+  "internal_id": 10400,
+  "number": 10401,
+  "bill_number": 10402,
+  "direct_expense_number": 10403,
+  "date": "2024-02-05",
+  "transaction_date": "2024-02-05",
+  "company_id": 10404,
+  "company_name": "company_name-4",
+  "company_currency": "company_currency-4",
+  "vendor_id": 10405,
+  "vendor_name": "vendor_name-4",
+  "currency_iso_4217_code": "currency_iso_4217_code-4",
+  "exchange_rate": "exchange_rate-4",
+  "memo": "memo-4",
+  "amount": "amount-4",
+  "used_amount": "used_amount-4",
+  "remaining_amount": "remaining_amount-4",
+  "record_status": "record_status-4",
+  "supply_date": "2024-02-05",
+  "place_of_supply": "place_of_supply-4",
+  "tax": {
+   "regime": "regime-4",
+   "data": {
+    "raw_value": "data-4",
+    "n": 4
+   }
+  },
+  "tax_registration_numbers": {
+   "company": [
+    {
+     "type": "type-4",
+     "number": "number-4",
+     "region": "region-4"
+    }
+   ],
+   "counterparty": [
+    {
+     "type": "type-4",
+     "number": "number-4",
+     "region": "region-4"
+    }
+   ]
+  },
+  "classifications": [
+   {
+    "id": 10406,
+    "name": "name-4",
+    "line_id": 10407,
+    "line_name": "line_name-4",
+    "parent_classification_id": 10408,
+    "parent_classification_line_id": 10409
+   }
+  ],
+  "transaction_ids": [
+   10410
+  ],
+  "custom_fields": [
+   {
+    "field": {
+     "id": 10411,
+     "company_id": 10412,
+     "company_ids": {
+      "raw_value": "company_ids-4",
+      "n": 4
+     },
+     "name": "name-4",
+     "description": "description-4",
+     "helper_text": "helper_text-4",
+     "field_type": "field_type-4",
+     "applies_to": [
+      {
+       "type": "type-4",
+       "is_active": true,
+       "is_required": true
+      }
+     ],
+     "default_value": {
+      "raw_value": "default_value-4",
+      "n": 4
+     },
+     "options": {
+      "raw_value": "options-4",
+      "n": 4
+     },
+     "is_active": true
+    },
+    "value": {
+     "id": 10413,
+     "custom_field_id": 10414,
+     "custom_field_name": "custom_field_name-4",
+     "custom_field_type": "custom_field_type-4",
+     "custom_field_value_id": 10415,
+     "value": {
+      "raw_value": "value-4",
+      "n": 4
+     },
+     "created_at": "created_at-4",
+     "updated_at": "updated_at-4"
+    }
+   }
+  ],
+  "attachments": [
+   {
+    "id": 10416,
+    "file_name": "file_name-4",
+    "file_size": 10417,
+    "download_url": "download_url-4"
+   }
+  ],
+  "created_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-05T00:00:00Z"
+ }
+]
