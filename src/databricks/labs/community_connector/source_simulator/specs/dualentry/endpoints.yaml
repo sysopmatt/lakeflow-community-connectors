@@ -125,3 +125,141 @@ endpoints:
     synthesize_future_records:
       cursor_field: updated_at
       count: 3
+
+  # ---- AR transaction streams (batch 1): bounded updated_at-range reads ----
+
+  - path: /public/v2/sales-orders/
+    method: GET
+    corpus: sales_orders
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-payments/
+    method: GET
+    corpus: customer_payments
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-credits/
+    method: GET
+    corpus: customer_credits
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-refunds/
+    method: GET
+    corpus: customer_refunds
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-deposits/
+    method: GET
+    corpus: customer_deposits
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-prepayments/
+    method: GET
+    corpus: customer_prepayments
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/customer-prepayment-applications/
+    method: GET
+    corpus: customer_prepayment_applications
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3
+
+  - path: /public/v2/cash-sales/
+    method: GET
+    corpus: cash_sales
+    response:
+      pagination_style: offset_limit
+      wrapper:
+        records_key: items
+    params:
+      limit:          {role: limit, default: 100, max: 100}
+      offset:         {role: offset}
+      ordering:       {role: ignore}
+      updated_after:  {role: filter, field: updated_at, op: gte}
+      updated_before: {role: filter, field: updated_at, op: lte}
+    synthesize_future_records:
+      cursor_field: updated_at
+      count: 3

@@ -1,0 +1,427 @@
+[
+  {
+    "internal_id": 5356,
+    "number": 5357,
+    "transaction_id": 5358,
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "company_id": 5359,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "account_id": 5360,
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "exchange_rate": "exchange_rate-0",
+    "amount": "amount-0",
+    "memo": "memo-0",
+    "record_status": "record_status-0",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5361,
+          "company_id": 5362,
+          "company_ids": {
+            "raw_value": "company_ids-0",
+            "n": 0
+          },
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-0",
+            "n": 0
+          },
+          "options": {
+            "raw_value": "options-0",
+            "n": 0
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5363,
+          "custom_field_id": 5364,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 5365,
+          "value": {
+            "raw_value": "value-0",
+            "n": 0
+          },
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "id": 5366,
+        "file_name": "file_name-0",
+        "file_size": 5367,
+        "download_url": "download_url-0"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 5368,
+    "number": 5369,
+    "transaction_id": 5370,
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "company_id": 5371,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "account_id": 5372,
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "exchange_rate": "exchange_rate-1",
+    "amount": "amount-1",
+    "memo": "memo-1",
+    "record_status": "record_status-1",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5373,
+          "company_id": 5374,
+          "company_ids": {
+            "raw_value": "company_ids-1",
+            "n": 1
+          },
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-1",
+            "n": 1
+          },
+          "options": {
+            "raw_value": "options-1",
+            "n": 1
+          },
+          "is_active": false
+        },
+        "value": {
+          "id": 5375,
+          "custom_field_id": 5376,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 5377,
+          "value": {
+            "raw_value": "value-1",
+            "n": 1
+          },
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "id": 5378,
+        "file_name": "file_name-1",
+        "file_size": 5379,
+        "download_url": "download_url-1"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 5380,
+    "number": 5381,
+    "transaction_id": 5382,
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "company_id": 5383,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "account_id": 5384,
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "exchange_rate": "exchange_rate-2",
+    "amount": "amount-2",
+    "memo": "memo-2",
+    "record_status": "record_status-2",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5385,
+          "company_id": 5386,
+          "company_ids": {
+            "raw_value": "company_ids-2",
+            "n": 2
+          },
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-2",
+            "n": 2
+          },
+          "options": {
+            "raw_value": "options-2",
+            "n": 2
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5387,
+          "custom_field_id": 5388,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 5389,
+          "value": {
+            "raw_value": "value-2",
+            "n": 2
+          },
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "id": 5390,
+        "file_name": "file_name-2",
+        "file_size": 5391,
+        "download_url": "download_url-2"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 5392,
+    "number": 5393,
+    "transaction_id": 5394,
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "company_id": 5395,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "account_id": 5396,
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "exchange_rate": "exchange_rate-3",
+    "amount": "amount-3",
+    "memo": "memo-3",
+    "record_status": "record_status-3",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5397,
+          "company_id": 5398,
+          "company_ids": {
+            "raw_value": "company_ids-3",
+            "n": 3
+          },
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-3",
+            "n": 3
+          },
+          "options": {
+            "raw_value": "options-3",
+            "n": 3
+          },
+          "is_active": false
+        },
+        "value": {
+          "id": 5399,
+          "custom_field_id": 5400,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 5401,
+          "value": {
+            "raw_value": "value-3",
+            "n": 3
+          },
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "id": 5402,
+        "file_name": "file_name-3",
+        "file_size": 5403,
+        "download_url": "download_url-3"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 5404,
+    "number": 5405,
+    "transaction_id": 5406,
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "company_id": 5407,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "account_id": 5408,
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "exchange_rate": "exchange_rate-4",
+    "amount": "amount-4",
+    "memo": "memo-4",
+    "record_status": "record_status-4",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5409,
+          "company_id": 5410,
+          "company_ids": {
+            "raw_value": "company_ids-4",
+            "n": 4
+          },
+          "name": "name-4",
+          "description": "description-4",
+          "helper_text": "helper_text-4",
+          "field_type": "field_type-4",
+          "applies_to": [
+            {
+              "type": "type-4",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-4",
+            "n": 4
+          },
+          "options": {
+            "raw_value": "options-4",
+            "n": 4
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5411,
+          "custom_field_id": 5412,
+          "custom_field_name": "custom_field_name-4",
+          "custom_field_type": "custom_field_type-4",
+          "custom_field_value_id": 5413,
+          "value": {
+            "raw_value": "value-4",
+            "n": 4
+          },
+          "created_at": "created_at-4",
+          "updated_at": "updated_at-4"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "id": 5414,
+        "file_name": "file_name-4",
+        "file_size": 5415,
+        "download_url": "download_url-4"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

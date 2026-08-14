@@ -1,0 +1,687 @@
+[
+  {
+    "internal_id": 5171,
+    "number": 5172,
+    "invoice_number": 5173,
+    "cash_sale_number": 5174,
+    "customer_id": 5175,
+    "customer_name": "customer_name-0",
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "company_id": 5176,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "exchange_rate": "exchange_rate-0",
+    "amount": "amount-0",
+    "used_amount": "used_amount-0",
+    "remaining_amount": "remaining_amount-0",
+    "memo": "memo-0",
+    "record_status": "record_status-0",
+    "contract_id": 5177,
+    "contracted": true,
+    "bill_to_address": "bill_to_address-0",
+    "ship_to_address": "ship_to_address-0",
+    "billing_address": {
+      "name": "name-0",
+      "street": "street-0",
+      "second_line": "second_line-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0"
+    },
+    "shipping_address": {
+      "name": "name-0",
+      "street": "street-0",
+      "second_line": "second_line-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0"
+    },
+    "transaction_ids": [
+      5178
+    ],
+    "attachments": [
+      {
+        "id": 5179,
+        "file_name": "file_name-0",
+        "file_size": 5180,
+        "download_url": "download_url-0"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5181,
+          "company_id": 5182,
+          "company_ids": {
+            "raw_value": "company_ids-0",
+            "n": 0
+          },
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-0",
+            "n": 0
+          },
+          "options": {
+            "raw_value": "options-0",
+            "n": 0
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5183,
+          "custom_field_id": 5184,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 5185,
+          "value": {
+            "raw_value": "value-0",
+            "n": 0
+          },
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
+        }
+      }
+    ],
+    "integration_remote_records": [
+      {
+        "id": 5186,
+        "source_id": "source_id-0",
+        "transactional_date": "transactional_date-0",
+        "connection_id": 5187,
+        "integration_id": 5188,
+        "url": "url-0",
+        "external_source": {
+          "integration_type": "integration_type-0",
+          "external_integration_url": "external_integration_url-0"
+        },
+        "integration_provider": {
+          "id": 5189,
+          "name": "name-0",
+          "integration_type": "integration_type-0",
+          "logo_url": "logo_url-0",
+          "website": "website-0",
+          "description": "description-0",
+          "category": "category-0"
+        }
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 5190,
+    "number": 5191,
+    "invoice_number": 5192,
+    "cash_sale_number": 5193,
+    "customer_id": 5194,
+    "customer_name": "customer_name-1",
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "company_id": 5195,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "exchange_rate": "exchange_rate-1",
+    "amount": "amount-1",
+    "used_amount": "used_amount-1",
+    "remaining_amount": "remaining_amount-1",
+    "memo": "memo-1",
+    "record_status": "record_status-1",
+    "contract_id": 5196,
+    "contracted": false,
+    "bill_to_address": "bill_to_address-1",
+    "ship_to_address": "ship_to_address-1",
+    "billing_address": {
+      "name": "name-1",
+      "street": "street-1",
+      "second_line": "second_line-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1"
+    },
+    "shipping_address": {
+      "name": "name-1",
+      "street": "street-1",
+      "second_line": "second_line-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1"
+    },
+    "transaction_ids": [
+      5197
+    ],
+    "attachments": [
+      {
+        "id": 5198,
+        "file_name": "file_name-1",
+        "file_size": 5199,
+        "download_url": "download_url-1"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5200,
+          "company_id": 5201,
+          "company_ids": {
+            "raw_value": "company_ids-1",
+            "n": 1
+          },
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-1",
+            "n": 1
+          },
+          "options": {
+            "raw_value": "options-1",
+            "n": 1
+          },
+          "is_active": false
+        },
+        "value": {
+          "id": 5202,
+          "custom_field_id": 5203,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 5204,
+          "value": {
+            "raw_value": "value-1",
+            "n": 1
+          },
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
+        }
+      }
+    ],
+    "integration_remote_records": [
+      {
+        "id": 5205,
+        "source_id": "source_id-1",
+        "transactional_date": "transactional_date-1",
+        "connection_id": 5206,
+        "integration_id": 5207,
+        "url": "url-1",
+        "external_source": {
+          "integration_type": "integration_type-1",
+          "external_integration_url": "external_integration_url-1"
+        },
+        "integration_provider": {
+          "id": 5208,
+          "name": "name-1",
+          "integration_type": "integration_type-1",
+          "logo_url": "logo_url-1",
+          "website": "website-1",
+          "description": "description-1",
+          "category": "category-1"
+        }
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 5209,
+    "number": 5210,
+    "invoice_number": 5211,
+    "cash_sale_number": 5212,
+    "customer_id": 5213,
+    "customer_name": "customer_name-2",
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "company_id": 5214,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "exchange_rate": "exchange_rate-2",
+    "amount": "amount-2",
+    "used_amount": "used_amount-2",
+    "remaining_amount": "remaining_amount-2",
+    "memo": "memo-2",
+    "record_status": "record_status-2",
+    "contract_id": 5215,
+    "contracted": true,
+    "bill_to_address": "bill_to_address-2",
+    "ship_to_address": "ship_to_address-2",
+    "billing_address": {
+      "name": "name-2",
+      "street": "street-2",
+      "second_line": "second_line-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2"
+    },
+    "shipping_address": {
+      "name": "name-2",
+      "street": "street-2",
+      "second_line": "second_line-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2"
+    },
+    "transaction_ids": [
+      5216
+    ],
+    "attachments": [
+      {
+        "id": 5217,
+        "file_name": "file_name-2",
+        "file_size": 5218,
+        "download_url": "download_url-2"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5219,
+          "company_id": 5220,
+          "company_ids": {
+            "raw_value": "company_ids-2",
+            "n": 2
+          },
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-2",
+            "n": 2
+          },
+          "options": {
+            "raw_value": "options-2",
+            "n": 2
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5221,
+          "custom_field_id": 5222,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 5223,
+          "value": {
+            "raw_value": "value-2",
+            "n": 2
+          },
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
+        }
+      }
+    ],
+    "integration_remote_records": [
+      {
+        "id": 5224,
+        "source_id": "source_id-2",
+        "transactional_date": "transactional_date-2",
+        "connection_id": 5225,
+        "integration_id": 5226,
+        "url": "url-2",
+        "external_source": {
+          "integration_type": "integration_type-2",
+          "external_integration_url": "external_integration_url-2"
+        },
+        "integration_provider": {
+          "id": 5227,
+          "name": "name-2",
+          "integration_type": "integration_type-2",
+          "logo_url": "logo_url-2",
+          "website": "website-2",
+          "description": "description-2",
+          "category": "category-2"
+        }
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 5228,
+    "number": 5229,
+    "invoice_number": 5230,
+    "cash_sale_number": 5231,
+    "customer_id": 5232,
+    "customer_name": "customer_name-3",
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "company_id": 5233,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "exchange_rate": "exchange_rate-3",
+    "amount": "amount-3",
+    "used_amount": "used_amount-3",
+    "remaining_amount": "remaining_amount-3",
+    "memo": "memo-3",
+    "record_status": "record_status-3",
+    "contract_id": 5234,
+    "contracted": false,
+    "bill_to_address": "bill_to_address-3",
+    "ship_to_address": "ship_to_address-3",
+    "billing_address": {
+      "name": "name-3",
+      "street": "street-3",
+      "second_line": "second_line-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3"
+    },
+    "shipping_address": {
+      "name": "name-3",
+      "street": "street-3",
+      "second_line": "second_line-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3"
+    },
+    "transaction_ids": [
+      5235
+    ],
+    "attachments": [
+      {
+        "id": 5236,
+        "file_name": "file_name-3",
+        "file_size": 5237,
+        "download_url": "download_url-3"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5238,
+          "company_id": 5239,
+          "company_ids": {
+            "raw_value": "company_ids-3",
+            "n": 3
+          },
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-3",
+            "n": 3
+          },
+          "options": {
+            "raw_value": "options-3",
+            "n": 3
+          },
+          "is_active": false
+        },
+        "value": {
+          "id": 5240,
+          "custom_field_id": 5241,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 5242,
+          "value": {
+            "raw_value": "value-3",
+            "n": 3
+          },
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
+        }
+      }
+    ],
+    "integration_remote_records": [
+      {
+        "id": 5243,
+        "source_id": "source_id-3",
+        "transactional_date": "transactional_date-3",
+        "connection_id": 5244,
+        "integration_id": 5245,
+        "url": "url-3",
+        "external_source": {
+          "integration_type": "integration_type-3",
+          "external_integration_url": "external_integration_url-3"
+        },
+        "integration_provider": {
+          "id": 5246,
+          "name": "name-3",
+          "integration_type": "integration_type-3",
+          "logo_url": "logo_url-3",
+          "website": "website-3",
+          "description": "description-3",
+          "category": "category-3"
+        }
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 5247,
+    "number": 5248,
+    "invoice_number": 5249,
+    "cash_sale_number": 5250,
+    "customer_id": 5251,
+    "customer_name": "customer_name-4",
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "company_id": 5252,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "exchange_rate": "exchange_rate-4",
+    "amount": "amount-4",
+    "used_amount": "used_amount-4",
+    "remaining_amount": "remaining_amount-4",
+    "memo": "memo-4",
+    "record_status": "record_status-4",
+    "contract_id": 5253,
+    "contracted": true,
+    "bill_to_address": "bill_to_address-4",
+    "ship_to_address": "ship_to_address-4",
+    "billing_address": {
+      "name": "name-4",
+      "street": "street-4",
+      "second_line": "second_line-4",
+      "city": "city-4",
+      "state": "state-4",
+      "postal_code": "postal_code-4",
+      "country": "country-4"
+    },
+    "shipping_address": {
+      "name": "name-4",
+      "street": "street-4",
+      "second_line": "second_line-4",
+      "city": "city-4",
+      "state": "state-4",
+      "postal_code": "postal_code-4",
+      "country": "country-4"
+    },
+    "transaction_ids": [
+      5254
+    ],
+    "attachments": [
+      {
+        "id": 5255,
+        "file_name": "file_name-4",
+        "file_size": 5256,
+        "download_url": "download_url-4"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5257,
+          "company_id": 5258,
+          "company_ids": {
+            "raw_value": "company_ids-4",
+            "n": 4
+          },
+          "name": "name-4",
+          "description": "description-4",
+          "helper_text": "helper_text-4",
+          "field_type": "field_type-4",
+          "applies_to": [
+            {
+              "type": "type-4",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-4",
+            "n": 4
+          },
+          "options": {
+            "raw_value": "options-4",
+            "n": 4
+          },
+          "is_active": true
+        },
+        "value": {
+          "id": 5259,
+          "custom_field_id": 5260,
+          "custom_field_name": "custom_field_name-4",
+          "custom_field_type": "custom_field_type-4",
+          "custom_field_value_id": 5261,
+          "value": {
+            "raw_value": "value-4",
+            "n": 4
+          },
+          "created_at": "created_at-4",
+          "updated_at": "updated_at-4"
+        }
+      }
+    ],
+    "integration_remote_records": [
+      {
+        "id": 5262,
+        "source_id": "source_id-4",
+        "transactional_date": "transactional_date-4",
+        "connection_id": 5263,
+        "integration_id": 5264,
+        "url": "url-4",
+        "external_source": {
+          "integration_type": "integration_type-4",
+          "external_integration_url": "external_integration_url-4"
+        },
+        "integration_provider": {
+          "id": 5265,
+          "name": "name-4",
+          "integration_type": "integration_type-4",
+          "logo_url": "logo_url-4",
+          "website": "website-4",
+          "description": "description-4",
+          "category": "category-4"
+        }
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

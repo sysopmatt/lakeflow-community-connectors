@@ -294,3 +294,66 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert _retry_after_seconds(_response_with_headers({"Retry-After": "7"})) == 7.0
         assert _retry_after_seconds(_response_with_headers({})) is None
         assert _retry_after_seconds(_response_with_headers({"Retry-After": "soon"})) is None
+
+    # ------------------------------------------------------------------
+    # AR transaction streams (batch 1)
+    # ------------------------------------------------------------------
+
+    _AR_STREAMS = (
+        "sales_orders",
+        "customer_payments",
+        "customer_credits",
+        "customer_refunds",
+        "customer_deposits",
+        "customer_prepayments",
+        "customer_prepayment_applications",
+        "cash_sales",
+    )
+
+    def test_ar_streams_registered_as_cdc_on_internal_id(self):
+        """All 8 AR transaction streams are exposed, incremental, and keyed on
+        ``internal_id`` with an ``updated_at`` cursor (per the OpenAPI list
+        schemas — not assumed)."""
+        tables = self.connector.list_tables()
+        for stream in self._AR_STREAMS:
+            assert stream in tables, f"{stream} missing from list_tables()"
+            meta = self.connector.read_table_metadata(stream, {})
+            assert meta["ingestion_type"] == "cdc", stream
+            assert meta["primary_keys"] == ["internal_id"], stream
+            assert meta["cursor_field"] == "updated_at", stream
+
+    def test_ar_stream_reads_raw_records_unchanged(self):
+        """A representative AR stream with rich nesting
+        (``customer_credits.integration_remote_records``) must be yielded raw —
+        deep-equal against the corpus, with nested objects preserved as
+        dicts/lists rather than stringified."""
+        records, offset = self.connector.read_table("customer_credits", {}, {})
+        emitted = list(records)
+        assert emitted == _load_corpus("customer_credits")
+        assert offset == {"cursor": self.connector._init_ts_iso}
+        irr = emitted[0]["integration_remote_records"]
+        assert isinstance(irr, list) and isinstance(irr[0], dict)
+        assert isinstance(irr[0]["integration_provider"], dict)
+
+    def test_ar_stream_offset_pagination_walks_pages(self):
+        """An AR stream fetches multiple limit/offset pages: with ``limit=2``
+        over the 5-record corpus it requests offsets 0, 2, 4, then a
+        terminating short page, returning every record exactly once."""
+        seen_offsets: list = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy
+        try:
+            records, offset = self.connector.read_table("sales_orders", {}, {"limit": "2"})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        ids = [r["internal_id"] for r in rows]
+        assert len(ids) == 5 and len(set(ids)) == 5, f"expected 5 unique rows, got {ids}"
+        assert seen_offsets == ["0", "2", "4"], seen_offsets
+        assert offset == {"cursor": self.connector._init_ts_iso}
