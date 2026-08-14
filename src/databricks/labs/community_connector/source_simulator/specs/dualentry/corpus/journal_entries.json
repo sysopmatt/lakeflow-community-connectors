@@ -21,40 +21,67 @@
       {
         "field": {
           "id": 1021,
-          "name": "cf_name_0",
-          "type": "text"
+          "company_id": 1022,
+          "company_ids": {
+            "raw_value": "company_ids-0",
+            "n": 0
+          },
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-0",
+            "n": 0
+          },
+          "options": {
+            "raw_value": "options-0",
+            "n": 0
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_0",
-          "n": 0
+          "id": 1023,
+          "custom_field_id": 1024,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 1025,
+          "value": {
+            "raw_value": "value-0",
+            "n": 0
+          },
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
         }
-      },
-      {
-        "field": {
-          "id": 1022,
-          "name": "cf_flag_0",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1023,
+        "id": 1026,
         "file_name": "file_name-0",
-        "file_size": 1024,
+        "file_size": 1027,
         "download_url": "download_url-0"
       }
     ],
     "next_approvers": [
       {
-        "id": 1025,
-        "name": "approver_0",
-        "order": 0
+        "id": 1028,
+        "first_name": "first_name-0",
+        "last_name": "last_name-0",
+        "email": "email-0",
+        "full_name": "full_name-0",
+        "avatar_url": "avatar_url-0"
       }
     ],
     "rejected_by": {
-      "id": 1026,
+      "id": 1029,
       "first_name": "first_name-0",
       "last_name": "last_name-0",
       "email": "email-0",
@@ -79,10 +106,10 @@
     "updated_at": "2024-01-01T00:00:00Z"
   },
   {
-    "internal_id": 1027,
-    "number": 1028,
-    "transaction_id": 1029,
-    "company_id": 1030,
+    "internal_id": 1030,
+    "number": 1031,
+    "transaction_id": 1032,
+    "company_id": 1033,
     "company_name": "company_name-1",
     "company_currency": "company_currency-1",
     "memo": "memo-1",
@@ -99,41 +126,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1031,
-          "name": "cf_name_1",
-          "type": "text"
+          "id": 1034,
+          "company_id": 1035,
+          "company_ids": {
+            "raw_value": "company_ids-1",
+            "n": 1
+          },
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-1",
+            "n": 1
+          },
+          "options": {
+            "raw_value": "options-1",
+            "n": 1
+          },
+          "is_active": false
         },
         "value": {
-          "raw": "cf_value_1",
-          "n": 1
+          "id": 1036,
+          "custom_field_id": 1037,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 1038,
+          "value": {
+            "raw_value": "value-1",
+            "n": 1
+          },
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
         }
-      },
-      {
-        "field": {
-          "id": 1032,
-          "name": "cf_flag_1",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1033,
+        "id": 1039,
         "file_name": "file_name-1",
-        "file_size": 1034,
+        "file_size": 1040,
         "download_url": "download_url-1"
       }
     ],
     "next_approvers": [
       {
-        "id": 1035,
-        "name": "approver_1",
-        "order": 1
+        "id": 1041,
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "email": "email-1",
+        "full_name": "full_name-1",
+        "avatar_url": "avatar_url-1"
       }
     ],
     "rejected_by": {
-      "id": 1036,
+      "id": 1042,
       "first_name": "first_name-1",
       "last_name": "last_name-1",
       "email": "email-1",
@@ -158,10 +212,10 @@
     "updated_at": "2024-01-02T00:00:00Z"
   },
   {
-    "internal_id": 1037,
-    "number": 1038,
-    "transaction_id": 1039,
-    "company_id": 1040,
+    "internal_id": 1043,
+    "number": 1044,
+    "transaction_id": 1045,
+    "company_id": 1046,
     "company_name": "company_name-2",
     "company_currency": "company_currency-2",
     "memo": "memo-2",
@@ -178,41 +232,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1041,
-          "name": "cf_name_2",
-          "type": "text"
+          "id": 1047,
+          "company_id": 1048,
+          "company_ids": {
+            "raw_value": "company_ids-2",
+            "n": 2
+          },
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-2",
+            "n": 2
+          },
+          "options": {
+            "raw_value": "options-2",
+            "n": 2
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_2",
-          "n": 2
+          "id": 1049,
+          "custom_field_id": 1050,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 1051,
+          "value": {
+            "raw_value": "value-2",
+            "n": 2
+          },
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
         }
-      },
-      {
-        "field": {
-          "id": 1042,
-          "name": "cf_flag_2",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1043,
+        "id": 1052,
         "file_name": "file_name-2",
-        "file_size": 1044,
+        "file_size": 1053,
         "download_url": "download_url-2"
       }
     ],
     "next_approvers": [
       {
-        "id": 1045,
-        "name": "approver_2",
-        "order": 2
+        "id": 1054,
+        "first_name": "first_name-2",
+        "last_name": "last_name-2",
+        "email": "email-2",
+        "full_name": "full_name-2",
+        "avatar_url": "avatar_url-2"
       }
     ],
     "rejected_by": {
-      "id": 1046,
+      "id": 1055,
       "first_name": "first_name-2",
       "last_name": "last_name-2",
       "email": "email-2",
@@ -237,10 +318,10 @@
     "updated_at": "2024-01-03T00:00:00Z"
   },
   {
-    "internal_id": 1047,
-    "number": 1048,
-    "transaction_id": 1049,
-    "company_id": 1050,
+    "internal_id": 1056,
+    "number": 1057,
+    "transaction_id": 1058,
+    "company_id": 1059,
     "company_name": "company_name-3",
     "company_currency": "company_currency-3",
     "memo": "memo-3",
@@ -257,41 +338,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1051,
-          "name": "cf_name_3",
-          "type": "text"
+          "id": 1060,
+          "company_id": 1061,
+          "company_ids": {
+            "raw_value": "company_ids-3",
+            "n": 3
+          },
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-3",
+            "n": 3
+          },
+          "options": {
+            "raw_value": "options-3",
+            "n": 3
+          },
+          "is_active": false
         },
         "value": {
-          "raw": "cf_value_3",
-          "n": 3
+          "id": 1062,
+          "custom_field_id": 1063,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 1064,
+          "value": {
+            "raw_value": "value-3",
+            "n": 3
+          },
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
         }
-      },
-      {
-        "field": {
-          "id": 1052,
-          "name": "cf_flag_3",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1053,
+        "id": 1065,
         "file_name": "file_name-3",
-        "file_size": 1054,
+        "file_size": 1066,
         "download_url": "download_url-3"
       }
     ],
     "next_approvers": [
       {
-        "id": 1055,
-        "name": "approver_3",
-        "order": 3
+        "id": 1067,
+        "first_name": "first_name-3",
+        "last_name": "last_name-3",
+        "email": "email-3",
+        "full_name": "full_name-3",
+        "avatar_url": "avatar_url-3"
       }
     ],
     "rejected_by": {
-      "id": 1056,
+      "id": 1068,
       "first_name": "first_name-3",
       "last_name": "last_name-3",
       "email": "email-3",
@@ -316,10 +424,10 @@
     "updated_at": "2024-01-04T00:00:00Z"
   },
   {
-    "internal_id": 1057,
-    "number": 1058,
-    "transaction_id": 1059,
-    "company_id": 1060,
+    "internal_id": 1069,
+    "number": 1070,
+    "transaction_id": 1071,
+    "company_id": 1072,
     "company_name": "company_name-4",
     "company_currency": "company_currency-4",
     "memo": "memo-4",
@@ -336,41 +444,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1061,
-          "name": "cf_name_4",
-          "type": "text"
+          "id": 1073,
+          "company_id": 1074,
+          "company_ids": {
+            "raw_value": "company_ids-4",
+            "n": 4
+          },
+          "name": "name-4",
+          "description": "description-4",
+          "helper_text": "helper_text-4",
+          "field_type": "field_type-4",
+          "applies_to": [
+            {
+              "type": "type-4",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-4",
+            "n": 4
+          },
+          "options": {
+            "raw_value": "options-4",
+            "n": 4
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_4",
-          "n": 4
+          "id": 1075,
+          "custom_field_id": 1076,
+          "custom_field_name": "custom_field_name-4",
+          "custom_field_type": "custom_field_type-4",
+          "custom_field_value_id": 1077,
+          "value": {
+            "raw_value": "value-4",
+            "n": 4
+          },
+          "created_at": "created_at-4",
+          "updated_at": "updated_at-4"
         }
-      },
-      {
-        "field": {
-          "id": 1062,
-          "name": "cf_flag_4",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1063,
+        "id": 1078,
         "file_name": "file_name-4",
-        "file_size": 1064,
+        "file_size": 1079,
         "download_url": "download_url-4"
       }
     ],
     "next_approvers": [
       {
-        "id": 1065,
-        "name": "approver_4",
-        "order": 4
+        "id": 1080,
+        "first_name": "first_name-4",
+        "last_name": "last_name-4",
+        "email": "email-4",
+        "full_name": "full_name-4",
+        "avatar_url": "avatar_url-4"
       }
     ],
     "rejected_by": {
-      "id": 1066,
+      "id": 1081,
       "first_name": "first_name-4",
       "last_name": "last_name-4",
       "email": "email-4",

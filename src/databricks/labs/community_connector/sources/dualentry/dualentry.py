@@ -45,12 +45,15 @@ schemas (they are **not** uniformly ``id``): journal_entries and invoices are
 keyed on ``internal_id``, bills on ``number``, and accounts/customers/vendors/
 items on ``id``.
 
-A few genuinely polymorphic / user-defined fields are JSON-serialized to
-strings so their column type stays stable (see ``_normalize_record`` and
-``dualentry_api_doc.md``): ``custom_fields[].field`` / ``custom_fields[].value``
-(present on all five record-bearing streams), ``next_approvers``, and — on
-bills — ``tax.data`` (a discriminated union keyed by ``tax.regime``) and
-``tax_registration_numbers`` (nested company/counterparty arrays).
+``read_table`` yields the **raw** JSON records exactly as the API returns them
+(per the LakeflowConnect contract — the framework's ``parse_value`` coerces
+each record to the declared schema; the connector does not mutate records or
+project them). The static schemas therefore model the real nested shapes with
+``StructType`` / ``ArrayType``. A handful of genuinely polymorphic / untyped
+fields are declared ``VariantType`` so any JSON shape is preserved without
+loss (see ``dualentry_api_doc.md``): ``bills.tax.data`` (a union keyed by
+``tax.regime``), the custom-field ``value`` payload, and the untyped
+``company_ids`` / ``options`` / ``default_value`` on a custom-field definition.
 
 DualEntry rate-limits with a token bucket: a ``429`` carries a ``Retry-After``
 header (seconds). The connector retries on ``429`` and on ``500`` / ``502`` /
@@ -62,24 +65,23 @@ DualEntry exposes no deleted-records feed, so deletes do not propagate
 (``cdc``, not ``cdc_with_deletes``).
 """
 
-import json
 import logging
 import sys
 from datetime import datetime, timedelta, timezone
-from typing import Any, Iterator
+from typing import Iterator
 from urllib.parse import urljoin
 
 import requests
 from pyspark.sql.types import (
     ArrayType,
     BooleanType,
-    DataType,
     DateType,
     LongType,
     StringType,
     StructField,
     StructType,
     TimestampType,
+    VariantType,
 )
 
 from databricks.labs.community_connector.interface import LakeflowConnect
@@ -152,11 +154,12 @@ TABLE_METADATA: dict[str, dict] = {
 def _build_schemas() -> dict[str, StructType]:
     """Return the static schema dictionary.
 
-    Field names are kept exactly as the API returns them (snake_case) so rows
-    map 1:1 to the DualEntry OpenAPI list-item schemas. Monetary quantities
-    (``amount``, ``amount_due``, ``paid_total``, ``exchange_rate``) are strings
-    on the wire and are typed ``StringType`` to preserve precision. ``*_at``
-    fields are ``TimestampType``; bare date fields are ``DateType``. See
+    Field names are kept exactly as the API returns them (snake_case) so raw
+    records map 1:1 onto the DualEntry OpenAPI list-item schemas. Monetary
+    quantities (``amount``, ``amount_due``, ``paid_total``, ``exchange_rate``)
+    are strings on the wire and are typed ``StringType`` to preserve precision.
+    ``*_at`` fields are ``TimestampType``; bare date fields are ``DateType``.
+    Genuinely polymorphic / untyped payloads are ``VariantType``. See
     ``dualentry_api_doc.md`` for the extraction notes.
     """
 
@@ -230,15 +233,90 @@ def _build_schemas() -> dict[str, StructType]:
             StructField("rejection_reason", StringType()),
         ]
     )
-    # custom_fields[].field and .value are user-defined / polymorphic on the
-    # wire; both are JSON-serialized to strings in ``_normalize_record``.
+    # next_approvers[] — ApproverDictSchema.
+    approver = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("first_name", StringType()),
+            StructField("last_name", StringType()),
+            StructField("email", StringType()),
+            StructField("full_name", StringType()),
+            StructField("avatar_url", StringType()),
+        ]
+    )
+    # custom_fields[] — CustomFieldValuePairOutputSchema = {field, value}.
+    # ``field`` is the definition (CustomFieldSchemaOut); ``value`` is the
+    # instance value (CustomFieldValueSchemaOut). Their untyped leaves
+    # (``value.value``, ``company_ids``, ``options``, ``default_value``) are
+    # ``VariantType`` — the DualEntry API leaves them user-defined.
+    custom_field_definition = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("company_id", LongType()),
+            StructField("company_ids", VariantType()),
+            StructField("name", StringType()),
+            StructField("description", StringType()),
+            StructField("helper_text", StringType()),
+            StructField("field_type", StringType()),
+            StructField(
+                "applies_to",
+                ArrayType(
+                    StructType(
+                        [
+                            StructField("type", StringType()),
+                            StructField("is_active", BooleanType()),
+                            StructField("is_required", BooleanType()),
+                        ]
+                    )
+                ),
+            ),
+            StructField("default_value", VariantType()),
+            StructField("options", VariantType()),
+            StructField("is_active", BooleanType()),
+        ]
+    )
+    custom_field_value = StructType(
+        [
+            StructField("id", LongType()),
+            StructField("custom_field_id", LongType()),
+            StructField("custom_field_name", StringType()),
+            StructField("custom_field_type", StringType()),
+            StructField("custom_field_value_id", LongType()),
+            StructField("value", VariantType()),
+            StructField("created_at", StringType()),
+            StructField("updated_at", StringType()),
+        ]
+    )
     custom_fields = ArrayType(
         StructType(
             [
-                StructField("field", StringType()),
-                StructField("value", StringType()),
+                StructField("field", custom_field_definition),
+                StructField("value", custom_field_value),
             ]
         )
+    )
+    # TaxRegistrationNumbersSnapshot = {company: [entry], counterparty: [entry]}.
+    tax_reg_entry = StructType(
+        [
+            StructField("type", StringType()),
+            StructField("number", StringType()),
+            StructField("region", StringType()),
+        ]
+    )
+    tax_registration_numbers = StructType(
+        [
+            StructField("company", ArrayType(tax_reg_entry)),
+            StructField("counterparty", ArrayType(tax_reg_entry)),
+        ]
+    )
+    # RecordTaxContextOut = {regime, data}. ``data`` is a documented union of
+    # per-regime tax-data objects (sales_tax / vat / gst / none) — modelled as
+    # VariantType so any member is preserved raw.
+    bill_tax = StructType(
+        [
+            StructField("regime", StringType()),
+            StructField("data", VariantType()),
+        ]
     )
 
     return {
@@ -281,7 +359,7 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("reconciliation_status", StringType()),
                 StructField("custom_fields", custom_fields),
                 StructField("attachments", ArrayType(attachment)),
-                StructField("next_approvers", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
                 StructField("rejected_by", rejected_by),
                 StructField("created_by", audit_actor),
                 StructField("updated_by", audit_actor),
@@ -325,7 +403,7 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("custom_fields", custom_fields),
                 StructField("attachments", ArrayType(attachment)),
                 StructField("payment", payment),
-                StructField("next_approvers", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
                 StructField("rejected_by", rejected_by),
                 StructField("created_by", audit_actor),
                 StructField("updated_by", audit_actor),
@@ -361,24 +439,13 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("term_id", LongType()),
                 StructField("term_name", StringType()),
                 StructField("transaction_ids", ArrayType(LongType())),
-                # Discriminated union keyed by ``regime``; ``data`` is
-                # JSON-serialized to a string in ``_normalize_record``.
-                StructField(
-                    "tax",
-                    StructType(
-                        [
-                            StructField("regime", StringType()),
-                            StructField("data", StringType()),
-                        ]
-                    ),
-                ),
-                # Nested company/counterparty arrays — JSON-serialized whole.
-                StructField("tax_registration_numbers", StringType()),
+                StructField("tax", bill_tax),
+                StructField("tax_registration_numbers", tax_registration_numbers),
                 StructField("bank_match_status", StringType()),
                 StructField("reconciliation_status", StringType()),
                 StructField("custom_fields", custom_fields),
                 StructField("attachments", ArrayType(attachment)),
-                StructField("next_approvers", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
                 StructField("rejected_by", rejected_by),
                 StructField("created_by", audit_actor),
                 StructField("updated_by", audit_actor),
@@ -400,7 +467,7 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("shipping_address", address_in),
                 StructField("approval_status", StringType()),
                 StructField("custom_fields", custom_fields),
-                StructField("next_approvers", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
                 StructField("rejected_by", rejected_by),
                 StructField("created_by", audit_actor),
                 StructField("updated_by", audit_actor),
@@ -428,7 +495,7 @@ def _build_schemas() -> dict[str, StructType]:
                 StructField("address", vendor_address),
                 StructField("approval_status", StringType()),
                 StructField("custom_fields", custom_fields),
-                StructField("next_approvers", StringType()),
+                StructField("next_approvers", ArrayType(approver)),
                 StructField("rejected_by", rejected_by),
                 StructField("created_by", audit_actor),
                 StructField("updated_by", audit_actor),
@@ -461,10 +528,6 @@ def _build_schemas() -> dict[str, StructType]:
 
 
 TABLE_SCHEMAS = _build_schemas()
-
-# Streams whose records carry user-defined ``custom_fields`` and an untyped
-# ``next_approvers`` array — both JSON-serialized in ``_normalize_record``.
-_POLYMORPHIC_TABLES = frozenset({"journal_entries", "invoices", "bills", "customers", "vendors"})
 
 
 class DualEntryLakeflowConnect(LakeflowConnect):
@@ -613,7 +676,8 @@ class DualEntryLakeflowConnect(LakeflowConnect):
 
         Returns ``{"done": True}`` after the first call so subsequent calls
         within the same Trigger.AvailableNow trigger short-circuit (per the
-        ``end_offset == start_offset`` termination contract).
+        ``end_offset == start_offset`` termination contract). Records are yielded
+        raw, exactly as the API returns them.
         """
         if start_offset and start_offset.get("done"):
             return iter([]), start_offset
@@ -630,8 +694,7 @@ class DualEntryLakeflowConnect(LakeflowConnect):
                     "ordering": "id",
                 }
                 records = self._unwrap_records(self._get_json(path, params=params))
-                for raw in records:
-                    yield self._map_record(table_name, raw)
+                yield from records
                 if len(records) < limit:
                     return
                 row_offset += limit
@@ -660,7 +723,8 @@ class DualEntryLakeflowConnect(LakeflowConnect):
         A new range spans ``[cursor - lookback_seconds, _init_ts]``; when a page
         returns fewer than ``limit`` records the range is drained and the cursor
         advances to the range's upper bound. The very first sync has no lower
-        bound (full backfill) unless ``start_timestamp`` is supplied.
+        bound (full backfill) unless ``start_timestamp`` is supplied. Records
+        are yielded raw, exactly as the API returns them.
         """
         offset = dict(start_offset or {})
         limit = _page_size(table_options)
@@ -709,9 +773,7 @@ class DualEntryLakeflowConnect(LakeflowConnect):
                     page_records = self._unwrap_records(
                         self._get_json(path, params={**params, "offset": str(off)})
                     )
-                    yield from (
-                        self._map_record(table_name, raw) for raw in page_records
-                    )
+                    yield from page_records
                     if len(page_records) < limit:
                         return
                     off += limit
@@ -727,7 +789,7 @@ class DualEntryLakeflowConnect(LakeflowConnect):
             page_records = self._unwrap_records(
                 self._get_json(path, params={**params, "offset": str(off)})
             )
-            records.extend(self._map_record(table_name, raw) for raw in page_records)
+            records.extend(page_records)
             if len(page_records) < limit:
                 # Range drained — advance the cursor to its upper bound.
                 return iter(records), {"cursor": until}
@@ -742,7 +804,7 @@ class DualEntryLakeflowConnect(LakeflowConnect):
                 return iter(records), next_offset
 
     # ------------------------------------------------------------------
-    # Validation & field mapping
+    # Validation
     # ------------------------------------------------------------------
 
     def _validate_table(self, table_name: str) -> None:
@@ -751,21 +813,6 @@ class DualEntryLakeflowConnect(LakeflowConnect):
                 f"Table '{table_name}' is not supported. "
                 f"Supported tables: {sorted(TABLE_SCHEMAS)}"
             )
-
-    def _map_record(self, table_name: str, raw: dict) -> dict:
-        """Project a raw API record onto the table schema.
-
-        Field names are kept as the API returns them, so mapping is a
-        schema-driven projection: every schema column is present in the output
-        (absent wire fields become ``None``), nested structs and arrays are
-        projected recursively, and unknown wire fields are dropped. Polymorphic
-        fields are JSON-serialized first (see ``_normalize_record``). Type
-        coercion is left to the framework — ISO date/date-time strings pass
-        through for date / timestamp columns.
-        """
-        normalized = _normalize_record(table_name, raw)
-        projected = _project(normalized, TABLE_SCHEMAS[table_name])
-        return projected if projected is not None else {}
 
 
 # ------------------------------------------------------------------
@@ -799,70 +846,6 @@ def _retry_after_seconds(resp: requests.Response) -> float | None:
 def _page_size(table_options: dict[str, str]) -> int:
     """Resolve the ``limit`` page-size option, clamped to the server max."""
     return max(1, min(int(table_options.get("limit", str(DEFAULT_PAGE_SIZE))), MAX_PAGE_SIZE))
-
-
-def _normalize_record(table_name: str, raw: dict) -> dict:
-    """JSON-serialize the polymorphic / user-defined fields on a record.
-
-    ``custom_fields[].field`` / ``custom_fields[].value`` are user-defined,
-    ``next_approvers`` is an untyped array, and — on bills — ``tax.data`` is a
-    discriminated union keyed by ``tax.regime`` and ``tax_registration_numbers``
-    is a nested company/counterparty structure. All are serialized to JSON
-    strings so their column types stay stable across records.
-    """
-    if not isinstance(raw, dict):
-        return {}
-    out = dict(raw)
-
-    if table_name in _POLYMORPHIC_TABLES:
-        cfs = out.get("custom_fields")
-        if isinstance(cfs, list):
-            out["custom_fields"] = [
-                {
-                    "field": _json_str(cf.get("field")),
-                    "value": _json_str(cf.get("value")),
-                }
-                for cf in cfs
-                if isinstance(cf, dict)
-            ]
-        if "next_approvers" in out:
-            out["next_approvers"] = _json_str(out.get("next_approvers"))
-
-    if table_name == "bills":
-        tax = out.get("tax")
-        if isinstance(tax, dict):
-            out["tax"] = {
-                "regime": tax.get("regime"),
-                "data": _json_str(tax.get("data")),
-            }
-        if "tax_registration_numbers" in out:
-            out["tax_registration_numbers"] = _json_str(out.get("tax_registration_numbers"))
-
-    return out
-
-
-def _project(value: Any, data_type: DataType) -> Any:
-    """Recursively project a JSON value onto a Spark DataType."""
-    if value is None:
-        return None
-    if isinstance(data_type, StructType):
-        if not isinstance(value, dict):
-            return None
-        return {f.name: _project(value.get(f.name), f.dataType) for f in data_type.fields}
-    if isinstance(data_type, ArrayType):
-        if not isinstance(value, list):
-            return None
-        return [_project(item, data_type.elementType) for item in value]
-    return value
-
-
-def _json_str(value: Any) -> str | None:
-    """Return *value* as a string: pass strings through, JSON-encode the rest."""
-    if value is None:
-        return None
-    if isinstance(value, str):
-        return value
-    return json.dumps(value, ensure_ascii=False, sort_keys=True)
 
 
 def _format_ts(dt: datetime) -> str:

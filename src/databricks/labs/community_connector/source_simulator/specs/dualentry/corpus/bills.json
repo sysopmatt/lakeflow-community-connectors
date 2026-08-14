@@ -1,11 +1,11 @@
 [
   {
-    "internal_id": 1137,
-    "number": 1138,
-    "company_id": 1139,
+    "internal_id": 1167,
+    "number": 1168,
+    "company_id": 1169,
     "company_name": "company_name-0",
     "company_currency": "company_currency-0",
-    "vendor_id": 1140,
+    "vendor_id": 1170,
     "vendor_name": "vendor_name-0",
     "currency_iso_4217_code": "currency_iso_4217_code-0",
     "exchange_rate": "exchange_rate-0",
@@ -20,33 +20,34 @@
     "place_of_supply": "place_of_supply-0",
     "record_status": "record_status-0",
     "approval_status": "approval_status-0",
-    "recurring_record_number": 1141,
-    "purchase_order_number": 1142,
+    "recurring_record_number": 1171,
+    "purchase_order_number": 1172,
     "reference_number": "reference_number-0",
-    "term_id": 1143,
+    "term_id": 1173,
     "term_name": "term_name-0",
     "transaction_ids": [
-      1144
+      1174
     ],
     "tax": {
-      "regime": "sales_tax",
+      "regime": "regime-0",
       "data": {
-        "rate": "0.0725",
-        "jurisdiction": "US-CA-0",
-        "amount": "12.34"
+        "raw_value": "data-0",
+        "n": 0
       }
     },
     "tax_registration_numbers": {
       "company": [
         {
-          "type": "EIN",
-          "value": "12-3456780"
+          "type": "type-0",
+          "number": "number-0",
+          "region": "region-0"
         }
       ],
       "counterparty": [
         {
-          "type": "VAT",
-          "value": "GB000000000"
+          "type": "type-0",
+          "number": "number-0",
+          "region": "region-0"
         }
       ]
     },
@@ -55,41 +56,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1145,
-          "name": "cf_name_0",
-          "type": "text"
+          "id": 1175,
+          "company_id": 1176,
+          "company_ids": {
+            "raw_value": "company_ids-0",
+            "n": 0
+          },
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-0",
+            "n": 0
+          },
+          "options": {
+            "raw_value": "options-0",
+            "n": 0
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_0",
-          "n": 0
+          "id": 1177,
+          "custom_field_id": 1178,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 1179,
+          "value": {
+            "raw_value": "value-0",
+            "n": 0
+          },
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
         }
-      },
-      {
-        "field": {
-          "id": 1146,
-          "name": "cf_flag_0",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1147,
+        "id": 1180,
         "file_name": "file_name-0",
-        "file_size": 1148,
+        "file_size": 1181,
         "download_url": "download_url-0"
       }
     ],
     "next_approvers": [
       {
-        "id": 1149,
-        "name": "approver_0",
-        "order": 0
+        "id": 1182,
+        "first_name": "first_name-0",
+        "last_name": "last_name-0",
+        "email": "email-0",
+        "full_name": "full_name-0",
+        "avatar_url": "avatar_url-0"
       }
     ],
     "rejected_by": {
-      "id": 1150,
+      "id": 1183,
       "first_name": "first_name-0",
       "last_name": "last_name-0",
       "email": "email-0",
@@ -114,12 +142,12 @@
     "updated_at": "2024-01-01T00:00:00Z"
   },
   {
-    "internal_id": 1151,
-    "number": 1152,
-    "company_id": 1153,
+    "internal_id": 1184,
+    "number": 1185,
+    "company_id": 1186,
     "company_name": "company_name-1",
     "company_currency": "company_currency-1",
-    "vendor_id": 1154,
+    "vendor_id": 1187,
     "vendor_name": "vendor_name-1",
     "currency_iso_4217_code": "currency_iso_4217_code-1",
     "exchange_rate": "exchange_rate-1",
@@ -134,33 +162,34 @@
     "place_of_supply": "place_of_supply-1",
     "record_status": "record_status-1",
     "approval_status": "approval_status-1",
-    "recurring_record_number": 1155,
-    "purchase_order_number": 1156,
+    "recurring_record_number": 1188,
+    "purchase_order_number": 1189,
     "reference_number": "reference_number-1",
-    "term_id": 1157,
+    "term_id": 1190,
     "term_name": "term_name-1",
     "transaction_ids": [
-      1158
+      1191
     ],
     "tax": {
-      "regime": "sales_tax",
+      "regime": "regime-1",
       "data": {
-        "rate": "0.0725",
-        "jurisdiction": "US-CA-1",
-        "amount": "12.34"
+        "raw_value": "data-1",
+        "n": 1
       }
     },
     "tax_registration_numbers": {
       "company": [
         {
-          "type": "EIN",
-          "value": "12-3456781"
+          "type": "type-1",
+          "number": "number-1",
+          "region": "region-1"
         }
       ],
       "counterparty": [
         {
-          "type": "VAT",
-          "value": "GB100000000"
+          "type": "type-1",
+          "number": "number-1",
+          "region": "region-1"
         }
       ]
     },
@@ -169,41 +198,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1159,
-          "name": "cf_name_1",
-          "type": "text"
+          "id": 1192,
+          "company_id": 1193,
+          "company_ids": {
+            "raw_value": "company_ids-1",
+            "n": 1
+          },
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-1",
+            "n": 1
+          },
+          "options": {
+            "raw_value": "options-1",
+            "n": 1
+          },
+          "is_active": false
         },
         "value": {
-          "raw": "cf_value_1",
-          "n": 1
+          "id": 1194,
+          "custom_field_id": 1195,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 1196,
+          "value": {
+            "raw_value": "value-1",
+            "n": 1
+          },
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
         }
-      },
-      {
-        "field": {
-          "id": 1160,
-          "name": "cf_flag_1",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1161,
+        "id": 1197,
         "file_name": "file_name-1",
-        "file_size": 1162,
+        "file_size": 1198,
         "download_url": "download_url-1"
       }
     ],
     "next_approvers": [
       {
-        "id": 1163,
-        "name": "approver_1",
-        "order": 1
+        "id": 1199,
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "email": "email-1",
+        "full_name": "full_name-1",
+        "avatar_url": "avatar_url-1"
       }
     ],
     "rejected_by": {
-      "id": 1164,
+      "id": 1200,
       "first_name": "first_name-1",
       "last_name": "last_name-1",
       "email": "email-1",
@@ -228,12 +284,12 @@
     "updated_at": "2024-01-02T00:00:00Z"
   },
   {
-    "internal_id": 1165,
-    "number": 1166,
-    "company_id": 1167,
+    "internal_id": 1201,
+    "number": 1202,
+    "company_id": 1203,
     "company_name": "company_name-2",
     "company_currency": "company_currency-2",
-    "vendor_id": 1168,
+    "vendor_id": 1204,
     "vendor_name": "vendor_name-2",
     "currency_iso_4217_code": "currency_iso_4217_code-2",
     "exchange_rate": "exchange_rate-2",
@@ -248,33 +304,34 @@
     "place_of_supply": "place_of_supply-2",
     "record_status": "record_status-2",
     "approval_status": "approval_status-2",
-    "recurring_record_number": 1169,
-    "purchase_order_number": 1170,
+    "recurring_record_number": 1205,
+    "purchase_order_number": 1206,
     "reference_number": "reference_number-2",
-    "term_id": 1171,
+    "term_id": 1207,
     "term_name": "term_name-2",
     "transaction_ids": [
-      1172
+      1208
     ],
     "tax": {
-      "regime": "sales_tax",
+      "regime": "regime-2",
       "data": {
-        "rate": "0.0725",
-        "jurisdiction": "US-CA-2",
-        "amount": "12.34"
+        "raw_value": "data-2",
+        "n": 2
       }
     },
     "tax_registration_numbers": {
       "company": [
         {
-          "type": "EIN",
-          "value": "12-3456782"
+          "type": "type-2",
+          "number": "number-2",
+          "region": "region-2"
         }
       ],
       "counterparty": [
         {
-          "type": "VAT",
-          "value": "GB200000000"
+          "type": "type-2",
+          "number": "number-2",
+          "region": "region-2"
         }
       ]
     },
@@ -283,41 +340,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1173,
-          "name": "cf_name_2",
-          "type": "text"
+          "id": 1209,
+          "company_id": 1210,
+          "company_ids": {
+            "raw_value": "company_ids-2",
+            "n": 2
+          },
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-2",
+            "n": 2
+          },
+          "options": {
+            "raw_value": "options-2",
+            "n": 2
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_2",
-          "n": 2
+          "id": 1211,
+          "custom_field_id": 1212,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 1213,
+          "value": {
+            "raw_value": "value-2",
+            "n": 2
+          },
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
         }
-      },
-      {
-        "field": {
-          "id": 1174,
-          "name": "cf_flag_2",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1175,
+        "id": 1214,
         "file_name": "file_name-2",
-        "file_size": 1176,
+        "file_size": 1215,
         "download_url": "download_url-2"
       }
     ],
     "next_approvers": [
       {
-        "id": 1177,
-        "name": "approver_2",
-        "order": 2
+        "id": 1216,
+        "first_name": "first_name-2",
+        "last_name": "last_name-2",
+        "email": "email-2",
+        "full_name": "full_name-2",
+        "avatar_url": "avatar_url-2"
       }
     ],
     "rejected_by": {
-      "id": 1178,
+      "id": 1217,
       "first_name": "first_name-2",
       "last_name": "last_name-2",
       "email": "email-2",
@@ -342,12 +426,12 @@
     "updated_at": "2024-01-03T00:00:00Z"
   },
   {
-    "internal_id": 1179,
-    "number": 1180,
-    "company_id": 1181,
+    "internal_id": 1218,
+    "number": 1219,
+    "company_id": 1220,
     "company_name": "company_name-3",
     "company_currency": "company_currency-3",
-    "vendor_id": 1182,
+    "vendor_id": 1221,
     "vendor_name": "vendor_name-3",
     "currency_iso_4217_code": "currency_iso_4217_code-3",
     "exchange_rate": "exchange_rate-3",
@@ -362,33 +446,34 @@
     "place_of_supply": "place_of_supply-3",
     "record_status": "record_status-3",
     "approval_status": "approval_status-3",
-    "recurring_record_number": 1183,
-    "purchase_order_number": 1184,
+    "recurring_record_number": 1222,
+    "purchase_order_number": 1223,
     "reference_number": "reference_number-3",
-    "term_id": 1185,
+    "term_id": 1224,
     "term_name": "term_name-3",
     "transaction_ids": [
-      1186
+      1225
     ],
     "tax": {
-      "regime": "sales_tax",
+      "regime": "regime-3",
       "data": {
-        "rate": "0.0725",
-        "jurisdiction": "US-CA-3",
-        "amount": "12.34"
+        "raw_value": "data-3",
+        "n": 3
       }
     },
     "tax_registration_numbers": {
       "company": [
         {
-          "type": "EIN",
-          "value": "12-3456783"
+          "type": "type-3",
+          "number": "number-3",
+          "region": "region-3"
         }
       ],
       "counterparty": [
         {
-          "type": "VAT",
-          "value": "GB300000000"
+          "type": "type-3",
+          "number": "number-3",
+          "region": "region-3"
         }
       ]
     },
@@ -397,41 +482,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1187,
-          "name": "cf_name_3",
-          "type": "text"
+          "id": 1226,
+          "company_id": 1227,
+          "company_ids": {
+            "raw_value": "company_ids-3",
+            "n": 3
+          },
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-3",
+            "n": 3
+          },
+          "options": {
+            "raw_value": "options-3",
+            "n": 3
+          },
+          "is_active": false
         },
         "value": {
-          "raw": "cf_value_3",
-          "n": 3
+          "id": 1228,
+          "custom_field_id": 1229,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 1230,
+          "value": {
+            "raw_value": "value-3",
+            "n": 3
+          },
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
         }
-      },
-      {
-        "field": {
-          "id": 1188,
-          "name": "cf_flag_3",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1189,
+        "id": 1231,
         "file_name": "file_name-3",
-        "file_size": 1190,
+        "file_size": 1232,
         "download_url": "download_url-3"
       }
     ],
     "next_approvers": [
       {
-        "id": 1191,
-        "name": "approver_3",
-        "order": 3
+        "id": 1233,
+        "first_name": "first_name-3",
+        "last_name": "last_name-3",
+        "email": "email-3",
+        "full_name": "full_name-3",
+        "avatar_url": "avatar_url-3"
       }
     ],
     "rejected_by": {
-      "id": 1192,
+      "id": 1234,
       "first_name": "first_name-3",
       "last_name": "last_name-3",
       "email": "email-3",
@@ -456,12 +568,12 @@
     "updated_at": "2024-01-04T00:00:00Z"
   },
   {
-    "internal_id": 1193,
-    "number": 1194,
-    "company_id": 1195,
+    "internal_id": 1235,
+    "number": 1236,
+    "company_id": 1237,
     "company_name": "company_name-4",
     "company_currency": "company_currency-4",
-    "vendor_id": 1196,
+    "vendor_id": 1238,
     "vendor_name": "vendor_name-4",
     "currency_iso_4217_code": "currency_iso_4217_code-4",
     "exchange_rate": "exchange_rate-4",
@@ -476,33 +588,34 @@
     "place_of_supply": "place_of_supply-4",
     "record_status": "record_status-4",
     "approval_status": "approval_status-4",
-    "recurring_record_number": 1197,
-    "purchase_order_number": 1198,
+    "recurring_record_number": 1239,
+    "purchase_order_number": 1240,
     "reference_number": "reference_number-4",
-    "term_id": 1199,
+    "term_id": 1241,
     "term_name": "term_name-4",
     "transaction_ids": [
-      1200
+      1242
     ],
     "tax": {
-      "regime": "sales_tax",
+      "regime": "regime-4",
       "data": {
-        "rate": "0.0725",
-        "jurisdiction": "US-CA-4",
-        "amount": "12.34"
+        "raw_value": "data-4",
+        "n": 4
       }
     },
     "tax_registration_numbers": {
       "company": [
         {
-          "type": "EIN",
-          "value": "12-3456784"
+          "type": "type-4",
+          "number": "number-4",
+          "region": "region-4"
         }
       ],
       "counterparty": [
         {
-          "type": "VAT",
-          "value": "GB400000000"
+          "type": "type-4",
+          "number": "number-4",
+          "region": "region-4"
         }
       ]
     },
@@ -511,41 +624,68 @@
     "custom_fields": [
       {
         "field": {
-          "id": 1201,
-          "name": "cf_name_4",
-          "type": "text"
+          "id": 1243,
+          "company_id": 1244,
+          "company_ids": {
+            "raw_value": "company_ids-4",
+            "n": 4
+          },
+          "name": "name-4",
+          "description": "description-4",
+          "helper_text": "helper_text-4",
+          "field_type": "field_type-4",
+          "applies_to": [
+            {
+              "type": "type-4",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": {
+            "raw_value": "default_value-4",
+            "n": 4
+          },
+          "options": {
+            "raw_value": "options-4",
+            "n": 4
+          },
+          "is_active": true
         },
         "value": {
-          "raw": "cf_value_4",
-          "n": 4
+          "id": 1245,
+          "custom_field_id": 1246,
+          "custom_field_name": "custom_field_name-4",
+          "custom_field_type": "custom_field_type-4",
+          "custom_field_value_id": 1247,
+          "value": {
+            "raw_value": "value-4",
+            "n": 4
+          },
+          "created_at": "created_at-4",
+          "updated_at": "updated_at-4"
         }
-      },
-      {
-        "field": {
-          "id": 1202,
-          "name": "cf_flag_4",
-          "type": "bool"
-        },
-        "value": true
       }
     ],
     "attachments": [
       {
-        "id": 1203,
+        "id": 1248,
         "file_name": "file_name-4",
-        "file_size": 1204,
+        "file_size": 1249,
         "download_url": "download_url-4"
       }
     ],
     "next_approvers": [
       {
-        "id": 1205,
-        "name": "approver_4",
-        "order": 4
+        "id": 1250,
+        "first_name": "first_name-4",
+        "last_name": "last_name-4",
+        "email": "email-4",
+        "full_name": "full_name-4",
+        "avatar_url": "avatar_url-4"
       }
     ],
     "rejected_by": {
-      "id": 1206,
+      "id": 1251,
       "first_name": "first_name-4",
       "last_name": "last_name-4",
       "email": "email-4",

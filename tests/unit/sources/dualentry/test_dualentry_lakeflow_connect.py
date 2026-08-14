@@ -1,16 +1,44 @@
-import requests
+import json
+from pathlib import Path
+from unittest.mock import patch
 
+import pytest
+import requests
+from pyspark.sql.types import ArrayType, StructType, VariantType
+
+import databricks.labs.community_connector.source_simulator as _simulator_pkg
+from databricks.labs.community_connector.sources.dualentry import dualentry as dualentry_module
 from databricks.labs.community_connector.sources.dualentry.dualentry import (
     DualEntryLakeflowConnect,
     _retry_after_seconds,
 )
 from tests.unit.sources.test_suite import LakeflowConnectTests
 
+_CORPUS_DIR = Path(_simulator_pkg.__file__).parent / "specs" / "dualentry" / "corpus"
+
+
+def _load_corpus(table: str) -> list:
+    with open(_CORPUS_DIR / f"{table}.json", "r") as f:
+        return json.load(f)
+
 
 def _response_with_headers(headers: dict) -> requests.Response:
     resp = requests.Response()
     resp.headers.update(headers)
     return resp
+
+
+class _FakeResponse:
+    """Minimal stand-in for ``requests.Response`` for the retry test."""
+
+    def __init__(self, status_code: int, headers: dict | None = None, body=None):
+        self.status_code = status_code
+        self.headers = headers or {}
+        self._body = body if body is not None else {"items": []}
+        self.text = ""
+
+    def json(self):
+        return self._body
 
 
 class TestDualEntryConnector(LakeflowConnectTests):
@@ -25,7 +53,7 @@ class TestDualEntryConnector(LakeflowConnectTests):
     }
 
     # ------------------------------------------------------------------
-    # DualEntry-specific behaviour
+    # Auth
     # ------------------------------------------------------------------
 
     def test_auth_header_is_raw_key_in_x_api_key(self):
@@ -36,6 +64,74 @@ class TestDualEntryConnector(LakeflowConnectTests):
         headers = self.connector._headers
         assert headers["X-API-KEY"] == "simulator-fake-key"
         assert "Authorization" not in headers and "authorization" not in headers
+
+    # ------------------------------------------------------------------
+    # Contract: read_table yields RAW records unchanged
+    # ------------------------------------------------------------------
+
+    def test_read_table_preserves_raw_records_unchanged(self):
+        """Per the LakeflowConnect contract, ``read_table`` must yield the raw
+        JSON records unchanged — no projection, no field mutation, no schema
+        coercion (the framework's ``parse_value`` does that). Deep-equal the
+        emitted records against the corpus fixtures, including nested
+        ``custom_fields`` / ``next_approvers`` objects and arrays."""
+        # Snapshot table: full corpus returned in file order, untouched.
+        records, _ = self.connector.read_table("accounts", {}, {})
+        assert list(records) == _load_corpus("accounts")
+
+        # CDC table: the seeded corpus records (all past-dated) are returned
+        # unchanged; the injected future records are excluded by the init cap,
+        # so the emitted list equals the on-disk corpus exactly.
+        records, _ = self.connector.read_table("journal_entries", {}, {})
+        emitted = list(records)
+        corpus = _load_corpus("journal_entries")
+        assert emitted == corpus
+        # The nested structured payloads survive as dicts/lists, not strings.
+        assert isinstance(emitted[0]["custom_fields"], list)
+        assert isinstance(emitted[0]["custom_fields"][0]["field"], dict)
+        assert isinstance(emitted[0]["next_approvers"], list)
+        assert isinstance(emitted[0]["next_approvers"][0], dict)
+
+    def test_schema_declares_nested_structured_types(self):
+        """``get_table_schema`` must declare the documented structured fields as
+        Struct/Array/Variant so ``parse_value`` can consume the raw nested JSON
+        — they must not be flattened to StringType."""
+        je = self.connector.get_table_schema("journal_entries", {})
+        fields = {f.name: f.dataType for f in je.fields}
+
+        # custom_fields: ARRAY<STRUCT<field: STRUCT, value: STRUCT>>
+        cf = fields["custom_fields"]
+        assert isinstance(cf, ArrayType)
+        assert isinstance(cf.elementType, StructType)
+        cf_pair = {f.name: f.dataType for f in cf.elementType.fields}
+        assert isinstance(cf_pair["field"], StructType)
+        assert isinstance(cf_pair["value"], StructType)
+        # The user-defined custom-field value payload is VariantType.
+        value_fields = {f.name: f.dataType for f in cf_pair["value"].fields}
+        assert isinstance(value_fields["value"], VariantType)
+
+        # next_approvers: ARRAY<STRUCT>
+        na = fields["next_approvers"]
+        assert isinstance(na, ArrayType)
+        assert isinstance(na.elementType, StructType)
+
+        # bills.tax: STRUCT<regime: STRING, data: VARIANT>; tax_registration
+        # _numbers: STRUCT<company: ARRAY, counterparty: ARRAY>.
+        bills = self.connector.get_table_schema("bills", {})
+        bfields = {f.name: f.dataType for f in bills.fields}
+        tax = bfields["tax"]
+        assert isinstance(tax, StructType)
+        tax_sub = {f.name: f.dataType for f in tax.fields}
+        assert isinstance(tax_sub["data"], VariantType)
+        trn = bfields["tax_registration_numbers"]
+        assert isinstance(trn, StructType)
+        trn_sub = {f.name: f.dataType for f in trn.fields}
+        assert isinstance(trn_sub["company"], ArrayType)
+        assert isinstance(trn_sub["counterparty"], ArrayType)
+
+    # ------------------------------------------------------------------
+    # Incremental behaviour
+    # ------------------------------------------------------------------
 
     def test_incremental_caps_at_init_time(self):
         """The simulator seeds future-dated records (see
@@ -105,6 +201,10 @@ class TestDualEntryConnector(LakeflowConnectTests):
             "(termination contract), even with a large lookback"
         )
 
+    # ------------------------------------------------------------------
+    # Snapshot behaviour
+    # ------------------------------------------------------------------
+
     def test_snapshot_completes_after_one_pass(self):
         """Snapshot tables emit records on the first call and a ``done``
         sentinel offset; the second call short-circuits to no records (the
@@ -117,47 +217,80 @@ class TestDualEntryConnector(LakeflowConnectTests):
         assert list(more) == []
         assert offset2 == {"done": True}
 
-    def test_retry_after_parses_seconds(self):
-        """DualEntry 429s advertise a numeric ``Retry-After`` (seconds); the
-        connector honours it (taking the max of the advertised wait and its
-        own backoff). Absent / unparseable headers fall back to backoff."""
+    def test_snapshot_pagination_advances_offsets(self):
+        """A snapshot read walks the limit/offset pages: with ``limit=2`` over
+        the 4-record corpus it requests offsets 0, 2, then a terminating empty
+        page, and returns all 4 unique records exactly once."""
+        seen_offsets: list = []
+        original_get_json = self.connector._get_json
+
+        def spy(path, params=None):
+            seen_offsets.append((params or {}).get("offset"))
+            return original_get_json(path, params=params)
+
+        self.connector._get_json = spy  # instance attr shadows the bound method
+        try:
+            records, offset = self.connector.read_table("accounts", {}, {"limit": "2"})
+            rows = list(records)
+        finally:
+            del self.connector._get_json
+
+        ids = [r["id"] for r in rows]
+        assert len(rows) == 4 and len(set(ids)) == 4, f"expected 4 unique rows, got {ids}"
+        assert seen_offsets == ["0", "2", "4"], seen_offsets
+        assert offset == {"done": True}
+
+    # ------------------------------------------------------------------
+    # Retry / backoff
+    # ------------------------------------------------------------------
+
+    def test_retry_backoff_and_retry_after(self):
+        """The request path retries on 429/500/503, honours ``Retry-After`` for
+        the delay, stops as soon as a success arrives, and raises through
+        ``_get_json`` when retries are exhausted."""
+        conn = DualEntryLakeflowConnect({"api_key": "k"})
+
+        # 429 (Retry-After=2) -> 500 -> 503 -> 200: all three retriable codes
+        # are retried, then success stops further requests.
+        responses = [
+            _FakeResponse(429, {"Retry-After": "2"}),
+            _FakeResponse(500),
+            _FakeResponse(503),
+            _FakeResponse(200, body={"items": [{"id": 1}]}),
+        ]
+        slept: list[float] = []
+        with (
+            patch.object(dualentry_module.requests, "get", side_effect=responses) as mock_get,
+            patch.object(dualentry_module, "_sleep", side_effect=lambda s: slept.append(s)),
+        ):
+            body = conn._get_json("public/v2/accounts/")
+
+        assert body == {"items": [{"id": 1}]}
+        assert mock_get.call_count == 4, "should stop requesting after the first success"
+        # Retry-After=2 overrides the initial 1.0s backoff on attempt 1; the
+        # backoff then doubles (2s, 4s) on the retries that carry no header.
+        assert slept == [2.0, 2.0, 4.0]
+
+        # Exhausted retries: every attempt is a 429 -> the last non-2xx surfaces
+        # as a RuntimeError from _get_json, after MAX_RETRIES-1 sleeps.
+        conn2 = DualEntryLakeflowConnect({"api_key": "k"})
+        slept2: list[float] = []
+        with (
+            patch.object(
+                dualentry_module.requests,
+                "get",
+                side_effect=[_FakeResponse(429, {"Retry-After": "1"}) for _ in range(5)],
+            ) as mock_get2,
+            patch.object(dualentry_module, "_sleep", side_effect=lambda s: slept2.append(s)),
+        ):
+            with pytest.raises(RuntimeError):
+                conn2._get_json("public/v2/accounts/")
+
+        assert mock_get2.call_count == 5
+        assert len(slept2) == 4  # MAX_RETRIES - 1
+
+    def test_retry_after_helper_parses_seconds(self):
+        """Unit cover for the header parser used by the retry path."""
         assert _retry_after_seconds(_response_with_headers({"Retry-After": "7"})) == 7.0
         assert _retry_after_seconds(_response_with_headers({})) is None
         assert _retry_after_seconds(_response_with_headers({"Retry-After": "soon"})) is None
-
-    def test_custom_fields_json_encoded(self):
-        """``custom_fields[].field`` / ``.value`` are user-defined and untyped
-        on the API. Non-string values must be JSON-serialized so the StringType
-        sub-columns stay stable."""
-        raw = {
-            "internal_id": 42,
-            "custom_fields": [
-                {"field": {"id": 1, "name": "cf"}, "value": {"k": 1}},
-                {"field": "plain_field", "value": "plain_value"},
-            ],
-            "next_approvers": [{"id": 9, "name": "a"}],
-        }
-        mapped = self.connector._map_record("journal_entries", raw)
-        cfs = mapped["custom_fields"]
-        assert cfs[0]["field"] == '{"id": 1, "name": "cf"}'
-        assert cfs[0]["value"] == '{"k": 1}'
-        assert cfs[1]["field"] == "plain_field"
-        assert cfs[1]["value"] == "plain_value"
-        assert mapped["next_approvers"] == '[{"id": 9, "name": "a"}]'
-
-    def test_bill_tax_union_json_encoded(self):
-        """``bills.tax.data`` is a discriminated union keyed by
-        ``tax.regime``; ``data`` is JSON-serialized to a string while ``regime``
-        stays a plain string, and ``tax_registration_numbers`` is serialized
-        whole."""
-        raw = {
-            "number": 7,
-            "tax": {"regime": "vat", "data": {"rate": "0.2", "amount": "5.00"}},
-            "tax_registration_numbers": {"company": [{"value": "GB1"}], "counterparty": []},
-        }
-        mapped = self.connector._map_record("bills", raw)
-        assert mapped["tax"]["regime"] == "vat"
-        assert mapped["tax"]["data"] == '{"amount": "5.00", "rate": "0.2"}'
-        assert mapped["tax_registration_numbers"] == (
-            '{"company": [{"value": "GB1"}], "counterparty": []}'
-        )
