@@ -220,3 +220,40 @@ endpoints:
     method: GET
     corpus: campaigns
     response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /cms/v3/blogs/posts
+    method: GET
+    corpus: blog_posts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/blogs/tags
+    method: GET
+    corpus: blog_tags
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/blogs/authors
+    method: GET
+    corpus: blog_authors
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/pages/landing-pages
+    method: GET
+    corpus: landing_pages
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/pages/site-pages
+    method: GET
+    corpus: site_pages
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/hubdb/tables
+    method: GET
+    corpus: hubdb_tables
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/url-redirects
+    method: GET
+    corpus: url_redirects
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/lists/
+    method: GET
+    corpus: lists
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /communication-preferences/v3/definitions
+    method: GET
+    corpus: subscription_definitions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}

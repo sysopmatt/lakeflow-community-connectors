@@ -1,0 +1,12 @@
+[
+  {
+    "id": "5201",
+    "name": "Grace Hopper",
+    "displayName": "Grace Hopper",
+    "slug": "grace-hopper",
+    "email": "grace@example.com",
+    "bio": "Marketing operations and analytics writer.",
+    "created": "2024-01-30T10:00:00Z",
+    "updated": "2024-02-28T08:00:00Z"
+  }
+]

@@ -14,3 +14,9 @@ submissions, marketing events, and campaigns. Email events use the legacy
 offset/hasMore feed so recipient-level send/open/click/bounce rows are
 preserved. Form submissions fan out by first listing forms and then reading each
 form's submissions endpoint.
+
+CMS and content streams include blog posts, blog tags, blog authors, landing
+pages, site pages, HubDB tables, URL redirects, CRM lists, and communication
+subscription definitions. Blog resources use the `updated` cursor field; CMS
+pages use `updatedAt`; HubDB tables, URL redirects, lists, and subscription
+definitions are snapshot tables.

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "5401",
+    "name": "Platform overview",
+    "slug": "platform",
+    "url": "https://example.com/platform",
+    "state": "PUBLISHED",
+    "createdAt": "2024-02-01T10:00:00Z",
+    "updatedAt": "2024-02-28T13:00:00Z",
+    "publishedAt": "2024-02-28T14:00:00Z",
+    "htmlTitle": "Platform Overview",
+    "metaDescription": "Overview of the platform."
+  }
+]

@@ -522,6 +522,113 @@ CAMPAIGNS_SCHEMA = StructType(
     ]
 )
 
+BLOG_POSTS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("slug", StringType(), True),
+        StructField("url", StringType(), True),
+        StructField("state", StringType(), True),
+        StructField("created", TimestampType(), True),
+        StructField("updated", TimestampType(), True),
+        StructField("publishDate", TimestampType(), True),
+        StructField("authorName", StringType(), True),
+        StructField("htmlTitle", StringType(), True),
+        StructField("metaDescription", StringType(), True),
+        StructField("tagIds", ArrayType(StringType()), True),
+    ]
+)
+
+BLOG_TAGS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("slug", StringType(), True),
+        StructField("language", StringType(), True),
+        StructField("created", TimestampType(), True),
+        StructField("updated", TimestampType(), True),
+    ]
+)
+
+BLOG_AUTHORS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("displayName", StringType(), True),
+        StructField("slug", StringType(), True),
+        StructField("email", StringType(), True),
+        StructField("bio", StringType(), True),
+        StructField("created", TimestampType(), True),
+        StructField("updated", TimestampType(), True),
+    ]
+)
+
+CMS_PAGE_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("slug", StringType(), True),
+        StructField("url", StringType(), True),
+        StructField("state", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("publishedAt", TimestampType(), True),
+        StructField("htmlTitle", StringType(), True),
+        StructField("metaDescription", StringType(), True),
+    ]
+)
+
+HUBDB_TABLES_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("label", StringType(), True),
+        StructField("published", BooleanType(), True),
+        StructField("rowCount", LongType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+    ]
+)
+
+URL_REDIRECTS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("routePrefix", StringType(), True),
+        StructField("destination", StringType(), True),
+        StructField("redirectStyle", LongType(), True),
+        StructField("isOnlyAfterNotFound", BooleanType(), True),
+        StructField("isMatchFullUrl", BooleanType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+    ]
+)
+
+LISTS_SCHEMA = StructType(
+    [
+        StructField("listId", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("objectTypeId", StringType(), True),
+        StructField("listType", StringType(), True),
+        StructField("processingType", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("createdById", StringType(), True),
+    ]
+)
+
+SUBSCRIPTION_DEFINITIONS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("description", StringType(), True),
+        StructField("channel", StringType(), True),
+        StructField("purpose", StringType(), True),
+        StructField("active", BooleanType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+    ]
+)
+
 TABLE_SCHEMAS: dict[str, StructType] = {
     "contacts": _crm_schema(CONTACTS_PROPERTIES),
     "companies": _crm_schema(COMPANIES_PROPERTIES),
@@ -554,6 +661,15 @@ TABLE_SCHEMAS: dict[str, StructType] = {
     "form_submissions": FORM_SUBMISSIONS_SCHEMA,
     "marketing_events": MARKETING_EVENTS_SCHEMA,
     "campaigns": CAMPAIGNS_SCHEMA,
+    "blog_posts": BLOG_POSTS_SCHEMA,
+    "blog_tags": BLOG_TAGS_SCHEMA,
+    "blog_authors": BLOG_AUTHORS_SCHEMA,
+    "landing_pages": CMS_PAGE_SCHEMA,
+    "site_pages": CMS_PAGE_SCHEMA,
+    "hubdb_tables": HUBDB_TABLES_SCHEMA,
+    "url_redirects": URL_REDIRECTS_SCHEMA,
+    "lists": LISTS_SCHEMA,
+    "subscription_definitions": SUBSCRIPTION_DEFINITIONS_SCHEMA,
 }
 
 _CDC_METADATA = {
@@ -616,8 +732,40 @@ TABLE_METADATA: dict[str, dict] = {
         "cursor_field": "updatedAt",
         "ingestion_type": "cdc",
     },
+    "blog_posts": {
+        "primary_keys": ["id"],
+        "cursor_field": "updated",
+        "ingestion_type": "cdc",
+    },
+    "blog_tags": {
+        "primary_keys": ["id"],
+        "cursor_field": "updated",
+        "ingestion_type": "cdc",
+    },
+    "blog_authors": {
+        "primary_keys": ["id"],
+        "cursor_field": "updated",
+        "ingestion_type": "cdc",
+    },
+    "landing_pages": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
+    "site_pages": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
     "owners": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     "pipelines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "hubdb_tables": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "url_redirects": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
+    "lists": {"primary_keys": ["listId"], "ingestion_type": "snapshot"},
+    "subscription_definitions": {
+        "primary_keys": ["id"],
+        "ingestion_type": "snapshot",
+    },
 }
 
 SUPPORTED_TABLES: list[str] = list(TABLE_SCHEMAS)
@@ -653,10 +801,22 @@ V3_CURSOR_TABLE_PATHS: dict[str, str] = {
     "forms": "/marketing/v3/forms/",
     "marketing_events": "/marketing/v3/marketing-events/",
     "campaigns": "/marketing/v3/campaigns/",
+    "blog_posts": "/cms/v3/blogs/posts",
+    "blog_tags": "/cms/v3/blogs/tags",
+    "blog_authors": "/cms/v3/blogs/authors",
+    "landing_pages": "/cms/v3/pages/landing-pages",
+    "site_pages": "/cms/v3/pages/site-pages",
 }
 
 LEGACY_OFFSET_TABLE_PATHS: dict[str, str] = {
     "email_events": "/email/public/v1/events",
+}
+
+SNAPSHOT_TABLE_PATHS: dict[str, str] = {
+    "hubdb_tables": "/cms/v3/hubdb/tables",
+    "url_redirects": "/cms/v3/url-redirects",
+    "lists": "/crm/v3/lists/",
+    "subscription_definitions": "/communication-preferences/v3/definitions",
 }
 
 SEARCH_CURSOR_PROPERTIES: dict[str, str] = {

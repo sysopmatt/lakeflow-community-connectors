@@ -10,6 +10,7 @@ from databricks.labs.community_connector.sources.hubspot_extended.hubspot_extend
     CRM_OBJECTS,
     LEGACY_OFFSET_TABLE_PATHS,
     SEARCH_CURSOR_PROPERTIES,
+    SNAPSHOT_TABLE_PATHS,
     SUPPORTED_TABLES,
     TABLE_METADATA,
     TABLE_SCHEMAS,
@@ -52,6 +53,8 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
             return self._read_legacy_offset_table(table_name, start_offset)
         if table_name == "form_submissions":
             return self._read_form_submissions(start_offset)
+        if table_name in SNAPSHOT_TABLE_PATHS:
+            return self._read_snapshot(SNAPSHOT_TABLE_PATHS[table_name])
         if table_name == "owners":
             return self._read_snapshot("/crm/v3/owners")
         if table_name == "pipelines":

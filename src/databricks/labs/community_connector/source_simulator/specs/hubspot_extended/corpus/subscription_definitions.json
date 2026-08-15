@@ -1,0 +1,12 @@
+[
+  {
+    "id": "5801",
+    "name": "Product updates",
+    "description": "Announcements about product changes and releases.",
+    "channel": "EMAIL",
+    "purpose": "MARKETING",
+    "active": true,
+    "createdAt": "2024-02-05T10:00:00Z",
+    "updatedAt": "2024-02-28T18:00:00Z"
+  }
+]

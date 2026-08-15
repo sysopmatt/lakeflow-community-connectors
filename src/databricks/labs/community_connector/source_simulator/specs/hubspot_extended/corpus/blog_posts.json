@@ -1,0 +1,16 @@
+[
+  {
+    "id": "5001",
+    "name": "Using customer data in analytics",
+    "slug": "customer-data-analytics",
+    "url": "https://example.com/blog/customer-data-analytics",
+    "state": "PUBLISHED",
+    "created": "2024-01-28T10:00:00Z",
+    "updated": "2024-02-28T10:00:00Z",
+    "publishDate": "2024-02-28T12:00:00Z",
+    "authorName": "Grace Hopper",
+    "htmlTitle": "Using Customer Data in Analytics",
+    "metaDescription": "A practical overview of customer data analytics.",
+    "tagIds": ["5101"]
+  }
+]
