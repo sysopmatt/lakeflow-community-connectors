@@ -9,6 +9,7 @@ from databricks.labs.community_connector.interface import LakeflowConnect
 from databricks.labs.community_connector.sources.hubspot_extended.hubspot_extended_schemas import (
     CRM_OBJECTS,
     LEGACY_OFFSET_TABLE_PATHS,
+    PROPERTY_OBJECT_TYPES,
     SEARCH_CURSOR_PROPERTIES,
     SNAPSHOT_TABLE_PATHS,
     SUPPORTED_TABLES,
@@ -53,6 +54,10 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
             return self._read_legacy_offset_table(table_name, start_offset)
         if table_name == "form_submissions":
             return self._read_form_submissions(start_offset)
+        if table_name == "conversation_messages":
+            return self._read_conversation_messages(start_offset)
+        if table_name == "properties":
+            return self._read_properties()
         if table_name in SNAPSHOT_TABLE_PATHS:
             return self._read_snapshot(SNAPSHOT_TABLE_PATHS[table_name])
         if table_name == "owners":
@@ -170,6 +175,55 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
             latest = self._init_ts
         offset = {cursor_field: latest} if latest else {}
         return iter(records), offset
+
+    def _read_conversation_messages(self, start_offset: dict) -> tuple[Iterator[dict], dict]:
+        """Fan out over conversation threads, then read each thread's messages.
+
+        HubSpot exposes messages below a thread resource. This method first
+        enumerates ``/conversations/v3/conversations/threads`` with v3 cursor
+        pagination, then calls
+        ``/conversations/v3/conversations/threads/{threadId}/messages`` for
+        each thread. Message records are yielded exactly as returned by the
+        messages endpoint.
+        """
+        cursor_field = TABLE_METADATA["conversation_messages"]["cursor_field"]
+        checkpoint = start_offset.get(cursor_field) if start_offset else None
+        threads = self._fetch_list_records(V3_CURSOR_TABLE_PATHS["conversation_threads"])
+        records: list[dict] = []
+        for thread in threads:
+            thread_id = thread.get("id")
+            if not thread_id:
+                continue
+            records.extend(
+                self._fetch_list_records(
+                    f"/conversations/v3/conversations/threads/{thread_id}/messages"
+                )
+            )
+
+        if checkpoint:
+            records = [
+                record
+                for record in records
+                if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+            ]
+
+        latest = checkpoint
+        for record in records:
+            cursor = record.get(cursor_field)
+            if cursor and (latest is None or cursor > latest):
+                latest = cursor
+
+        if latest and latest > self._init_ts:
+            latest = self._init_ts
+        offset = {cursor_field: latest} if latest else {}
+        return iter(records), offset
+
+    def _read_properties(self) -> tuple[Iterator[dict], dict]:
+        """Fan out over core CRM object types and read their property definitions."""
+        records: list[dict] = []
+        for object_type in PROPERTY_OBJECT_TYPES:
+            records.extend(self._fetch_list_records(f"/crm/v3/properties/{object_type}"))
+        return iter(records), {}
 
     def _read_snapshot(self, path: str) -> tuple[Iterator[dict], dict]:
         return iter(self._fetch_list_records(path)), {}

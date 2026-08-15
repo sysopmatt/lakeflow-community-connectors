@@ -629,6 +629,119 @@ SUBSCRIPTION_DEFINITIONS_SCHEMA = StructType(
     ]
 )
 
+BEHAVIORAL_EVENTS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("eventType", StringType(), True),
+        StructField("objectId", StringType(), True),
+        StructField("occurredAt", TimestampType(), True),
+        StructField("email", StringType(), True),
+        StructField("utk", StringType(), True),
+        StructField("properties", StructType([StructField("source", StringType(), True)]), True),
+    ]
+)
+
+CONVERSATION_INBOXES_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("channelTypes", ArrayType(StringType()), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+    ]
+)
+
+CONVERSATION_THREADS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("inboxId", StringType(), True),
+        StructField("status", StringType(), True),
+        StructField("subject", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("latestMessageTimestamp", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+    ]
+)
+
+MESSAGE_SENDER_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("email", StringType(), True),
+    ]
+)
+
+CONVERSATION_MESSAGES_SCHEMA = StructType(
+    [
+        StructField("thread_id", StringType(), True),
+        StructField("id", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("type", StringType(), True),
+        StructField("text", StringType(), True),
+        StructField("direction", StringType(), True),
+        StructField("sender", MESSAGE_SENDER_SCHEMA, True),
+    ]
+)
+
+PROPERTY_OPTION_SCHEMA = StructType(
+    [
+        StructField("label", StringType(), True),
+        StructField("value", StringType(), True),
+        StructField("description", StringType(), True),
+        StructField("displayOrder", LongType(), True),
+        StructField("hidden", BooleanType(), True),
+    ]
+)
+
+PROPERTY_DEFINITION_SCHEMA = StructType(
+    [
+        StructField("objectType", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("label", StringType(), True),
+        StructField("description", StringType(), True),
+        StructField("groupName", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("fieldType", StringType(), True),
+        StructField("options", ArrayType(PROPERTY_OPTION_SCHEMA), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+    ]
+)
+
+SCHEMA_LABELS_SCHEMA = StructType(
+    [
+        StructField("singular", StringType(), True),
+        StructField("plural", StringType(), True),
+    ]
+)
+
+CRM_SCHEMAS_SCHEMA = StructType(
+    [
+        StructField("objectTypeId", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("fullyQualifiedName", StringType(), True),
+        StructField("labels", SCHEMA_LABELS_SCHEMA, True),
+        StructField("primaryDisplayProperty", StringType(), True),
+        StructField("requiredProperties", ArrayType(StringType()), True),
+        StructField("searchableProperties", ArrayType(StringType()), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+    ]
+)
+
+ANALYTICS_VIEWS_SCHEMA = StructType(
+    [
+        StructField("breakdown", StringType(), True),
+        StructField("period", StringType(), True),
+        StructField("visits", LongType(), True),
+        StructField("pageviews", LongType(), True),
+        StructField("sessions", LongType(), True),
+        StructField("contacts", LongType(), True),
+    ]
+)
+
 TABLE_SCHEMAS: dict[str, StructType] = {
     "contacts": _crm_schema(CONTACTS_PROPERTIES),
     "companies": _crm_schema(COMPANIES_PROPERTIES),
@@ -670,6 +783,13 @@ TABLE_SCHEMAS: dict[str, StructType] = {
     "url_redirects": URL_REDIRECTS_SCHEMA,
     "lists": LISTS_SCHEMA,
     "subscription_definitions": SUBSCRIPTION_DEFINITIONS_SCHEMA,
+    "behavioral_events": BEHAVIORAL_EVENTS_SCHEMA,
+    "conversation_inboxes": CONVERSATION_INBOXES_SCHEMA,
+    "conversation_threads": CONVERSATION_THREADS_SCHEMA,
+    "conversation_messages": CONVERSATION_MESSAGES_SCHEMA,
+    "properties": PROPERTY_DEFINITION_SCHEMA,
+    "crm_schemas": CRM_SCHEMAS_SCHEMA,
+    "analytics_views": ANALYTICS_VIEWS_SCHEMA,
 }
 
 _CDC_METADATA = {
@@ -766,6 +886,37 @@ TABLE_METADATA: dict[str, dict] = {
         "primary_keys": ["id"],
         "ingestion_type": "snapshot",
     },
+    "behavioral_events": {
+        "primary_keys": ["id"],
+        "cursor_field": "occurredAt",
+        "ingestion_type": "cdc",
+    },
+    "conversation_inboxes": {
+        "primary_keys": ["id"],
+        "ingestion_type": "snapshot",
+    },
+    "conversation_threads": {
+        "primary_keys": ["id"],
+        "cursor_field": "latestMessageTimestamp",
+        "ingestion_type": "cdc",
+    },
+    "conversation_messages": {
+        "primary_keys": ["thread_id", "id"],
+        "cursor_field": "createdAt",
+        "ingestion_type": "cdc",
+    },
+    "properties": {
+        "primary_keys": ["objectType", "name"],
+        "ingestion_type": "snapshot",
+    },
+    "crm_schemas": {
+        "primary_keys": ["objectTypeId"],
+        "ingestion_type": "snapshot",
+    },
+    "analytics_views": {
+        "primary_keys": ["breakdown", "period"],
+        "ingestion_type": "snapshot",
+    },
 }
 
 SUPPORTED_TABLES: list[str] = list(TABLE_SCHEMAS)
@@ -806,6 +957,8 @@ V3_CURSOR_TABLE_PATHS: dict[str, str] = {
     "blog_authors": "/cms/v3/blogs/authors",
     "landing_pages": "/cms/v3/pages/landing-pages",
     "site_pages": "/cms/v3/pages/site-pages",
+    "behavioral_events": "/events/v3/events",
+    "conversation_threads": "/conversations/v3/conversations/threads",
 }
 
 LEGACY_OFFSET_TABLE_PATHS: dict[str, str] = {
@@ -817,7 +970,19 @@ SNAPSHOT_TABLE_PATHS: dict[str, str] = {
     "url_redirects": "/cms/v3/url-redirects",
     "lists": "/crm/v3/lists/",
     "subscription_definitions": "/communication-preferences/v3/definitions",
+    "conversation_inboxes": "/conversations/v3/conversations/inboxes",
+    "crm_schemas": "/crm/v3/schemas",
+    "analytics_views": "/analytics/v2/reports/sources/total",
 }
+
+PROPERTY_OBJECT_TYPES: tuple[str, ...] = (
+    "contacts",
+    "companies",
+    "deals",
+    "tickets",
+    "products",
+    "line_items",
+)
 
 SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
     "contacts": "lastmodifieddate",

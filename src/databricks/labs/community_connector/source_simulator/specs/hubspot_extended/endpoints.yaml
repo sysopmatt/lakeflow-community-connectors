@@ -257,3 +257,32 @@ endpoints:
     method: GET
     corpus: subscription_definitions
     response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /events/v3/events
+    method: GET
+    corpus: behavioral_events
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/inboxes
+    method: GET
+    corpus: conversation_inboxes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/threads
+    method: GET
+    corpus: conversation_threads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/threads/{thread_id}/messages
+    method: GET
+    corpus: conversation_messages
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_thread_messages
+  - path: /crm/v3/properties/{object_type}
+    method: GET
+    corpus: properties
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_properties
+  - path: /crm/v3/schemas
+    method: GET
+    corpus: crm_schemas
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /analytics/v2/reports/sources/total
+    method: GET
+    corpus: analytics_views
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}

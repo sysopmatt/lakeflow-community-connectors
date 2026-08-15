@@ -1183,6 +1183,121 @@ def register_lakeflow_source(spark):
         ]
     )
 
+    BEHAVIORAL_EVENTS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("eventType", StringType(), True),
+            StructField("objectId", StringType(), True),
+            StructField("occurredAt", TimestampType(), True),
+            StructField("email", StringType(), True),
+            StructField("utk", StringType(), True),
+            StructField(
+                "properties", StructType([StructField("source", StringType(), True)]), True
+            ),
+        ]
+    )
+
+    CONVERSATION_INBOXES_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("channelTypes", ArrayType(StringType()), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+        ]
+    )
+
+    CONVERSATION_THREADS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("inboxId", StringType(), True),
+            StructField("status", StringType(), True),
+            StructField("subject", StringType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("latestMessageTimestamp", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+        ]
+    )
+
+    MESSAGE_SENDER_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("type", StringType(), True),
+            StructField("email", StringType(), True),
+        ]
+    )
+
+    CONVERSATION_MESSAGES_SCHEMA = StructType(
+        [
+            StructField("thread_id", StringType(), True),
+            StructField("id", StringType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("type", StringType(), True),
+            StructField("text", StringType(), True),
+            StructField("direction", StringType(), True),
+            StructField("sender", MESSAGE_SENDER_SCHEMA, True),
+        ]
+    )
+
+    PROPERTY_OPTION_SCHEMA = StructType(
+        [
+            StructField("label", StringType(), True),
+            StructField("value", StringType(), True),
+            StructField("description", StringType(), True),
+            StructField("displayOrder", LongType(), True),
+            StructField("hidden", BooleanType(), True),
+        ]
+    )
+
+    PROPERTY_DEFINITION_SCHEMA = StructType(
+        [
+            StructField("objectType", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("label", StringType(), True),
+            StructField("description", StringType(), True),
+            StructField("groupName", StringType(), True),
+            StructField("type", StringType(), True),
+            StructField("fieldType", StringType(), True),
+            StructField("options", ArrayType(PROPERTY_OPTION_SCHEMA), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+        ]
+    )
+
+    SCHEMA_LABELS_SCHEMA = StructType(
+        [
+            StructField("singular", StringType(), True),
+            StructField("plural", StringType(), True),
+        ]
+    )
+
+    CRM_SCHEMAS_SCHEMA = StructType(
+        [
+            StructField("objectTypeId", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("fullyQualifiedName", StringType(), True),
+            StructField("labels", SCHEMA_LABELS_SCHEMA, True),
+            StructField("primaryDisplayProperty", StringType(), True),
+            StructField("requiredProperties", ArrayType(StringType()), True),
+            StructField("searchableProperties", ArrayType(StringType()), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+        ]
+    )
+
+    ANALYTICS_VIEWS_SCHEMA = StructType(
+        [
+            StructField("breakdown", StringType(), True),
+            StructField("period", StringType(), True),
+            StructField("visits", LongType(), True),
+            StructField("pageviews", LongType(), True),
+            StructField("sessions", LongType(), True),
+            StructField("contacts", LongType(), True),
+        ]
+    )
+
     TABLE_SCHEMAS: dict[str, StructType] = {
         "contacts": _crm_schema(CONTACTS_PROPERTIES),
         "companies": _crm_schema(COMPANIES_PROPERTIES),
@@ -1224,6 +1339,13 @@ def register_lakeflow_source(spark):
         "url_redirects": URL_REDIRECTS_SCHEMA,
         "lists": LISTS_SCHEMA,
         "subscription_definitions": SUBSCRIPTION_DEFINITIONS_SCHEMA,
+        "behavioral_events": BEHAVIORAL_EVENTS_SCHEMA,
+        "conversation_inboxes": CONVERSATION_INBOXES_SCHEMA,
+        "conversation_threads": CONVERSATION_THREADS_SCHEMA,
+        "conversation_messages": CONVERSATION_MESSAGES_SCHEMA,
+        "properties": PROPERTY_DEFINITION_SCHEMA,
+        "crm_schemas": CRM_SCHEMAS_SCHEMA,
+        "analytics_views": ANALYTICS_VIEWS_SCHEMA,
     }
 
     _CDC_METADATA = {
@@ -1320,6 +1442,37 @@ def register_lakeflow_source(spark):
             "primary_keys": ["id"],
             "ingestion_type": "snapshot",
         },
+        "behavioral_events": {
+            "primary_keys": ["id"],
+            "cursor_field": "occurredAt",
+            "ingestion_type": "cdc",
+        },
+        "conversation_inboxes": {
+            "primary_keys": ["id"],
+            "ingestion_type": "snapshot",
+        },
+        "conversation_threads": {
+            "primary_keys": ["id"],
+            "cursor_field": "latestMessageTimestamp",
+            "ingestion_type": "cdc",
+        },
+        "conversation_messages": {
+            "primary_keys": ["thread_id", "id"],
+            "cursor_field": "createdAt",
+            "ingestion_type": "cdc",
+        },
+        "properties": {
+            "primary_keys": ["objectType", "name"],
+            "ingestion_type": "snapshot",
+        },
+        "crm_schemas": {
+            "primary_keys": ["objectTypeId"],
+            "ingestion_type": "snapshot",
+        },
+        "analytics_views": {
+            "primary_keys": ["breakdown", "period"],
+            "ingestion_type": "snapshot",
+        },
     }
 
     SUPPORTED_TABLES: list[str] = list(TABLE_SCHEMAS)
@@ -1360,6 +1513,8 @@ def register_lakeflow_source(spark):
         "blog_authors": "/cms/v3/blogs/authors",
         "landing_pages": "/cms/v3/pages/landing-pages",
         "site_pages": "/cms/v3/pages/site-pages",
+        "behavioral_events": "/events/v3/events",
+        "conversation_threads": "/conversations/v3/conversations/threads",
     }
 
     LEGACY_OFFSET_TABLE_PATHS: dict[str, str] = {
@@ -1371,7 +1526,19 @@ def register_lakeflow_source(spark):
         "url_redirects": "/cms/v3/url-redirects",
         "lists": "/crm/v3/lists/",
         "subscription_definitions": "/communication-preferences/v3/definitions",
+        "conversation_inboxes": "/conversations/v3/conversations/inboxes",
+        "crm_schemas": "/crm/v3/schemas",
+        "analytics_views": "/analytics/v2/reports/sources/total",
     }
+
+    PROPERTY_OBJECT_TYPES: tuple[str, ...] = (
+        "contacts",
+        "companies",
+        "deals",
+        "tickets",
+        "products",
+        "line_items",
+    )
 
     SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
         "contacts": "lastmodifieddate",
@@ -1442,6 +1609,10 @@ def register_lakeflow_source(spark):
                 return self._read_legacy_offset_table(table_name, start_offset)
             if table_name == "form_submissions":
                 return self._read_form_submissions(start_offset)
+            if table_name == "conversation_messages":
+                return self._read_conversation_messages(start_offset)
+            if table_name == "properties":
+                return self._read_properties()
             if table_name in SNAPSHOT_TABLE_PATHS:
                 return self._read_snapshot(SNAPSHOT_TABLE_PATHS[table_name])
             if table_name == "owners":
@@ -1562,6 +1733,55 @@ def register_lakeflow_source(spark):
                 latest = self._init_ts
             offset = {cursor_field: latest} if latest else {}
             return iter(records), offset
+
+        def _read_conversation_messages(self, start_offset: dict) -> tuple[Iterator[dict], dict]:
+            """Fan out over conversation threads, then read each thread's messages.
+
+            HubSpot exposes messages below a thread resource. This method first
+            enumerates ``/conversations/v3/conversations/threads`` with v3 cursor
+            pagination, then calls
+            ``/conversations/v3/conversations/threads/{threadId}/messages`` for
+            each thread. Message records are yielded exactly as returned by the
+            messages endpoint.
+            """
+            cursor_field = TABLE_METADATA["conversation_messages"]["cursor_field"]
+            checkpoint = start_offset.get(cursor_field) if start_offset else None
+            threads = self._fetch_list_records(V3_CURSOR_TABLE_PATHS["conversation_threads"])
+            records: list[dict] = []
+            for thread in threads:
+                thread_id = thread.get("id")
+                if not thread_id:
+                    continue
+                records.extend(
+                    self._fetch_list_records(
+                        f"/conversations/v3/conversations/threads/{thread_id}/messages"
+                    )
+                )
+
+            if checkpoint:
+                records = [
+                    record
+                    for record in records
+                    if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+                ]
+
+            latest = checkpoint
+            for record in records:
+                cursor = record.get(cursor_field)
+                if cursor and (latest is None or cursor > latest):
+                    latest = cursor
+
+            if latest and latest > self._init_ts:
+                latest = self._init_ts
+            offset = {cursor_field: latest} if latest else {}
+            return iter(records), offset
+
+        def _read_properties(self) -> tuple[Iterator[dict], dict]:
+            """Fan out over core CRM object types and read their property definitions."""
+            records: list[dict] = []
+            for object_type in PROPERTY_OBJECT_TYPES:
+                records.extend(self._fetch_list_records(f"/crm/v3/properties/{object_type}"))
+            return iter(records), {}
 
         def _read_snapshot(self, path: str) -> tuple[Iterator[dict], dict]:
             return iter(self._fetch_list_records(path)), {}

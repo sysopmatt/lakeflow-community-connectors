@@ -1,0 +1,11 @@
+[
+  {
+    "id": "be-6001",
+    "eventType": "pe600_checkout_started",
+    "objectId": "101",
+    "occurredAt": "2024-03-01T10:00:00Z",
+    "email": "ada@example.com",
+    "utk": "utk-6001",
+    "properties": {"source": "website"}
+  }
+]
