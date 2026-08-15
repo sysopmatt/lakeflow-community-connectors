@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1201",
+    "createdAt": "2024-01-12T10:00:00Z",
+    "updatedAt": "2024-02-12T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1201",
+      "createdate": "2024-01-12T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-12T10:00:00Z",
+      "hs_lead_name": "Expansion lead",
+      "hs_lead_label": "Warm inbound",
+      "hs_lead_type": "NEW_BUSINESS",
+      "hs_lead_stage": "CONNECTED",
+      "hs_pipeline": "default",
+      "hs_pipeline_stage": "connected",
+      "hs_lead_disqualification_reason": "not_disqualified",
+      "hubspot_owner_id": "501"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "lead_to_contact"}]},
+      "companies": {"results": [{"id": "201", "type": "lead_to_company"}]}
+    }
+  }
+]

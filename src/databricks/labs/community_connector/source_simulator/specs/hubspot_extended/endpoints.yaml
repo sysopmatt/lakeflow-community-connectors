@@ -45,6 +45,54 @@ endpoints:
     method: GET
     corpus: products
     response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/leads
+    method: GET
+    corpus: leads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/quotes
+    method: GET
+    corpus: quotes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/feedback_submissions
+    method: GET
+    corpus: feedback_submissions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/appointments
+    method: GET
+    corpus: appointments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/listings
+    method: GET
+    corpus: listings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/orders
+    method: GET
+    corpus: orders
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/carts
+    method: GET
+    corpus: carts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/commerce_payments
+    method: GET
+    corpus: commerce_payments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/subscriptions
+    method: GET
+    corpus: subscriptions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/invoices
+    method: GET
+    corpus: invoices
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/communications
+    method: GET
+    corpus: communications
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/postal_mail
+    method: GET
+    corpus: postal_mail
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
 
   - path: /crm/v3/objects/contacts/search
     method: POST
@@ -89,6 +137,54 @@ endpoints:
   - path: /crm/v3/objects/products/search
     method: POST
     corpus: products
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/leads/search
+    method: POST
+    corpus: leads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/quotes/search
+    method: POST
+    corpus: quotes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/feedback_submissions/search
+    method: POST
+    corpus: feedback_submissions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/appointments/search
+    method: POST
+    corpus: appointments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/listings/search
+    method: POST
+    corpus: listings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/orders/search
+    method: POST
+    corpus: orders
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/carts/search
+    method: POST
+    corpus: carts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/commerce_payments/search
+    method: POST
+    corpus: commerce_payments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/subscriptions/search
+    method: POST
+    corpus: subscriptions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/invoices/search
+    method: POST
+    corpus: invoices
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/communications/search
+    method: POST
+    corpus: communications
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/postal_mail/search
+    method: POST
+    corpus: postal_mail
     response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
 
   - path: /crm/v3/owners

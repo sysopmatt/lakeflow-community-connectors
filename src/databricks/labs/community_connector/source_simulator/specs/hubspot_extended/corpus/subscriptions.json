@@ -1,0 +1,25 @@
+[
+  {
+    "id": "2001",
+    "createdAt": "2024-01-20T10:00:00Z",
+    "updatedAt": "2024-02-20T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "2001",
+      "createdate": "2024-01-20T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-20T10:00:00Z",
+      "hs_subscription_name": "Annual platform subscription",
+      "hs_subscription_status": "ACTIVE",
+      "hs_recurring_billing_period": "P1Y",
+      "hs_next_billing_date": "2025-01-20T00:00:00Z",
+      "hs_start_date": "2024-01-20T00:00:00Z",
+      "hs_end_date": "2025-01-20T00:00:00Z",
+      "hs_currency_code": "USD",
+      "hs_subscription_amount": "12000.00"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "subscription_to_contact"}]},
+      "products": {"results": [{"id": "1101", "type": "subscription_to_product"}]}
+    }
+  }
+]

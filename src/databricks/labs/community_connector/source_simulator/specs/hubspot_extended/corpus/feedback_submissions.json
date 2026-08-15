@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1401",
+    "createdAt": "2024-01-14T10:00:00Z",
+    "updatedAt": "2024-02-14T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1401",
+      "createdate": "2024-01-14T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-14T10:00:00Z",
+      "hs_submission_name": "NPS response",
+      "hs_survey_type": "NPS",
+      "hs_survey_id": "survey-1",
+      "hs_value": "9",
+      "hs_response_group": "promoter",
+      "hs_sentiment": "positive",
+      "hs_content": "The implementation was smooth.",
+      "hs_contact_id": "101"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "feedback_submission_to_contact"}]}
+    }
+  }
+]

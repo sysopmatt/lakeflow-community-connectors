@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1301",
+    "createdAt": "2024-01-13T10:00:00Z",
+    "updatedAt": "2024-02-13T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1301",
+      "createdate": "2024-01-13T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-13T10:00:00Z",
+      "hs_title": "Enterprise renewal quote",
+      "hs_status": "APPROVAL_NOT_NEEDED",
+      "hs_expiration_date": "2024-03-15T00:00:00Z",
+      "hs_quote_amount": "25000.00",
+      "hs_currency": "USD",
+      "hs_language": "en",
+      "hs_terms": "Net 30",
+      "hs_public_url_key": "quote-1301",
+      "hs_pdf_download_link": "https://example.com/quotes/1301.pdf",
+      "hubspot_owner_id": "501"
+    },
+    "associations": {
+      "deals": {"results": [{"id": "301", "type": "quote_to_deal"}]},
+      "line_items": {"results": [{"id": "1001", "type": "quote_to_line_item"}]}
+    }
+  }
+]

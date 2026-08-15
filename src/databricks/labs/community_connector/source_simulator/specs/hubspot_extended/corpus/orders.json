@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1701",
+    "createdAt": "2024-01-17T10:00:00Z",
+    "updatedAt": "2024-02-17T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1701",
+      "createdate": "2024-01-17T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-17T10:00:00Z",
+      "hs_order_name": "Order 1701",
+      "hs_order_status": "PROCESSING",
+      "hs_order_amount": "12000.00",
+      "hs_currency_code": "USD",
+      "hs_source_store": "B2B storefront",
+      "hs_fulfillment_status": "PENDING",
+      "hs_payment_status": "PAID",
+      "hs_external_order_id": "ext-order-1701"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "order_to_contact"}]},
+      "line_items": {"results": [{"id": "1001", "type": "order_to_line_item"}]}
+    }
+  }
+]

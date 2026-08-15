@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1901",
+    "createdAt": "2024-01-19T10:00:00Z",
+    "updatedAt": "2024-02-19T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1901",
+      "createdate": "2024-01-19T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-19T10:00:00Z",
+      "hs_payment_name": "Payment 1901",
+      "hs_payment_status": "SUCCEEDED",
+      "hs_payment_amount": "12000.00",
+      "hs_currency_code": "USD",
+      "hs_payment_method": "card",
+      "hs_processor": "stripe",
+      "hs_external_payment_id": "pi_1901"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "payment_to_contact"}]},
+      "deals": {"results": [{"id": "301", "type": "payment_to_deal"}]}
+    }
+  }
+]

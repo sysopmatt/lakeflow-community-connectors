@@ -27,6 +27,37 @@ def _crm_schema(properties: StructType) -> StructType:
     )
 
 
+ASSOCIATION_RESULT_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("type", StringType(), True),
+    ]
+)
+
+ASSOCIATION_COLLECTION_SCHEMA = StructType(
+    [StructField("results", ArrayType(ASSOCIATION_RESULT_SCHEMA), True)]
+)
+
+CRM_ASSOCIATIONS_SCHEMA = StructType(
+    [
+        StructField("contacts", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("companies", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("deals", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("tickets", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("line_items", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("products", ASSOCIATION_COLLECTION_SCHEMA, True),
+        StructField("quotes", ASSOCIATION_COLLECTION_SCHEMA, True),
+    ]
+)
+
+
+def _crm_schema_with_associations(properties: StructType) -> StructType:
+    return StructType(
+        _crm_schema(properties).fields
+        + [StructField("associations", CRM_ASSOCIATIONS_SCHEMA, True)]
+    )
+
+
 CONTACTS_PROPERTIES = _properties(
     "hs_object_id",
     "createdate",
@@ -117,6 +148,145 @@ PRODUCTS_PROPERTIES = _properties(
     "tax",
 )
 
+LEADS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_lead_name",
+    "hs_lead_label",
+    "hs_lead_type",
+    "hs_lead_stage",
+    "hs_pipeline",
+    "hs_pipeline_stage",
+    "hs_lead_disqualification_reason",
+    "hubspot_owner_id",
+)
+
+QUOTES_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_title",
+    "hs_status",
+    "hs_expiration_date",
+    "hs_quote_amount",
+    "hs_currency",
+    "hs_language",
+    "hs_terms",
+    "hs_public_url_key",
+    "hs_pdf_download_link",
+    "hubspot_owner_id",
+)
+
+FEEDBACK_SUBMISSIONS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_submission_name",
+    "hs_survey_type",
+    "hs_survey_id",
+    "hs_value",
+    "hs_response_group",
+    "hs_sentiment",
+    "hs_content",
+    "hs_contact_id",
+)
+
+APPOINTMENTS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_appointment_name",
+    "hs_appointment_start",
+    "hs_appointment_end",
+    "hs_appointment_location",
+    "hs_appointment_status",
+    "hs_pipeline",
+    "hs_pipeline_stage",
+    "hubspot_owner_id",
+)
+
+LISTINGS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_listing_name",
+    "hs_listing_type",
+    "hs_listing_status",
+    "hs_listing_url",
+    "hs_price",
+    "hs_currency",
+    "hs_address",
+    "hubspot_owner_id",
+)
+
+ORDERS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_order_name",
+    "hs_order_status",
+    "hs_order_amount",
+    "hs_currency_code",
+    "hs_source_store",
+    "hs_fulfillment_status",
+    "hs_payment_status",
+    "hs_external_order_id",
+)
+
+CARTS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_cart_name",
+    "hs_cart_status",
+    "hs_cart_amount",
+    "hs_currency_code",
+    "hs_source_store",
+    "hs_abandoned_cart_url",
+    "hs_external_cart_id",
+)
+
+COMMERCE_PAYMENTS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_payment_name",
+    "hs_payment_status",
+    "hs_payment_amount",
+    "hs_currency_code",
+    "hs_payment_method",
+    "hs_processor",
+    "hs_external_payment_id",
+)
+
+SUBSCRIPTIONS_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_subscription_name",
+    "hs_subscription_status",
+    "hs_recurring_billing_period",
+    "hs_next_billing_date",
+    "hs_start_date",
+    "hs_end_date",
+    "hs_currency_code",
+    "hs_subscription_amount",
+)
+
+INVOICES_PROPERTIES = _properties(
+    "hs_object_id",
+    "createdate",
+    "hs_lastmodifieddate",
+    "hs_invoice_number",
+    "hs_invoice_status",
+    "hs_invoice_amount",
+    "hs_balance_due",
+    "hs_due_date",
+    "hs_currency_code",
+    "hs_external_invoice_id",
+)
+
 _ENGAGEMENT_BASE = (
     "hs_object_id",
     "hs_createdate",
@@ -174,6 +344,21 @@ TASKS_PROPERTIES = _properties(
 NOTES_PROPERTIES = _properties(
     *_ENGAGEMENT_BASE,
     "hs_note_body",
+    "hs_attachment_ids",
+)
+
+COMMUNICATIONS_PROPERTIES = _properties(
+    *_ENGAGEMENT_BASE,
+    "hs_communication_body",
+    "hs_communication_channel_type",
+    "hs_communication_logged_from",
+    "hs_communication_global_id",
+    "hs_body_preview",
+)
+
+POSTAL_MAIL_PROPERTIES = _properties(
+    *_ENGAGEMENT_BASE,
+    "hs_postal_mail_body",
     "hs_attachment_ids",
 )
 
@@ -239,6 +424,18 @@ TABLE_SCHEMAS: dict[str, StructType] = {
     "pipelines": PIPELINES_SCHEMA,
     "line_items": _crm_schema(LINE_ITEMS_PROPERTIES),
     "products": _crm_schema(PRODUCTS_PROPERTIES),
+    "leads": _crm_schema_with_associations(LEADS_PROPERTIES),
+    "quotes": _crm_schema_with_associations(QUOTES_PROPERTIES),
+    "feedback_submissions": _crm_schema_with_associations(FEEDBACK_SUBMISSIONS_PROPERTIES),
+    "appointments": _crm_schema_with_associations(APPOINTMENTS_PROPERTIES),
+    "listings": _crm_schema_with_associations(LISTINGS_PROPERTIES),
+    "orders": _crm_schema_with_associations(ORDERS_PROPERTIES),
+    "carts": _crm_schema_with_associations(CARTS_PROPERTIES),
+    "commerce_payments": _crm_schema_with_associations(COMMERCE_PAYMENTS_PROPERTIES),
+    "subscriptions": _crm_schema_with_associations(SUBSCRIPTIONS_PROPERTIES),
+    "invoices": _crm_schema_with_associations(INVOICES_PROPERTIES),
+    "communications": _crm_schema_with_associations(COMMUNICATIONS_PROPERTIES),
+    "postal_mail": _crm_schema_with_associations(POSTAL_MAIL_PROPERTIES),
 }
 
 _CDC_METADATA = {
@@ -259,6 +456,18 @@ TABLE_METADATA: dict[str, dict] = {
     "notes": dict(_CDC_METADATA),
     "line_items": dict(_CDC_METADATA),
     "products": dict(_CDC_METADATA),
+    "leads": dict(_CDC_METADATA),
+    "quotes": dict(_CDC_METADATA),
+    "feedback_submissions": dict(_CDC_METADATA),
+    "appointments": dict(_CDC_METADATA),
+    "listings": dict(_CDC_METADATA),
+    "orders": dict(_CDC_METADATA),
+    "carts": dict(_CDC_METADATA),
+    "commerce_payments": dict(_CDC_METADATA),
+    "subscriptions": dict(_CDC_METADATA),
+    "invoices": dict(_CDC_METADATA),
+    "communications": dict(_CDC_METADATA),
+    "postal_mail": dict(_CDC_METADATA),
     "owners": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     "pipelines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
 }
@@ -277,6 +486,18 @@ CRM_OBJECTS: set[str] = {
     "notes",
     "line_items",
     "products",
+    "leads",
+    "quotes",
+    "feedback_submissions",
+    "appointments",
+    "listings",
+    "orders",
+    "carts",
+    "commerce_payments",
+    "subscriptions",
+    "invoices",
+    "communications",
+    "postal_mail",
 }
 
 SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
@@ -291,6 +512,18 @@ SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
     "notes": "hs_lastmodifieddate",
     "line_items": "hs_lastmodifieddate",
     "products": "hs_lastmodifieddate",
+    "leads": "hs_lastmodifieddate",
+    "quotes": "hs_lastmodifieddate",
+    "feedback_submissions": "hs_lastmodifieddate",
+    "appointments": "hs_lastmodifieddate",
+    "listings": "hs_lastmodifieddate",
+    "orders": "hs_lastmodifieddate",
+    "carts": "hs_lastmodifieddate",
+    "commerce_payments": "hs_lastmodifieddate",
+    "subscriptions": "hs_lastmodifieddate",
+    "invoices": "hs_lastmodifieddate",
+    "communications": "hs_lastmodifieddate",
+    "postal_mail": "hs_lastmodifieddate",
 }
 
 
