@@ -1,0 +1,12 @@
+[
+  {
+    "id": "4101",
+    "name": "Q1 product launch",
+    "campaignCode": "Q1-LAUNCH",
+    "createdAt": "2024-01-27T10:00:00Z",
+    "updatedAt": "2024-02-27T10:00:00Z",
+    "archived": false,
+    "color": "#2D6CDF",
+    "notes": "Marketing Hub Pro or Enterprise is required at runtime."
+  }
+]

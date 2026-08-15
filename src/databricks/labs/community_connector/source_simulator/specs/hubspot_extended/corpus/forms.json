@@ -1,0 +1,28 @@
+[
+  {
+    "id": "form-3101",
+    "guid": "form-3101",
+    "name": "Demo request",
+    "formType": "hubspot",
+    "createdAt": "2024-01-25T10:00:00Z",
+    "updatedAt": "2024-02-25T10:00:00Z",
+    "archived": false,
+    "publishedAt": "2024-02-25T11:00:00Z",
+    "fields": [
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "string",
+        "fieldType": "text",
+        "required": true
+      },
+      {
+        "name": "company",
+        "label": "Company",
+        "type": "string",
+        "fieldType": "text",
+        "required": false
+      }
+    ]
+  }
+]

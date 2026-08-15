@@ -964,6 +964,118 @@ def register_lakeflow_source(spark):
         ]
     )
 
+    MARKETING_EMAILS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("subject", StringType(), True),
+            StructField("state", StringType(), True),
+            StructField("type", StringType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("publishedAt", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+            StructField("authorName", StringType(), True),
+            StructField("campaign", StringType(), True),
+        ]
+    )
+
+    EMAIL_EVENTS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("type", StringType(), True),
+            StructField("created", LongType(), True),
+            StructField("recipient", StringType(), True),
+            StructField("portalId", LongType(), True),
+            StructField("appId", LongType(), True),
+            StructField("sentBy", StringType(), True),
+            StructField("emailCampaignId", LongType(), True),
+            StructField("smtpId", StringType(), True),
+            StructField("url", StringType(), True),
+            StructField("response", StringType(), True),
+        ]
+    )
+
+    FORM_FIELD_SCHEMA = StructType(
+        [
+            StructField("name", StringType(), True),
+            StructField("label", StringType(), True),
+            StructField("type", StringType(), True),
+            StructField("fieldType", StringType(), True),
+            StructField("required", BooleanType(), True),
+        ]
+    )
+
+    FORMS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("guid", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("formType", StringType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+            StructField("publishedAt", TimestampType(), True),
+            StructField("fields", ArrayType(FORM_FIELD_SCHEMA), True),
+        ]
+    )
+
+    FORM_SUBMISSION_VALUE_SCHEMA = StructType(
+        [
+            StructField("name", StringType(), True),
+            StructField("value", StringType(), True),
+            StructField("objectTypeId", StringType(), True),
+        ]
+    )
+
+    FORM_SUBMISSION_PAGE_SCHEMA = StructType(
+        [
+            StructField("pageUrl", StringType(), True),
+            StructField("pageName", StringType(), True),
+        ]
+    )
+
+    FORM_SUBMISSIONS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("form_id", StringType(), True),
+            StructField("submittedAt", TimestampType(), True),
+            StructField("contact_id", StringType(), True),
+            StructField("conversionId", StringType(), True),
+            StructField("page", FORM_SUBMISSION_PAGE_SCHEMA, True),
+            StructField("values", ArrayType(FORM_SUBMISSION_VALUE_SCHEMA), True),
+        ]
+    )
+
+    MARKETING_EVENTS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("externalEventId", StringType(), True),
+            StructField("externalAccountId", StringType(), True),
+            StructField("eventName", StringType(), True),
+            StructField("eventType", StringType(), True),
+            StructField("startDateTime", TimestampType(), True),
+            StructField("endDateTime", TimestampType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("eventOrganizer", StringType(), True),
+            StructField("eventUrl", StringType(), True),
+        ]
+    )
+
+    CAMPAIGNS_SCHEMA = StructType(
+        [
+            StructField("id", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("campaignCode", StringType(), True),
+            StructField("createdAt", TimestampType(), True),
+            StructField("updatedAt", TimestampType(), True),
+            StructField("archived", BooleanType(), True),
+            StructField("color", StringType(), True),
+            StructField("notes", StringType(), True),
+        ]
+    )
+
     TABLE_SCHEMAS: dict[str, StructType] = {
         "contacts": _crm_schema(CONTACTS_PROPERTIES),
         "companies": _crm_schema(COMPANIES_PROPERTIES),
@@ -990,6 +1102,12 @@ def register_lakeflow_source(spark):
         "invoices": _crm_schema_with_associations(INVOICES_PROPERTIES),
         "communications": _crm_schema_with_associations(COMMUNICATIONS_PROPERTIES),
         "postal_mail": _crm_schema_with_associations(POSTAL_MAIL_PROPERTIES),
+        "marketing_emails": MARKETING_EMAILS_SCHEMA,
+        "email_events": EMAIL_EVENTS_SCHEMA,
+        "forms": FORMS_SCHEMA,
+        "form_submissions": FORM_SUBMISSIONS_SCHEMA,
+        "marketing_events": MARKETING_EVENTS_SCHEMA,
+        "campaigns": CAMPAIGNS_SCHEMA,
     }
 
     _CDC_METADATA = {
@@ -1022,6 +1140,36 @@ def register_lakeflow_source(spark):
         "invoices": dict(_CDC_METADATA),
         "communications": dict(_CDC_METADATA),
         "postal_mail": dict(_CDC_METADATA),
+        "marketing_emails": {
+            "primary_keys": ["id"],
+            "cursor_field": "updatedAt",
+            "ingestion_type": "cdc",
+        },
+        "email_events": {
+            "primary_keys": ["id"],
+            "cursor_field": "created",
+            "ingestion_type": "cdc",
+        },
+        "forms": {
+            "primary_keys": ["id"],
+            "cursor_field": "updatedAt",
+            "ingestion_type": "cdc",
+        },
+        "form_submissions": {
+            "primary_keys": ["form_id", "submittedAt", "contact_id"],
+            "cursor_field": "submittedAt",
+            "ingestion_type": "cdc",
+        },
+        "marketing_events": {
+            "primary_keys": ["id"],
+            "cursor_field": "updatedAt",
+            "ingestion_type": "cdc",
+        },
+        "campaigns": {
+            "primary_keys": ["id"],
+            "cursor_field": "updatedAt",
+            "ingestion_type": "cdc",
+        },
         "owners": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
         "pipelines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     }
@@ -1052,6 +1200,17 @@ def register_lakeflow_source(spark):
         "invoices",
         "communications",
         "postal_mail",
+    }
+
+    V3_CURSOR_TABLE_PATHS: dict[str, str] = {
+        "marketing_emails": "/marketing/v3/emails/",
+        "forms": "/marketing/v3/forms/",
+        "marketing_events": "/marketing/v3/marketing-events/",
+        "campaigns": "/marketing/v3/campaigns/",
+    }
+
+    LEGACY_OFFSET_TABLE_PATHS: dict[str, str] = {
+        "email_events": "/email/public/v1/events",
     }
 
     SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
@@ -1117,6 +1276,12 @@ def register_lakeflow_source(spark):
 
             if table_name in CRM_OBJECTS:
                 return self._read_crm_object(table_name, start_offset)
+            if table_name in V3_CURSOR_TABLE_PATHS:
+                return self._read_v3_cursor_table(table_name, start_offset)
+            if table_name in LEGACY_OFFSET_TABLE_PATHS:
+                return self._read_legacy_offset_table(table_name, start_offset)
+            if table_name == "form_submissions":
+                return self._read_form_submissions(start_offset)
             if table_name == "owners":
                 return self._read_snapshot("/crm/v3/owners")
             if table_name == "pipelines":
@@ -1147,6 +1312,95 @@ def register_lakeflow_source(spark):
             offset = {"updatedAt": latest_updated} if latest_updated else {}
             return iter(records), offset
 
+        def _read_v3_cursor_table(
+            self, table_name: str, start_offset: dict
+        ) -> tuple[Iterator[dict], dict]:
+            cursor_field = TABLE_METADATA[table_name]["cursor_field"]
+            checkpoint = start_offset.get(cursor_field) if start_offset else None
+            records = self._fetch_list_records(V3_CURSOR_TABLE_PATHS[table_name])
+            if checkpoint:
+                records = [
+                    record
+                    for record in records
+                    if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+                ]
+
+            latest = checkpoint
+            for record in records:
+                cursor = record.get(cursor_field)
+                if cursor and (latest is None or cursor > latest):
+                    latest = cursor
+
+            if latest and latest > self._init_ts:
+                latest = self._init_ts
+            offset = {cursor_field: latest} if latest else {}
+            return iter(records), offset
+
+        def _read_legacy_offset_table(
+            self, table_name: str, start_offset: dict
+        ) -> tuple[Iterator[dict], dict]:
+            cursor_field = TABLE_METADATA[table_name]["cursor_field"]
+            checkpoint = start_offset.get(cursor_field) if start_offset else None
+            records = self._fetch_legacy_offset_records(LEGACY_OFFSET_TABLE_PATHS[table_name])
+            if checkpoint is not None:
+                records = [
+                    record
+                    for record in records
+                    if record.get(cursor_field) is not None
+                    and record.get(cursor_field) > checkpoint
+                ]
+
+            latest = checkpoint
+            for record in records:
+                cursor = record.get(cursor_field)
+                if cursor is not None and (latest is None or cursor > latest):
+                    latest = cursor
+
+            offset = {cursor_field: latest} if latest is not None else {}
+            return iter(records), offset
+
+        def _read_form_submissions(self, start_offset: dict) -> tuple[Iterator[dict], dict]:
+            """Fan out over forms, then read each form's submissions endpoint.
+
+            HubSpot exposes submissions by form, not as one global stream. This
+            method first enumerates ``/marketing/v3/forms/`` with v3 cursor
+            pagination, then calls
+            ``/form-integrations/v1/submissions/forms/{formGuid}`` for each form
+            using that endpoint's legacy offset pagination. Submission records are
+            yielded exactly as returned by the submissions endpoint.
+            """
+            cursor_field = TABLE_METADATA["form_submissions"]["cursor_field"]
+            checkpoint = start_offset.get(cursor_field) if start_offset else None
+            forms = self._fetch_list_records(V3_CURSOR_TABLE_PATHS["forms"])
+            records: list[dict] = []
+            for form in forms:
+                form_id = form.get("guid") or form.get("id")
+                if not form_id:
+                    continue
+                records.extend(
+                    self._fetch_legacy_offset_records(
+                        f"/form-integrations/v1/submissions/forms/{form_id}"
+                    )
+                )
+
+            if checkpoint:
+                records = [
+                    record
+                    for record in records
+                    if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+                ]
+
+            latest = checkpoint
+            for record in records:
+                cursor = record.get(cursor_field)
+                if cursor and (latest is None or cursor > latest):
+                    latest = cursor
+
+            if latest and latest > self._init_ts:
+                latest = self._init_ts
+            offset = {cursor_field: latest} if latest else {}
+            return iter(records), offset
+
         def _read_snapshot(self, path: str) -> tuple[Iterator[dict], dict]:
             return iter(self._fetch_list_records(path)), {}
 
@@ -1168,6 +1422,35 @@ def register_lakeflow_source(spark):
                 records.extend(payload.get("results", []))
                 after = payload.get("paging", {}).get("next", {}).get("after")
                 if not after:
+                    return records
+                time.sleep(0.1)
+
+        def _fetch_legacy_offset_records(self, path: str) -> list[dict]:
+            records: list[dict] = []
+            offset = None
+            while True:
+                params = {"limit": "100"}
+                if offset is not None:
+                    params["offset"] = str(offset)
+                response = requests.get(
+                    f"{self.base_url}{path}",
+                    headers=self.headers,
+                    params=params,
+                    timeout=60,
+                )
+                self._raise_for_status(response)
+                payload = response.json()
+                page = (
+                    payload.get("events")
+                    or payload.get("results")
+                    or payload.get("submissions")
+                    or []
+                )
+                records.extend(page)
+                if not payload.get("hasMore"):
+                    return records
+                offset = payload.get("offset")
+                if offset is None:
                     return records
                 time.sleep(0.1)
 

@@ -8,10 +8,12 @@ from pyspark.sql.types import StructType
 from databricks.labs.community_connector.interface import LakeflowConnect
 from databricks.labs.community_connector.sources.hubspot_extended.hubspot_extended_schemas import (
     CRM_OBJECTS,
+    LEGACY_OFFSET_TABLE_PATHS,
     SEARCH_CURSOR_PROPERTIES,
     SUPPORTED_TABLES,
     TABLE_METADATA,
     TABLE_SCHEMAS,
+    V3_CURSOR_TABLE_PATHS,
     crm_request_properties,
 )
 
@@ -44,6 +46,12 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
 
         if table_name in CRM_OBJECTS:
             return self._read_crm_object(table_name, start_offset)
+        if table_name in V3_CURSOR_TABLE_PATHS:
+            return self._read_v3_cursor_table(table_name, start_offset)
+        if table_name in LEGACY_OFFSET_TABLE_PATHS:
+            return self._read_legacy_offset_table(table_name, start_offset)
+        if table_name == "form_submissions":
+            return self._read_form_submissions(start_offset)
         if table_name == "owners":
             return self._read_snapshot("/crm/v3/owners")
         if table_name == "pipelines":
@@ -72,6 +80,94 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
         offset = {"updatedAt": latest_updated} if latest_updated else {}
         return iter(records), offset
 
+    def _read_v3_cursor_table(
+        self, table_name: str, start_offset: dict
+    ) -> tuple[Iterator[dict], dict]:
+        cursor_field = TABLE_METADATA[table_name]["cursor_field"]
+        checkpoint = start_offset.get(cursor_field) if start_offset else None
+        records = self._fetch_list_records(V3_CURSOR_TABLE_PATHS[table_name])
+        if checkpoint:
+            records = [
+                record
+                for record in records
+                if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+            ]
+
+        latest = checkpoint
+        for record in records:
+            cursor = record.get(cursor_field)
+            if cursor and (latest is None or cursor > latest):
+                latest = cursor
+
+        if latest and latest > self._init_ts:
+            latest = self._init_ts
+        offset = {cursor_field: latest} if latest else {}
+        return iter(records), offset
+
+    def _read_legacy_offset_table(
+        self, table_name: str, start_offset: dict
+    ) -> tuple[Iterator[dict], dict]:
+        cursor_field = TABLE_METADATA[table_name]["cursor_field"]
+        checkpoint = start_offset.get(cursor_field) if start_offset else None
+        records = self._fetch_legacy_offset_records(LEGACY_OFFSET_TABLE_PATHS[table_name])
+        if checkpoint is not None:
+            records = [
+                record
+                for record in records
+                if record.get(cursor_field) is not None and record.get(cursor_field) > checkpoint
+            ]
+
+        latest = checkpoint
+        for record in records:
+            cursor = record.get(cursor_field)
+            if cursor is not None and (latest is None or cursor > latest):
+                latest = cursor
+
+        offset = {cursor_field: latest} if latest is not None else {}
+        return iter(records), offset
+
+    def _read_form_submissions(self, start_offset: dict) -> tuple[Iterator[dict], dict]:
+        """Fan out over forms, then read each form's submissions endpoint.
+
+        HubSpot exposes submissions by form, not as one global stream. This
+        method first enumerates ``/marketing/v3/forms/`` with v3 cursor
+        pagination, then calls
+        ``/form-integrations/v1/submissions/forms/{formGuid}`` for each form
+        using that endpoint's legacy offset pagination. Submission records are
+        yielded exactly as returned by the submissions endpoint.
+        """
+        cursor_field = TABLE_METADATA["form_submissions"]["cursor_field"]
+        checkpoint = start_offset.get(cursor_field) if start_offset else None
+        forms = self._fetch_list_records(V3_CURSOR_TABLE_PATHS["forms"])
+        records: list[dict] = []
+        for form in forms:
+            form_id = form.get("guid") or form.get("id")
+            if not form_id:
+                continue
+            records.extend(
+                self._fetch_legacy_offset_records(
+                    f"/form-integrations/v1/submissions/forms/{form_id}"
+                )
+            )
+
+        if checkpoint:
+            records = [
+                record
+                for record in records
+                if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+            ]
+
+        latest = checkpoint
+        for record in records:
+            cursor = record.get(cursor_field)
+            if cursor and (latest is None or cursor > latest):
+                latest = cursor
+
+        if latest and latest > self._init_ts:
+            latest = self._init_ts
+        offset = {cursor_field: latest} if latest else {}
+        return iter(records), offset
+
     def _read_snapshot(self, path: str) -> tuple[Iterator[dict], dict]:
         return iter(self._fetch_list_records(path)), {}
 
@@ -93,6 +189,32 @@ class HubspotExtendedLakeflowConnect(LakeflowConnect):
             records.extend(payload.get("results", []))
             after = payload.get("paging", {}).get("next", {}).get("after")
             if not after:
+                return records
+            time.sleep(0.1)
+
+    def _fetch_legacy_offset_records(self, path: str) -> list[dict]:
+        records: list[dict] = []
+        offset = None
+        while True:
+            params = {"limit": "100"}
+            if offset is not None:
+                params["offset"] = str(offset)
+            response = requests.get(
+                f"{self.base_url}{path}",
+                headers=self.headers,
+                params=params,
+                timeout=60,
+            )
+            self._raise_for_status(response)
+            payload = response.json()
+            page = (
+                payload.get("events") or payload.get("results") or payload.get("submissions") or []
+            )
+            records.extend(page)
+            if not payload.get("hasMore"):
+                return records
+            offset = payload.get("offset")
+            if offset is None:
                 return records
             time.sleep(0.1)
 

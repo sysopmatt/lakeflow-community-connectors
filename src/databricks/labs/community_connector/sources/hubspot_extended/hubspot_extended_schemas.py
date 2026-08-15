@@ -410,6 +410,118 @@ PIPELINES_SCHEMA = StructType(
     ]
 )
 
+MARKETING_EMAILS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("subject", StringType(), True),
+        StructField("state", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("publishedAt", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+        StructField("authorName", StringType(), True),
+        StructField("campaign", StringType(), True),
+    ]
+)
+
+EMAIL_EVENTS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("created", LongType(), True),
+        StructField("recipient", StringType(), True),
+        StructField("portalId", LongType(), True),
+        StructField("appId", LongType(), True),
+        StructField("sentBy", StringType(), True),
+        StructField("emailCampaignId", LongType(), True),
+        StructField("smtpId", StringType(), True),
+        StructField("url", StringType(), True),
+        StructField("response", StringType(), True),
+    ]
+)
+
+FORM_FIELD_SCHEMA = StructType(
+    [
+        StructField("name", StringType(), True),
+        StructField("label", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("fieldType", StringType(), True),
+        StructField("required", BooleanType(), True),
+    ]
+)
+
+FORMS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("guid", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("formType", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+        StructField("publishedAt", TimestampType(), True),
+        StructField("fields", ArrayType(FORM_FIELD_SCHEMA), True),
+    ]
+)
+
+FORM_SUBMISSION_VALUE_SCHEMA = StructType(
+    [
+        StructField("name", StringType(), True),
+        StructField("value", StringType(), True),
+        StructField("objectTypeId", StringType(), True),
+    ]
+)
+
+FORM_SUBMISSION_PAGE_SCHEMA = StructType(
+    [
+        StructField("pageUrl", StringType(), True),
+        StructField("pageName", StringType(), True),
+    ]
+)
+
+FORM_SUBMISSIONS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("form_id", StringType(), True),
+        StructField("submittedAt", TimestampType(), True),
+        StructField("contact_id", StringType(), True),
+        StructField("conversionId", StringType(), True),
+        StructField("page", FORM_SUBMISSION_PAGE_SCHEMA, True),
+        StructField("values", ArrayType(FORM_SUBMISSION_VALUE_SCHEMA), True),
+    ]
+)
+
+MARKETING_EVENTS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("externalEventId", StringType(), True),
+        StructField("externalAccountId", StringType(), True),
+        StructField("eventName", StringType(), True),
+        StructField("eventType", StringType(), True),
+        StructField("startDateTime", TimestampType(), True),
+        StructField("endDateTime", TimestampType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("eventOrganizer", StringType(), True),
+        StructField("eventUrl", StringType(), True),
+    ]
+)
+
+CAMPAIGNS_SCHEMA = StructType(
+    [
+        StructField("id", StringType(), True),
+        StructField("name", StringType(), True),
+        StructField("campaignCode", StringType(), True),
+        StructField("createdAt", TimestampType(), True),
+        StructField("updatedAt", TimestampType(), True),
+        StructField("archived", BooleanType(), True),
+        StructField("color", StringType(), True),
+        StructField("notes", StringType(), True),
+    ]
+)
+
 TABLE_SCHEMAS: dict[str, StructType] = {
     "contacts": _crm_schema(CONTACTS_PROPERTIES),
     "companies": _crm_schema(COMPANIES_PROPERTIES),
@@ -436,6 +548,12 @@ TABLE_SCHEMAS: dict[str, StructType] = {
     "invoices": _crm_schema_with_associations(INVOICES_PROPERTIES),
     "communications": _crm_schema_with_associations(COMMUNICATIONS_PROPERTIES),
     "postal_mail": _crm_schema_with_associations(POSTAL_MAIL_PROPERTIES),
+    "marketing_emails": MARKETING_EMAILS_SCHEMA,
+    "email_events": EMAIL_EVENTS_SCHEMA,
+    "forms": FORMS_SCHEMA,
+    "form_submissions": FORM_SUBMISSIONS_SCHEMA,
+    "marketing_events": MARKETING_EVENTS_SCHEMA,
+    "campaigns": CAMPAIGNS_SCHEMA,
 }
 
 _CDC_METADATA = {
@@ -468,6 +586,36 @@ TABLE_METADATA: dict[str, dict] = {
     "invoices": dict(_CDC_METADATA),
     "communications": dict(_CDC_METADATA),
     "postal_mail": dict(_CDC_METADATA),
+    "marketing_emails": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
+    "email_events": {
+        "primary_keys": ["id"],
+        "cursor_field": "created",
+        "ingestion_type": "cdc",
+    },
+    "forms": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
+    "form_submissions": {
+        "primary_keys": ["form_id", "submittedAt", "contact_id"],
+        "cursor_field": "submittedAt",
+        "ingestion_type": "cdc",
+    },
+    "marketing_events": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
+    "campaigns": {
+        "primary_keys": ["id"],
+        "cursor_field": "updatedAt",
+        "ingestion_type": "cdc",
+    },
     "owners": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
     "pipelines": {"primary_keys": ["id"], "ingestion_type": "snapshot"},
 }
@@ -498,6 +646,17 @@ CRM_OBJECTS: set[str] = {
     "invoices",
     "communications",
     "postal_mail",
+}
+
+V3_CURSOR_TABLE_PATHS: dict[str, str] = {
+    "marketing_emails": "/marketing/v3/emails/",
+    "forms": "/marketing/v3/forms/",
+    "marketing_events": "/marketing/v3/marketing-events/",
+    "campaigns": "/marketing/v3/campaigns/",
+}
+
+LEGACY_OFFSET_TABLE_PATHS: dict[str, str] = {
+    "email_events": "/email/public/v1/events",
 }
 
 SEARCH_CURSOR_PROPERTIES: dict[str, str] = {

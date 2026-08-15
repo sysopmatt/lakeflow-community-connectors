@@ -195,3 +195,28 @@ endpoints:
     method: GET
     corpus: pipelines
     response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /marketing/v3/emails/
+    method: GET
+    corpus: marketing_emails
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /email/public/v1/events
+    method: GET
+    corpus: email_events
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_email_events
+  - path: /marketing/v3/forms/
+    method: GET
+    corpus: forms
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /form-integrations/v1/submissions/forms/{form_guid}
+    method: GET
+    corpus: form_submissions
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_form_submissions
+  - path: /marketing/v3/marketing-events/
+    method: GET
+    corpus: marketing_events
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /marketing/v3/campaigns/
+    method: GET
+    corpus: campaigns
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
