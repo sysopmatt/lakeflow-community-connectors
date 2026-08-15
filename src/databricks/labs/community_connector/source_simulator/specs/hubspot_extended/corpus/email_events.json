@@ -23,7 +23,11 @@
     "emailCampaignId": 3001,
     "smtpId": "smtp-3001-1",
     "url": null,
-    "response": null
+    "response": {
+      "status": "dropped",
+      "reason": "previously bounced",
+      "category": "BOUNCE"
+    }
   },
   {
     "id": "evt-3001-3",

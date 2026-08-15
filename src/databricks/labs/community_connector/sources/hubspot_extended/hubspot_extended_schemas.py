@@ -637,7 +637,7 @@ BEHAVIORAL_EVENTS_SCHEMA = StructType(
         StructField("occurredAt", TimestampType(), True),
         StructField("email", StringType(), True),
         StructField("utk", StringType(), True),
-        StructField("properties", StructType([StructField("source", StringType(), True)]), True),
+        StructField("properties", StringType(), True),
     ]
 )
 
@@ -975,13 +975,32 @@ SNAPSHOT_TABLE_PATHS: dict[str, str] = {
     "analytics_views": "/analytics/v2/reports/sources/total",
 }
 
+# Fan out over every CRM object stream this connector supports. HubSpot property
+# definition responses omit the object type because it is implied by the URL.
 PROPERTY_OBJECT_TYPES: tuple[str, ...] = (
     "contacts",
     "companies",
     "deals",
     "tickets",
-    "products",
+    "calls",
+    "emails",
+    "meetings",
+    "tasks",
+    "notes",
     "line_items",
+    "products",
+    "leads",
+    "quotes",
+    "feedback_submissions",
+    "appointments",
+    "listings",
+    "orders",
+    "carts",
+    "commerce_payments",
+    "subscriptions",
+    "invoices",
+    "communications",
+    "postal_mail",
 )
 
 SEARCH_CURSOR_PROPERTIES: dict[str, str] = {

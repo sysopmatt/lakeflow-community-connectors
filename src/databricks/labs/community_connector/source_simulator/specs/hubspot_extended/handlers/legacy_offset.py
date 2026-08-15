@@ -16,29 +16,28 @@ from databricks.labs.community_connector.source_simulator.interceptor import (
 
 def serve_email_events(prep: PreparedRequest, spec, corpus) -> Response:
     records = corpus.get(spec.corpus) or []
+    query = parse_qs(urlparse(prep.url or "").query)
+    start_timestamp = _int_param(query, "startTimestamp", 0)
+    if start_timestamp:
+        records = [record for record in records if record.get("created", 0) >= start_timestamp]
     return _legacy_response(prep, records, records_key="events", default_limit=2)
 
 
 def serve_form_submissions(prep: PreparedRequest, spec, corpus) -> Response:
     records = corpus.get(spec.corpus) or []
-    form_guid = urlparse(prep.url or "").path.rstrip("/").split("/")[-1]
-    filtered = [record for record in records if record.get("form_id") == form_guid]
-    return _legacy_response(prep, filtered, records_key="results", default_limit=100)
+    return _cursor_response(prep, records, default_limit=1, max_limit=50)
 
 
 def serve_thread_messages(prep: PreparedRequest, spec, corpus) -> Response:
     records = corpus.get(spec.corpus) or []
-    parts = urlparse(prep.url or "").path.rstrip("/").split("/")
-    thread_id = parts[-2] if len(parts) >= 2 else ""
-    filtered = [record for record in records if record.get("thread_id") == thread_id]
-    return _json_response(prep, {"results": filtered, "paging": {}})
+    return _json_response(prep, {"results": records, "paging": {}})
 
 
 def serve_properties(prep: PreparedRequest, spec, corpus) -> Response:
-    records = corpus.get(spec.corpus) or []
+    records_by_object = corpus.get(spec.corpus) or {}
     object_type = urlparse(prep.url or "").path.rstrip("/").split("/")[-1]
-    filtered = [record for record in records if record.get("objectType") == object_type]
-    return _json_response(prep, {"results": filtered, "paging": {}})
+    records = records_by_object.get(object_type, []) if isinstance(records_by_object, dict) else []
+    return _json_response(prep, {"results": records, "paging": {}})
 
 
 def _legacy_response(
@@ -68,6 +67,26 @@ def _legacy_response(
         url=prep.url,
     )
     return response_from_record(record, prep)
+
+
+def _cursor_response(
+    prep: PreparedRequest,
+    records: list[dict[str, Any]],
+    *,
+    default_limit: int,
+    max_limit: int,
+) -> Response:
+    query = parse_qs(urlparse(prep.url or "").query)
+    after = _int_param(query, "after", 0)
+    limit = min(_int_param(query, "limit", default_limit), max_limit, default_limit)
+    page = records[after : after + limit]
+    next_after = after + len(page)
+    body: dict[str, Any] = {"results": page}
+    if next_after < len(records):
+        body["paging"] = {"next": {"after": str(next_after)}}
+    else:
+        body["paging"] = {}
+    return _json_response(prep, body)
 
 
 def _json_response(prep: PreparedRequest, body: dict[str, Any]) -> Response:

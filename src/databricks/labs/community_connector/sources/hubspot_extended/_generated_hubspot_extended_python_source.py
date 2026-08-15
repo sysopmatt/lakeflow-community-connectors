@@ -5,13 +5,15 @@
 # Do not edit manually. Make changes to the source files instead.
 # ==============================================================================
 
+import base64
+import json
+import time
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
 from decimal import Decimal
 from typing import Any, Iterator, Sequence
-import json
-import time
 
+import requests
 from pyspark.sql import Row
 from pyspark.sql.datasource import (
     DataSource,
@@ -40,8 +42,6 @@ from pyspark.sql.types import (
     VariantType,
     VariantVal,
 )
-import base64
-import requests
 
 
 def register_lakeflow_source(spark):
@@ -71,7 +71,6 @@ def register_lakeflow_source(spark):
                 raise ValueError(f"Field {field.name} is not nullable but not found in the input")
         return Row(**field_dict)
 
-
     def _parse_array(value: Any, field_type: ArrayType) -> list:
         """Parse a list into a PySpark array based on ArrayType schema."""
         if not isinstance(value, list):
@@ -79,7 +78,6 @@ def register_lakeflow_source(spark):
                 return [parse_value(value, field_type.elementType)]
             raise ValueError(f"Expected a list for ArrayType, got {type(value)}")
         return [parse_value(v, field_type.elementType) for v in value]
-
 
     def _parse_map(value: Any, field_type: MapType) -> dict:
         """Parse a dictionary into a PySpark map based on MapType schema."""
@@ -90,11 +88,9 @@ def register_lakeflow_source(spark):
             for k, v in value.items()
         }
 
-
     def _parse_string(value: Any) -> str:
         """Convert value to string."""
         return str(value)
-
 
     def _parse_integer(value: Any) -> int:
         """Convert value to integer."""
@@ -104,16 +100,13 @@ def register_lakeflow_source(spark):
             return int(value)
         raise ValueError(f"Cannot convert {value} to integer")
 
-
     def _parse_float(value: Any) -> float:
         """Convert value to float."""
         return float(value)
 
-
     def _parse_decimal(value: Any) -> Decimal:
         """Convert value to Decimal."""
         return Decimal(value) if isinstance(value, str) and value.strip() else Decimal(str(value))
-
 
     def _parse_boolean(value: Any) -> bool:
         """Convert value to boolean."""
@@ -124,7 +117,6 @@ def register_lakeflow_source(spark):
             if lowered in ("false", "f", "no", "n", "0"):
                 return False
         return bool(value)
-
 
     def _parse_date(value: Any) -> datetime.date:
         """Convert value to date."""
@@ -138,7 +130,6 @@ def register_lakeflow_source(spark):
         if isinstance(value, datetime):
             return value.date()
         raise ValueError(f"Cannot convert {value} to date")
-
 
     def _parse_timestamp(value: Any) -> datetime:
         """Convert value to timestamp."""
@@ -158,7 +149,6 @@ def register_lakeflow_source(spark):
             return value
         raise ValueError(f"Cannot convert {value} to timestamp")
 
-
     def _decode_string_to_bytes(value: str) -> bytes:
         """Try to decode a string as base64, then hex, then UTF-8."""
         try:
@@ -171,7 +161,6 @@ def register_lakeflow_source(spark):
             pass
         return value.encode("utf-8")
 
-
     def _parse_binary(value: Any) -> bytes:
         """Convert value to bytes. Tries base64, then hex, then UTF-8 for strings."""
         if isinstance(value, bytes):
@@ -183,7 +172,6 @@ def register_lakeflow_source(spark):
         if isinstance(value, list):
             return bytes(value)
         return str(value).encode("utf-8")
-
 
     # Mapping of primitive types to their parser functions
     _PRIMITIVE_PARSERS = {
@@ -199,8 +187,9 @@ def register_lakeflow_source(spark):
         BinaryType: _parse_binary,
     }
 
-
-    def parse_value(value: Any, field_type: DataType) -> Any:  # pylint: disable=too-many-return-statements
+    def parse_value(
+        value: Any, field_type: DataType
+    ) -> Any:  # pylint: disable=too-many-return-statements
         """
         Converts a JSON value into a PySpark-compatible data type based on the provided field type.
         """
@@ -231,8 +220,9 @@ def register_lakeflow_source(spark):
 
             raise TypeError(f"Unsupported field type: {field_type}")
         except (ValueError, TypeError) as e:
-            raise ValueError(f"Error converting '{value}' ({type(value)}) to {field_type}: {str(e)}")
-
+            raise ValueError(
+                f"Error converting '{value}' ({type(value)}) to {field_type}: {str(e)}"
+            )
 
     ########################################################
     # src/databricks/labs/community_connector/interface/lakeflow_connect.py
@@ -264,9 +254,7 @@ def register_lakeflow_source(spark):
             """
 
         @abstractmethod
-        def get_table_schema(
-            self, table_name: str, table_options: dict[str, str]
-        ) -> StructType:
+        def get_table_schema(self, table_name: str, table_options: dict[str, str]) -> StructType:
             """
             Fetch the schema of a table.
             Args:
@@ -282,9 +270,7 @@ def register_lakeflow_source(spark):
             """
 
         @abstractmethod
-        def read_table_metadata(
-            self, table_name: str, table_options: dict[str, str]
-        ) -> dict:
+        def read_table_metadata(self, table_name: str, table_options: dict[str, str]) -> dict:
             """
             Fetch the metadata of a table.
             Args:
@@ -379,7 +365,6 @@ def register_lakeflow_source(spark):
                 "read_table_deletes() must be implemented when ingestion_type is 'cdc_with_deletes'"
             )
 
-
     ########################################################
     # src/databricks/labs/community_connector/interface/supports_partition.py
     ########################################################
@@ -431,7 +416,6 @@ def register_lakeflow_source(spark):
             Returns:
                 An iterator of records as JSON-compatible dicts.
             """
-
 
     class SupportsPartitionedStream(SupportsPartition):
         """Mixin for connectors that support partitioned streaming reads.
@@ -515,7 +499,6 @@ def register_lakeflow_source(spark):
                 JSON-serialisable (primitive types only).
             """
 
-
     ########################################################
     # src/databricks/labs/community_connector/interface/supports_namespaces.py
     ########################################################
@@ -588,14 +571,12 @@ def register_lakeflow_source(spark):
                 the connector does not need to echo it back.
             """
 
-
     ########################################################
     # src/databricks/labs/community_connector/sources/hubspot_extended/hubspot_extended_schemas.py
     ########################################################
 
     def _properties(*names: str) -> StructType:
         return StructType([StructField(name, StringType(), True) for name in names])
-
 
     def _crm_schema(properties: StructType) -> StructType:
         return StructType(
@@ -607,7 +588,6 @@ def register_lakeflow_source(spark):
                 StructField("properties", properties, True),
             ]
         )
-
 
     ASSOCIATION_RESULT_SCHEMA = StructType(
         [
@@ -632,13 +612,11 @@ def register_lakeflow_source(spark):
         ]
     )
 
-
     def _crm_schema_with_associations(properties: StructType) -> StructType:
         return StructType(
             _crm_schema(properties).fields
             + [StructField("associations", CRM_ASSOCIATIONS_SCHEMA, True)]
         )
-
 
     CONTACTS_PROPERTIES = _properties(
         "hs_object_id",
@@ -1219,7 +1197,7 @@ def register_lakeflow_source(spark):
             StructField("occurredAt", TimestampType(), True),
             StructField("email", StringType(), True),
             StructField("utk", StringType(), True),
-            StructField("properties", StructType([StructField("source", StringType(), True)]), True),
+            StructField("properties", StringType(), True),
         ]
     )
 
@@ -1557,13 +1535,32 @@ def register_lakeflow_source(spark):
         "analytics_views": "/analytics/v2/reports/sources/total",
     }
 
+    # Fan out over every CRM object stream this connector supports. HubSpot property
+    # definition responses omit the object type because it is implied by the URL.
     PROPERTY_OBJECT_TYPES: tuple[str, ...] = (
         "contacts",
         "companies",
         "deals",
         "tickets",
-        "products",
+        "calls",
+        "emails",
+        "meetings",
+        "tasks",
+        "notes",
         "line_items",
+        "products",
+        "leads",
+        "quotes",
+        "feedback_submissions",
+        "appointments",
+        "listings",
+        "orders",
+        "carts",
+        "commerce_payments",
+        "subscriptions",
+        "invoices",
+        "communications",
+        "postal_mail",
     )
 
     SEARCH_CURSOR_PROPERTIES: dict[str, str] = {
@@ -1592,12 +1589,10 @@ def register_lakeflow_source(spark):
         "postal_mail": "hs_lastmodifieddate",
     }
 
-
     def crm_request_properties(table_name: str) -> list[str]:
         properties = TABLE_SCHEMAS[table_name]["properties"].dataType
         assert isinstance(properties, StructType)
         return [field.name for field in properties.fields]
-
 
     ########################################################
     # src/databricks/labs/community_connector/sources/hubspot_extended/hubspot_extended.py
@@ -1642,15 +1637,17 @@ def register_lakeflow_source(spark):
             if table_name == "properties":
                 return self._read_properties()
             if table_name in SNAPSHOT_TABLE_PATHS:
-                return self._read_snapshot(SNAPSHOT_TABLE_PATHS[table_name])
+                return self._read_snapshot(table_name, SNAPSHOT_TABLE_PATHS[table_name])
             if table_name == "owners":
-                return self._read_snapshot("/crm/v3/owners")
+                return self._read_snapshot(table_name, "/crm/v3/owners")
             if table_name == "pipelines":
-                return self._read_snapshot("/crm/v3/pipelines/deals")
+                return self._read_snapshot(table_name, "/crm/v3/pipelines/deals")
 
             raise ValueError(f"Unsupported table: {table_name}")
 
-        def _read_crm_object(self, table_name: str, start_offset: dict) -> tuple[Iterator[dict], dict]:
+        def _read_crm_object(
+            self, table_name: str, start_offset: dict
+        ) -> tuple[Iterator[dict], dict]:
             checkpoint = start_offset.get("updatedAt") if start_offset else None
             if checkpoint and checkpoint >= self._init_ts:
                 return iter(()), start_offset
@@ -1658,7 +1655,10 @@ def register_lakeflow_source(spark):
             if checkpoint:
                 records = self._fetch_search_records(table_name, checkpoint)
             else:
-                records = self._fetch_list_records(f"/crm/v3/objects/{table_name}")
+                records = self._fetch_list_records(
+                    f"/crm/v3/objects/{table_name}",
+                    extra_params={"properties": ",".join(crm_request_properties(table_name))},
+                )
 
             latest_updated = checkpoint
             for record in records:
@@ -1676,13 +1676,18 @@ def register_lakeflow_source(spark):
         ) -> tuple[Iterator[dict], dict]:
             cursor_field = TABLE_METADATA[table_name]["cursor_field"]
             checkpoint = start_offset.get(cursor_field) if start_offset else None
-            records = self._fetch_list_records(V3_CURSOR_TABLE_PATHS[table_name])
-            if checkpoint:
+            since_params = self._v3_since_params(table_name, checkpoint)
+            records = self._fetch_list_records(
+                V3_CURSOR_TABLE_PATHS[table_name], extra_params=since_params
+            )
+            if checkpoint and not since_params:
+                # These endpoints do not expose a documented server-side updated-since filter.
                 records = [
                     record
                     for record in records
                     if record.get(cursor_field) and record.get(cursor_field) > checkpoint
                 ]
+            records = self._prepare_records(table_name, records)
 
             latest = checkpoint
             for record in records:
@@ -1690,8 +1695,7 @@ def register_lakeflow_source(spark):
                 if cursor and (latest is None or cursor > latest):
                     latest = cursor
 
-            if latest and latest > self._init_ts:
-                latest = self._init_ts
+            latest = self._cap_latest(latest)
             offset = {cursor_field: latest} if latest else {}
             return iter(records), offset
 
@@ -1700,12 +1704,18 @@ def register_lakeflow_source(spark):
         ) -> tuple[Iterator[dict], dict]:
             cursor_field = TABLE_METADATA[table_name]["cursor_field"]
             checkpoint = start_offset.get(cursor_field) if start_offset else None
-            records = self._fetch_legacy_offset_records(LEGACY_OFFSET_TABLE_PATHS[table_name])
+            extra_params: dict[str, str] = {}
+            if table_name == "email_events" and checkpoint is not None:
+                extra_params["startTimestamp"] = str(checkpoint)
+            records = self._fetch_legacy_offset_records(
+                LEGACY_OFFSET_TABLE_PATHS[table_name], extra_params=extra_params
+            )
             if checkpoint is not None:
                 records = [
                     record
                     for record in records
-                    if record.get(cursor_field) is not None and record.get(cursor_field) > checkpoint
+                    if record.get(cursor_field) is not None
+                    and record.get(cursor_field) > checkpoint
                 ]
 
             latest = checkpoint
@@ -1714,6 +1724,8 @@ def register_lakeflow_source(spark):
                 if cursor is not None and (latest is None or cursor > latest):
                     latest = cursor
 
+            latest = self._cap_latest(latest)
+            records = self._prepare_records(table_name, records)
             offset = {cursor_field: latest} if latest is not None else {}
             return iter(records), offset
 
@@ -1724,8 +1736,9 @@ def register_lakeflow_source(spark):
             method first enumerates ``/marketing/v3/forms/`` with v3 cursor
             pagination, then calls
             ``/form-integrations/v1/submissions/forms/{formGuid}`` for each form
-            using that endpoint's legacy offset pagination. Submission records are
-            yielded exactly as returned by the submissions endpoint.
+            using that endpoint's cursor pagination. HubSpot does not include the
+            parent form GUID on each submission payload, so this method injects
+            ``form_id`` to make the composite primary key materializable.
             """
             cursor_field = TABLE_METADATA["form_submissions"]["cursor_field"]
             checkpoint = start_offset.get(cursor_field) if start_offset else None
@@ -1735,11 +1748,10 @@ def register_lakeflow_source(spark):
                 form_id = form.get("guid") or form.get("id")
                 if not form_id:
                     continue
-                records.extend(
-                    self._fetch_legacy_offset_records(
-                        f"/form-integrations/v1/submissions/forms/{form_id}"
-                    )
+                submissions = self._fetch_list_records(
+                    f"/form-integrations/v1/submissions/forms/{form_id}", limit="50"
                 )
+                records.extend(self._inject_parent_key(submissions, "form_id", form_id))
 
             if checkpoint:
                 records = [
@@ -1754,8 +1766,7 @@ def register_lakeflow_source(spark):
                 if cursor and (latest is None or cursor > latest):
                     latest = cursor
 
-            if latest and latest > self._init_ts:
-                latest = self._init_ts
+            latest = self._cap_latest(latest)
             offset = {cursor_field: latest} if latest else {}
             return iter(records), offset
 
@@ -1767,7 +1778,9 @@ def register_lakeflow_source(spark):
             pagination, then calls
             ``/conversations/v3/conversations/threads/{threadId}/messages`` for
             each thread. Message records are yielded exactly as returned by the
-            messages endpoint.
+            messages endpoint. HubSpot does not include the parent thread id on
+            every message payload, so this method injects ``thread_id`` for the
+            composite primary key.
             """
             cursor_field = TABLE_METADATA["conversation_messages"]["cursor_field"]
             checkpoint = start_offset.get(cursor_field) if start_offset else None
@@ -1777,11 +1790,10 @@ def register_lakeflow_source(spark):
                 thread_id = thread.get("id")
                 if not thread_id:
                     continue
-                records.extend(
-                    self._fetch_list_records(
-                        f"/conversations/v3/conversations/threads/{thread_id}/messages"
-                    )
+                messages = self._fetch_list_records(
+                    f"/conversations/v3/conversations/threads/{thread_id}/messages"
                 )
+                records.extend(self._inject_parent_key(messages, "thread_id", thread_id))
 
             if checkpoint:
                 records = [
@@ -1796,26 +1808,34 @@ def register_lakeflow_source(spark):
                 if cursor and (latest is None or cursor > latest):
                     latest = cursor
 
-            if latest and latest > self._init_ts:
-                latest = self._init_ts
+            latest = self._cap_latest(latest)
             offset = {cursor_field: latest} if latest else {}
             return iter(records), offset
 
         def _read_properties(self) -> tuple[Iterator[dict], dict]:
-            """Fan out over core CRM object types and read their property definitions."""
+            """Fan out over CRM object types and read their property definitions."""
             records: list[dict] = []
             for object_type in PROPERTY_OBJECT_TYPES:
-                records.extend(self._fetch_list_records(f"/crm/v3/properties/{object_type}"))
+                definitions = self._fetch_list_records(f"/crm/v3/properties/{object_type}")
+                records.extend(self._inject_parent_key(definitions, "objectType", object_type))
             return iter(records), {}
 
-        def _read_snapshot(self, path: str) -> tuple[Iterator[dict], dict]:
-            return iter(self._fetch_list_records(path)), {}
+        def _read_snapshot(self, table_name: str, path: str) -> tuple[Iterator[dict], dict]:
+            return iter(self._prepare_records(table_name, self._fetch_list_records(path))), {}
 
-        def _fetch_list_records(self, path: str) -> list[dict]:
+        def _fetch_list_records(
+            self,
+            path: str,
+            *,
+            extra_params: dict[str, str] | None = None,
+            limit: str = "100",
+        ) -> list[dict]:
             records: list[dict] = []
             after = None
             while True:
-                params = {"limit": "100"}
+                params = {"limit": limit}
+                if extra_params:
+                    params.update(extra_params)
                 if after:
                     params["after"] = after
                 response = requests.get(
@@ -1832,11 +1852,15 @@ def register_lakeflow_source(spark):
                     return records
                 time.sleep(0.1)
 
-        def _fetch_legacy_offset_records(self, path: str) -> list[dict]:
+        def _fetch_legacy_offset_records(
+            self, path: str, *, extra_params: dict[str, str] | None = None
+        ) -> list[dict]:
             records: list[dict] = []
             offset = None
             while True:
                 params = {"limit": "100"}
+                if extra_params:
+                    params.update(extra_params)
                 if offset is not None:
                     params["offset"] = str(offset)
                 response = requests.get(
@@ -1848,7 +1872,10 @@ def register_lakeflow_source(spark):
                 self._raise_for_status(response)
                 payload = response.json()
                 page = (
-                    payload.get("events") or payload.get("results") or payload.get("submissions") or []
+                    payload.get("events")
+                    or payload.get("results")
+                    or payload.get("submissions")
+                    or []
                 )
                 records.extend(page)
                 if not payload.get("hasMore"):
@@ -1857,6 +1884,70 @@ def register_lakeflow_source(spark):
                 if offset is None:
                     return records
                 time.sleep(0.1)
+
+        def _prepare_records(self, table_name: str, records: list[dict]) -> list[dict]:
+            if table_name == "pipelines":
+                return [self._encode_pipeline_metadata(record) for record in records]
+            if table_name == "behavioral_events":
+                return [self._encode_json_field(record, "properties") for record in records]
+            if table_name == "email_events":
+                return [self._encode_json_field(record, "response") for record in records]
+            return records
+
+        def _v3_since_params(self, table_name: str, checkpoint: str | None) -> dict[str, str]:
+            if not checkpoint:
+                return {}
+            if table_name == "behavioral_events":
+                return {"occurredAfter": checkpoint}
+            if table_name in {"blog_posts", "blog_tags", "blog_authors"}:
+                return {"updatedAfter": checkpoint}
+            if table_name in {"landing_pages", "site_pages"}:
+                return {"updatedAtAfter": checkpoint}
+            return {}
+
+        @classmethod
+        def _inject_parent_key(cls, records: list[dict], field_name: str, value: Any) -> list[dict]:
+            injected = []
+            for record in records:
+                next_record = dict(record)
+                next_record[field_name] = next_record.get(field_name) or value
+                injected.append(next_record)
+            return injected
+
+        @classmethod
+        def _encode_pipeline_metadata(cls, record: dict) -> dict:
+            stages = record.get("stages")
+            if not isinstance(stages, list):
+                return record
+
+            next_record = dict(record)
+            next_stages = []
+            for stage in stages:
+                if isinstance(stage, dict):
+                    next_stages.append(cls._encode_json_field(stage, "metadata"))
+                else:
+                    next_stages.append(stage)
+            next_record["stages"] = next_stages
+            return next_record
+
+        @staticmethod
+        def _encode_json_field(record: dict, field_name: str) -> dict:
+            value = record.get(field_name)
+            if not isinstance(value, (dict, list)):
+                return record
+            next_record = dict(record)
+            next_record[field_name] = json.dumps(value, sort_keys=True)
+            return next_record
+
+        def _cap_latest(self, latest: Any) -> Any:
+            if latest is None:
+                return latest
+            init_cap = (
+                self._iso_to_epoch_millis(self._init_ts)
+                if isinstance(latest, int)
+                else self._init_ts
+            )
+            return init_cap if latest > init_cap else latest
 
         def _fetch_search_records(self, table_name: str, checkpoint: str) -> list[dict]:
             records: list[dict] = []
@@ -1915,7 +2006,6 @@ def register_lakeflow_source(spark):
                     f"Unsupported table: {table_name}. Supported tables are: {SUPPORTED_TABLES}"
                 )
 
-
     ########################################################
     # src/databricks/labs/community_connector/sparkpds/lakeflow_datasource.py
     ########################################################
@@ -1932,7 +2022,6 @@ def register_lakeflow_source(spark):
     IS_DELETE_FLOW = "isDeleteFlow"
     NAMESPACE_PREFIX = "namespacePrefix"
     NAMESPACE = "namespace"
-
 
     def _decode_list_of_str_option(option_name: str, value: str | None) -> list[str] | None:
         """Decode and validate a JSON-encoded ``list[str]`` Spark option.
@@ -1952,11 +2041,9 @@ def register_lakeflow_source(spark):
             ) from e
         if not isinstance(decoded, list) or not all(isinstance(s, str) for s in decoded):
             raise ValueError(
-                f"option '{option_name}' must be a JSON-encoded list[str]; "
-                f"got: {decoded!r}"
+                f"option '{option_name}' must be a JSON-encoded list[str]; " f"got: {decoded!r}"
             )
         return decoded
-
 
     def _decode_dict_option(option_name: str, value: str | None) -> dict:
         """Decode and validate a JSON-encoded ``dict`` Spark option."""
@@ -1974,7 +2061,6 @@ def register_lakeflow_source(spark):
                 f"option '{option_name}' must be a JSON-encoded dict; got: {decoded!r}"
             )
         return decoded
-
 
     # PySpark's DataSource API requires camelCase method names and inherits
     # semantics from the parent class, so per-method docstrings are redundant.
@@ -2003,9 +2089,7 @@ def register_lakeflow_source(spark):
         def read(self, start: dict) -> (Iterator[tuple], dict):
             is_delete_flow = self.options.get(IS_DELETE_FLOW) == "true"
             # Strip delete flow options before passing to connector
-            table_options = {
-                k: v for k, v in self.options.items() if k != IS_DELETE_FLOW
-            }
+            table_options = {k: v for k, v in self.options.items() if k != IS_DELETE_FLOW}
 
             if is_delete_flow:
                 records, offset = self.lakeflow_connect.read_table_deletes(
@@ -2029,7 +2113,6 @@ def register_lakeflow_source(spark):
         def prepareForTriggerAvailableNow(self) -> None:
             # No need to do anything special here. Everything is handled in the __init__ method.
             pass
-
 
     class LakeflowPartitionedStreamReader(DataSourceStreamReader, SupportsTriggerAvailableNow):
         """Proxy that bridges SupportsPartitionedStream to PySpark's DataSourceStreamReader.
@@ -2069,9 +2152,7 @@ def register_lakeflow_source(spark):
                     f"got {type(limit).__name__}. Micro-batch sizing must be controlled "
                     f"by the connector implementation (table_options), not the engine."
                 )
-            return self.lakeflow_connect.latest_offset(
-                self.table_name, self.table_options, start
-            )
+            return self.lakeflow_connect.latest_offset(self.table_name, self.table_options, start)
 
         def partitions(self, start: dict, end: dict):
             partition_descs = self.lakeflow_connect.get_partitions(
@@ -2089,7 +2170,6 @@ def register_lakeflow_source(spark):
         def prepareForTriggerAvailableNow(self) -> None:
             # No need to do anything special here. Everything is handled in the __init__ method.
             pass
-
 
     class LakeflowBatchReader(DataSourceReader):
         def __init__(
@@ -2132,12 +2212,10 @@ def register_lakeflow_source(spark):
             return map(lambda x: parse_value(x, self.schema), records)
 
         def _read_table_metadata(self):
-            table_names = _decode_list_of_str_option(
-                TABLE_NAME_LIST, self.options.get(TABLE_NAME_LIST)
-            ) or []
-            table_configs = _decode_dict_option(
-                TABLE_CONFIGS, self.options.get(TABLE_CONFIGS)
+            table_names = (
+                _decode_list_of_str_option(TABLE_NAME_LIST, self.options.get(TABLE_NAME_LIST)) or []
             )
+            table_configs = _decode_dict_option(TABLE_CONFIGS, self.options.get(TABLE_CONFIGS))
             all_records = []
             # Preserve caller-supplied table order — caller controls it.
             for table in table_names:
@@ -2170,14 +2248,9 @@ def register_lakeflow_source(spark):
                         f"(use '[]' for root-level tables; walk the tree via "
                         f"'{NAMESPACES_TABLE}' to enumerate every namespace)."
                     )
-                namespace = _decode_list_of_str_option(
-                    NAMESPACE, self.options[NAMESPACE]
-                )
+                namespace = _decode_list_of_str_option(NAMESPACE, self.options[NAMESPACE])
                 tables = self.lakeflow_connect.list_tables_in_namespace(namespace)
-                return [
-                    {"namespace": namespace, TABLE_NAME: tn}
-                    for tn in sorted(tables)
-                ]
+                return [{"namespace": namespace, TABLE_NAME: tn} for tn in sorted(tables)]
             # Flat connector path. Reject a stray `namespace` option — the
             # caller probably mistook this connector for namespace-aware and
             # silently ignoring the option would mask the bug.
@@ -2191,7 +2264,6 @@ def register_lakeflow_source(spark):
                 {"namespace": [], TABLE_NAME: tn}
                 for tn in sorted(self.lakeflow_connect.list_tables())
             ]
-
 
     class LakeflowSource(DataSource):
         """
@@ -2240,7 +2312,9 @@ def register_lakeflow_source(spark):
             # The merged single-file path leaves it None and relies on the
             # LakeflowConnectImpl placeholder (substituted by the merge script).
             connect_cls = type(self)._lakeflow_connect_cls or LakeflowConnectImpl
-            self.lakeflow_connect = connect_cls(options)  # pylint: disable=abstract-class-instantiated
+            self.lakeflow_connect = connect_cls(
+                options
+            )  # pylint: disable=abstract-class-instantiated
 
         @classmethod
         def name(cls):
@@ -2283,11 +2357,12 @@ def register_lakeflow_source(spark):
             if isinstance(self.lakeflow_connect, SupportsPartitionedStream):
                 table = self.options[TABLE_NAME]
                 if self.lakeflow_connect.is_partitioned(table):
-                    return LakeflowPartitionedStreamReader(self.options, schema, self.lakeflow_connect)
+                    return LakeflowPartitionedStreamReader(
+                        self.options, schema, self.lakeflow_connect
+                    )
             return super().streamReader(schema)
 
         def simpleStreamReader(self, schema: StructType):
             return LakeflowStreamReader(self.options, schema, self.lakeflow_connect)
-
 
     spark.dataSource.register(LakeflowSource)
