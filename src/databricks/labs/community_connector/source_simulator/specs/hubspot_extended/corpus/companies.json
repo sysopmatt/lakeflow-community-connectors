@@ -1,0 +1,23 @@
+[
+  {
+    "id": "201",
+    "createdAt": "2024-01-02T10:00:00Z",
+    "updatedAt": "2024-02-02T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "201",
+      "createdate": "2024-01-02T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-02T10:00:00Z",
+      "name": "Analytical Engines LLC",
+      "domain": "example.com",
+      "website": "https://example.com",
+      "industry": "Technology",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "United States",
+      "numberofemployees": "42",
+      "annualrevenue": "12000000",
+      "hubspot_owner_id": "501"
+    }
+  }
+]

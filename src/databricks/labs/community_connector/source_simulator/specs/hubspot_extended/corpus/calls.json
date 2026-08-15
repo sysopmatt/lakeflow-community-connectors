@@ -1,0 +1,23 @@
+[
+  {
+    "id": "501",
+    "createdAt": "2024-01-05T10:00:00Z",
+    "updatedAt": "2024-02-05T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "501",
+      "hs_createdate": "2024-01-05T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-05T10:00:00Z",
+      "hs_timestamp": "2024-01-05T11:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_call_title": "Discovery call",
+      "hs_call_body": "Discussed integration goals.",
+      "hs_call_direction": "OUTBOUND",
+      "hs_call_disposition": "Connected",
+      "hs_call_duration": "1800000",
+      "hs_call_from_number": "+14155550100",
+      "hs_call_to_number": "+14155550101",
+      "hs_call_status": "COMPLETED"
+    }
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "301",
+    "createdAt": "2024-01-03T10:00:00Z",
+    "updatedAt": "2024-02-03T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "301",
+      "createdate": "2024-01-03T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-03T10:00:00Z",
+      "dealname": "Enterprise renewal",
+      "dealstage": "appointmentscheduled",
+      "pipeline": "default",
+      "dealtype": "existingbusiness",
+      "amount": "25000.00",
+      "closedate": "2024-03-31T00:00:00Z",
+      "hs_is_closed": "false",
+      "hs_is_closed_won": "false",
+      "hubspot_owner_id": "501"
+    }
+  }
+]
