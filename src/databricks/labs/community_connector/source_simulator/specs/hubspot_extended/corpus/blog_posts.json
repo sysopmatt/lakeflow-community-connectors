@@ -1,5 +1,19 @@
 [
   {
+    "id": "5000",
+    "name": "Quarterly customer analytics plan",
+    "slug": "quarterly-customer-analytics-plan",
+    "url": "https://example.com/blog/quarterly-customer-analytics-plan",
+    "state": "PUBLISHED",
+    "created": "2024-01-08T10:00:00Z",
+    "updated": "2024-01-15T10:00:00Z",
+    "publishDate": "2024-01-15T12:00:00Z",
+    "authorName": "Grace Hopper",
+    "htmlTitle": "Quarterly Customer Analytics Plan",
+    "metaDescription": "Planning analytics work across the quarter.",
+    "tagIds": ["5101"]
+  },
+  {
     "id": "5001",
     "name": "Using customer data in analytics",
     "slug": "customer-data-analytics",
@@ -11,6 +25,20 @@
     "authorName": "Grace Hopper",
     "htmlTitle": "Using Customer Data in Analytics",
     "metaDescription": "A practical overview of customer data analytics.",
+    "tagIds": ["5101"]
+  },
+  {
+    "id": "5002",
+    "name": "Analytics release checklist",
+    "slug": "analytics-release-checklist",
+    "url": "https://example.com/blog/analytics-release-checklist",
+    "state": "PUBLISHED",
+    "created": "2024-02-20T10:00:00Z",
+    "updated": "2024-02-20T10:00:00Z",
+    "publishDate": "2024-02-20T12:00:00Z",
+    "authorName": "Grace Hopper",
+    "htmlTitle": "Analytics Release Checklist",
+    "metaDescription": "A checklist for publishing analytics updates.",
     "tagIds": ["5101"]
   }
 ]

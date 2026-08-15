@@ -1,5 +1,6 @@
 [
   {
+    "thread_id": "thread-1",
     "id": "msg-1",
     "createdAt": "2024-03-01T11:01:00Z",
     "type": "MESSAGE",
@@ -8,10 +9,20 @@
     "sender": {"id": "101", "type": "CONTACT", "email": "ada@example.com"}
   },
   {
+    "thread_id": "thread-1",
     "id": "msg-2",
     "createdAt": "2024-03-01T11:05:00Z",
     "type": "MESSAGE",
     "text": "Yes, sending it now.",
+    "direction": "OUTGOING",
+    "sender": {"id": "501", "type": "USER", "email": "owner@example.com"}
+  },
+  {
+    "thread_id": "thread-2",
+    "id": "msg-3",
+    "createdAt": "2024-03-02T09:12:00Z",
+    "type": "MESSAGE",
+    "text": "The implementation guide is attached.",
     "direction": "OUTGOING",
     "sender": {"id": "501", "type": "USER", "email": "owner@example.com"}
   }

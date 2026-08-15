@@ -1702,12 +1702,13 @@ def register_lakeflow_source(spark):
             records = self._fetch_list_records(
                 V3_CURSOR_TABLE_PATHS[table_name], extra_params=since_params
             )
-            if checkpoint and not since_params:
-                # These endpoints do not expose a documented server-side updated-since filter.
+            if checkpoint:
+                # Server-side filters are an efficiency hint; client-side filtering is the
+                # correctness guard if HubSpot ignores an unsupported or mistyped parameter.
                 records = [
                     record
                     for record in records
-                    if record.get(cursor_field) and record.get(cursor_field) > checkpoint
+                    if record.get(cursor_field) and record.get(cursor_field) >= checkpoint
                 ]
             records = self._prepare_records(table_name, records)
 
@@ -1916,11 +1917,14 @@ def register_lakeflow_source(spark):
             if not checkpoint:
                 return {}
             if table_name == "behavioral_events":
+                # HubSpot Events API documents occurredAfter for event occurrence time filters.
                 return {"occurredAfter": checkpoint}
             if table_name in {"blog_posts", "blog_tags", "blog_authors"}:
+                # HubSpot CMS blog collections document updatedAfter.
                 return {"updatedAfter": checkpoint}
             if table_name in {"landing_pages", "site_pages"}:
-                return {"updatedAtAfter": checkpoint}
+                # HubSpot CMS pages document property filters; updatedAt supports gte.
+                return {"updatedAt__gte": checkpoint}
             return {}
 
         @classmethod

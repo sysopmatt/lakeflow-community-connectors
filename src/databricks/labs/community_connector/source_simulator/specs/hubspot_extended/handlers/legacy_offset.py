@@ -30,7 +30,10 @@ def serve_form_submissions(prep: PreparedRequest, spec, corpus) -> Response:
 
 def serve_thread_messages(prep: PreparedRequest, spec, corpus) -> Response:
     records = corpus.get(spec.corpus) or []
-    return _json_response(prep, {"results": records, "paging": {}})
+    parts = urlparse(prep.url or "").path.rstrip("/").split("/")
+    thread_id = parts[-2] if len(parts) >= 2 else ""
+    filtered = [record for record in records if record.get("thread_id") == thread_id]
+    return _json_response(prep, {"results": filtered, "paging": {}})
 
 
 def serve_properties(prep: PreparedRequest, spec, corpus) -> Response:
