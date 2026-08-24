@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1501",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-02-15T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1501",
+      "createdate": "2024-01-15T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-15T10:00:00Z",
+      "hs_appointment_name": "Onboarding session",
+      "hs_appointment_start": "2024-02-20T17:00:00Z",
+      "hs_appointment_end": "2024-02-20T18:00:00Z",
+      "hs_appointment_location": "Customer HQ",
+      "hs_appointment_status": "SCHEDULED",
+      "hs_pipeline": "appointments",
+      "hs_pipeline_stage": "scheduled",
+      "hubspot_owner_id": "501"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "appointment_to_contact"}]},
+      "companies": {"results": [{"id": "201", "type": "appointment_to_company"}]}
+    }
+  }
+]

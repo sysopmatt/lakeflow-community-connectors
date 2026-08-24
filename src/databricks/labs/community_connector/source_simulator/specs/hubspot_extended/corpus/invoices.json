@@ -1,0 +1,24 @@
+[
+  {
+    "id": "2101",
+    "createdAt": "2024-01-21T10:00:00Z",
+    "updatedAt": "2024-02-21T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "2101",
+      "createdate": "2024-01-21T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-21T10:00:00Z",
+      "hs_invoice_number": "INV-2101",
+      "hs_invoice_status": "OPEN",
+      "hs_invoice_amount": "12000.00",
+      "hs_balance_due": "12000.00",
+      "hs_due_date": "2024-02-29T00:00:00Z",
+      "hs_currency_code": "USD",
+      "hs_external_invoice_id": "ext-invoice-2101"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "invoice_to_contact"}]},
+      "deals": {"results": [{"id": "301", "type": "invoice_to_deal"}]}
+    }
+  }
+]

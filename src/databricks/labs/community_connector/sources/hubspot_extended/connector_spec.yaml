@@ -1,0 +1,11 @@
+display_name: HubSpot Extended
+connection:
+  parameters:
+    - name: access_token
+      type: string
+      required: true
+      secret: true
+      description: >
+        HubSpot Private App access token used for Bearer authentication.
+
+external_options_allowlist: ""

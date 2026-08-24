@@ -1,0 +1,12 @@
+[
+  {
+    "listId": "5701",
+    "name": "Active customers",
+    "objectTypeId": "0-1",
+    "listType": "ACTIVE",
+    "processingType": "DYNAMIC",
+    "createdAt": "2024-02-04T10:00:00Z",
+    "updatedAt": "2024-02-28T17:00:00Z",
+    "createdById": "7001"
+  }
+]

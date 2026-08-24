@@ -1,0 +1,22 @@
+[
+  {
+    "id": "801",
+    "createdAt": "2024-01-08T10:00:00Z",
+    "updatedAt": "2024-02-08T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "801",
+      "hs_createdate": "2024-01-08T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-08T10:00:00Z",
+      "hs_timestamp": "2024-01-09T09:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_task_subject": "Send proposal",
+      "hs_task_body": "Prepare and send renewal proposal.",
+      "hs_task_status": "NOT_STARTED",
+      "hs_task_priority": "HIGH",
+      "hs_task_type": "TODO",
+      "hs_task_is_completed": "false",
+      "hs_task_completion_date": "2024-01-10T10:00:00Z"
+    }
+  }
+]

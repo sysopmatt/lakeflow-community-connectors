@@ -1,0 +1,20 @@
+[
+  {
+    "id": "thread-1",
+    "inboxId": "inbox-1",
+    "status": "OPEN",
+    "subject": "Question about renewal",
+    "createdAt": "2024-03-01T11:00:00Z",
+    "latestMessageTimestamp": "2024-03-01T11:05:00Z",
+    "archived": false
+  },
+  {
+    "id": "thread-2",
+    "inboxId": "inbox-1",
+    "status": "OPEN",
+    "subject": "Implementation follow-up",
+    "createdAt": "2024-03-02T09:00:00Z",
+    "latestMessageTimestamp": "2024-03-02T09:12:00Z",
+    "archived": false
+  }
+]

@@ -1,0 +1,288 @@
+# HubSpot Extended CRM v3 simulator.
+
+endpoints:
+  - path: /crm/v3/objects/contacts
+    method: GET
+    corpus: contacts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/companies
+    method: GET
+    corpus: companies
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/deals
+    method: GET
+    corpus: deals
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/tickets
+    method: GET
+    corpus: tickets
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/calls
+    method: GET
+    corpus: calls
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/emails
+    method: GET
+    corpus: emails
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/meetings
+    method: GET
+    corpus: meetings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/tasks
+    method: GET
+    corpus: tasks
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/notes
+    method: GET
+    corpus: notes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/line_items
+    method: GET
+    corpus: line_items
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/products
+    method: GET
+    corpus: products
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/leads
+    method: GET
+    corpus: leads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/quotes
+    method: GET
+    corpus: quotes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/feedback_submissions
+    method: GET
+    corpus: feedback_submissions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/appointments
+    method: GET
+    corpus: appointments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/listings
+    method: GET
+    corpus: listings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/orders
+    method: GET
+    corpus: orders
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/carts
+    method: GET
+    corpus: carts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/commerce_payments
+    method: GET
+    corpus: commerce_payments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/subscriptions
+    method: GET
+    corpus: subscriptions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/invoices
+    method: GET
+    corpus: invoices
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/communications
+    method: GET
+    corpus: communications
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/objects/postal_mail
+    method: GET
+    corpus: postal_mail
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /crm/v3/objects/contacts/search
+    method: POST
+    corpus: contacts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/companies/search
+    method: POST
+    corpus: companies
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/deals/search
+    method: POST
+    corpus: deals
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/tickets/search
+    method: POST
+    corpus: tickets
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/calls/search
+    method: POST
+    corpus: calls
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/emails/search
+    method: POST
+    corpus: emails
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/meetings/search
+    method: POST
+    corpus: meetings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/tasks/search
+    method: POST
+    corpus: tasks
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/notes/search
+    method: POST
+    corpus: notes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/line_items/search
+    method: POST
+    corpus: line_items
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/products/search
+    method: POST
+    corpus: products
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/leads/search
+    method: POST
+    corpus: leads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/quotes/search
+    method: POST
+    corpus: quotes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/feedback_submissions/search
+    method: POST
+    corpus: feedback_submissions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/appointments/search
+    method: POST
+    corpus: appointments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/listings/search
+    method: POST
+    corpus: listings
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/orders/search
+    method: POST
+    corpus: orders
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/carts/search
+    method: POST
+    corpus: carts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/commerce_payments/search
+    method: POST
+    corpus: commerce_payments
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/subscriptions/search
+    method: POST
+    corpus: subscriptions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/invoices/search
+    method: POST
+    corpus: invoices
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/communications/search
+    method: POST
+    corpus: communications
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+  - path: /crm/v3/objects/postal_mail/search
+    method: POST
+    corpus: postal_mail
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}, total: 1}}}
+
+  - path: /crm/v3/owners
+    method: GET
+    corpus: owners
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/pipelines/deals
+    method: GET
+    corpus: pipelines
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /marketing/v3/emails/
+    method: GET
+    corpus: marketing_emails
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /email/public/v1/events
+    method: GET
+    corpus: email_events
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_email_events
+  - path: /marketing/v3/forms/
+    method: GET
+    corpus: forms
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /form-integrations/v1/submissions/forms/{form_guid}
+    method: GET
+    corpus: form_submissions
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_form_submissions
+  - path: /marketing/v3/marketing-events/
+    method: GET
+    corpus: marketing_events
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /marketing/v3/campaigns/
+    method: GET
+    corpus: campaigns
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /cms/v3/blogs/posts
+    method: GET
+    corpus: blog_posts
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/blogs/tags
+    method: GET
+    corpus: blog_tags
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/blogs/authors
+    method: GET
+    corpus: blog_authors
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/pages/landing-pages
+    method: GET
+    corpus: landing_pages
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/pages/site-pages
+    method: GET
+    corpus: site_pages
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/hubdb/tables
+    method: GET
+    corpus: hubdb_tables
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /cms/v3/url-redirects
+    method: GET
+    corpus: url_redirects
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /crm/v3/lists/
+    method: GET
+    corpus: lists
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /communication-preferences/v3/definitions
+    method: GET
+    corpus: subscription_definitions
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+
+  - path: /events/v3/events
+    method: GET
+    corpus: behavioral_events
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/inboxes
+    method: GET
+    corpus: conversation_inboxes
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/threads
+    method: GET
+    corpus: conversation_threads
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /conversations/v3/conversations/threads/{thread_id}/messages
+    method: GET
+    corpus: conversation_messages
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_thread_messages
+  - path: /crm/v3/properties/{object_type}
+    method: GET
+    corpus: properties
+    handler: databricks.labs.community_connector.source_simulator.specs.hubspot_extended.handlers.legacy_offset:serve_properties
+  - path: /crm/v3/schemas
+    method: GET
+    corpus: crm_schemas
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}
+  - path: /analytics/v2/reports/sources/total
+    method: GET
+    corpus: analytics_views
+    response: {pagination_style: none, wrapper: {records_key: results, extras: {paging: {}}}}

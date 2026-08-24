@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1601",
+    "createdAt": "2024-01-16T10:00:00Z",
+    "updatedAt": "2024-02-16T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1601",
+      "createdate": "2024-01-16T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-16T10:00:00Z",
+      "hs_listing_name": "Premium services listing",
+      "hs_listing_type": "SERVICE",
+      "hs_listing_status": "ACTIVE",
+      "hs_listing_url": "https://example.com/listings/premium-services",
+      "hs_price": "5000.00",
+      "hs_currency": "USD",
+      "hs_address": "1 Market St, San Francisco, CA",
+      "hubspot_owner_id": "501"
+    },
+    "associations": {
+      "companies": {"results": [{"id": "201", "type": "listing_to_company"}]}
+    }
+  }
+]

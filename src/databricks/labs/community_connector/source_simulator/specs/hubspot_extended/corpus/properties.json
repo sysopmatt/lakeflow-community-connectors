@@ -1,0 +1,111 @@
+{
+  "contacts": [
+    {
+      "name": "email",
+      "label": "Email",
+      "description": "Contact email address",
+      "groupName": "contactinformation",
+      "type": "string",
+      "fieldType": "text",
+      "options": [],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "companies": [
+    {
+      "name": "domain",
+      "label": "Company domain name",
+      "description": "Primary company domain",
+      "groupName": "companyinformation",
+      "type": "string",
+      "fieldType": "text",
+      "options": [],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "deals": [
+    {
+      "name": "dealstage",
+      "label": "Deal stage",
+      "description": "Current deal stage",
+      "groupName": "dealinformation",
+      "type": "enumeration",
+      "fieldType": "select",
+      "options": [
+        {
+          "label": "Appointment Scheduled",
+          "value": "appointmentscheduled",
+          "description": "Initial meeting booked",
+          "displayOrder": 0,
+          "hidden": false
+        }
+      ],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "tickets": [
+    {
+      "name": "subject",
+      "label": "Ticket name",
+      "description": "Ticket subject",
+      "groupName": "ticketinformation",
+      "type": "string",
+      "fieldType": "text",
+      "options": [],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "products": [
+    {
+      "name": "name",
+      "label": "Name",
+      "description": "Product name",
+      "groupName": "productinformation",
+      "type": "string",
+      "fieldType": "text",
+      "options": [],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "line_items": [
+    {
+      "name": "quantity",
+      "label": "Quantity",
+      "description": "Line item quantity",
+      "groupName": "lineiteminformation",
+      "type": "number",
+      "fieldType": "number",
+      "options": [],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-03-01T00:00:00Z",
+      "archived": false
+    }
+  ],
+  "calls": [],
+  "emails": [],
+  "meetings": [],
+  "tasks": [],
+  "notes": [],
+  "leads": [],
+  "quotes": [],
+  "feedback_submissions": [],
+  "appointments": [],
+  "listings": [],
+  "orders": [],
+  "carts": [],
+  "commerce_payments": [],
+  "subscriptions": [],
+  "invoices": [],
+  "communications": [],
+  "postal_mail": []
+}

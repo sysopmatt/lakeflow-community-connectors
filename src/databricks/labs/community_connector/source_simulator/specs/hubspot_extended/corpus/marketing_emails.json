@@ -1,0 +1,15 @@
+[
+  {
+    "id": "3001",
+    "name": "February product update",
+    "subject": "New analytics features are live",
+    "state": "PUBLISHED",
+    "type": "BATCH_EMAIL",
+    "createdAt": "2024-01-24T10:00:00Z",
+    "updatedAt": "2024-02-24T10:00:00Z",
+    "publishedAt": "2024-02-24T12:00:00Z",
+    "archived": false,
+    "authorName": "Marketing Ops",
+    "campaign": "4101"
+  }
+]

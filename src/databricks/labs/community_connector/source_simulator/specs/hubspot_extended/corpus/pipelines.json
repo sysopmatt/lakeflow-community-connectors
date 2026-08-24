@@ -1,0 +1,24 @@
+[
+  {
+    "id": "default",
+    "label": "Sales Pipeline",
+    "displayOrder": 0,
+    "archived": false,
+    "createdAt": "2023-12-01T10:00:00Z",
+    "updatedAt": "2024-02-01T10:00:00Z",
+    "stages": [
+      {
+        "id": "appointmentscheduled",
+        "label": "Appointment Scheduled",
+        "displayOrder": 0,
+        "metadata": {
+          "probability": "0.2",
+          "isClosed": "false"
+        },
+        "archived": false,
+        "createdAt": "2023-12-01T10:00:00Z",
+        "updatedAt": "2024-02-01T10:00:00Z"
+      }
+    ]
+  }
+]

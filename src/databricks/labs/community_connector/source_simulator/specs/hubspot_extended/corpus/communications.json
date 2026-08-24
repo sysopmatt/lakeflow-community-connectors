@@ -1,0 +1,24 @@
+[
+  {
+    "id": "2201",
+    "createdAt": "2024-01-22T10:00:00Z",
+    "updatedAt": "2024-02-22T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "2201",
+      "hs_createdate": "2024-01-22T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-22T10:00:00Z",
+      "hs_timestamp": "2024-01-22T11:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_communication_body": "Customer sent a LinkedIn message.",
+      "hs_communication_channel_type": "LINKEDIN_MESSAGE",
+      "hs_communication_logged_from": "CRM",
+      "hs_communication_global_id": "comm-2201",
+      "hs_body_preview": "Customer sent a LinkedIn message."
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "communication_to_contact"}]},
+      "companies": {"results": [{"id": "201", "type": "communication_to_company"}]}
+    }
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "5601",
+    "routePrefix": "/old-demo",
+    "destination": "https://example.com/demo",
+    "redirectStyle": 301,
+    "isOnlyAfterNotFound": false,
+    "isMatchFullUrl": false,
+    "createdAt": "2024-02-03T10:00:00Z",
+    "updatedAt": "2024-02-28T16:00:00Z"
+  }
+]

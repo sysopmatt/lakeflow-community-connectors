@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1101",
+    "createdAt": "2024-01-11T10:00:00Z",
+    "updatedAt": "2024-02-11T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1101",
+      "createdate": "2024-01-11T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-11T10:00:00Z",
+      "name": "Platform subscription",
+      "description": "Hosted annual platform subscription",
+      "hs_sku": "PLAT-ANNUAL",
+      "price": "12000.00",
+      "hs_cost_of_goods_sold": "3000.00",
+      "hs_product_type": "software",
+      "hs_url": "https://example.com/products/platform",
+      "recurringbillingfrequency": "annually",
+      "tax": "0"
+    }
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "inbox-1",
+    "name": "Customer Support",
+    "channelTypes": ["EMAIL", "LIVE_CHAT"],
+    "createdAt": "2024-03-01T09:00:00Z",
+    "updatedAt": "2024-03-01T10:00:00Z",
+    "archived": false
+  }
+]

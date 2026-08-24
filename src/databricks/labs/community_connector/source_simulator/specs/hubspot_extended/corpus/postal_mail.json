@@ -1,0 +1,21 @@
+[
+  {
+    "id": "2301",
+    "createdAt": "2024-01-23T10:00:00Z",
+    "updatedAt": "2024-02-23T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "2301",
+      "hs_createdate": "2024-01-23T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-23T10:00:00Z",
+      "hs_timestamp": "2024-01-23T11:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_postal_mail_body": "Sent signed order form by postal mail.",
+      "hs_attachment_ids": "att-2301"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "postal_mail_to_contact"}]},
+      "deals": {"results": [{"id": "301", "type": "postal_mail_to_deal"}]}
+    }
+  }
+]

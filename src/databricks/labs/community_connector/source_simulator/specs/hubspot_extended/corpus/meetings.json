@@ -1,0 +1,21 @@
+[
+  {
+    "id": "701",
+    "createdAt": "2024-01-07T10:00:00Z",
+    "updatedAt": "2024-02-07T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "701",
+      "hs_createdate": "2024-01-07T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-07T10:00:00Z",
+      "hs_timestamp": "2024-01-07T11:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_meeting_title": "Implementation planning",
+      "hs_meeting_body": "Reviewed rollout plan.",
+      "hs_meeting_location": "Zoom",
+      "hs_meeting_start_time": "2024-01-07T11:00:00Z",
+      "hs_meeting_end_time": "2024-01-07T11:30:00Z",
+      "hs_meeting_outcome": "SCHEDULED"
+    }
+  }
+]

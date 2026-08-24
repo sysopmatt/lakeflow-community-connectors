@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1801",
+    "createdAt": "2024-01-18T10:00:00Z",
+    "updatedAt": "2024-02-18T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "1801",
+      "createdate": "2024-01-18T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-18T10:00:00Z",
+      "hs_cart_name": "Cart 1801",
+      "hs_cart_status": "OPEN",
+      "hs_cart_amount": "12000.00",
+      "hs_currency_code": "USD",
+      "hs_source_store": "B2B storefront",
+      "hs_abandoned_cart_url": "https://example.com/cart/1801",
+      "hs_external_cart_id": "ext-cart-1801"
+    },
+    "associations": {
+      "contacts": {"results": [{"id": "101", "type": "cart_to_contact"}]},
+      "line_items": {"results": [{"id": "1001", "type": "cart_to_line_item"}]}
+    }
+  }
+]

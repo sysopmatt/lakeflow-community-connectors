@@ -1,0 +1,13 @@
+[
+  {
+    "objectTypeId": "2-123456",
+    "name": "installations",
+    "fullyQualifiedName": "p123456_installations",
+    "labels": {"singular": "Installation", "plural": "Installations"},
+    "primaryDisplayProperty": "installation_name",
+    "requiredProperties": ["installation_name"],
+    "searchableProperties": ["installation_name", "external_id"],
+    "createdAt": "2024-02-01T10:00:00Z",
+    "updatedAt": "2024-03-01T10:00:00Z"
+  }
+]

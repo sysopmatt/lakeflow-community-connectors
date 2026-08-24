@@ -1,0 +1,21 @@
+[
+  {
+    "id": "101",
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-02-01T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "101",
+      "createdate": "2024-01-01T10:00:00Z",
+      "lastmodifieddate": "2024-02-01T10:00:00Z",
+      "firstname": "Ada",
+      "lastname": "Lovelace",
+      "email": "ada@example.com",
+      "phone": "+14155550101",
+      "company": "Analytical Engines LLC",
+      "jobtitle": "CTO",
+      "lifecyclestage": "customer",
+      "hubspot_owner_id": "501"
+    }
+  }
+]

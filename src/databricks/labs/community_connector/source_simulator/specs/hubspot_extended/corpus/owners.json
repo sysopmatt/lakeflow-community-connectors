@@ -1,0 +1,15 @@
+[
+  {
+    "id": "501",
+    "email": "owner@example.com",
+    "type": "PERSON",
+    "firstName": "Grace",
+    "lastName": "Hopper",
+    "userId": 7001,
+    "userIdIncludingInactive": 7001,
+    "createdAt": "2023-12-01T10:00:00Z",
+    "updatedAt": "2024-02-01T10:00:00Z",
+    "archived": false,
+    "teams": [{"id": "team-1", "name": "Sales", "primary": true}]
+  }
+]

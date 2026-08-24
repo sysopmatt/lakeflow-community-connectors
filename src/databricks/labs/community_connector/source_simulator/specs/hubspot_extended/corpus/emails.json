@@ -1,0 +1,24 @@
+[
+  {
+    "id": "601",
+    "createdAt": "2024-01-06T10:00:00Z",
+    "updatedAt": "2024-02-06T10:00:00Z",
+    "archived": false,
+    "properties": {
+      "hs_object_id": "601",
+      "hs_createdate": "2024-01-06T10:00:00Z",
+      "hs_lastmodifieddate": "2024-02-06T10:00:00Z",
+      "hs_timestamp": "2024-01-06T11:00:00Z",
+      "hubspot_owner_id": "501",
+      "hs_email_subject": "Next steps",
+      "hs_email_text": "Thanks for meeting today.",
+      "hs_email_direction": "EMAIL",
+      "hs_email_status": "SENT",
+      "hs_email_from_email": "owner@example.com",
+      "hs_email_to_email": "ada@example.com",
+      "hs_email_message_id": "msg-601",
+      "hs_email_thread_id": "thread-601",
+      "hs_email_headers": "{\"message-id\":\"msg-601\"}"
+    }
+  }
+]
