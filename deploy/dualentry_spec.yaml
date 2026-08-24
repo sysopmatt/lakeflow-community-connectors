@@ -1,0 +1,283 @@
+# DualEntry pipeline spec — 40 streams -> ingestion.dualentry  (pipeline name: ingestion_dualentry)
+connection_name: dualentry
+objects:
+  - table:
+      source_table: accounts
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: customers
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: vendors
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: items
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: companies
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: classifications
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: classification_lines
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: custom_fields
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: journal_entries
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: journal_entry_lines
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: intercompany_journal_entries
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [record_number]
+  - table:
+      source_table: invoices
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: sales_orders
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_payments
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_credits
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_refunds
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_deposits
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_prepayments
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: customer_prepayment_applications
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: cash_sales
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: bills
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [number]
+  - table:
+      source_table: purchase_orders
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: vendor_payments
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: vendor_credits
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: vendor_refunds
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: vendor_prepayments
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: vendor_prepayment_applications
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: direct_expenses
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: paper_checks
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: bank_transfers
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: bank_transactions
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: bank_match_suggestions
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: fixed_assets
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: depreciation_books
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: recurring_invoices
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: recurring_bills
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: recurring_journal_entries
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [internal_id]
+  - table:
+      source_table: inbox_transactions
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [transaction_type, record_id, workflow_id]
+  - table:
+      source_table: inbox_records
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [record_id]
+  - table:
+      source_table: webhooks
+      destination_catalog: ingestion
+      destination_schema: dualentry
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [uuid]

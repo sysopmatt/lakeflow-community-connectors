@@ -1,0 +1,335 @@
+# HubSpot Extended pipeline spec — 47 streams -> ingestion.hubspot  (pipeline name: ingestion_hubspot)
+# Connection is a COMMUNITY connection holding a HubSpot Private App access token.
+# Some streams require higher HubSpot tiers (Marketing/Service/CMS/Commerce Hub); those
+# will fail with 402/403 if your portal lacks the module — see DEPLOY.md 'Trim' section.
+connection_name: hubspot_extended
+objects:
+  - table:
+      source_table: contacts
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: companies
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: deals
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: tickets
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: calls
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: emails
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: meetings
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: tasks
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: notes
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: line_items
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: products
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: leads
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: quotes
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: feedback_submissions
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: appointments
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: listings
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: orders
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: carts
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: commerce_payments
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: subscriptions
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: invoices
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: communications
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: postal_mail
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: marketing_emails
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: email_events
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: forms
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: form_submissions
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [form_id, submittedAt, contact_id]
+  - table:
+      source_table: marketing_events
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: campaigns
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: blog_posts
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: blog_tags
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: blog_authors
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: landing_pages
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: site_pages
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: owners
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: pipelines
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: hubdb_tables
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: url_redirects
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: lists
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [listId]
+  - table:
+      source_table: subscription_definitions
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: behavioral_events
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: conversation_inboxes
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: conversation_threads
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [id]
+  - table:
+      source_table: conversation_messages
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [thread_id, id]
+  - table:
+      source_table: properties
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [objectType, name]
+  - table:
+      source_table: crm_schemas
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [objectTypeId]
+  - table:
+      source_table: analytics_views
+      destination_catalog: ingestion
+      destination_schema: hubspot
+      table_configuration:
+        scd_type: SCD_TYPE_1
+        primary_keys: [breakdown, period]
