@@ -15,6 +15,18 @@ You never put a credential in a file — it lives in the UC connection.
 
 ---
 
+## Current status (handoff)
+
+- **DualEntry — ALREADY DEPLOYED & running.** Pipeline `ingestion_dualentry` is live and
+  writing to `ingestion.dualentry` (39/39 streams green). You do **not** need to redeploy it
+  to use the data; the steps below are provided so you can re-run, extend, or rebuild it.
+- **HubSpot — STAGED, not yet deployed (your part).** Everything is ready
+  (`deploy/hubspot_spec.yaml`, 47 streams → `ingestion.hubspot`), but it needs a **HubSpot
+  Private App access token** that we did not have. Create the token (§6b), then run §6b + §7b
+  to bring `ingestion_hubspot` live. Expect some tier-gated streams to fail — trim them (§9).
+
+---
+
 ## 0. What you need before starting
 - A **Mac** (these steps are macOS/Homebrew; Linux is similar).
 - Access to the **Databricks workspace** (`https://dbc-763a60c8-13b8.cloud.databricks.com`).
@@ -201,3 +213,20 @@ Always-available (any portal): `contacts`, `companies`, `deals`, `calls`, `email
 - Connector source: `src/databricks/labs/community_connector/sources/{dualentry,hubspot_extended}/`
 - Per-connector READMEs (objects, auth, schemas): the `README.md` in each source folder.
 - Deploy specs: `deploy/dualentry_spec.yaml`, `deploy/hubspot_spec.yaml`.
+
+---
+
+## 12. Notes / known state
+
+- **Leftover test pipeline `dualentry` (→ `development.ingestion`).** During development an
+  earlier pipeline named `dualentry` was created pointing at the `development.ingestion`
+  catalog/schema. It is **superseded** by `ingestion_dualentry` (→ `ingestion.dualentry`) and
+  has been **left in place intentionally** — it is harmless and safe to ignore. If you want to
+  tidy the workspace you may delete it and its `development.ingestion.*` test tables; nothing
+  in this guide depends on it. The authoritative DualEntry pipeline is `ingestion_dualentry`.
+- **HubSpot connection name.** The community connector's connection is `hubspot_extended`
+  (the plain `hubspot` name is taken by Databricks' native HubSpot connector). The pipeline and
+  destination schema are still named `ingestion_hubspot` / `ingestion.hubspot` by request.
+- **`journal_entry_lines` (DualEntry).** Trimmed because the DualEntry API currently returns
+  HTTP 404 for `public/v2/journal-entry-lines/`. It ingested fine earlier with identical code,
+  so re-add its `- table:` block to `deploy/dualentry_spec.yaml` once the endpoint is restored.
