@@ -65,13 +65,6 @@ objects:
         scd_type: SCD_TYPE_1
         primary_keys: [internal_id]
   - table:
-      source_table: journal_entry_lines
-      destination_catalog: ingestion
-      destination_schema: dualentry
-      table_configuration:
-        scd_type: SCD_TYPE_1
-        primary_keys: [id]
-  - table:
       source_table: intercompany_journal_entries
       destination_catalog: ingestion
       destination_schema: dualentry
