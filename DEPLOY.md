@@ -167,7 +167,7 @@ succeed. To get a fully green run, remove the failing streams and redeploy:
 **DualEntry:** the 39 streams here are already the known-good set for this org (9 gated
 streams — budgets, vat_rates, gst_tax_rates, product_tax_codes, workflows,
 workflow_actions, workflow_execution_states, contracts, statistical_journals — were
-already removed).
+already removed). Note: `journal_entry_lines` was also trimmed because the DualEntry API currently returns HTTP 404 for `public/v2/journal-entry-lines/` — it ingested fine earlier, so re-add it once the endpoint is restored.
 
 **HubSpot — streams most likely to be tier-gated** (trim if they 402/403):
 - *Marketing Hub Pro/Enterprise:* `marketing_emails`, `email_events`, `forms`,
