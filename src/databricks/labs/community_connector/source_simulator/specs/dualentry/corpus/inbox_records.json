@@ -1,0 +1,4 @@
+[
+  {"record_type":"vendor","name":"Cloud Vendor","approval_status":"pending","approver":"Maya Singh","workflow_id":1003,"record_id":601,"created_at":"2024-02-01T13:00:00Z","updated_at":"2024-02-02T13:00:00Z","approval_info":{"workflow_name":"Vendor onboarding","workflow_version":1,"step_name":"Compliance","current_substep":1,"substeps":[{"order":1,"status":"pending","approve_condition":"any","approvers":[{"id":91,"first_name":"Maya","last_name":"Singh","email":"maya@example.com","full_name":"Maya Singh"}],"approved_by":[],"rejected_by":[]}]},"initiator_id":82},
+  {"record_type":"customer","name":"New Customer","approval_status":"approved","approver":"Grace Lee","workflow_id":1004,"record_id":502,"created_at":"2024-02-03T13:00:00Z","updated_at":"2024-02-04T13:00:00Z","approval_info":null,"initiator_id":83}
+]

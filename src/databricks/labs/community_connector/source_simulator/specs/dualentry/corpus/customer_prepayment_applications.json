@@ -1,0 +1,277 @@
+[
+  {
+    "internal_id": 5496,
+    "number": 5497,
+    "company_id": 5498,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "customer_id": 5499,
+    "customer_name": "customer_name-0",
+    "customer_prepayment_number": 5500,
+    "customer_credit_number": 5501,
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "exchange_rate": "exchange_rate-0",
+    "memo": "memo-0",
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "amount": "amount-0",
+    "record_status": "record_status-0",
+    "transaction_ids": [
+      5502
+    ],
+    "attachments": [
+      {
+        "id": 5503,
+        "file_name": "file_name-0",
+        "file_size": 5504,
+        "download_url": "download_url-0"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 5505,
+        "name": "name-0",
+        "line_id": 5506,
+        "line_name": "line_name-0",
+        "parent_classification_id": 5507,
+        "parent_classification_line_id": 5508
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 5509,
+    "number": 5510,
+    "company_id": 5511,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "customer_id": 5512,
+    "customer_name": "customer_name-1",
+    "customer_prepayment_number": 5513,
+    "customer_credit_number": 5514,
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "exchange_rate": "exchange_rate-1",
+    "memo": "memo-1",
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "amount": "amount-1",
+    "record_status": "record_status-1",
+    "transaction_ids": [
+      5515
+    ],
+    "attachments": [
+      {
+        "id": 5516,
+        "file_name": "file_name-1",
+        "file_size": 5517,
+        "download_url": "download_url-1"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 5518,
+        "name": "name-1",
+        "line_id": 5519,
+        "line_name": "line_name-1",
+        "parent_classification_id": 5520,
+        "parent_classification_line_id": 5521
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 5522,
+    "number": 5523,
+    "company_id": 5524,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "customer_id": 5525,
+    "customer_name": "customer_name-2",
+    "customer_prepayment_number": 5526,
+    "customer_credit_number": 5527,
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "exchange_rate": "exchange_rate-2",
+    "memo": "memo-2",
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "amount": "amount-2",
+    "record_status": "record_status-2",
+    "transaction_ids": [
+      5528
+    ],
+    "attachments": [
+      {
+        "id": 5529,
+        "file_name": "file_name-2",
+        "file_size": 5530,
+        "download_url": "download_url-2"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 5531,
+        "name": "name-2",
+        "line_id": 5532,
+        "line_name": "line_name-2",
+        "parent_classification_id": 5533,
+        "parent_classification_line_id": 5534
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 5535,
+    "number": 5536,
+    "company_id": 5537,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "customer_id": 5538,
+    "customer_name": "customer_name-3",
+    "customer_prepayment_number": 5539,
+    "customer_credit_number": 5540,
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "exchange_rate": "exchange_rate-3",
+    "memo": "memo-3",
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "amount": "amount-3",
+    "record_status": "record_status-3",
+    "transaction_ids": [
+      5541
+    ],
+    "attachments": [
+      {
+        "id": 5542,
+        "file_name": "file_name-3",
+        "file_size": 5543,
+        "download_url": "download_url-3"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 5544,
+        "name": "name-3",
+        "line_id": 5545,
+        "line_name": "line_name-3",
+        "parent_classification_id": 5546,
+        "parent_classification_line_id": 5547
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 5548,
+    "number": 5549,
+    "company_id": 5550,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "customer_id": 5551,
+    "customer_name": "customer_name-4",
+    "customer_prepayment_number": 5552,
+    "customer_credit_number": 5553,
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "exchange_rate": "exchange_rate-4",
+    "memo": "memo-4",
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "amount": "amount-4",
+    "record_status": "record_status-4",
+    "transaction_ids": [
+      5554
+    ],
+    "attachments": [
+      {
+        "id": 5555,
+        "file_name": "file_name-4",
+        "file_size": 5556,
+        "download_url": "download_url-4"
+      }
+    ],
+    "classifications": [
+      {
+        "id": 5557,
+        "name": "name-4",
+        "line_id": 5558,
+        "line_name": "line_name-4",
+        "parent_classification_id": 5559,
+        "parent_classification_line_id": 5560
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

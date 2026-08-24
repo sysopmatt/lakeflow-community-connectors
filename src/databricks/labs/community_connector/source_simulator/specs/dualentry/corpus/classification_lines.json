@@ -1,0 +1,709 @@
+[
+  {
+    "id": 1000,
+    "name": "Cost center 001",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1001,
+    "name": "Cost center 002",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1002,
+    "name": "Cost center 003",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1003,
+    "name": "Cost center 004",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1004,
+    "name": "Cost center 005",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1005,
+    "name": "Cost center 006",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1006,
+    "name": "Cost center 007",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1007,
+    "name": "Cost center 008",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1008,
+    "name": "Cost center 009",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1009,
+    "name": "Cost center 010",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1010,
+    "name": "Cost center 011",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1011,
+    "name": "Cost center 012",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1012,
+    "name": "Cost center 013",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1013,
+    "name": "Cost center 014",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1014,
+    "name": "Cost center 015",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1015,
+    "name": "Cost center 016",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1016,
+    "name": "Cost center 017",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1017,
+    "name": "Cost center 018",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1018,
+    "name": "Cost center 019",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1019,
+    "name": "Cost center 020",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1020,
+    "name": "Cost center 021",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1021,
+    "name": "Cost center 022",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1022,
+    "name": "Cost center 023",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1023,
+    "name": "Cost center 024",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1024,
+    "name": "Cost center 025",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1025,
+    "name": "Cost center 026",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1026,
+    "name": "Cost center 027",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1027,
+    "name": "Cost center 028",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1028,
+    "name": "Cost center 029",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1029,
+    "name": "Cost center 030",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1030,
+    "name": "Cost center 031",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1031,
+    "name": "Cost center 032",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1032,
+    "name": "Cost center 033",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1033,
+    "name": "Cost center 034",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1034,
+    "name": "Cost center 035",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1035,
+    "name": "Cost center 036",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1036,
+    "name": "Cost center 037",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1037,
+    "name": "Cost center 038",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1038,
+    "name": "Cost center 039",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1039,
+    "name": "Cost center 040",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1040,
+    "name": "Cost center 041",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1041,
+    "name": "Cost center 042",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1042,
+    "name": "Cost center 043",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1043,
+    "name": "Cost center 044",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1044,
+    "name": "Cost center 045",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1045,
+    "name": "Cost center 046",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1046,
+    "name": "Cost center 047",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1047,
+    "name": "Cost center 048",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1048,
+    "name": "Cost center 049",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1049,
+    "name": "Cost center 050",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1050,
+    "name": "Cost center 051",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1051,
+    "name": "Cost center 052",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1052,
+    "name": "Cost center 053",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1053,
+    "name": "Cost center 054",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1054,
+    "name": "Cost center 055",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1055,
+    "name": "Cost center 056",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1056,
+    "name": "Cost center 057",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1057,
+    "name": "Cost center 058",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1058,
+    "name": "Cost center 059",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1059,
+    "name": "Cost center 060",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1060,
+    "name": "Cost center 061",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1061,
+    "name": "Cost center 062",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1062,
+    "name": "Cost center 063",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1063,
+    "name": "Cost center 064",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1064,
+    "name": "Cost center 065",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1065,
+    "name": "Cost center 066",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1066,
+    "name": "Cost center 067",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1067,
+    "name": "Cost center 068",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1068,
+    "name": "Cost center 069",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1069,
+    "name": "Cost center 070",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1070,
+    "name": "Cost center 071",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1071,
+    "name": "Cost center 072",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1072,
+    "name": "Cost center 073",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1073,
+    "name": "Cost center 074",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1074,
+    "name": "Cost center 075",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1075,
+    "name": "Cost center 076",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1076,
+    "name": "Cost center 077",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1077,
+    "name": "Cost center 078",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1078,
+    "name": "Cost center 079",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1079,
+    "name": "Cost center 080",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1080,
+    "name": "Cost center 081",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1081,
+    "name": "Cost center 082",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1082,
+    "name": "Cost center 083",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1083,
+    "name": "Cost center 084",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1084,
+    "name": "Cost center 085",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1085,
+    "name": "Cost center 086",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1086,
+    "name": "Cost center 087",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1087,
+    "name": "Cost center 088",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1088,
+    "name": "Cost center 089",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1089,
+    "name": "Cost center 090",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1090,
+    "name": "Cost center 091",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1091,
+    "name": "Cost center 092",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1092,
+    "name": "Cost center 093",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1093,
+    "name": "Cost center 094",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1094,
+    "name": "Cost center 095",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1095,
+    "name": "Cost center 096",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1096,
+    "name": "Cost center 097",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1097,
+    "name": "Cost center 098",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1098,
+    "name": "Cost center 099",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1099,
+    "name": "Cost center 100",
+    "is_active": true,
+    "classification_id": 10,
+    "classification_name": "Department"
+  },
+  {
+    "id": 1100,
+    "name": "Cost center 101",
+    "is_active": false,
+    "classification_id": 10,
+    "classification_name": "Department"
+  }
+]

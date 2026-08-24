@@ -1,0 +1,37 @@
+[
+  {
+    "id": 12000,
+    "code": "BOOK-0",
+    "name": "Primary",
+    "is_active": true,
+    "is_posting": true
+  },
+  {
+    "id": 12001,
+    "code": "BOOK-1",
+    "name": "Tax",
+    "is_active": true,
+    "is_posting": false
+  },
+  {
+    "id": 12002,
+    "code": "BOOK-2",
+    "name": "IFRS",
+    "is_active": true,
+    "is_posting": false
+  },
+  {
+    "id": 12003,
+    "code": "BOOK-3",
+    "name": "Local GAAP",
+    "is_active": true,
+    "is_posting": false
+  },
+  {
+    "id": 12004,
+    "code": "BOOK-4",
+    "name": "Management",
+    "is_active": true,
+    "is_posting": false
+  }
+]

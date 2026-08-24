@@ -1,0 +1,487 @@
+[
+  {
+    "internal_id": 5416,
+    "number": 5417,
+    "company_id": 5418,
+    "company_name": "company_name-0",
+    "company_currency": "company_currency-0",
+    "customer_id": 5419,
+    "customer_name": "customer_name-0",
+    "account_number": 5420,
+    "memo": "memo-0",
+    "check_number": "check_number-0",
+    "currency_iso_4217_code": "currency_iso_4217_code-0",
+    "date": "2024-02-01",
+    "transaction_date": "2024-02-01",
+    "exchange_rate": "exchange_rate-0",
+    "undeposited_funds_currency": "undeposited_funds_currency-0",
+    "bank_or_undeposited_funds_amount": "bank_or_undeposited_funds_amount-0",
+    "amount": "amount-0",
+    "used_amount": "used_amount-0",
+    "remaining_amount": "remaining_amount-0",
+    "payment_method_id": 5421,
+    "record_status": "record_status-0",
+    "recurring_record_number": 5422,
+    "transaction_ids": [
+      5423
+    ],
+    "attachments": [
+      {
+        "id": 5424,
+        "file_name": "file_name-0",
+        "file_size": 5425,
+        "download_url": "download_url-0"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5426,
+          "company_id": 5427,
+          "company_ids": [
+            5427
+          ],
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": "default_value-0",
+          "options": [
+            "options-0"
+          ],
+          "is_active": true
+        },
+        "value": {
+          "id": 5428,
+          "custom_field_id": 5429,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 5430,
+          "value": "value-0",
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
+        }
+      }
+    ],
+    "customer_deposits": [
+      {
+        "number": 5431,
+        "date": "2024-02-01",
+        "amount": "100.00",
+        "memo": "memo-0",
+        "record_status": "record_status-0"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 5432,
+    "number": 5433,
+    "company_id": 5434,
+    "company_name": "company_name-1",
+    "company_currency": "company_currency-1",
+    "customer_id": 5435,
+    "customer_name": "customer_name-1",
+    "account_number": 5436,
+    "memo": "memo-1",
+    "check_number": "check_number-1",
+    "currency_iso_4217_code": "currency_iso_4217_code-1",
+    "date": "2024-02-02",
+    "transaction_date": "2024-02-02",
+    "exchange_rate": "exchange_rate-1",
+    "undeposited_funds_currency": "undeposited_funds_currency-1",
+    "bank_or_undeposited_funds_amount": "bank_or_undeposited_funds_amount-1",
+    "amount": "amount-1",
+    "used_amount": "used_amount-1",
+    "remaining_amount": "remaining_amount-1",
+    "payment_method_id": 5437,
+    "record_status": "record_status-1",
+    "recurring_record_number": 5438,
+    "transaction_ids": [
+      5439
+    ],
+    "attachments": [
+      {
+        "id": 5440,
+        "file_name": "file_name-1",
+        "file_size": 5441,
+        "download_url": "download_url-1"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5442,
+          "company_id": 5443,
+          "company_ids": [
+            5443
+          ],
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": "default_value-1",
+          "options": [
+            "options-1"
+          ],
+          "is_active": false
+        },
+        "value": {
+          "id": 5444,
+          "custom_field_id": 5445,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 5446,
+          "value": "value-1",
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
+        }
+      }
+    ],
+    "customer_deposits": [
+      {
+        "number": 5447,
+        "date": "2024-02-02",
+        "amount": "101.00",
+        "memo": "memo-1",
+        "record_status": "record_status-1"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 5448,
+    "number": 5449,
+    "company_id": 5450,
+    "company_name": "company_name-2",
+    "company_currency": "company_currency-2",
+    "customer_id": 5451,
+    "customer_name": "customer_name-2",
+    "account_number": 5452,
+    "memo": "memo-2",
+    "check_number": "check_number-2",
+    "currency_iso_4217_code": "currency_iso_4217_code-2",
+    "date": "2024-02-03",
+    "transaction_date": "2024-02-03",
+    "exchange_rate": "exchange_rate-2",
+    "undeposited_funds_currency": "undeposited_funds_currency-2",
+    "bank_or_undeposited_funds_amount": "bank_or_undeposited_funds_amount-2",
+    "amount": "amount-2",
+    "used_amount": "used_amount-2",
+    "remaining_amount": "remaining_amount-2",
+    "payment_method_id": 5453,
+    "record_status": "record_status-2",
+    "recurring_record_number": 5454,
+    "transaction_ids": [
+      5455
+    ],
+    "attachments": [
+      {
+        "id": 5456,
+        "file_name": "file_name-2",
+        "file_size": 5457,
+        "download_url": "download_url-2"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5458,
+          "company_id": 5459,
+          "company_ids": [
+            5459
+          ],
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": "default_value-2",
+          "options": [
+            "options-2"
+          ],
+          "is_active": true
+        },
+        "value": {
+          "id": 5460,
+          "custom_field_id": 5461,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 5462,
+          "value": "value-2",
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
+        }
+      }
+    ],
+    "customer_deposits": [
+      {
+        "number": 5463,
+        "date": "2024-02-03",
+        "amount": "102.00",
+        "memo": "memo-2",
+        "record_status": "record_status-2"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 5464,
+    "number": 5465,
+    "company_id": 5466,
+    "company_name": "company_name-3",
+    "company_currency": "company_currency-3",
+    "customer_id": 5467,
+    "customer_name": "customer_name-3",
+    "account_number": 5468,
+    "memo": "memo-3",
+    "check_number": "check_number-3",
+    "currency_iso_4217_code": "currency_iso_4217_code-3",
+    "date": "2024-02-04",
+    "transaction_date": "2024-02-04",
+    "exchange_rate": "exchange_rate-3",
+    "undeposited_funds_currency": "undeposited_funds_currency-3",
+    "bank_or_undeposited_funds_amount": "bank_or_undeposited_funds_amount-3",
+    "amount": "amount-3",
+    "used_amount": "used_amount-3",
+    "remaining_amount": "remaining_amount-3",
+    "payment_method_id": 5469,
+    "record_status": "record_status-3",
+    "recurring_record_number": 5470,
+    "transaction_ids": [
+      5471
+    ],
+    "attachments": [
+      {
+        "id": 5472,
+        "file_name": "file_name-3",
+        "file_size": 5473,
+        "download_url": "download_url-3"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5474,
+          "company_id": 5475,
+          "company_ids": [
+            5475
+          ],
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": "default_value-3",
+          "options": [
+            "options-3"
+          ],
+          "is_active": false
+        },
+        "value": {
+          "id": 5476,
+          "custom_field_id": 5477,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 5478,
+          "value": "value-3",
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
+        }
+      }
+    ],
+    "customer_deposits": [
+      {
+        "number": 5479,
+        "date": "2024-02-04",
+        "amount": "103.00",
+        "memo": "memo-3",
+        "record_status": "record_status-3"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 5480,
+    "number": 5481,
+    "company_id": 5482,
+    "company_name": "company_name-4",
+    "company_currency": "company_currency-4",
+    "customer_id": 5483,
+    "customer_name": "customer_name-4",
+    "account_number": 5484,
+    "memo": "memo-4",
+    "check_number": "check_number-4",
+    "currency_iso_4217_code": "currency_iso_4217_code-4",
+    "date": "2024-02-05",
+    "transaction_date": "2024-02-05",
+    "exchange_rate": "exchange_rate-4",
+    "undeposited_funds_currency": "undeposited_funds_currency-4",
+    "bank_or_undeposited_funds_amount": "bank_or_undeposited_funds_amount-4",
+    "amount": "amount-4",
+    "used_amount": "used_amount-4",
+    "remaining_amount": "remaining_amount-4",
+    "payment_method_id": 5485,
+    "record_status": "record_status-4",
+    "recurring_record_number": 5486,
+    "transaction_ids": [
+      5487
+    ],
+    "attachments": [
+      {
+        "id": 5488,
+        "file_name": "file_name-4",
+        "file_size": 5489,
+        "download_url": "download_url-4"
+      }
+    ],
+    "custom_fields": [
+      {
+        "field": {
+          "id": 5490,
+          "company_id": 5491,
+          "company_ids": [
+            5491
+          ],
+          "name": "name-4",
+          "description": "description-4",
+          "helper_text": "helper_text-4",
+          "field_type": "field_type-4",
+          "applies_to": [
+            {
+              "type": "type-4",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": "default_value-4",
+          "options": [
+            "options-4"
+          ],
+          "is_active": true
+        },
+        "value": {
+          "id": 5492,
+          "custom_field_id": 5493,
+          "custom_field_name": "custom_field_name-4",
+          "custom_field_type": "custom_field_type-4",
+          "custom_field_value_id": 5494,
+          "value": "value-4",
+          "created_at": "created_at-4",
+          "updated_at": "updated_at-4"
+        }
+      }
+    ],
+    "customer_deposits": [
+      {
+        "number": 5495,
+        "date": "2024-02-05",
+        "amount": "104.00",
+        "memo": "memo-4",
+        "record_status": "record_status-4"
+      }
+    ],
+    "created_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-4",
+      "email": "email-4",
+      "first_name": "first_name-4",
+      "last_name": "last_name-4",
+      "timestamp": "2024-03-05T08:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

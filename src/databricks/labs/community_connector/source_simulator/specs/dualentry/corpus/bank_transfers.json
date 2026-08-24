@@ -1,0 +1,199 @@
+[
+  {
+    "internal_id": 5000,
+    "number": 8000,
+    "transaction_id": 9000,
+    "debit_entry_id": 9100,
+    "credit_entry_id": 9200,
+    "date": "2024-01-01",
+    "transaction_date": "2024-01-01",
+    "company_id": 100,
+    "company_name": "Acme Holdings 0",
+    "company_currency": "USD",
+    "debit_bank_account_number": 10010,
+    "credit_bank_account_number": 10020,
+    "amount": "1250.75",
+    "exchange_rate": "1.000000",
+    "memo": "Intercompany sweep 0",
+    "record_status": "draft",
+    "currency_iso_4217_code": [
+      "USD"
+    ],
+    "bank_match_status": "matched",
+    "reconciliation_status": "reconciled",
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator0@example.com",
+      "first_name": "First0",
+      "last_name": "Last0",
+      "timestamp": "2024-01-01T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater0@example.com",
+      "first_name": "First0",
+      "last_name": "Last0",
+      "timestamp": "2024-01-01T09:15:30Z"
+    },
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "internal_id": 5001,
+    "number": 8001,
+    "transaction_id": 9001,
+    "debit_entry_id": 9101,
+    "credit_entry_id": 9201,
+    "date": "2024-01-02",
+    "transaction_date": "2024-01-02",
+    "company_id": 101,
+    "company_name": "Acme Holdings 1",
+    "company_currency": "USD",
+    "debit_bank_account_number": 10011,
+    "credit_bank_account_number": 10021,
+    "amount": "2501.50",
+    "exchange_rate": "1.000000",
+    "memo": "Intercompany sweep 1",
+    "record_status": "posted",
+    "currency_iso_4217_code": [
+      "USD",
+      "EUR"
+    ],
+    "bank_match_status": "unmatched",
+    "reconciliation_status": "unreconciled",
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator1@example.com",
+      "first_name": "First1",
+      "last_name": "Last1",
+      "timestamp": "2024-01-02T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater1@example.com",
+      "first_name": "First1",
+      "last_name": "Last1",
+      "timestamp": "2024-01-02T09:15:30Z"
+    },
+    "created_at": "2023-12-02T00:00:00Z",
+    "updated_at": "2024-01-02T00:00:00Z"
+  },
+  {
+    "internal_id": 5002,
+    "number": 8002,
+    "transaction_id": 9002,
+    "debit_entry_id": 9102,
+    "credit_entry_id": 9202,
+    "date": "2024-01-03",
+    "transaction_date": "2024-01-03",
+    "company_id": 102,
+    "company_name": "Acme Holdings 2",
+    "company_currency": "USD",
+    "debit_bank_account_number": 10012,
+    "credit_bank_account_number": 10022,
+    "amount": "3752.25",
+    "exchange_rate": "1.000000",
+    "memo": "Intercompany sweep 2",
+    "record_status": "archived",
+    "currency_iso_4217_code": [
+      "USD"
+    ],
+    "bank_match_status": "matched",
+    "reconciliation_status": "reconciled",
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator2@example.com",
+      "first_name": "First2",
+      "last_name": "Last2",
+      "timestamp": "2024-01-03T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater2@example.com",
+      "first_name": "First2",
+      "last_name": "Last2",
+      "timestamp": "2024-01-03T09:15:30Z"
+    },
+    "created_at": "2023-12-03T00:00:00Z",
+    "updated_at": "2024-01-03T00:00:00Z"
+  },
+  {
+    "internal_id": 5003,
+    "number": 8003,
+    "transaction_id": 9003,
+    "debit_entry_id": 9103,
+    "credit_entry_id": 9203,
+    "date": "2024-01-04",
+    "transaction_date": "2024-01-04",
+    "company_id": 103,
+    "company_name": "Acme Holdings 3",
+    "company_currency": "USD",
+    "debit_bank_account_number": 10013,
+    "credit_bank_account_number": 10023,
+    "amount": "5003.00",
+    "exchange_rate": "1.000000",
+    "memo": "Intercompany sweep 3",
+    "record_status": "draft",
+    "currency_iso_4217_code": [
+      "USD",
+      "EUR"
+    ],
+    "bank_match_status": "unmatched",
+    "reconciliation_status": "unreconciled",
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator3@example.com",
+      "first_name": "First3",
+      "last_name": "Last3",
+      "timestamp": "2024-01-04T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater3@example.com",
+      "first_name": "First3",
+      "last_name": "Last3",
+      "timestamp": "2024-01-04T09:15:30Z"
+    },
+    "created_at": "2023-12-04T00:00:00Z",
+    "updated_at": "2024-01-04T00:00:00Z"
+  },
+  {
+    "internal_id": 5004,
+    "number": 8004,
+    "transaction_id": 9004,
+    "debit_entry_id": 9104,
+    "credit_entry_id": 9204,
+    "date": "2024-01-05",
+    "transaction_date": "2024-01-05",
+    "company_id": 104,
+    "company_name": "Acme Holdings 4",
+    "company_currency": "USD",
+    "debit_bank_account_number": 10014,
+    "credit_bank_account_number": 10024,
+    "amount": "6253.75",
+    "exchange_rate": "1.000000",
+    "memo": "Intercompany sweep 4",
+    "record_status": "posted",
+    "currency_iso_4217_code": [
+      "USD"
+    ],
+    "bank_match_status": "matched",
+    "reconciliation_status": "reconciled",
+    "created_by": {
+      "actor_type": "user",
+      "email": "creator4@example.com",
+      "first_name": "First4",
+      "last_name": "Last4",
+      "timestamp": "2024-01-05T09:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "user",
+      "email": "updater4@example.com",
+      "first_name": "First4",
+      "last_name": "Last4",
+      "timestamp": "2024-01-05T09:15:30Z"
+    },
+    "created_at": "2023-12-05T00:00:00Z",
+    "updated_at": "2024-01-05T00:00:00Z"
+  }
+]

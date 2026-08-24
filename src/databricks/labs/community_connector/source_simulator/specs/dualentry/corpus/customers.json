@@ -1,0 +1,394 @@
+[
+  {
+    "id": 1252,
+    "name": "name-0",
+    "unique_id": "unique_id-0",
+    "email": "email-0",
+    "website": "website-0",
+    "customer_type": "customer_type-0",
+    "is_active": true,
+    "phone": "phone-0",
+    "full_address": {
+      "street": "street-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0",
+      "second_line": "second_line-0",
+      "name": "name-0"
+    },
+    "shipping_address": {
+      "street": "street-0",
+      "city": "city-0",
+      "state": "state-0",
+      "postal_code": "postal_code-0",
+      "country": "country-0",
+      "second_line": "second_line-0",
+      "name": "name-0"
+    },
+    "approval_status": "approval_status-0",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1253,
+          "company_id": 1254,
+          "company_ids": [
+            1254
+          ],
+          "name": "name-0",
+          "description": "description-0",
+          "helper_text": "helper_text-0",
+          "field_type": "field_type-0",
+          "applies_to": [
+            {
+              "type": "type-0",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": "default_value-0",
+          "options": [
+            "options-0"
+          ],
+          "is_active": true
+        },
+        "value": {
+          "id": 1255,
+          "custom_field_id": 1256,
+          "custom_field_name": "custom_field_name-0",
+          "custom_field_type": "custom_field_type-0",
+          "custom_field_value_id": 1257,
+          "value": "value-0",
+          "created_at": "created_at-0",
+          "updated_at": "updated_at-0"
+        }
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1258,
+        "first_name": "first_name-0",
+        "last_name": "last_name-0",
+        "email": "email-0",
+        "full_name": "full_name-0",
+        "avatar_url": "avatar_url-0"
+      }
+    ],
+    "rejected_by": {
+      "id": 1259,
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "email": "email-0",
+      "full_name": "full_name-0",
+      "rejection_reason": "rejection_reason-0"
+    },
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    }
+  },
+  {
+    "id": 1260,
+    "name": "name-1",
+    "unique_id": "unique_id-1",
+    "email": "email-1",
+    "website": "website-1",
+    "customer_type": "customer_type-1",
+    "is_active": false,
+    "phone": "phone-1",
+    "full_address": {
+      "street": "street-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1",
+      "second_line": "second_line-1",
+      "name": "name-1"
+    },
+    "shipping_address": {
+      "street": "street-1",
+      "city": "city-1",
+      "state": "state-1",
+      "postal_code": "postal_code-1",
+      "country": "country-1",
+      "second_line": "second_line-1",
+      "name": "name-1"
+    },
+    "approval_status": "approval_status-1",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1261,
+          "company_id": 1262,
+          "company_ids": [
+            1262
+          ],
+          "name": "name-1",
+          "description": "description-1",
+          "helper_text": "helper_text-1",
+          "field_type": "field_type-1",
+          "applies_to": [
+            {
+              "type": "type-1",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": "default_value-1",
+          "options": [
+            "options-1"
+          ],
+          "is_active": false
+        },
+        "value": {
+          "id": 1263,
+          "custom_field_id": 1264,
+          "custom_field_name": "custom_field_name-1",
+          "custom_field_type": "custom_field_type-1",
+          "custom_field_value_id": 1265,
+          "value": "value-1",
+          "created_at": "created_at-1",
+          "updated_at": "updated_at-1"
+        }
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1266,
+        "first_name": "first_name-1",
+        "last_name": "last_name-1",
+        "email": "email-1",
+        "full_name": "full_name-1",
+        "avatar_url": "avatar_url-1"
+      }
+    ],
+    "rejected_by": {
+      "id": 1267,
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "email": "email-1",
+      "full_name": "full_name-1",
+      "rejection_reason": "rejection_reason-1"
+    },
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    }
+  },
+  {
+    "id": 1268,
+    "name": "name-2",
+    "unique_id": "unique_id-2",
+    "email": "email-2",
+    "website": "website-2",
+    "customer_type": "customer_type-2",
+    "is_active": true,
+    "phone": "phone-2",
+    "full_address": {
+      "street": "street-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2",
+      "second_line": "second_line-2",
+      "name": "name-2"
+    },
+    "shipping_address": {
+      "street": "street-2",
+      "city": "city-2",
+      "state": "state-2",
+      "postal_code": "postal_code-2",
+      "country": "country-2",
+      "second_line": "second_line-2",
+      "name": "name-2"
+    },
+    "approval_status": "approval_status-2",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1269,
+          "company_id": 1270,
+          "company_ids": [
+            1270
+          ],
+          "name": "name-2",
+          "description": "description-2",
+          "helper_text": "helper_text-2",
+          "field_type": "field_type-2",
+          "applies_to": [
+            {
+              "type": "type-2",
+              "is_active": true,
+              "is_required": true
+            }
+          ],
+          "default_value": "default_value-2",
+          "options": [
+            "options-2"
+          ],
+          "is_active": true
+        },
+        "value": {
+          "id": 1271,
+          "custom_field_id": 1272,
+          "custom_field_name": "custom_field_name-2",
+          "custom_field_type": "custom_field_type-2",
+          "custom_field_value_id": 1273,
+          "value": "value-2",
+          "created_at": "created_at-2",
+          "updated_at": "updated_at-2"
+        }
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1274,
+        "first_name": "first_name-2",
+        "last_name": "last_name-2",
+        "email": "email-2",
+        "full_name": "full_name-2",
+        "avatar_url": "avatar_url-2"
+      }
+    ],
+    "rejected_by": {
+      "id": 1275,
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "email": "email-2",
+      "full_name": "full_name-2",
+      "rejection_reason": "rejection_reason-2"
+    },
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    }
+  },
+  {
+    "id": 1276,
+    "name": "name-3",
+    "unique_id": "unique_id-3",
+    "email": "email-3",
+    "website": "website-3",
+    "customer_type": "customer_type-3",
+    "is_active": false,
+    "phone": "phone-3",
+    "full_address": {
+      "street": "street-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3",
+      "second_line": "second_line-3",
+      "name": "name-3"
+    },
+    "shipping_address": {
+      "street": "street-3",
+      "city": "city-3",
+      "state": "state-3",
+      "postal_code": "postal_code-3",
+      "country": "country-3",
+      "second_line": "second_line-3",
+      "name": "name-3"
+    },
+    "approval_status": "approval_status-3",
+    "custom_fields": [
+      {
+        "field": {
+          "id": 1277,
+          "company_id": 1278,
+          "company_ids": [
+            1278
+          ],
+          "name": "name-3",
+          "description": "description-3",
+          "helper_text": "helper_text-3",
+          "field_type": "field_type-3",
+          "applies_to": [
+            {
+              "type": "type-3",
+              "is_active": false,
+              "is_required": false
+            }
+          ],
+          "default_value": "default_value-3",
+          "options": [
+            "options-3"
+          ],
+          "is_active": false
+        },
+        "value": {
+          "id": 1279,
+          "custom_field_id": 1280,
+          "custom_field_name": "custom_field_name-3",
+          "custom_field_type": "custom_field_type-3",
+          "custom_field_value_id": 1281,
+          "value": "value-3",
+          "created_at": "created_at-3",
+          "updated_at": "updated_at-3"
+        }
+      }
+    ],
+    "next_approvers": [
+      {
+        "id": 1282,
+        "first_name": "first_name-3",
+        "last_name": "last_name-3",
+        "email": "email-3",
+        "full_name": "full_name-3",
+        "avatar_url": "avatar_url-3"
+      }
+    ],
+    "rejected_by": {
+      "id": 1283,
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "email": "email-3",
+      "full_name": "full_name-3",
+      "rejection_reason": "rejection_reason-3"
+    },
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    }
+  }
+]

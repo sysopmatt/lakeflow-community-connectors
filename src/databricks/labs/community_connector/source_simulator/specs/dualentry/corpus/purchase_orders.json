@@ -1,0 +1,322 @@
+[
+ {
+  "internal_id": 9000,
+  "number": 9001,
+  "date": "2024-02-01",
+  "company_id": 9002,
+  "company_name": "company_name-0",
+  "company_currency": "company_currency-0",
+  "vendor_id": 9003,
+  "vendor_name": "vendor_name-0",
+  "currency_iso_4217_code": "currency_iso_4217_code-0",
+  "exchange_rate": "exchange_rate-0",
+  "billed_total": "billed_total-0",
+  "due_total": "due_total-0",
+  "amount": "amount-0",
+  "memo": "memo-0",
+  "record_status": "record_status-0",
+  "billed_status": "billed_status-0",
+  "reference_number": "reference_number-0",
+  "term_id": 9004,
+  "term_name": "term_name-0",
+  "approval_status": "approval_status-0",
+  "attachments": [
+   {
+    "id": 9005,
+    "file_name": "file_name-0",
+    "file_size": 9006,
+    "download_url": "download_url-0"
+   }
+  ],
+  "next_approvers": [
+   {
+    "id": 9007,
+    "first_name": "first_name-0",
+    "last_name": "last_name-0",
+    "email": "email-0",
+    "full_name": "full_name-0",
+    "avatar_url": "avatar_url-0"
+   }
+  ],
+  "rejected_by": {
+   "id": 9008,
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "email": "email-0",
+   "full_name": "full_name-0",
+   "rejection_reason": "rejection_reason-0"
+  },
+  "created_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-0",
+   "email": "email-0",
+   "first_name": "first_name-0",
+   "last_name": "last_name-0",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-01T00:00:00Z"
+ },
+ {
+  "internal_id": 9100,
+  "number": 9101,
+  "date": "2024-02-02",
+  "company_id": 9102,
+  "company_name": "company_name-1",
+  "company_currency": "company_currency-1",
+  "vendor_id": 9103,
+  "vendor_name": "vendor_name-1",
+  "currency_iso_4217_code": "currency_iso_4217_code-1",
+  "exchange_rate": "exchange_rate-1",
+  "billed_total": "billed_total-1",
+  "due_total": "due_total-1",
+  "amount": "amount-1",
+  "memo": "memo-1",
+  "record_status": "record_status-1",
+  "billed_status": "billed_status-1",
+  "reference_number": "reference_number-1",
+  "term_id": 9104,
+  "term_name": "term_name-1",
+  "approval_status": "approval_status-1",
+  "attachments": [
+   {
+    "id": 9105,
+    "file_name": "file_name-1",
+    "file_size": 9106,
+    "download_url": "download_url-1"
+   }
+  ],
+  "next_approvers": [
+   {
+    "id": 9107,
+    "first_name": "first_name-1",
+    "last_name": "last_name-1",
+    "email": "email-1",
+    "full_name": "full_name-1",
+    "avatar_url": "avatar_url-1"
+   }
+  ],
+  "rejected_by": {
+   "id": 9108,
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "email": "email-1",
+   "full_name": "full_name-1",
+   "rejection_reason": "rejection_reason-1"
+  },
+  "created_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-1",
+   "email": "email-1",
+   "first_name": "first_name-1",
+   "last_name": "last_name-1",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-02T00:00:00Z"
+ },
+ {
+  "internal_id": 9200,
+  "number": 9201,
+  "date": "2024-02-03",
+  "company_id": 9202,
+  "company_name": "company_name-2",
+  "company_currency": "company_currency-2",
+  "vendor_id": 9203,
+  "vendor_name": "vendor_name-2",
+  "currency_iso_4217_code": "currency_iso_4217_code-2",
+  "exchange_rate": "exchange_rate-2",
+  "billed_total": "billed_total-2",
+  "due_total": "due_total-2",
+  "amount": "amount-2",
+  "memo": "memo-2",
+  "record_status": "record_status-2",
+  "billed_status": "billed_status-2",
+  "reference_number": "reference_number-2",
+  "term_id": 9204,
+  "term_name": "term_name-2",
+  "approval_status": "approval_status-2",
+  "attachments": [
+   {
+    "id": 9205,
+    "file_name": "file_name-2",
+    "file_size": 9206,
+    "download_url": "download_url-2"
+   }
+  ],
+  "next_approvers": [
+   {
+    "id": 9207,
+    "first_name": "first_name-2",
+    "last_name": "last_name-2",
+    "email": "email-2",
+    "full_name": "full_name-2",
+    "avatar_url": "avatar_url-2"
+   }
+  ],
+  "rejected_by": {
+   "id": 9208,
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "email": "email-2",
+   "full_name": "full_name-2",
+   "rejection_reason": "rejection_reason-2"
+  },
+  "created_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-2",
+   "email": "email-2",
+   "first_name": "first_name-2",
+   "last_name": "last_name-2",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-03T00:00:00Z"
+ },
+ {
+  "internal_id": 9300,
+  "number": 9301,
+  "date": "2024-02-04",
+  "company_id": 9302,
+  "company_name": "company_name-3",
+  "company_currency": "company_currency-3",
+  "vendor_id": 9303,
+  "vendor_name": "vendor_name-3",
+  "currency_iso_4217_code": "currency_iso_4217_code-3",
+  "exchange_rate": "exchange_rate-3",
+  "billed_total": "billed_total-3",
+  "due_total": "due_total-3",
+  "amount": "amount-3",
+  "memo": "memo-3",
+  "record_status": "record_status-3",
+  "billed_status": "billed_status-3",
+  "reference_number": "reference_number-3",
+  "term_id": 9304,
+  "term_name": "term_name-3",
+  "approval_status": "approval_status-3",
+  "attachments": [
+   {
+    "id": 9305,
+    "file_name": "file_name-3",
+    "file_size": 9306,
+    "download_url": "download_url-3"
+   }
+  ],
+  "next_approvers": [
+   {
+    "id": 9307,
+    "first_name": "first_name-3",
+    "last_name": "last_name-3",
+    "email": "email-3",
+    "full_name": "full_name-3",
+    "avatar_url": "avatar_url-3"
+   }
+  ],
+  "rejected_by": {
+   "id": 9308,
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "email": "email-3",
+   "full_name": "full_name-3",
+   "rejection_reason": "rejection_reason-3"
+  },
+  "created_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-3",
+   "email": "email-3",
+   "first_name": "first_name-3",
+   "last_name": "last_name-3",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-04T00:00:00Z"
+ },
+ {
+  "internal_id": 9400,
+  "number": 9401,
+  "date": "2024-02-05",
+  "company_id": 9402,
+  "company_name": "company_name-4",
+  "company_currency": "company_currency-4",
+  "vendor_id": 9403,
+  "vendor_name": "vendor_name-4",
+  "currency_iso_4217_code": "currency_iso_4217_code-4",
+  "exchange_rate": "exchange_rate-4",
+  "billed_total": "billed_total-4",
+  "due_total": "due_total-4",
+  "amount": "amount-4",
+  "memo": "memo-4",
+  "record_status": "record_status-4",
+  "billed_status": "billed_status-4",
+  "reference_number": "reference_number-4",
+  "term_id": 9404,
+  "term_name": "term_name-4",
+  "approval_status": "approval_status-4",
+  "attachments": [
+   {
+    "id": 9405,
+    "file_name": "file_name-4",
+    "file_size": 9406,
+    "download_url": "download_url-4"
+   }
+  ],
+  "next_approvers": [
+   {
+    "id": 9407,
+    "first_name": "first_name-4",
+    "last_name": "last_name-4",
+    "email": "email-4",
+    "full_name": "full_name-4",
+    "avatar_url": "avatar_url-4"
+   }
+  ],
+  "rejected_by": {
+   "id": 9408,
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "email": "email-4",
+   "full_name": "full_name-4",
+   "rejection_reason": "rejection_reason-4"
+  },
+  "created_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "updated_by": {
+   "actor_type": "actor_type-4",
+   "email": "email-4",
+   "first_name": "first_name-4",
+   "last_name": "last_name-4",
+   "timestamp": "2024-03-01T08:15:30Z"
+  },
+  "created_at": "2023-12-01T00:00:00Z",
+  "updated_at": "2024-01-05T00:00:00Z"
+ }
+]

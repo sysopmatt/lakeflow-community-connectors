@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1320,
+    "name": "name-0",
+    "sku": "sku-0",
+    "description": "description-0",
+    "item_type": "item_type-0",
+    "is_active": true,
+    "record_status": "record_status-0",
+    "product_tax_code_id": 1321,
+    "expense_account_id": 1322,
+    "income_account_id": 1323,
+    "deferral_account_id": 1324,
+    "asset_account_id": 1325,
+    "discount_account_id": 1326,
+    "default_classification_line_ids": [
+      1327
+    ],
+    "default_rev_rec_method": "default_rev_rec_method-0",
+    "default_rev_rec_invoice_frequency": "default_rev_rec_invoice_frequency-0",
+    "default_rev_rec_invoice_interval": 1328,
+    "created_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-0",
+      "email": "email-0",
+      "first_name": "first_name-0",
+      "last_name": "last_name-0",
+      "timestamp": "2024-03-01T08:15:30Z"
+    }
+  },
+  {
+    "id": 1329,
+    "name": "name-1",
+    "sku": "sku-1",
+    "description": "description-1",
+    "item_type": "item_type-1",
+    "is_active": false,
+    "record_status": "record_status-1",
+    "product_tax_code_id": 1330,
+    "expense_account_id": 1331,
+    "income_account_id": 1332,
+    "deferral_account_id": 1333,
+    "asset_account_id": 1334,
+    "discount_account_id": 1335,
+    "default_classification_line_ids": [
+      1336
+    ],
+    "default_rev_rec_method": "default_rev_rec_method-1",
+    "default_rev_rec_invoice_frequency": "default_rev_rec_invoice_frequency-1",
+    "default_rev_rec_invoice_interval": 1337,
+    "created_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-1",
+      "email": "email-1",
+      "first_name": "first_name-1",
+      "last_name": "last_name-1",
+      "timestamp": "2024-03-02T08:15:30Z"
+    }
+  },
+  {
+    "id": 1338,
+    "name": "name-2",
+    "sku": "sku-2",
+    "description": "description-2",
+    "item_type": "item_type-2",
+    "is_active": true,
+    "record_status": "record_status-2",
+    "product_tax_code_id": 1339,
+    "expense_account_id": 1340,
+    "income_account_id": 1341,
+    "deferral_account_id": 1342,
+    "asset_account_id": 1343,
+    "discount_account_id": 1344,
+    "default_classification_line_ids": [
+      1345
+    ],
+    "default_rev_rec_method": "default_rev_rec_method-2",
+    "default_rev_rec_invoice_frequency": "default_rev_rec_invoice_frequency-2",
+    "default_rev_rec_invoice_interval": 1346,
+    "created_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-2",
+      "email": "email-2",
+      "first_name": "first_name-2",
+      "last_name": "last_name-2",
+      "timestamp": "2024-03-03T08:15:30Z"
+    }
+  },
+  {
+    "id": 1347,
+    "name": "name-3",
+    "sku": "sku-3",
+    "description": "description-3",
+    "item_type": "item_type-3",
+    "is_active": false,
+    "record_status": "record_status-3",
+    "product_tax_code_id": 1348,
+    "expense_account_id": 1349,
+    "income_account_id": 1350,
+    "deferral_account_id": 1351,
+    "asset_account_id": 1352,
+    "discount_account_id": 1353,
+    "default_classification_line_ids": [
+      1354
+    ],
+    "default_rev_rec_method": "default_rev_rec_method-3",
+    "default_rev_rec_invoice_frequency": "default_rev_rec_invoice_frequency-3",
+    "default_rev_rec_invoice_interval": 1355,
+    "created_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    },
+    "updated_by": {
+      "actor_type": "actor_type-3",
+      "email": "email-3",
+      "first_name": "first_name-3",
+      "last_name": "last_name-3",
+      "timestamp": "2024-03-04T08:15:30Z"
+    }
+  }
+]
