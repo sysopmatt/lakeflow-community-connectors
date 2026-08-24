@@ -6,7 +6,7 @@ end takes a fresh Mac to two live ingestion pipelines.
 
 | Connector | Source name | Pipeline | Destination | Streams |
 |---|---|---|---|---|
-| DualEntry (accounting) | `dualentry` | `ingestion_dualentry` | `ingestion.dualentry` | 40 |
+| DualEntry (accounting) | `dualentry` | `ingestion_dualentry` | `ingestion.dualentry` | 39 |
 | HubSpot (extended) | `hubspot_extended` | `ingestion_hubspot` | `ingestion.hubspot` | 47 |
 
 Each pipeline uses a **Unity Catalog connection** that holds the API credential, plus a
@@ -164,7 +164,7 @@ succeed. To get a fully green run, remove the failing streams and redeploy:
    community-connector run_pipeline ingestion_hubspot
    ```
 
-**DualEntry:** the 40 streams here are already the known-good set for this org (9 gated
+**DualEntry:** the 39 streams here are already the known-good set for this org (9 gated
 streams — budgets, vat_rates, gst_tax_rates, product_tax_codes, workflows,
 workflow_actions, workflow_execution_states, contracts, statistical_journals — were
 already removed).
